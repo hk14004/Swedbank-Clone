@@ -9,14 +9,31 @@
 /* Begin PBXBuildFile section */
 		D475BFA72A152C020057422D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFA62A152C020057422D /* AppDelegate.swift */; };
 		D475BFA92A152C020057422D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFA82A152C020057422D /* SceneDelegate.swift */; };
-		D475BFAB2A152C020057422D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFAA2A152C020057422D /* ViewController.swift */; };
-		D475BFAE2A152C020057422D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D475BFAC2A152C020057422D /* Main.storyboard */; };
 		D475BFB12A152C020057422D /* Swedbank_Clone.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D475BFAF2A152C020057422D /* Swedbank_Clone.xcdatamodeld */; };
 		D475BFB32A152C030057422D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D475BFB22A152C030057422D /* Assets.xcassets */; };
 		D475BFB62A152C030057422D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D475BFB42A152C030057422D /* LaunchScreen.storyboard */; };
 		D475BFC12A152C030057422D /* Swedbank_CloneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFC02A152C030057422D /* Swedbank_CloneTests.swift */; };
 		D475BFCB2A152C030057422D /* Swedbank_CloneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFCA2A152C030057422D /* Swedbank_CloneUITests.swift */; };
 		D475BFCD2A152C030057422D /* Swedbank_CloneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFCC2A152C030057422D /* Swedbank_CloneUITestsLaunchTests.swift */; };
+		D475BFDD2A152C310057422D /* DependencyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFDC2A152C310057422D /* DependencyProvider.swift */; };
+		D475BFE52A152D0E0057422D /* DevToolsCore in Frameworks */ = {isa = PBXBuildFile; productRef = D475BFE42A152D0E0057422D /* DevToolsCore */; };
+		D475BFE72A152D0E0057422D /* DevToolsCoreData in Frameworks */ = {isa = PBXBuildFile; productRef = D475BFE62A152D0E0057422D /* DevToolsCoreData */; };
+		D475BFE92A152D0E0057422D /* DevToolsNavigation in Frameworks */ = {isa = PBXBuildFile; productRef = D475BFE82A152D0E0057422D /* DevToolsNavigation */; };
+		D475BFEB2A152D0E0057422D /* DevToolsNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = D475BFEA2A152D0E0057422D /* DevToolsNetworking */; };
+		D475BFED2A152D0E0057422D /* DevToolsUI in Frameworks */ = {isa = PBXBuildFile; productRef = D475BFEC2A152D0E0057422D /* DevToolsUI */; };
+		D475BFF02A152D620057422D /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = D475BFEF2A152D620057422D /* Swinject */; };
+		D475BFF72A152DA10057422D /* RepositoryAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFF22A152DA10057422D /* RepositoryAssembly.swift */; };
+		D475BFF82A152DA10057422D /* DataMapperAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFF32A152DA10057422D /* DataMapperAssembly.swift */; };
+		D475BFF92A152DA10057422D /* PersistentCoreDataStoreAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFF42A152DA10057422D /* PersistentCoreDataStoreAssembly.swift */; };
+		D475BFFB2A152DA10057422D /* DataProviderAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFF62A152DA10057422D /* DataProviderAssembly.swift */; };
+		D475C0092A1530300057422D /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C0082A1530300057422D /* Person.swift */; };
+		D475C00B2A1531C40057422D /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C00A2A1531C40057422D /* AppCoordinator.swift */; };
+		D475C00E2A15373E0057422D /* CoordinatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C00D2A15373E0057422D /* CoordinatorFactory.swift */; };
+		D475C0112A1538050057422D /* WelcomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C0102A1538050057422D /* WelcomeScreenView.swift */; };
+		D475C0132A15381C0057422D /* WelcomeScreenCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C0122A15381C0057422D /* WelcomeScreenCommon.swift */; };
+		D475C0152A1538740057422D /* WelcomeScreenPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C0142A1538740057422D /* WelcomeScreenPreview.swift */; };
+		D475C0182A1542D90057422D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C0172A1542D90057422D /* Colors.swift */; };
+		D475C01A2A1544180057422D /* WelcomeScreenVMImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C0192A1544180057422D /* WelcomeScreenVMImpl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,8 +57,6 @@
 		D475BFA32A152C020057422D /* Swedbank-Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swedbank-Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D475BFA62A152C020057422D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D475BFA82A152C020057422D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D475BFAA2A152C020057422D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D475BFAD2A152C020057422D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D475BFB02A152C020057422D /* Swedbank_Clone.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Swedbank_Clone.xcdatamodel; sourceTree = "<group>"; };
 		D475BFB22A152C030057422D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D475BFB52A152C030057422D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +66,19 @@
 		D475BFC62A152C030057422D /* Swedbank-CloneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swedbank-CloneUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D475BFCA2A152C030057422D /* Swedbank_CloneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swedbank_CloneUITests.swift; sourceTree = "<group>"; };
 		D475BFCC2A152C030057422D /* Swedbank_CloneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swedbank_CloneUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D475BFDC2A152C310057422D /* DependencyProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyProvider.swift; sourceTree = "<group>"; };
+		D475BFF22A152DA10057422D /* RepositoryAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryAssembly.swift; sourceTree = "<group>"; };
+		D475BFF32A152DA10057422D /* DataMapperAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataMapperAssembly.swift; sourceTree = "<group>"; };
+		D475BFF42A152DA10057422D /* PersistentCoreDataStoreAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentCoreDataStoreAssembly.swift; sourceTree = "<group>"; };
+		D475BFF62A152DA10057422D /* DataProviderAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProviderAssembly.swift; sourceTree = "<group>"; };
+		D475C0082A1530300057422D /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		D475C00A2A1531C40057422D /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		D475C00D2A15373E0057422D /* CoordinatorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorFactory.swift; sourceTree = "<group>"; };
+		D475C0102A1538050057422D /* WelcomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenView.swift; sourceTree = "<group>"; };
+		D475C0122A15381C0057422D /* WelcomeScreenCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenCommon.swift; sourceTree = "<group>"; };
+		D475C0142A1538740057422D /* WelcomeScreenPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenPreview.swift; sourceTree = "<group>"; };
+		D475C0172A1542D90057422D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		D475C0192A1544180057422D /* WelcomeScreenVMImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenVMImpl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +86,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D475BFE52A152D0E0057422D /* DevToolsCore in Frameworks */,
+				D475BFED2A152D0E0057422D /* DevToolsUI in Frameworks */,
+				D475BFE92A152D0E0057422D /* DevToolsNavigation in Frameworks */,
+				D475BFEB2A152D0E0057422D /* DevToolsNetworking in Frameworks */,
+				D475BFE72A152D0E0057422D /* DevToolsCoreData in Frameworks */,
+				D475BFF02A152D620057422D /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,12 +137,13 @@
 			children = (
 				D475BFA62A152C020057422D /* AppDelegate.swift */,
 				D475BFA82A152C020057422D /* SceneDelegate.swift */,
-				D475BFAA2A152C020057422D /* ViewController.swift */,
-				D475BFAC2A152C020057422D /* Main.storyboard */,
-				D475BFB22A152C030057422D /* Assets.xcassets */,
+				D475BFFD2A152F070057422D /* Presentation */,
+				D475BFD92A152C0C0057422D /* Config */,
+				D475BFDE2A152C590057422D /* Domain */,
+				D475C0022A152F500057422D /* Infrastructure */,
+				D475BFFC2A152EC80057422D /* Resources */,
 				D475BFB42A152C030057422D /* LaunchScreen.storyboard */,
 				D475BFB72A152C030057422D /* Info.plist */,
-				D475BFAF2A152C020057422D /* Swedbank_Clone.xcdatamodeld */,
 			);
 			path = "Swedbank-Clone";
 			sourceTree = "<group>";
@@ -130,6 +165,184 @@
 			path = "Swedbank-CloneUITests";
 			sourceTree = "<group>";
 		};
+		D475BFD92A152C0C0057422D /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				D475BFDA2A152C170057422D /* Dependencies */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		D475BFDA2A152C170057422D /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				D475BFDC2A152C310057422D /* DependencyProvider.swift */,
+				D475BFF12A152DA10057422D /* Assemblies */,
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		D475BFDE2A152C590057422D /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				D475BFE22A152C7A0057422D /* Models */,
+				D475BFE12A152C6B0057422D /* Providers */,
+				D475BFE02A152C640057422D /* Repositories */,
+				D475BFDF2A152C600057422D /* Mappers */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		D475BFDF2A152C600057422D /* Mappers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mappers;
+			sourceTree = "<group>";
+		};
+		D475BFE02A152C640057422D /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		D475BFE12A152C6B0057422D /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Providers;
+			sourceTree = "<group>";
+		};
+		D475BFE22A152C7A0057422D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D475C0062A1530050057422D /* Person */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D475BFF12A152DA10057422D /* Assemblies */ = {
+			isa = PBXGroup;
+			children = (
+				D475BFF22A152DA10057422D /* RepositoryAssembly.swift */,
+				D475BFF32A152DA10057422D /* DataMapperAssembly.swift */,
+				D475BFF42A152DA10057422D /* PersistentCoreDataStoreAssembly.swift */,
+				D475BFF62A152DA10057422D /* DataProviderAssembly.swift */,
+			);
+			path = Assemblies;
+			sourceTree = "<group>";
+		};
+		D475BFFC2A152EC80057422D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D475BFB22A152C030057422D /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D475BFFD2A152F070057422D /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				D475BFFF2A152F1D0057422D /* UI */,
+				D475BFFE2A152F150057422D /* Navigation */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		D475BFFE2A152F150057422D /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				D475C00A2A1531C40057422D /* AppCoordinator.swift */,
+				D475C00D2A15373E0057422D /* CoordinatorFactory.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		D475BFFF2A152F1D0057422D /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D475C0012A152F440057422D /* Screens */,
+				D475C0002A152F400057422D /* Components */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		D475C0002A152F400057422D /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				D475C0162A1542CF0057422D /* Colors */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		D475C0012A152F440057422D /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				D475C00F2A1537D60057422D /* Welcome */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		D475C0022A152F500057422D /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				D475C0032A152FC00057422D /* Data */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		D475C0032A152FC00057422D /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				D475C0042A152FC60057422D /* Store */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		D475C0042A152FC60057422D /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				D475C0052A152FCD0057422D /* CoreData */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		D475C0052A152FCD0057422D /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				D475BFAF2A152C020057422D /* Swedbank_Clone.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		D475C0062A1530050057422D /* Person */ = {
+			isa = PBXGroup;
+			children = (
+				D475C0082A1530300057422D /* Person.swift */,
+			);
+			path = Person;
+			sourceTree = "<group>";
+		};
+		D475C00F2A1537D60057422D /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				D475C0102A1538050057422D /* WelcomeScreenView.swift */,
+				D475C0192A1544180057422D /* WelcomeScreenVMImpl.swift */,
+				D475C0122A15381C0057422D /* WelcomeScreenCommon.swift */,
+				D475C0142A1538740057422D /* WelcomeScreenPreview.swift */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		D475C0162A1542CF0057422D /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				D475C0172A1542D90057422D /* Colors.swift */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,6 +359,14 @@
 			dependencies = (
 			);
 			name = "Swedbank-Clone";
+			packageProductDependencies = (
+				D475BFE42A152D0E0057422D /* DevToolsCore */,
+				D475BFE62A152D0E0057422D /* DevToolsCoreData */,
+				D475BFE82A152D0E0057422D /* DevToolsNavigation */,
+				D475BFEA2A152D0E0057422D /* DevToolsNetworking */,
+				D475BFEC2A152D0E0057422D /* DevToolsUI */,
+				D475BFEF2A152D620057422D /* Swinject */,
+			);
 			productName = "Swedbank-Clone";
 			productReference = D475BFA32A152C020057422D /* Swedbank-Clone.app */;
 			productType = "com.apple.product-type.application";
@@ -218,6 +439,10 @@
 				Base,
 			);
 			mainGroup = D475BF9A2A152C020057422D;
+			packageReferences = (
+				D475BFE32A152D0E0057422D /* XCRemoteSwiftPackageReference "DevTools-Swift" */,
+				D475BFEE2A152D620057422D /* XCRemoteSwiftPackageReference "Swinject" */,
+			);
 			productRefGroup = D475BFA42A152C020057422D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -236,7 +461,6 @@
 			files = (
 				D475BFB62A152C030057422D /* LaunchScreen.storyboard in Resources */,
 				D475BFB32A152C030057422D /* Assets.xcassets in Resources */,
-				D475BFAE2A152C020057422D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,10 +485,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D475BFAB2A152C020057422D /* ViewController.swift in Sources */,
+				D475BFF92A152DA10057422D /* PersistentCoreDataStoreAssembly.swift in Sources */,
+				D475C0182A1542D90057422D /* Colors.swift in Sources */,
+				D475C0092A1530300057422D /* Person.swift in Sources */,
+				D475C00B2A1531C40057422D /* AppCoordinator.swift in Sources */,
+				D475BFF72A152DA10057422D /* RepositoryAssembly.swift in Sources */,
+				D475BFF82A152DA10057422D /* DataMapperAssembly.swift in Sources */,
 				D475BFA72A152C020057422D /* AppDelegate.swift in Sources */,
+				D475BFFB2A152DA10057422D /* DataProviderAssembly.swift in Sources */,
+				D475C0152A1538740057422D /* WelcomeScreenPreview.swift in Sources */,
+				D475BFDD2A152C310057422D /* DependencyProvider.swift in Sources */,
 				D475BFB12A152C020057422D /* Swedbank_Clone.xcdatamodeld in Sources */,
+				D475C0112A1538050057422D /* WelcomeScreenView.swift in Sources */,
+				D475C00E2A15373E0057422D /* CoordinatorFactory.swift in Sources */,
 				D475BFA92A152C020057422D /* SceneDelegate.swift in Sources */,
+				D475C0132A15381C0057422D /* WelcomeScreenCommon.swift in Sources */,
+				D475C01A2A1544180057422D /* WelcomeScreenVMImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,14 +537,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		D475BFAC2A152C020057422D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D475BFAD2A152C020057422D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D475BFB42A152C030057422D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -446,7 +674,6 @@
 				INFOPLIST_FILE = "Swedbank-Clone/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -474,7 +701,6 @@
 				INFOPLIST_FILE = "Swedbank-Clone/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -606,6 +832,58 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D475BFE32A152D0E0057422D /* XCRemoteSwiftPackageReference "DevTools-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hk14004/DevTools-Swift";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		D475BFEE2A152D620057422D /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D475BFE42A152D0E0057422D /* DevToolsCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D475BFE32A152D0E0057422D /* XCRemoteSwiftPackageReference "DevTools-Swift" */;
+			productName = DevToolsCore;
+		};
+		D475BFE62A152D0E0057422D /* DevToolsCoreData */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D475BFE32A152D0E0057422D /* XCRemoteSwiftPackageReference "DevTools-Swift" */;
+			productName = DevToolsCoreData;
+		};
+		D475BFE82A152D0E0057422D /* DevToolsNavigation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D475BFE32A152D0E0057422D /* XCRemoteSwiftPackageReference "DevTools-Swift" */;
+			productName = DevToolsNavigation;
+		};
+		D475BFEA2A152D0E0057422D /* DevToolsNetworking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D475BFE32A152D0E0057422D /* XCRemoteSwiftPackageReference "DevTools-Swift" */;
+			productName = DevToolsNetworking;
+		};
+		D475BFEC2A152D0E0057422D /* DevToolsUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D475BFE32A152D0E0057422D /* XCRemoteSwiftPackageReference "DevTools-Swift" */;
+			productName = DevToolsUI;
+		};
+		D475BFEF2A152D620057422D /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D475BFEE2A152D620057422D /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		D475BFAF2A152C020057422D /* Swedbank_Clone.xcdatamodeld */ = {
