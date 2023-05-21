@@ -32,7 +32,7 @@
 		D475C0112A1538050057422D /* WelcomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C0102A1538050057422D /* WelcomeScreenView.swift */; };
 		D475C0132A15381C0057422D /* WelcomeScreenCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C0122A15381C0057422D /* WelcomeScreenCommon.swift */; };
 		D475C0152A1538740057422D /* WelcomeScreenPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C0142A1538740057422D /* WelcomeScreenPreview.swift */; };
-		D475C0182A1542D90057422D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C0172A1542D90057422D /* Colors.swift */; };
+		D475C0182A1542D90057422D /* AssetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C0172A1542D90057422D /* AssetColor.swift */; };
 		D475C01A2A1544180057422D /* WelcomeScreenVMImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C0192A1544180057422D /* WelcomeScreenVMImpl.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,7 +77,7 @@
 		D475C0102A1538050057422D /* WelcomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenView.swift; sourceTree = "<group>"; };
 		D475C0122A15381C0057422D /* WelcomeScreenCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenCommon.swift; sourceTree = "<group>"; };
 		D475C0142A1538740057422D /* WelcomeScreenPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenPreview.swift; sourceTree = "<group>"; };
-		D475C0172A1542D90057422D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		D475C0172A1542D90057422D /* AssetColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetColor.swift; sourceTree = "<group>"; };
 		D475C0192A1544180057422D /* WelcomeScreenVMImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenVMImpl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -338,7 +338,7 @@
 		D475C0162A1542CF0057422D /* Colors */ = {
 			isa = PBXGroup;
 			children = (
-				D475C0172A1542D90057422D /* Colors.swift */,
+				D475C0172A1542D90057422D /* AssetColor.swift */,
 			);
 			path = Colors;
 			sourceTree = "<group>";
@@ -486,7 +486,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D475BFF92A152DA10057422D /* PersistentCoreDataStoreAssembly.swift in Sources */,
-				D475C0182A1542D90057422D /* Colors.swift in Sources */,
+				D475C0182A1542D90057422D /* AssetColor.swift in Sources */,
 				D475C0092A1530300057422D /* Person.swift in Sources */,
 				D475C00B2A1531C40057422D /* AppCoordinator.swift in Sources */,
 				D475BFF72A152DA10057422D /* RepositoryAssembly.swift in Sources */,

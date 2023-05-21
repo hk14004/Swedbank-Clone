@@ -59,7 +59,7 @@ extension WelcomeScreenView {
                     .fontWeight(.bold)
                     .padding(.vertical)
                     .frame(maxWidth: .infinity)
-                    .background(AppColorNames.color1.getColor())
+                    .background(AssetColor.color1.getColor())
                     .cornerRadius(8)
             }
             
