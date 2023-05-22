@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D43599C12A1BD2750057AF7B /* AppTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43599C02A1BD2750057AF7B /* AppTabBarController.swift */; };
 		D475BFA72A152C020057422D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFA62A152C020057422D /* AppDelegate.swift */; };
 		D475BFA92A152C020057422D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFA82A152C020057422D /* SceneDelegate.swift */; };
 		D475BFB12A152C020057422D /* Swedbank_Clone.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D475BFAF2A152C020057422D /* Swedbank_Clone.xcdatamodeld */; };
@@ -56,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D43599C02A1BD2750057AF7B /* AppTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBarController.swift; sourceTree = "<group>"; };
 		D475BFA32A152C020057422D /* Swedbank-Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swedbank-Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D475BFA62A152C020057422D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D475BFA82A152C020057422D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -353,6 +355,7 @@
 			isa = PBXGroup;
 			children = (
 				D4B936112A1BC45100A39414 /* TabBarCoordinator.swift */,
+				D43599C02A1BD2750057AF7B /* AppTabBarController.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 				D475BFDD2A152C310057422D /* DependencyProvider.swift in Sources */,
 				D475BFB12A152C020057422D /* Swedbank_Clone.xcdatamodeld in Sources */,
 				D475C0112A1538050057422D /* WelcomeScreenView.swift in Sources */,
+				D43599C12A1BD2750057AF7B /* AppTabBarController.swift in Sources */,
 				D475C00E2A15373E0057422D /* CoordinatorFactory.swift in Sources */,
 				D475BFA92A152C020057422D /* SceneDelegate.swift in Sources */,
 				D4B936152A1BC65D00A39414 /* OverviewCoordinator.swift in Sources */,

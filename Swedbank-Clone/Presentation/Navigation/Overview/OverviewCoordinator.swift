@@ -19,7 +19,7 @@ class OverviewCoordinator: NavigationCoordinator {
     
     func start() {
         let vc = UIViewController(nibName: nil, bundle: nil)
-        vc.view.backgroundColor = .blue
+        vc.view.backgroundColor = .black
         router.push(vc, isAnimated: true, onNavigateBack: onFree)
     }
     

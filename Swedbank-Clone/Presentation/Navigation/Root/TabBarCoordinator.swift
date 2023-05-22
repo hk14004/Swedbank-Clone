@@ -22,7 +22,7 @@ final class TabBarCoordinator: NSObject, NavigationCoordinator {
     
     // MARK: Properties
     
-    let tabController = UITabBarController(nibName: nil, bundle: nil)
+    let tabController = AppTabBarController()
     
     // Coordinator
     var onFree: FreeCoodinatorClosure = {}
@@ -32,6 +32,7 @@ final class TabBarCoordinator: NSObject, NavigationCoordinator {
     // MARK: Coordinator
     
     func start() {
+        tabController.view.backgroundColor = .systemBackground
         tabController.viewControllers = makeTabs()
         select(tab: .overview)
         router.navigationController.setViewControllers([tabController], animated: true)
@@ -61,13 +62,13 @@ extension TabBarCoordinator {
             case .overview:
                 return makeOverViewTab()
             case .payments:
-                return makeOverViewTab()
+                return makePaymentsTab()
             case .cards:
-                return makeOverViewTab()
+                return makeCardsTab()
             case .contacts:
-                return makeOverViewTab()
+                return makeContactsTab()
             case .services:
-                return makeOverViewTab()
+                return makeServicesTab()
             }
         }
     }
@@ -75,9 +76,10 @@ extension TabBarCoordinator {
     private func makeOverViewTab() -> UINavigationController {
         let navVC = UINavigationController()
         let item = UITabBarItem()
+        item.title = "Pārskats"
         navVC.tabBarItem = item
-//        navVC.tabBarItem.image = UIImage(named: "ic_house")!
-//        navVC.tabBarItem.selectedImage = UIImage(named: "ic_house_selected")!
+        navVC.tabBarItem.image = UIImage(systemName: "house")!
+        navVC.tabBarItem.selectedImage = UIImage(systemName: "house")!
         let router = Router(navigationController: navVC)
         let coordinator = OverviewCoordinator(router: router)
         children.append(coordinator)
@@ -85,4 +87,59 @@ extension TabBarCoordinator {
         return navVC
     }
     
+    private func makePaymentsTab() -> UINavigationController {
+        let navVC = UINavigationController()
+        let item = UITabBarItem()
+        item.title = "Māksājumi"
+        navVC.tabBarItem = item
+        navVC.tabBarItem.image = UIImage(systemName: "arrow.left.arrow.right")!
+        navVC.tabBarItem.selectedImage = UIImage(systemName: "arrow.left.arrow.right")!
+        let router = Router(navigationController: navVC)
+        let coordinator = OverviewCoordinator(router: router)
+        children.append(coordinator)
+        coordinator.start()
+        return navVC
+    }
+    
+    private func makeCardsTab() -> UINavigationController {
+        let navVC = UINavigationController()
+        let item = UITabBarItem()
+        item.title = "Kartes"
+        navVC.tabBarItem = item
+        navVC.tabBarItem.image = UIImage(systemName: "creditcard")!
+        navVC.tabBarItem.selectedImage = UIImage(systemName: "creditcard")!
+        let router = Router(navigationController: navVC)
+        let coordinator = OverviewCoordinator(router: router)
+        children.append(coordinator)
+        coordinator.start()
+        return navVC
+    }
+    
+    private func makeServicesTab() -> UINavigationController {
+        let navVC = UINavigationController()
+        let item = UITabBarItem()
+        item.title = "Pakalpojumi"
+        navVC.tabBarItem = item
+        navVC.tabBarItem.image = UIImage(systemName: "list.clipboard")!
+        navVC.tabBarItem.selectedImage = UIImage(systemName: "list.clipboard")!
+        let router = Router(navigationController: navVC)
+        let coordinator = OverviewCoordinator(router: router)
+        children.append(coordinator)
+        coordinator.start()
+        return navVC
+    }
+    
+    private func makeContactsTab() -> UINavigationController {
+        let navVC = UINavigationController()
+        let item = UITabBarItem()
+        item.title = "Kontakti"
+        navVC.tabBarItem = item
+        navVC.tabBarItem.image = UIImage(systemName: "bubble.left.and.bubble.right")!
+        navVC.tabBarItem.selectedImage = UIImage(systemName: "bubble.left.and.bubble.right")!
+        let router = Router(navigationController: navVC)
+        let coordinator = OverviewCoordinator(router: router)
+        children.append(coordinator)
+        coordinator.start()
+        return navVC
+    }
 }
