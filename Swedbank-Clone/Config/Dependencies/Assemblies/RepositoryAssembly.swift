@@ -23,7 +23,7 @@ class RepositoryAssembly: Assembly {
 //            ProductRepositoryImpl(remoteProvider: resolver.resolve(CatalogProvider.self)!,
 //                                  productsStore: resolver.resolve(BasePersistedLayerInterface<Product>.self)!,
 //                                  mapper: resolver.resolve(ProductResponseMapper.self)!,
-//                                  productVariantStore: resolver.resolve(BasePersistedLayerInterface<ProductVariant>.self)!)
+// productVariantStore: resolver.resolve(BasePersistedLayerInterface<ProductVariant>.self)!)
 //        }.inObjectScope(.container)
     }
 }

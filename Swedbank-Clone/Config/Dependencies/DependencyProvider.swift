@@ -8,7 +8,7 @@
 import Foundation
 import Swinject
 
-let DI = DependencyProvider()
+let DIP = DependencyProvider()
 
 class DependencyProvider {
 
@@ -21,7 +21,7 @@ class DependencyProvider {
                 DataMapperAssembly(),
                 DataProviderAssambly(),
                 PersistentCoreDataStoreAssembly(),
-                RepositoryAssembly(),
+                RepositoryAssembly()
             ],
             container: container
         )

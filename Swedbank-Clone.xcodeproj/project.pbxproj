@@ -12,9 +12,9 @@
 		D475BFB12A152C020057422D /* Swedbank_Clone.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D475BFAF2A152C020057422D /* Swedbank_Clone.xcdatamodeld */; };
 		D475BFB32A152C030057422D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D475BFB22A152C030057422D /* Assets.xcassets */; };
 		D475BFB62A152C030057422D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D475BFB42A152C030057422D /* LaunchScreen.storyboard */; };
-		D475BFC12A152C030057422D /* Swedbank_CloneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFC02A152C030057422D /* Swedbank_CloneTests.swift */; };
-		D475BFCB2A152C030057422D /* Swedbank_CloneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFCA2A152C030057422D /* Swedbank_CloneUITests.swift */; };
-		D475BFCD2A152C030057422D /* Swedbank_CloneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFCC2A152C030057422D /* Swedbank_CloneUITestsLaunchTests.swift */; };
+		D475BFC12A152C030057422D /* SwedbankCloneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFC02A152C030057422D /* SwedbankCloneTests.swift */; };
+		D475BFCB2A152C030057422D /* SwedbankCloneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFCA2A152C030057422D /* SwedbankCloneUITests.swift */; };
+		D475BFCD2A152C030057422D /* SwedbankCloneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFCC2A152C030057422D /* SwedbankCloneUITestsLaunchTests.swift */; };
 		D475BFDD2A152C310057422D /* DependencyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFDC2A152C310057422D /* DependencyProvider.swift */; };
 		D475BFE52A152D0E0057422D /* DevToolsCore in Frameworks */ = {isa = PBXBuildFile; productRef = D475BFE42A152D0E0057422D /* DevToolsCore */; };
 		D475BFE72A152D0E0057422D /* DevToolsCoreData in Frameworks */ = {isa = PBXBuildFile; productRef = D475BFE62A152D0E0057422D /* DevToolsCoreData */; };
@@ -34,6 +34,8 @@
 		D475C0152A1538740057422D /* WelcomeScreenPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C0142A1538740057422D /* WelcomeScreenPreview.swift */; };
 		D475C0182A1542D90057422D /* AssetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C0172A1542D90057422D /* AssetColor.swift */; };
 		D475C01A2A1544180057422D /* WelcomeScreenVMImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C0192A1544180057422D /* WelcomeScreenVMImpl.swift */; };
+		D4B936122A1BC45100A39414 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B936112A1BC45100A39414 /* TabBarCoordinator.swift */; };
+		D4B936152A1BC65D00A39414 /* OverviewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B936142A1BC65D00A39414 /* OverviewCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,10 +64,10 @@
 		D475BFB52A152C030057422D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D475BFB72A152C030057422D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D475BFBC2A152C030057422D /* Swedbank-CloneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swedbank-CloneTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D475BFC02A152C030057422D /* Swedbank_CloneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swedbank_CloneTests.swift; sourceTree = "<group>"; };
+		D475BFC02A152C030057422D /* SwedbankCloneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwedbankCloneTests.swift; sourceTree = "<group>"; };
 		D475BFC62A152C030057422D /* Swedbank-CloneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swedbank-CloneUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D475BFCA2A152C030057422D /* Swedbank_CloneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swedbank_CloneUITests.swift; sourceTree = "<group>"; };
-		D475BFCC2A152C030057422D /* Swedbank_CloneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swedbank_CloneUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D475BFCA2A152C030057422D /* SwedbankCloneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwedbankCloneUITests.swift; sourceTree = "<group>"; };
+		D475BFCC2A152C030057422D /* SwedbankCloneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwedbankCloneUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D475BFDC2A152C310057422D /* DependencyProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyProvider.swift; sourceTree = "<group>"; };
 		D475BFF22A152DA10057422D /* RepositoryAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryAssembly.swift; sourceTree = "<group>"; };
 		D475BFF32A152DA10057422D /* DataMapperAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataMapperAssembly.swift; sourceTree = "<group>"; };
@@ -79,6 +81,8 @@
 		D475C0142A1538740057422D /* WelcomeScreenPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenPreview.swift; sourceTree = "<group>"; };
 		D475C0172A1542D90057422D /* AssetColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetColor.swift; sourceTree = "<group>"; };
 		D475C0192A1544180057422D /* WelcomeScreenVMImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenVMImpl.swift; sourceTree = "<group>"; };
+		D4B936112A1BC45100A39414 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
+		D4B936142A1BC65D00A39414 /* OverviewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,7 +155,7 @@
 		D475BFBF2A152C030057422D /* Swedbank-CloneTests */ = {
 			isa = PBXGroup;
 			children = (
-				D475BFC02A152C030057422D /* Swedbank_CloneTests.swift */,
+				D475BFC02A152C030057422D /* SwedbankCloneTests.swift */,
 			);
 			path = "Swedbank-CloneTests";
 			sourceTree = "<group>";
@@ -159,8 +163,8 @@
 		D475BFC92A152C030057422D /* Swedbank-CloneUITests */ = {
 			isa = PBXGroup;
 			children = (
-				D475BFCA2A152C030057422D /* Swedbank_CloneUITests.swift */,
-				D475BFCC2A152C030057422D /* Swedbank_CloneUITestsLaunchTests.swift */,
+				D475BFCA2A152C030057422D /* SwedbankCloneUITests.swift */,
+				D475BFCC2A152C030057422D /* SwedbankCloneUITestsLaunchTests.swift */,
 			);
 			path = "Swedbank-CloneUITests";
 			sourceTree = "<group>";
@@ -253,6 +257,8 @@
 		D475BFFE2A152F150057422D /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				D4B936132A1BC64C00A39414 /* Overview */,
+				D4B936102A1BC44500A39414 /* Root */,
 				D475C00A2A1531C40057422D /* AppCoordinator.swift */,
 				D475C00D2A15373E0057422D /* CoordinatorFactory.swift */,
 			);
@@ -343,6 +349,22 @@
 			path = Colors;
 			sourceTree = "<group>";
 		};
+		D4B936102A1BC44500A39414 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				D4B936112A1BC45100A39414 /* TabBarCoordinator.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		D4B936132A1BC64C00A39414 /* Overview */ = {
+			isa = PBXGroup;
+			children = (
+				D4B936142A1BC65D00A39414 /* OverviewCoordinator.swift */,
+			);
+			path = Overview;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -353,6 +375,7 @@
 				D475BF9F2A152C020057422D /* Sources */,
 				D475BFA02A152C020057422D /* Frameworks */,
 				D475BFA12A152C020057422D /* Resources */,
+				D4B936162A1BC87B00A39414 /* Swift lint */,
 			);
 			buildRules = (
 			);
@@ -480,6 +503,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		D4B936162A1BC87B00A39414 /* Swift lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Swift lint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D475BF9F2A152C020057422D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -490,6 +534,7 @@
 				D475C0092A1530300057422D /* Person.swift in Sources */,
 				D475C00B2A1531C40057422D /* AppCoordinator.swift in Sources */,
 				D475BFF72A152DA10057422D /* RepositoryAssembly.swift in Sources */,
+				D4B936122A1BC45100A39414 /* TabBarCoordinator.swift in Sources */,
 				D475BFF82A152DA10057422D /* DataMapperAssembly.swift in Sources */,
 				D475BFA72A152C020057422D /* AppDelegate.swift in Sources */,
 				D475BFFB2A152DA10057422D /* DataProviderAssembly.swift in Sources */,
@@ -499,6 +544,7 @@
 				D475C0112A1538050057422D /* WelcomeScreenView.swift in Sources */,
 				D475C00E2A15373E0057422D /* CoordinatorFactory.swift in Sources */,
 				D475BFA92A152C020057422D /* SceneDelegate.swift in Sources */,
+				D4B936152A1BC65D00A39414 /* OverviewCoordinator.swift in Sources */,
 				D475C0132A15381C0057422D /* WelcomeScreenCommon.swift in Sources */,
 				D475C01A2A1544180057422D /* WelcomeScreenVMImpl.swift in Sources */,
 			);
@@ -508,7 +554,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D475BFC12A152C030057422D /* Swedbank_CloneTests.swift in Sources */,
+				D475BFC12A152C030057422D /* SwedbankCloneTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,8 +562,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D475BFCB2A152C030057422D /* Swedbank_CloneUITests.swift in Sources */,
-				D475BFCD2A152C030057422D /* Swedbank_CloneUITestsLaunchTests.swift in Sources */,
+				D475BFCB2A152C030057422D /* SwedbankCloneUITests.swift in Sources */,
+				D475BFCD2A152C030057422D /* SwedbankCloneUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

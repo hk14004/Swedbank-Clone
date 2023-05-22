@@ -13,7 +13,7 @@ struct WelcomeScreenView_Previews: PreviewProvider {
     }
 }
 
-fileprivate class WelcomeScreenVMPreview: WelcomeScreenVM {
+private class WelcomeScreenVMPreview: WelcomeScreenVM {
     
     var navigationDelegate: WelcomeScreenVMNavigationDelegate?
     

@@ -35,16 +35,22 @@ class AppCoordinator: NavigationCoordinator {
 
 extension AppCoordinator {
     private func goToInitialScreen() {
-        goToOnboarding()
+        goToRoot()
     }
     
     private func goToOnboarding() {
 //        let coordinator = CategoriesCoordinator(router: router)
 //        store(coordinator: coordinator)
 //        coordinator.start()
-        let vm = WelcomeScreenVMImpl()
-        let view = WelcomeScreenView(viewModel: vm)
-        let vc = UIHostingController(rootView: view)
-        router.push(vc, isAnimated: true, onNavigateBack: nil)
+        let vModel = WelcomeScreenVMImpl()
+        let view = WelcomeScreenView(viewModel: vModel)
+        let vController = UIHostingController(rootView: view)
+        router.push(vController, isAnimated: true, onNavigateBack: nil)
+    }
+    
+    private func goToRoot() {
+        let coordinator = TabBarCoordinator(router: router)
+        store(coordinator: coordinator)
+        coordinator.start()
     }
 }

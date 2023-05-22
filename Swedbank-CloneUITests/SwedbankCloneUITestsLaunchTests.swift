@@ -7,7 +7,7 @@
 
 import XCTest
 
-final class Swedbank_CloneUITestsLaunchTests: XCTestCase {
+final class SwedbankCloneUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

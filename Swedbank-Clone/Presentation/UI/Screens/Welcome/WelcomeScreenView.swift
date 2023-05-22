@@ -12,7 +12,7 @@ struct WelcomeScreenView<ViewModel: WelcomeScreenVM>: View {
     @ObservedObject var viewModel: ViewModel
     
     var body: some View {
-        ZStack() {
+        ZStack {
             makeBackgroundView()
             makeCenterView()
             VStack {

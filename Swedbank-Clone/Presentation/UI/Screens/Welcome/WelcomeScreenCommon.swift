@@ -21,30 +21,3 @@ protocol WelcomeScreenVM: ObservableObject {
     func onAlreadyCustomerTapped()
     func onBecomeACustomerTapped()
 }
-
-
-//
-//protocol BaseScreenViewModel: ObservableObject {
-//    associatedtype NavigationDelegateType: BaseViewModelNavigationDelegate
-//    var navigationDelegate: NavigationDelegateType? { get set }
-//}
-//
-//protocol BaseViewModelNavigationDelegate: AnyObject {
-//    associatedtype NavigationEvent: CaseIterable
-//
-//    func onNavigationEvent(_ event: NavigationEvent)
-//}
-//
-//class PreviewNavigationDelegate: BaseViewModelNavigationDelegate {
-//
-//    typealias NavigationEvent = PreviewNavigationEvent
-//
-//    enum PreviewNavigationEvent: CaseIterable {
-//        case previewEvent
-//    }
-//
-//    func onNavigationEvent(_ event: PreviewNavigationEvent) {
-//
-//    }
-//
-//}
