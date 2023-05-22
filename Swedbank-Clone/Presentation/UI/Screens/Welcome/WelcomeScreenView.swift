@@ -32,7 +32,7 @@ extension WelcomeScreenView {
             .foregroundColor(.black)
             .edgesIgnoringSafeArea(.all)
             .overlay {
-                Image("welcome_background")
+                Image(Asset.Images.Background.welcomeBackground.name)
                     .resizable()
                     .scaledToFill()
                     .edgesIgnoringSafeArea(.all)
@@ -59,7 +59,7 @@ extension WelcomeScreenView {
                     .fontWeight(.bold)
                     .padding(.vertical)
                     .frame(maxWidth: .infinity)
-                    .background(AssetColor.color1.getColor())
+                    .background(Asset.Colors.color1.swiftUIColor)
                     .cornerRadius(8)
             }
             
@@ -71,7 +71,6 @@ extension WelcomeScreenView {
                     .fontWeight(.bold)
                     .padding(.vertical)
                     .frame(maxWidth: .infinity)
-//                    .background(Color.red)
                     .cornerRadius(8)
             }
         }

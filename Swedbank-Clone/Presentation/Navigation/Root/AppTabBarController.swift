@@ -18,7 +18,7 @@ class AppTabBarController: UITabBarController {
 extension AppTabBarController {
     private func startup() {
         tabBar.isTranslucent = false
-        tabBar.unselectedItemTintColor = .black
-        tabBar.tintColor = .orange
+        tabBar.unselectedItemTintColor = Asset.Colors.color1.color
+        tabBar.tintColor = Asset.Colors.color2.color
     }
 }

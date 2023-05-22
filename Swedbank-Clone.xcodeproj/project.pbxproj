@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		D43599C12A1BD2750057AF7B /* AppTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43599C02A1BD2750057AF7B /* AppTabBarController.swift */; };
+		D43599C32A1BD95E0057AF7B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D43599C22A1BD95E0057AF7B /* Colors.xcassets */; };
+		D43599C62A1BDEF50057AF7B /* XCAssets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43599C52A1BDEF50057AF7B /* XCAssets+Generated.swift */; };
 		D475BFA72A152C020057422D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFA62A152C020057422D /* AppDelegate.swift */; };
 		D475BFA92A152C020057422D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFA82A152C020057422D /* SceneDelegate.swift */; };
 		D475BFB12A152C020057422D /* Swedbank_Clone.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D475BFAF2A152C020057422D /* Swedbank_Clone.xcdatamodeld */; };
-		D475BFB32A152C030057422D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D475BFB22A152C030057422D /* Assets.xcassets */; };
+		D475BFB32A152C030057422D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D475BFB22A152C030057422D /* Images.xcassets */; };
 		D475BFB62A152C030057422D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D475BFB42A152C030057422D /* LaunchScreen.storyboard */; };
 		D475BFC12A152C030057422D /* SwedbankCloneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFC02A152C030057422D /* SwedbankCloneTests.swift */; };
 		D475BFCB2A152C030057422D /* SwedbankCloneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFCA2A152C030057422D /* SwedbankCloneUITests.swift */; };
@@ -33,7 +35,6 @@
 		D475C0112A1538050057422D /* WelcomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C0102A1538050057422D /* WelcomeScreenView.swift */; };
 		D475C0132A15381C0057422D /* WelcomeScreenCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C0122A15381C0057422D /* WelcomeScreenCommon.swift */; };
 		D475C0152A1538740057422D /* WelcomeScreenPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C0142A1538740057422D /* WelcomeScreenPreview.swift */; };
-		D475C0182A1542D90057422D /* AssetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C0172A1542D90057422D /* AssetColor.swift */; };
 		D475C01A2A1544180057422D /* WelcomeScreenVMImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C0192A1544180057422D /* WelcomeScreenVMImpl.swift */; };
 		D4B936122A1BC45100A39414 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B936112A1BC45100A39414 /* TabBarCoordinator.swift */; };
 		D4B936152A1BC65D00A39414 /* OverviewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B936142A1BC65D00A39414 /* OverviewCoordinator.swift */; };
@@ -58,11 +59,13 @@
 
 /* Begin PBXFileReference section */
 		D43599C02A1BD2750057AF7B /* AppTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBarController.swift; sourceTree = "<group>"; };
+		D43599C22A1BD95E0057AF7B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		D43599C52A1BDEF50057AF7B /* XCAssets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCAssets+Generated.swift"; sourceTree = "<group>"; };
 		D475BFA32A152C020057422D /* Swedbank-Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swedbank-Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D475BFA62A152C020057422D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D475BFA82A152C020057422D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D475BFB02A152C020057422D /* Swedbank_Clone.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Swedbank_Clone.xcdatamodel; sourceTree = "<group>"; };
-		D475BFB22A152C030057422D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D475BFB22A152C030057422D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D475BFB52A152C030057422D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D475BFB72A152C030057422D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D475BFBC2A152C030057422D /* Swedbank-CloneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swedbank-CloneTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,7 +84,6 @@
 		D475C0102A1538050057422D /* WelcomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenView.swift; sourceTree = "<group>"; };
 		D475C0122A15381C0057422D /* WelcomeScreenCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenCommon.swift; sourceTree = "<group>"; };
 		D475C0142A1538740057422D /* WelcomeScreenPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenPreview.swift; sourceTree = "<group>"; };
-		D475C0172A1542D90057422D /* AssetColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetColor.swift; sourceTree = "<group>"; };
 		D475C0192A1544180057422D /* WelcomeScreenVMImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenVMImpl.swift; sourceTree = "<group>"; };
 		D4B936112A1BC45100A39414 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		D4B936142A1BC65D00A39414 /* OverviewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewCoordinator.swift; sourceTree = "<group>"; };
@@ -118,6 +120,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D43599C42A1BDEF50057AF7B /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				D43599C52A1BDEF50057AF7B /* XCAssets+Generated.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
 		D475BF9A2A152C020057422D = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +160,7 @@
 				D475BFFC2A152EC80057422D /* Resources */,
 				D475BFB42A152C030057422D /* LaunchScreen.storyboard */,
 				D475BFB72A152C030057422D /* Info.plist */,
+				D43599C42A1BDEF50057AF7B /* Generated */,
 			);
 			path = "Swedbank-Clone";
 			sourceTree = "<group>";
@@ -242,7 +253,8 @@
 		D475BFFC2A152EC80057422D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D475BFB22A152C030057422D /* Assets.xcassets */,
+				D475BFB22A152C030057422D /* Images.xcassets */,
+				D43599C22A1BD95E0057AF7B /* Colors.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -279,7 +291,6 @@
 		D475C0002A152F400057422D /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				D475C0162A1542CF0057422D /* Colors */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -341,14 +352,6 @@
 				D475C0142A1538740057422D /* WelcomeScreenPreview.swift */,
 			);
 			path = Welcome;
-			sourceTree = "<group>";
-		};
-		D475C0162A1542CF0057422D /* Colors */ = {
-			isa = PBXGroup;
-			children = (
-				D475C0172A1542D90057422D /* AssetColor.swift */,
-			);
-			path = Colors;
 			sourceTree = "<group>";
 		};
 		D4B936102A1BC44500A39414 /* Root */ = {
@@ -485,8 +488,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D43599C32A1BD95E0057AF7B /* Colors.xcassets in Resources */,
 				D475BFB62A152C030057422D /* LaunchScreen.storyboard in Resources */,
-				D475BFB32A152C030057422D /* Assets.xcassets in Resources */,
+				D475BFB32A152C030057422D /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,7 +537,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D475BFF92A152DA10057422D /* PersistentCoreDataStoreAssembly.swift in Sources */,
-				D475C0182A1542D90057422D /* AssetColor.swift in Sources */,
 				D475C0092A1530300057422D /* Person.swift in Sources */,
 				D475C00B2A1531C40057422D /* AppCoordinator.swift in Sources */,
 				D475BFF72A152DA10057422D /* RepositoryAssembly.swift in Sources */,
@@ -544,6 +547,7 @@
 				D475C0152A1538740057422D /* WelcomeScreenPreview.swift in Sources */,
 				D475BFDD2A152C310057422D /* DependencyProvider.swift in Sources */,
 				D475BFB12A152C020057422D /* Swedbank_Clone.xcdatamodeld in Sources */,
+				D43599C62A1BDEF50057AF7B /* XCAssets+Generated.swift in Sources */,
 				D475C0112A1538050057422D /* WelcomeScreenView.swift in Sources */,
 				D43599C12A1BD2750057AF7B /* AppTabBarController.swift in Sources */,
 				D475C00E2A15373E0057422D /* CoordinatorFactory.swift in Sources */,
@@ -733,9 +737,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hardijs.Swedbank-Clone";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -760,9 +767,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hardijs.Swedbank-Clone";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
