@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  Swedbank-Clone
+
+  Created by Hardijs Ķirsis on 22/05/2023.
+  
+*/
+
+// MARK: Tabbar
+
+"Tabbar.Tabs.Overview.title" = "Pārskats";
+"Tabbar.Tabs.Payments.title" = "Maksājumi";
+"Tabbar.Tabs.Cards.title" = "Kartes";
+"Tabbar.Tabs.Services.title" = "Servisi";
+"Tabbar.Tabs.Contacts.title" = "Kontakti";
