@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import DevToolsUI
-import Localize_Swift
 
 class Globals {
     
@@ -18,17 +16,5 @@ extension Globals {
         let prefix = "ic_"
         let suffix = "_flag"
         return prefix + language + suffix
-    }
-    
-    static func previewLanguage() -> String {
-        return "en"
-    }
-}
-
-extension LocalizedPreview {
-    init(langCode: String = Globals.previewLanguage()) {
-        self.init(languageSetClosure: {
-            Localize.setCurrentLanguage(langCode)
-        })
     }
 }

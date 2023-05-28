@@ -6,8 +6,14 @@
 //
 
 import Foundation
+import DevToolsCore
+
+class LanguageSelectionScreenBottomSheetVMNavigationBindings {
+    var onClose: VoidCallback?
+}
 
 protocol LanguageSelectionScreenBottomSheetVM: ObservableObject {
+    var navigationBindings: LanguageSelectionScreenBottomSheetVMNavigationBindings { get set }
     var selectedLanguage: String { get set }
     var availableLanguages: [String] { get set }
     

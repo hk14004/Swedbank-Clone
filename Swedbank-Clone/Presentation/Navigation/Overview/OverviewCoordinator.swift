@@ -43,7 +43,7 @@ extension OverviewCoordinator {
             self?.goToAuth()
         }
         vm.navigationBindings.onGoToLanguageChange = { [weak self] in
-            self?.goToAuth()
+            self?.goToLanguageSelection()
         }
         
         router.navigationController.setViewControllers([vc], animated: false)
@@ -57,5 +57,18 @@ extension OverviewCoordinator {
         let coordinator = AuthorisationCoordinator(router: router)
         store(coordinator: coordinator)
         coordinator.start()
+    }
+    
+    func goToLanguageSelection() {
+        let vm = LanguageSelectionScreenBottomSheetVMImpl()
+        let view = LanguageSelectionScreenBottomSheetView(viewModel: vm)
+        let vc = UIHostingController(rootView: view)
+        
+        // TODO: Check mem leak
+        vm.navigationBindings.onClose = {
+            vc.dismiss(animated: true)
+        }
+        
+        router.navigationController.present(vc, animated: true)
     }
 }

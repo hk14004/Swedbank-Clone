@@ -7,7 +7,7 @@
 
 import SwiftUI
 import DevToolsUI
-import Localize_Swift
+import DevToolsLocalization
 
 struct LanguageSelectionScreenBottomSheetView<ViewModel: LanguageSelectionScreenBottomSheetVM>: View {
     
@@ -23,7 +23,7 @@ struct LanguageSelectionScreenBottomSheetView<ViewModel: LanguageSelectionScreen
 
 struct LanguageSelectionScreenBottomSheet_Previews: PreviewProvider {
     static var previews: some View {
-        LocalizedPreview(langCode: "lv")
+        RuntimeLocalizedPreview(language: "en")
         LanguageSelectionScreenBottomSheetView(viewModel: LanguageSelectionScreenBottomSheetPreviewVM())
     }
 }
@@ -32,12 +32,12 @@ extension LanguageSelectionScreenBottomSheetView {
     @ViewBuilder
     private func makeHeader() -> some View {
         VStack(spacing: 0) {
-            Text("LanguageSelection.title".localized())
+            Text("LanguageSelection.title".localizedRuntimeString())
                 .frame(maxWidth: .infinity)
                 .overlay {
                     HStack {
                         Button {
-                            
+                            viewModel.onClose()
                         } label: {
                             Image(systemName: "x.circle")
                                 .foregroundColor(.black)
@@ -53,13 +53,16 @@ extension LanguageSelectionScreenBottomSheetView {
     @ViewBuilder
     private func makeLangList() -> some View {
         List(viewModel.availableLanguages, id: \.self) { code in
-            makeLanguageRow(code: code)
+            makeLanguageRow(code: code, selected: viewModel.selectedLanguage == code)
+                .onTapGesture {
+                    viewModel.onChangeLanguage(code: code)
+                }
         }
         .listStyle(.plain)
     }
     
     @ViewBuilder
-    private func makeLanguageRow(code: String) -> some View {
+    private func makeLanguageRow(code: String, selected: Bool) -> some View {
         HStack(alignment: .center, spacing: 0) {
             Image(Globals.makeLanguageFlagName(language: code))
                 .resizable()
@@ -67,17 +70,28 @@ extension LanguageSelectionScreenBottomSheetView {
                 .frame(width: 24)
             Text(code)
                 .padding(.leading)
+            Spacer()
+            if selected {
+                Image(systemName: "checkmark")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 14)
+                    .foregroundColor(Asset.Colors.color2.swiftUIColor)
+            }
         }
         .padding(.vertical, 8)
+        .contentShape(Rectangle())
     }
 }
 
 class LanguageSelectionScreenBottomSheetPreviewVM {
+    var navigationBindings: LanguageSelectionScreenBottomSheetVMNavigationBindings = .init()
     var selectedLanguage: String = "lv"
     var availableLanguages: [String] = ["en", "lv"]
 }
 
 extension LanguageSelectionScreenBottomSheetPreviewVM: LanguageSelectionScreenBottomSheetVM {
+    
     func onClose() {
         
     }

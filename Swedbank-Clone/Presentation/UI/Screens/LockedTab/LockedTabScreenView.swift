@@ -7,11 +7,12 @@
 
 import SwiftUI
 import DevToolsUI
-import Localize_Swift
+import DevToolsLocalization
 
 struct LockedTabScreenView<ViewModel: LockedTabScreenVM>: View {
     
     @ObservedObject var viewModel: ViewModel
+    @ObservedObject var loc = RuntimeLocalizationObserver()
     
     var body: some View {
         VStack(spacing: 0) {
@@ -29,11 +30,11 @@ struct LockedTabScreenView<ViewModel: LockedTabScreenVM>: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 250, height: 200)
-                Text(viewModel.title.localized())
+                Text(viewModel.title.localizedRuntimeString())
                     .font(.title)
                     .foregroundColor(Asset.Colors.color3.swiftUIColor)
                     .padding(.top)
-                Text(viewModel.subtitle.localized())
+                Text(viewModel.subtitle.localizedRuntimeString())
                     .padding(.top)
             }
             .layoutPriority(1)
@@ -51,7 +52,7 @@ struct LockedTabScreenView<ViewModel: LockedTabScreenVM>: View {
 
 struct LockedTabView_Previews: PreviewProvider {
     static var previews: some View {
-        LocalizedPreview()
+        RuntimeLocalizedPreview(language: "lv")
         LockedTabScreenView(viewModel: LockedTabScreenVMPreview())
     }
 }

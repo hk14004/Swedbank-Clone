@@ -15,7 +15,6 @@
 		D42ACF0D2A227EEB00A23031 /* PaymentsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42ACF0C2A227EEB00A23031 /* PaymentsCoordinator.swift */; };
 		D42ACF102A2334DA00A23031 /* AuthorisationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42ACF0F2A2334DA00A23031 /* AuthorisationCoordinator.swift */; };
 		D42ACF142A23462800A23031 /* LanguageDropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42ACF132A23462800A23031 /* LanguageDropdownView.swift */; };
-		D42ACF172A23495A00A23031 /* Localize_Swift in Frameworks */ = {isa = PBXBuildFile; productRef = D42ACF162A23495A00A23031 /* Localize_Swift */; };
 		D43599C12A1BD2750057AF7B /* AppTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43599C02A1BD2750057AF7B /* AppTabBarController.swift */; };
 		D43599C32A1BD95E0057AF7B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D43599C22A1BD95E0057AF7B /* Colors.xcassets */; };
 		D43599C62A1BDEF50057AF7B /* XCAssets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43599C52A1BDEF50057AF7B /* XCAssets+Generated.swift */; };
@@ -42,10 +41,8 @@
 		D475C0092A1530300057422D /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C0082A1530300057422D /* Person.swift */; };
 		D475C00B2A1531C40057422D /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C00A2A1531C40057422D /* AppCoordinator.swift */; };
 		D475C00E2A15373E0057422D /* CoordinatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C00D2A15373E0057422D /* CoordinatorFactory.swift */; };
-		D475C0112A1538050057422D /* WelcomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C0102A1538050057422D /* WelcomeScreenView.swift */; };
-		D475C0132A15381C0057422D /* WelcomeScreenCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C0122A15381C0057422D /* WelcomeScreenCommon.swift */; };
-		D475C0152A1538740057422D /* WelcomeScreenPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C0142A1538740057422D /* WelcomeScreenPreview.swift */; };
-		D475C01A2A1544180057422D /* WelcomeScreenVMImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C0192A1544180057422D /* WelcomeScreenVMImpl.swift */; };
+		D49B945D2A23A1160000BFBF /* DevToolsLocalization in Frameworks */ = {isa = PBXBuildFile; productRef = D49B945C2A23A1160000BFBF /* DevToolsLocalization */; };
+		D49B945F2A23A3310000BFBF /* LocalizationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B945E2A23A3310000BFBF /* LocalizationAssembly.swift */; };
 		D4B1BFA72A2353A00028A39D /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1BFA62A2353A00028A39D /* Globals.swift */; };
 		D4B1BFAA2A23594E0028A39D /* LanguageSelectionScreenBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1BFA92A23594E0028A39D /* LanguageSelectionScreenBottomSheetView.swift */; };
 		D4B1BFAC2A2359930028A39D /* LanguageSelectionScreenBottomSheetCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1BFAB2A2359930028A39D /* LanguageSelectionScreenBottomSheetCommon.swift */; };
@@ -105,10 +102,7 @@
 		D475C0082A1530300057422D /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		D475C00A2A1531C40057422D /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		D475C00D2A15373E0057422D /* CoordinatorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorFactory.swift; sourceTree = "<group>"; };
-		D475C0102A1538050057422D /* WelcomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenView.swift; sourceTree = "<group>"; };
-		D475C0122A15381C0057422D /* WelcomeScreenCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenCommon.swift; sourceTree = "<group>"; };
-		D475C0142A1538740057422D /* WelcomeScreenPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenPreview.swift; sourceTree = "<group>"; };
-		D475C0192A1544180057422D /* WelcomeScreenVMImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenVMImpl.swift; sourceTree = "<group>"; };
+		D49B945E2A23A3310000BFBF /* LocalizationAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationAssembly.swift; sourceTree = "<group>"; };
 		D4B1BFA62A2353A00028A39D /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		D4B1BFA92A23594E0028A39D /* LanguageSelectionScreenBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionScreenBottomSheetView.swift; sourceTree = "<group>"; };
 		D4B1BFAB2A2359930028A39D /* LanguageSelectionScreenBottomSheetCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionScreenBottomSheetCommon.swift; sourceTree = "<group>"; };
@@ -123,9 +117,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D475BFE52A152D0E0057422D /* DevToolsCore in Frameworks */,
-				D42ACF172A23495A00A23031 /* Localize_Swift in Frameworks */,
 				D475BFED2A152D0E0057422D /* DevToolsUI in Frameworks */,
 				D475BFE92A152D0E0057422D /* DevToolsNavigation in Frameworks */,
+				D49B945D2A23A1160000BFBF /* DevToolsLocalization in Frameworks */,
 				D475BFEB2A152D0E0057422D /* DevToolsNetworking in Frameworks */,
 				D475BFE72A152D0E0057422D /* DevToolsCoreData in Frameworks */,
 				D475BFF02A152D620057422D /* Swinject in Frameworks */,
@@ -241,6 +235,7 @@
 				D475BFBF2A152C030057422D /* Swedbank-CloneTests */,
 				D475BFC92A152C030057422D /* Swedbank-CloneUITests */,
 				D475BFA42A152C020057422D /* Products */,
+				D49B945B2A23A1160000BFBF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -351,6 +346,7 @@
 				D475BFF32A152DA10057422D /* DataMapperAssembly.swift */,
 				D475BFF42A152DA10057422D /* PersistentCoreDataStoreAssembly.swift */,
 				D475BFF62A152DA10057422D /* DataProviderAssembly.swift */,
+				D49B945E2A23A3310000BFBF /* LocalizationAssembly.swift */,
 			);
 			path = Assemblies;
 			sourceTree = "<group>";
@@ -409,7 +405,6 @@
 			children = (
 				D4B1BFA82A23590C0028A39D /* LanguageSelectionBottomSheet */,
 				D42ACEFE2A22657A00A23031 /* LockedTab */,
-				D475C00F2A1537D60057422D /* Welcome */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -455,15 +450,11 @@
 			path = Person;
 			sourceTree = "<group>";
 		};
-		D475C00F2A1537D60057422D /* Welcome */ = {
+		D49B945B2A23A1160000BFBF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D475C0102A1538050057422D /* WelcomeScreenView.swift */,
-				D475C0192A1544180057422D /* WelcomeScreenVMImpl.swift */,
-				D475C0122A15381C0057422D /* WelcomeScreenCommon.swift */,
-				D475C0142A1538740057422D /* WelcomeScreenPreview.swift */,
 			);
-			path = Welcome;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		D4B1BFA52A2353950028A39D /* Utils */ = {
@@ -525,7 +516,7 @@
 				D475BFEA2A152D0E0057422D /* DevToolsNetworking */,
 				D475BFEC2A152D0E0057422D /* DevToolsUI */,
 				D475BFEF2A152D620057422D /* Swinject */,
-				D42ACF162A23495A00A23031 /* Localize_Swift */,
+				D49B945C2A23A1160000BFBF /* DevToolsLocalization */,
 			);
 			productName = "Swedbank-Clone";
 			productReference = D475BFA32A152C020057422D /* Swedbank-Clone.app */;
@@ -602,7 +593,6 @@
 			packageReferences = (
 				D475BFE32A152D0E0057422D /* XCRemoteSwiftPackageReference "DevTools-Swift" */,
 				D475BFEE2A152D620057422D /* XCRemoteSwiftPackageReference "Swinject" */,
-				D42ACF152A23495A00A23031 /* XCRemoteSwiftPackageReference "Localize-Swift" */,
 			);
 			productRefGroup = D475BFA42A152C020057422D /* Products */;
 			projectDirPath = "";
@@ -677,17 +667,16 @@
 				D4B936122A1BC45100A39414 /* TabBarCoordinator.swift in Sources */,
 				D475BFF82A152DA10057422D /* DataMapperAssembly.swift in Sources */,
 				D475BFA72A152C020057422D /* AppDelegate.swift in Sources */,
+				D49B945F2A23A3310000BFBF /* LocalizationAssembly.swift in Sources */,
 				D475BFFB2A152DA10057422D /* DataProviderAssembly.swift in Sources */,
 				D42ACF042A22667600A23031 /* LoginButtonView.swift in Sources */,
 				D42ACF002A22661A00A23031 /* LockedTabScreenView.swift in Sources */,
-				D475C0152A1538740057422D /* WelcomeScreenPreview.swift in Sources */,
 				D475BFDD2A152C310057422D /* DependencyProvider.swift in Sources */,
 				D42ACF142A23462800A23031 /* LanguageDropdownView.swift in Sources */,
 				D43599CF2A1C07570057AF7B /* Strings+Generated.swift in Sources */,
 				D475BFB12A152C020057422D /* Swedbank_Clone.xcdatamodeld in Sources */,
 				D42ACF102A2334DA00A23031 /* AuthorisationCoordinator.swift in Sources */,
 				D43599C62A1BDEF50057AF7B /* XCAssets+Generated.swift in Sources */,
-				D475C0112A1538050057422D /* WelcomeScreenView.swift in Sources */,
 				D42ACF082A226E5E00A23031 /* LockedTabScreenCommon.swift in Sources */,
 				D4B1BFAC2A2359930028A39D /* LanguageSelectionScreenBottomSheetCommon.swift in Sources */,
 				D4B1BFAE2A2359A00028A39D /* LanguageSelectionScreenBottomSheetVMimpl.swift in Sources */,
@@ -698,8 +687,6 @@
 				D475BFA92A152C020057422D /* SceneDelegate.swift in Sources */,
 				D42ACF062A2269B800A23031 /* LoginButtonStyle.swift in Sources */,
 				D4B936152A1BC65D00A39414 /* OverviewCoordinator.swift in Sources */,
-				D475C0132A15381C0057422D /* WelcomeScreenCommon.swift in Sources */,
-				D475C01A2A1544180057422D /* WelcomeScreenVMImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1042,14 +1029,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		D42ACF152A23495A00A23031 /* XCRemoteSwiftPackageReference "Localize-Swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/marmelroy/Localize-Swift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
-			};
-		};
 		D475BFE32A152D0E0057422D /* XCRemoteSwiftPackageReference "DevTools-Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hk14004/DevTools-Swift";
@@ -1069,11 +1048,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D42ACF162A23495A00A23031 /* Localize_Swift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D42ACF152A23495A00A23031 /* XCRemoteSwiftPackageReference "Localize-Swift" */;
-			productName = Localize_Swift;
-		};
 		D475BFE42A152D0E0057422D /* DevToolsCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D475BFE32A152D0E0057422D /* XCRemoteSwiftPackageReference "DevTools-Swift" */;
@@ -1103,6 +1077,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D475BFEE2A152D620057422D /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
+		};
+		D49B945C2A23A1160000BFBF /* DevToolsLocalization */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D475BFE32A152D0E0057422D /* XCRemoteSwiftPackageReference "DevTools-Swift" */;
+			productName = DevToolsLocalization;
 		};
 /* End XCSwiftPackageProductDependency section */
 
