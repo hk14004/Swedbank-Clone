@@ -30,11 +30,11 @@ struct LockedTabScreenView<ViewModel: LockedTabScreenVM>: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 250, height: 200)
-                Text(viewModel.title.localizedRuntimeString())
+                Text(viewModel.title.runtimeLocalized())
                     .font(.title)
                     .foregroundColor(Asset.Colors.color3.swiftUIColor)
                     .padding(.top)
-                Text(viewModel.subtitle.localizedRuntimeString())
+                Text(viewModel.subtitle.runtimeLocalized())
                     .padding(.top)
             }
             .layoutPriority(1)

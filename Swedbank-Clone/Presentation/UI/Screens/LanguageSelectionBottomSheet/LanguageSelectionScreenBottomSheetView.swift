@@ -32,7 +32,7 @@ extension LanguageSelectionScreenBottomSheetView {
     @ViewBuilder
     private func makeHeader() -> some View {
         VStack(spacing: 0) {
-            Text(L10n.LanguageSelection.title.localizedRuntimeString())
+            Text(L10n.LanguageSelection.title.runtimeLocalized())
                 .frame(maxWidth: .infinity)
                 .overlay {
                     HStack {
