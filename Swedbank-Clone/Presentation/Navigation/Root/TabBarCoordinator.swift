@@ -95,7 +95,7 @@ extension TabBarCoordinator {
         navVC.tabBarItem.image = UIImage(systemName: "arrow.left.arrow.right")!
         navVC.tabBarItem.selectedImage = UIImage(systemName: "arrow.left.arrow.right")!
         let router = Router(navigationController: navVC)
-        let coordinator = OverviewCoordinator(router: router)
+        let coordinator = PaymentsCoordinator(router: router)
         children.append(coordinator)
         coordinator.start()
         return navVC
@@ -109,7 +109,7 @@ extension TabBarCoordinator {
         navVC.tabBarItem.image = UIImage(systemName: "creditcard")!
         navVC.tabBarItem.selectedImage = UIImage(systemName: "creditcard")!
         let router = Router(navigationController: navVC)
-        let coordinator = OverviewCoordinator(router: router)
+        let coordinator = PaymentsCoordinator(router: router)
         children.append(coordinator)
         coordinator.start()
         return navVC
@@ -123,7 +123,7 @@ extension TabBarCoordinator {
         navVC.tabBarItem.image = UIImage(systemName: "list.clipboard")!
         navVC.tabBarItem.selectedImage = UIImage(systemName: "list.clipboard")!
         let router = Router(navigationController: navVC)
-        let coordinator = OverviewCoordinator(router: router)
+        let coordinator = PaymentsCoordinator(router: router)
         children.append(coordinator)
         coordinator.start()
         return navVC
@@ -137,7 +137,7 @@ extension TabBarCoordinator {
         navVC.tabBarItem.image = UIImage(systemName: "bubble.left.and.bubble.right")!
         navVC.tabBarItem.selectedImage = UIImage(systemName: "bubble.left.and.bubble.right")!
         let router = Router(navigationController: navVC)
-        let coordinator = OverviewCoordinator(router: router)
+        let coordinator = PaymentsCoordinator(router: router)
         children.append(coordinator)
         coordinator.start()
         return navVC

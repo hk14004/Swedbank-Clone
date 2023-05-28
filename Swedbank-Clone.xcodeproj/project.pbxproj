@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D42ACF002A22661A00A23031 /* LockedTabScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42ACEFF2A22661A00A23031 /* LockedTabScreenView.swift */; };
+		D42ACF042A22667600A23031 /* LoginButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42ACF032A22667600A23031 /* LoginButtonView.swift */; };
+		D42ACF062A2269B800A23031 /* LoginButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42ACF052A2269B800A23031 /* LoginButtonStyle.swift */; };
+		D42ACF082A226E5E00A23031 /* LockedTabScreenCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42ACF072A226E5E00A23031 /* LockedTabScreenCommon.swift */; };
+		D42ACF0A2A22787800A23031 /* LockedTabScreenVMImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42ACF092A22787800A23031 /* LockedTabScreenVMImpl.swift */; };
+		D42ACF0D2A227EEB00A23031 /* PaymentsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42ACF0C2A227EEB00A23031 /* PaymentsCoordinator.swift */; };
+		D42ACF102A2334DA00A23031 /* AuthorisationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42ACF0F2A2334DA00A23031 /* AuthorisationCoordinator.swift */; };
 		D43599C12A1BD2750057AF7B /* AppTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43599C02A1BD2750057AF7B /* AppTabBarController.swift */; };
 		D43599C32A1BD95E0057AF7B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D43599C22A1BD95E0057AF7B /* Colors.xcassets */; };
 		D43599C62A1BDEF50057AF7B /* XCAssets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43599C52A1BDEF50057AF7B /* XCAssets+Generated.swift */; };
@@ -60,6 +67,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D42ACEFF2A22661A00A23031 /* LockedTabScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedTabScreenView.swift; sourceTree = "<group>"; };
+		D42ACF032A22667600A23031 /* LoginButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonView.swift; sourceTree = "<group>"; };
+		D42ACF052A2269B800A23031 /* LoginButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonStyle.swift; sourceTree = "<group>"; };
+		D42ACF072A226E5E00A23031 /* LockedTabScreenCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedTabScreenCommon.swift; sourceTree = "<group>"; };
+		D42ACF092A22787800A23031 /* LockedTabScreenVMImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedTabScreenVMImpl.swift; sourceTree = "<group>"; };
+		D42ACF0C2A227EEB00A23031 /* PaymentsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentsCoordinator.swift; sourceTree = "<group>"; };
+		D42ACF0F2A2334DA00A23031 /* AuthorisationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorisationCoordinator.swift; sourceTree = "<group>"; };
 		D43599C02A1BD2750057AF7B /* AppTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBarController.swift; sourceTree = "<group>"; };
 		D43599C22A1BD95E0057AF7B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		D43599C52A1BDEF50057AF7B /* XCAssets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCAssets+Generated.swift"; sourceTree = "<group>"; };
@@ -125,6 +139,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D42ACEFE2A22657A00A23031 /* LockedTab */ = {
+			isa = PBXGroup;
+			children = (
+				D42ACEFF2A22661A00A23031 /* LockedTabScreenView.swift */,
+				D42ACF092A22787800A23031 /* LockedTabScreenVMImpl.swift */,
+				D42ACF072A226E5E00A23031 /* LockedTabScreenCommon.swift */,
+			);
+			path = LockedTab;
+			sourceTree = "<group>";
+		};
+		D42ACF012A22663800A23031 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				D42ACF022A22664500A23031 /* LoginButton */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		D42ACF022A22664500A23031 /* LoginButton */ = {
+			isa = PBXGroup;
+			children = (
+				D42ACF032A22667600A23031 /* LoginButtonView.swift */,
+				D42ACF052A2269B800A23031 /* LoginButtonStyle.swift */,
+			);
+			path = LoginButton;
+			sourceTree = "<group>";
+		};
+		D42ACF0B2A227EDA00A23031 /* Payments */ = {
+			isa = PBXGroup;
+			children = (
+				D42ACF0C2A227EEB00A23031 /* PaymentsCoordinator.swift */,
+			);
+			path = Payments;
+			sourceTree = "<group>";
+		};
+		D42ACF0E2A2334C200A23031 /* Authorisation */ = {
+			isa = PBXGroup;
+			children = (
+				D42ACF0F2A2334DA00A23031 /* AuthorisationCoordinator.swift */,
+			);
+			path = Authorisation;
+			sourceTree = "<group>";
+		};
 		D43599C42A1BDEF50057AF7B /* Generated */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,6 +351,8 @@
 		D475BFFE2A152F150057422D /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				D42ACF0E2A2334C200A23031 /* Authorisation */,
+				D42ACF0B2A227EDA00A23031 /* Payments */,
 				D4B936132A1BC64C00A39414 /* Overview */,
 				D4B936102A1BC44500A39414 /* Root */,
 				D475C00A2A1531C40057422D /* AppCoordinator.swift */,
@@ -305,8 +364,8 @@
 		D475BFFF2A152F1D0057422D /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				D475C0012A152F440057422D /* Screens */,
 				D475C0002A152F400057422D /* Components */,
+				D475C0012A152F440057422D /* Screens */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -314,6 +373,7 @@
 		D475C0002A152F400057422D /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				D42ACF012A22663800A23031 /* Button */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -321,6 +381,7 @@
 		D475C0012A152F440057422D /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				D42ACEFE2A22657A00A23031 /* LockedTab */,
 				D475C00F2A1537D60057422D /* Welcome */,
 			);
 			path = Screens;
@@ -561,6 +622,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D42ACF0D2A227EEB00A23031 /* PaymentsCoordinator.swift in Sources */,
 				D475BFF92A152DA10057422D /* PersistentCoreDataStoreAssembly.swift in Sources */,
 				D475C0092A1530300057422D /* Person.swift in Sources */,
 				D475C00B2A1531C40057422D /* AppCoordinator.swift in Sources */,
@@ -569,15 +631,21 @@
 				D475BFF82A152DA10057422D /* DataMapperAssembly.swift in Sources */,
 				D475BFA72A152C020057422D /* AppDelegate.swift in Sources */,
 				D475BFFB2A152DA10057422D /* DataProviderAssembly.swift in Sources */,
+				D42ACF042A22667600A23031 /* LoginButtonView.swift in Sources */,
+				D42ACF002A22661A00A23031 /* LockedTabScreenView.swift in Sources */,
 				D475C0152A1538740057422D /* WelcomeScreenPreview.swift in Sources */,
 				D475BFDD2A152C310057422D /* DependencyProvider.swift in Sources */,
 				D43599CF2A1C07570057AF7B /* Strings+Generated.swift in Sources */,
 				D475BFB12A152C020057422D /* Swedbank_Clone.xcdatamodeld in Sources */,
+				D42ACF102A2334DA00A23031 /* AuthorisationCoordinator.swift in Sources */,
 				D43599C62A1BDEF50057AF7B /* XCAssets+Generated.swift in Sources */,
 				D475C0112A1538050057422D /* WelcomeScreenView.swift in Sources */,
+				D42ACF082A226E5E00A23031 /* LockedTabScreenCommon.swift in Sources */,
+				D42ACF0A2A22787800A23031 /* LockedTabScreenVMImpl.swift in Sources */,
 				D43599C12A1BD2750057AF7B /* AppTabBarController.swift in Sources */,
 				D475C00E2A15373E0057422D /* CoordinatorFactory.swift in Sources */,
 				D475BFA92A152C020057422D /* SceneDelegate.swift in Sources */,
+				D42ACF062A2269B800A23031 /* LoginButtonStyle.swift in Sources */,
 				D4B936152A1BC65D00A39414 /* OverviewCoordinator.swift in Sources */,
 				D475C0132A15381C0057422D /* WelcomeScreenCommon.swift in Sources */,
 				D475C01A2A1544180057422D /* WelcomeScreenVMImpl.swift in Sources */,

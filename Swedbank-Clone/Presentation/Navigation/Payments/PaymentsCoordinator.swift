@@ -1,5 +1,5 @@
 //
-//  OverviewCoordinator.swift
+//  PaymentsCoordinator.swift
 //  Swedbank-Clone
 //
 //  Created by Hardijs Ķirsis on 22/05/2023.
@@ -10,7 +10,7 @@ import DevToolsNavigation
 
 // MARK: TODO: Check and subcribe to auth status
 
-class OverviewCoordinator: NavigationCoordinator {
+class PaymentsCoordinator: NavigationCoordinator {
     
     // MARK: Properties
         
@@ -30,12 +30,12 @@ class OverviewCoordinator: NavigationCoordinator {
 
 // MARK: Private
 
-extension OverviewCoordinator {
+extension PaymentsCoordinator {
     private func goToUnauthorisedScreen() {
-        let vm = LockedTabScreenVMImpl(tabDescriptionIconName: Asset.Images.Icons.icOverviewDescription.name,
-                                       title: "LockedTab.Overview.title",
-                                       subtitle: "LockedTab.Overview.subtitle",
-                                       backgroundColorName: Asset.Colors.color4.name)
+        let vm = LockedTabScreenVMImpl(tabDescriptionIconName: Asset.Images.Icons.icPaymentsDescription.name,
+                                       title: "LockedTab.Payments.title",
+                                       subtitle: "LockedTab.Payments.subtitle",
+                                       backgroundColorName: Asset.Colors.color5.name)
         let view = LockedTabScreenView(viewModel: vm)
         let vc = UIHostingController(rootView: view)
         
@@ -49,7 +49,7 @@ extension OverviewCoordinator {
 
 // MARK: Public
 
-extension OverviewCoordinator {
+extension PaymentsCoordinator {
     func goToAuth() {
         let coordinator = AuthorisationCoordinator(router: router)
         store(coordinator: coordinator)

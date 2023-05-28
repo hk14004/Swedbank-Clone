@@ -13,3 +13,11 @@
 "Tabbar.Tabs.Cards.title" = "Kartes";
 "Tabbar.Tabs.Services.title" = "Servisi";
 "Tabbar.Tabs.Contacts.title" = "Kontakti";
+
+"Login.Button.title" = "Ienākt";
+
+"LockedTab.Overview.title" = "Konta atlikums un pārskats";
+"LockedTab.Overview.subtitle" = "Ērts veids kā pārraudzīt savu naudu un redzēt, kur tā tiek tērēta";
+
+"LockedTab.Payments.title" = "Pārskaiti naudu vai apmaksā rēķinus";
+"LockedTab.Payments.subtitle" = "Veic maksājumus vieglim lai kur vien arī būtu";
