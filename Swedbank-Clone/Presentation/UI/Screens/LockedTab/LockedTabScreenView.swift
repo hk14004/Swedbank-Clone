@@ -7,6 +7,7 @@
 
 import SwiftUI
 import DevToolsUI
+import Localize_Swift
 
 struct LockedTabScreenView<ViewModel: LockedTabScreenVM>: View {
     
@@ -14,17 +15,25 @@ struct LockedTabScreenView<ViewModel: LockedTabScreenVM>: View {
     
     var body: some View {
         VStack(spacing: 0) {
+            HStack {
+                Spacer()
+                LanguageDropdownView()
+                    .onTapGesture {
+                        viewModel.onLanguageChangeTap()
+                    }
+            }
+            
             Spacer()
             Group {
                 Image(viewModel.tabDescriptionIconName)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 250, height: 200)
-                Text(viewModel.title.toSwiftUILocalised())
+                Text(viewModel.title.localized())
                     .font(.title)
                     .foregroundColor(Asset.Colors.color3.swiftUIColor)
                     .padding(.top)
-                Text(viewModel.subtitle.toSwiftUILocalised())
+                Text(viewModel.subtitle.localized())
                     .padding(.top)
             }
             .layoutPriority(1)
@@ -36,16 +45,19 @@ struct LockedTabScreenView<ViewModel: LockedTabScreenVM>: View {
         }
         .padding()
         .background(Color(viewModel.backgroundColorName))
+        .navigationBarHidden(true)
     }
 }
 
 struct LockedTabView_Previews: PreviewProvider {
     static var previews: some View {
+        LocalizedPreview()
         LockedTabScreenView(viewModel: LockedTabScreenVMPreview())
     }
 }
 
-private class LockedTabScreenVMPreview: LockedTabScreenVM {
+private class LockedTabScreenVMPreview {
+
     var navigationBindings: LockedTabScreenVMNavigationBindings = .init()
     
     var backgroundColorName: String = "color4"
@@ -56,6 +68,12 @@ private class LockedTabScreenVMPreview: LockedTabScreenVM {
     
     var subtitle: String = "LockedTab.Overview.subtitle"
     
+}
+
+extension LockedTabScreenVMPreview: LockedTabScreenVM {
+    func onLanguageChangeTap() {
+        
+    }
     func onAuthTapped() {
         
     }

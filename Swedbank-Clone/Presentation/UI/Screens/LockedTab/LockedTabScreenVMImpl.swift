@@ -29,6 +29,10 @@ class LockedTabScreenVMImpl {
 }
 
 extension LockedTabScreenVMImpl: LockedTabScreenVM {
+    func onLanguageChangeTap() {
+        navigationBindings.onGoToLanguageChange?()
+    }
+    
     func onAuthTapped() {
         navigationBindings.onGoToLogin?()
     }

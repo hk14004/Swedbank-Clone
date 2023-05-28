@@ -10,6 +10,7 @@ import DevToolsCore
 
 class LockedTabScreenVMNavigationBindings {
     var onGoToLogin: VoidCallback?
+    var onGoToLanguageChange: VoidCallback?
 }
 
 protocol LockedTabScreenVM: ObservableObject {
@@ -20,4 +21,5 @@ protocol LockedTabScreenVM: ObservableObject {
     var navigationBindings: LockedTabScreenVMNavigationBindings { get set }
     
     func onAuthTapped()
+    func onLanguageChangeTap()
 }

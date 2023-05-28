@@ -42,6 +42,9 @@ extension OverviewCoordinator {
         vm.navigationBindings.onGoToLogin = { [weak self] in
             self?.goToAuth()
         }
+        vm.navigationBindings.onGoToLanguageChange = { [weak self] in
+            self?.goToAuth()
+        }
         
         router.navigationController.setViewControllers([vc], animated: false)
     }

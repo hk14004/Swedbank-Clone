@@ -18,6 +18,7 @@
 
 "LockedTab.Overview.title" = "Balance overview";
 "LockedTab.Overview.subtitle" = "A convenient way to monitor your money and see where it is spent";
-
 "LockedTab.Payments.title" = "Transfer money or pay bills";
 "LockedTab.Payments.subtitle" = "Make payments easily wherever you are";
+
+"LanguageSelection.title" = "Choose language en";

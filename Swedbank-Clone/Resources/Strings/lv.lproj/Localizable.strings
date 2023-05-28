@@ -18,6 +18,7 @@
 
 "LockedTab.Overview.title" = "Konta atlikums un pārskats";
 "LockedTab.Overview.subtitle" = "Ērts veids kā pārraudzīt savu naudu un redzēt, kur tā tiek tērēta";
-
 "LockedTab.Payments.title" = "Pārskaiti naudu vai apmaksā rēķinus";
 "LockedTab.Payments.subtitle" = "Veic maksājumus vieglim lai kur vien arī būtu";
+
+"LanguageSelection.title" = "Choose language lv";

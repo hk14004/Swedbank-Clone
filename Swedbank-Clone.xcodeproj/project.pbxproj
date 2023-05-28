@@ -14,6 +14,8 @@
 		D42ACF0A2A22787800A23031 /* LockedTabScreenVMImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42ACF092A22787800A23031 /* LockedTabScreenVMImpl.swift */; };
 		D42ACF0D2A227EEB00A23031 /* PaymentsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42ACF0C2A227EEB00A23031 /* PaymentsCoordinator.swift */; };
 		D42ACF102A2334DA00A23031 /* AuthorisationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42ACF0F2A2334DA00A23031 /* AuthorisationCoordinator.swift */; };
+		D42ACF142A23462800A23031 /* LanguageDropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42ACF132A23462800A23031 /* LanguageDropdownView.swift */; };
+		D42ACF172A23495A00A23031 /* Localize_Swift in Frameworks */ = {isa = PBXBuildFile; productRef = D42ACF162A23495A00A23031 /* Localize_Swift */; };
 		D43599C12A1BD2750057AF7B /* AppTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43599C02A1BD2750057AF7B /* AppTabBarController.swift */; };
 		D43599C32A1BD95E0057AF7B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D43599C22A1BD95E0057AF7B /* Colors.xcassets */; };
 		D43599C62A1BDEF50057AF7B /* XCAssets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43599C52A1BDEF50057AF7B /* XCAssets+Generated.swift */; };
@@ -23,7 +25,6 @@
 		D475BFA92A152C020057422D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFA82A152C020057422D /* SceneDelegate.swift */; };
 		D475BFB12A152C020057422D /* Swedbank_Clone.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D475BFAF2A152C020057422D /* Swedbank_Clone.xcdatamodeld */; };
 		D475BFB32A152C030057422D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D475BFB22A152C030057422D /* Images.xcassets */; };
-		D475BFB62A152C030057422D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D475BFB42A152C030057422D /* LaunchScreen.storyboard */; };
 		D475BFC12A152C030057422D /* SwedbankCloneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFC02A152C030057422D /* SwedbankCloneTests.swift */; };
 		D475BFCB2A152C030057422D /* SwedbankCloneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFCA2A152C030057422D /* SwedbankCloneUITests.swift */; };
 		D475BFCD2A152C030057422D /* SwedbankCloneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFCC2A152C030057422D /* SwedbankCloneUITestsLaunchTests.swift */; };
@@ -45,6 +46,10 @@
 		D475C0132A15381C0057422D /* WelcomeScreenCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C0122A15381C0057422D /* WelcomeScreenCommon.swift */; };
 		D475C0152A1538740057422D /* WelcomeScreenPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C0142A1538740057422D /* WelcomeScreenPreview.swift */; };
 		D475C01A2A1544180057422D /* WelcomeScreenVMImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475C0192A1544180057422D /* WelcomeScreenVMImpl.swift */; };
+		D4B1BFA72A2353A00028A39D /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1BFA62A2353A00028A39D /* Globals.swift */; };
+		D4B1BFAA2A23594E0028A39D /* LanguageSelectionScreenBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1BFA92A23594E0028A39D /* LanguageSelectionScreenBottomSheetView.swift */; };
+		D4B1BFAC2A2359930028A39D /* LanguageSelectionScreenBottomSheetCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1BFAB2A2359930028A39D /* LanguageSelectionScreenBottomSheetCommon.swift */; };
+		D4B1BFAE2A2359A00028A39D /* LanguageSelectionScreenBottomSheetVMimpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1BFAD2A2359A00028A39D /* LanguageSelectionScreenBottomSheetVMimpl.swift */; };
 		D4B936122A1BC45100A39414 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B936112A1BC45100A39414 /* TabBarCoordinator.swift */; };
 		D4B936152A1BC65D00A39414 /* OverviewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B936142A1BC65D00A39414 /* OverviewCoordinator.swift */; };
 /* End PBXBuildFile section */
@@ -74,6 +79,7 @@
 		D42ACF092A22787800A23031 /* LockedTabScreenVMImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedTabScreenVMImpl.swift; sourceTree = "<group>"; };
 		D42ACF0C2A227EEB00A23031 /* PaymentsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentsCoordinator.swift; sourceTree = "<group>"; };
 		D42ACF0F2A2334DA00A23031 /* AuthorisationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorisationCoordinator.swift; sourceTree = "<group>"; };
+		D42ACF132A23462800A23031 /* LanguageDropdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageDropdownView.swift; sourceTree = "<group>"; };
 		D43599C02A1BD2750057AF7B /* AppTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBarController.swift; sourceTree = "<group>"; };
 		D43599C22A1BD95E0057AF7B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		D43599C52A1BDEF50057AF7B /* XCAssets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCAssets+Generated.swift"; sourceTree = "<group>"; };
@@ -85,7 +91,6 @@
 		D475BFA82A152C020057422D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D475BFB02A152C020057422D /* Swedbank_Clone.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Swedbank_Clone.xcdatamodel; sourceTree = "<group>"; };
 		D475BFB22A152C030057422D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		D475BFB52A152C030057422D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D475BFB72A152C030057422D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D475BFBC2A152C030057422D /* Swedbank-CloneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swedbank-CloneTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D475BFC02A152C030057422D /* SwedbankCloneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwedbankCloneTests.swift; sourceTree = "<group>"; };
@@ -104,6 +109,10 @@
 		D475C0122A15381C0057422D /* WelcomeScreenCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenCommon.swift; sourceTree = "<group>"; };
 		D475C0142A1538740057422D /* WelcomeScreenPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenPreview.swift; sourceTree = "<group>"; };
 		D475C0192A1544180057422D /* WelcomeScreenVMImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenVMImpl.swift; sourceTree = "<group>"; };
+		D4B1BFA62A2353A00028A39D /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		D4B1BFA92A23594E0028A39D /* LanguageSelectionScreenBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionScreenBottomSheetView.swift; sourceTree = "<group>"; };
+		D4B1BFAB2A2359930028A39D /* LanguageSelectionScreenBottomSheetCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionScreenBottomSheetCommon.swift; sourceTree = "<group>"; };
+		D4B1BFAD2A2359A00028A39D /* LanguageSelectionScreenBottomSheetVMimpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionScreenBottomSheetVMimpl.swift; sourceTree = "<group>"; };
 		D4B936112A1BC45100A39414 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		D4B936142A1BC65D00A39414 /* OverviewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -114,6 +123,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D475BFE52A152D0E0057422D /* DevToolsCore in Frameworks */,
+				D42ACF172A23495A00A23031 /* Localize_Swift in Frameworks */,
 				D475BFED2A152D0E0057422D /* DevToolsUI in Frameworks */,
 				D475BFE92A152D0E0057422D /* DevToolsNavigation in Frameworks */,
 				D475BFEB2A152D0E0057422D /* DevToolsNetworking in Frameworks */,
@@ -182,6 +192,22 @@
 			path = Authorisation;
 			sourceTree = "<group>";
 		};
+		D42ACF112A2345EA00A23031 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D42ACF122A2345F900A23031 /* LanguageDropdown */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D42ACF122A2345F900A23031 /* LanguageDropdown */ = {
+			isa = PBXGroup;
+			children = (
+				D42ACF132A23462800A23031 /* LanguageDropdownView.swift */,
+			);
+			path = LanguageDropdown;
+			sourceTree = "<group>";
+		};
 		D43599C42A1BDEF50057AF7B /* Generated */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,7 +264,6 @@
 				D475BFDE2A152C590057422D /* Domain */,
 				D475C0022A152F500057422D /* Infrastructure */,
 				D475BFFC2A152EC80057422D /* Resources */,
-				D475BFB42A152C030057422D /* LaunchScreen.storyboard */,
 				D475BFB72A152C030057422D /* Info.plist */,
 				D43599C42A1BDEF50057AF7B /* Generated */,
 			);
@@ -373,6 +398,7 @@
 		D475C0002A152F400057422D /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				D42ACF112A2345EA00A23031 /* Views */,
 				D42ACF012A22663800A23031 /* Button */,
 			);
 			path = Components;
@@ -381,6 +407,7 @@
 		D475C0012A152F440057422D /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				D4B1BFA82A23590C0028A39D /* LanguageSelectionBottomSheet */,
 				D42ACEFE2A22657A00A23031 /* LockedTab */,
 				D475C00F2A1537D60057422D /* Welcome */,
 			);
@@ -390,6 +417,7 @@
 		D475C0022A152F500057422D /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				D4B1BFA52A2353950028A39D /* Utils */,
 				D475C0032A152FC00057422D /* Data */,
 			);
 			path = Infrastructure;
@@ -438,6 +466,24 @@
 			path = Welcome;
 			sourceTree = "<group>";
 		};
+		D4B1BFA52A2353950028A39D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				D4B1BFA62A2353A00028A39D /* Globals.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		D4B1BFA82A23590C0028A39D /* LanguageSelectionBottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				D4B1BFA92A23594E0028A39D /* LanguageSelectionScreenBottomSheetView.swift */,
+				D4B1BFAB2A2359930028A39D /* LanguageSelectionScreenBottomSheetCommon.swift */,
+				D4B1BFAD2A2359A00028A39D /* LanguageSelectionScreenBottomSheetVMimpl.swift */,
+			);
+			path = LanguageSelectionBottomSheet;
+			sourceTree = "<group>";
+		};
 		D4B936102A1BC44500A39414 /* Root */ = {
 			isa = PBXGroup;
 			children = (
@@ -479,6 +525,7 @@
 				D475BFEA2A152D0E0057422D /* DevToolsNetworking */,
 				D475BFEC2A152D0E0057422D /* DevToolsUI */,
 				D475BFEF2A152D620057422D /* Swinject */,
+				D42ACF162A23495A00A23031 /* Localize_Swift */,
 			);
 			productName = "Swedbank-Clone";
 			productReference = D475BFA32A152C020057422D /* Swedbank-Clone.app */;
@@ -549,13 +596,13 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 				lv,
 			);
 			mainGroup = D475BF9A2A152C020057422D;
 			packageReferences = (
 				D475BFE32A152D0E0057422D /* XCRemoteSwiftPackageReference "DevTools-Swift" */,
 				D475BFEE2A152D620057422D /* XCRemoteSwiftPackageReference "Swinject" */,
+				D42ACF152A23495A00A23031 /* XCRemoteSwiftPackageReference "Localize-Swift" */,
 			);
 			productRefGroup = D475BFA42A152C020057422D /* Products */;
 			projectDirPath = "";
@@ -575,7 +622,6 @@
 			files = (
 				D43599C32A1BD95E0057AF7B /* Colors.xcassets in Resources */,
 				D43599CA2A1C04830057AF7B /* Localizable.strings in Resources */,
-				D475BFB62A152C030057422D /* LaunchScreen.storyboard in Resources */,
 				D475BFB32A152C030057422D /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -622,6 +668,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4B1BFA72A2353A00028A39D /* Globals.swift in Sources */,
 				D42ACF0D2A227EEB00A23031 /* PaymentsCoordinator.swift in Sources */,
 				D475BFF92A152DA10057422D /* PersistentCoreDataStoreAssembly.swift in Sources */,
 				D475C0092A1530300057422D /* Person.swift in Sources */,
@@ -635,12 +682,16 @@
 				D42ACF002A22661A00A23031 /* LockedTabScreenView.swift in Sources */,
 				D475C0152A1538740057422D /* WelcomeScreenPreview.swift in Sources */,
 				D475BFDD2A152C310057422D /* DependencyProvider.swift in Sources */,
+				D42ACF142A23462800A23031 /* LanguageDropdownView.swift in Sources */,
 				D43599CF2A1C07570057AF7B /* Strings+Generated.swift in Sources */,
 				D475BFB12A152C020057422D /* Swedbank_Clone.xcdatamodeld in Sources */,
 				D42ACF102A2334DA00A23031 /* AuthorisationCoordinator.swift in Sources */,
 				D43599C62A1BDEF50057AF7B /* XCAssets+Generated.swift in Sources */,
 				D475C0112A1538050057422D /* WelcomeScreenView.swift in Sources */,
 				D42ACF082A226E5E00A23031 /* LockedTabScreenCommon.swift in Sources */,
+				D4B1BFAC2A2359930028A39D /* LanguageSelectionScreenBottomSheetCommon.swift in Sources */,
+				D4B1BFAE2A2359A00028A39D /* LanguageSelectionScreenBottomSheetVMimpl.swift in Sources */,
+				D4B1BFAA2A23594E0028A39D /* LanguageSelectionScreenBottomSheetView.swift in Sources */,
 				D42ACF0A2A22787800A23031 /* LockedTabScreenVMImpl.swift in Sources */,
 				D43599C12A1BD2750057AF7B /* AppTabBarController.swift in Sources */,
 				D475C00E2A15373E0057422D /* CoordinatorFactory.swift in Sources */,
@@ -692,14 +743,6 @@
 				D43599D22A1C0E020057AF7B /* lv */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		D475BFB42A152C030057422D /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D475BFB52A152C030057422D /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -999,6 +1042,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D42ACF152A23495A00A23031 /* XCRemoteSwiftPackageReference "Localize-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marmelroy/Localize-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		D475BFE32A152D0E0057422D /* XCRemoteSwiftPackageReference "DevTools-Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hk14004/DevTools-Swift";
@@ -1018,6 +1069,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D42ACF162A23495A00A23031 /* Localize_Swift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D42ACF152A23495A00A23031 /* XCRemoteSwiftPackageReference "Localize-Swift" */;
+			productName = Localize_Swift;
+		};
 		D475BFE42A152D0E0057422D /* DevToolsCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D475BFE32A152D0E0057422D /* XCRemoteSwiftPackageReference "DevTools-Swift" */;
