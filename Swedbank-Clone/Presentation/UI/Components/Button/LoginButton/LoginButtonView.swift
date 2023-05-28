@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DevToolsLocalization
 
 struct LoginButtonView: View {
     
@@ -17,7 +18,7 @@ struct LoginButtonView: View {
         } label: {
             HStack {
                 Spacer()
-                Text("Login.Button.title".localizedRuntimeString())
+                Text(L10n.Login.Button.title.localizedRuntimeString())
                 Spacer()
             }
         }
@@ -27,8 +28,7 @@ struct LoginButtonView: View {
 
 struct LoginButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginButtonView {
-            
-        }
+        RuntimeLocalizedPreview(language: "lv")
+        LoginButtonView {}
     }
 }

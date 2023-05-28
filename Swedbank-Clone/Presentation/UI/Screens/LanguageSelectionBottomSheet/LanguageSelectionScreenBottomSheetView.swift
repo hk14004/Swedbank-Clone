@@ -23,7 +23,7 @@ struct LanguageSelectionScreenBottomSheetView<ViewModel: LanguageSelectionScreen
 
 struct LanguageSelectionScreenBottomSheet_Previews: PreviewProvider {
     static var previews: some View {
-        RuntimeLocalizedPreview(language: "en")
+        RuntimeLocalizedPreview(language: "lv")
         LanguageSelectionScreenBottomSheetView(viewModel: LanguageSelectionScreenBottomSheetPreviewVM())
     }
 }
@@ -32,7 +32,7 @@ extension LanguageSelectionScreenBottomSheetView {
     @ViewBuilder
     private func makeHeader() -> some View {
         VStack(spacing: 0) {
-            Text("LanguageSelection.title".localizedRuntimeString())
+            Text(L10n.LanguageSelection.title.localizedRuntimeString())
                 .frame(maxWidth: .infinity)
                 .overlay {
                     HStack {

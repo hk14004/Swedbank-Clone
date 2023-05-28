@@ -7,6 +7,7 @@
 
 import DevToolsNavigation
 import UIKit
+import DevToolsLocalization
 
 final class TabBarCoordinator: NSObject, NavigationCoordinator {
     
@@ -75,8 +76,8 @@ extension TabBarCoordinator {
     
     private func makeOverViewTab() -> UINavigationController {
         let navVC = UINavigationController()
-        let item = UITabBarItem()
-        item.title = L10n.Tabbar.Tabs.Overview.title
+        let item = RuntimeLocalizedTabBarItem()
+        item.localizedStringKey = L10n.Tabbar.Tabs.Overview.title
         navVC.tabBarItem = item
         navVC.tabBarItem.image = UIImage(systemName: "house")!
         navVC.tabBarItem.selectedImage = UIImage(systemName: "house")!
@@ -89,8 +90,8 @@ extension TabBarCoordinator {
     
     private func makePaymentsTab() -> UINavigationController {
         let navVC = UINavigationController()
-        let item = UITabBarItem()
-        item.title = L10n.Tabbar.Tabs.Payments.title
+        let item = RuntimeLocalizedTabBarItem()
+        item.localizedStringKey = L10n.Tabbar.Tabs.Payments.title
         navVC.tabBarItem = item
         navVC.tabBarItem.image = UIImage(systemName: "arrow.left.arrow.right")!
         navVC.tabBarItem.selectedImage = UIImage(systemName: "arrow.left.arrow.right")!
@@ -103,8 +104,8 @@ extension TabBarCoordinator {
     
     private func makeCardsTab() -> UINavigationController {
         let navVC = UINavigationController()
-        let item = UITabBarItem()
-        item.title = L10n.Tabbar.Tabs.Cards.title
+        let item = RuntimeLocalizedTabBarItem()
+        item.localizedStringKey = L10n.Tabbar.Tabs.Cards.title
         navVC.tabBarItem = item
         navVC.tabBarItem.image = UIImage(systemName: "creditcard")!
         navVC.tabBarItem.selectedImage = UIImage(systemName: "creditcard")!
@@ -117,8 +118,8 @@ extension TabBarCoordinator {
     
     private func makeServicesTab() -> UINavigationController {
         let navVC = UINavigationController()
-        let item = UITabBarItem()
-        item.title = L10n.Tabbar.Tabs.Services.title
+        let item = RuntimeLocalizedTabBarItem()
+        item.localizedStringKey = L10n.Tabbar.Tabs.Services.title
         navVC.tabBarItem = item
         navVC.tabBarItem.image = UIImage(systemName: "list.clipboard")!
         navVC.tabBarItem.selectedImage = UIImage(systemName: "list.clipboard")!
@@ -131,8 +132,8 @@ extension TabBarCoordinator {
     
     private func makeContactsTab() -> UINavigationController {
         let navVC = UINavigationController()
-        let item = UITabBarItem()
-        item.title = L10n.Tabbar.Tabs.Contacts.title
+        let item = RuntimeLocalizedTabBarItem()
+        item.localizedStringKey = L10n.Tabbar.Tabs.Contacts.title
         navVC.tabBarItem = item
         navVC.tabBarItem.image = UIImage(systemName: "bubble.left.and.bubble.right")!
         navVC.tabBarItem.selectedImage = UIImage(systemName: "bubble.left.and.bubble.right")!
