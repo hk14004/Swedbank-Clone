@@ -1,22 +1,33 @@
-/* 
-  Localizable.strings
-  Swedbank-Clone
 
-  Created by Hardijs Ķirsis on 22/05/2023.
-  
-*/
 
-"Tabbar.Tabs.Overview.title" = "Overview";
-"Tabbar.Tabs.Payments.title" = "Payments";
-"Tabbar.Tabs.Cards.title" = "Cards";
-"Tabbar.Tabs.Services.title" = "Services";
-"Tabbar.Tabs.Contacts.title" = "Contacts";
+"LanguageSelection.title" = "Choose language";
+
+
+"LockedTab.Overview.subtitle" = "A convenient way to monitor your money and see where it is spent";
+
+
+"LockedTab.Overview.title" = "Balance overview";
+
+
+"LockedTab.Payments.subtitle" = "Make payments easily wherever you are";
+
+
+"LockedTab.Payments.title" = "Transfer money or pay bills";
+
 
 "Login.Button.title" = "Login";
 
-"LockedTab.Overview.title" = "Balance overview";
-"LockedTab.Overview.subtitle" = "A convenient way to monitor your money and see where it is spent";
-"LockedTab.Payments.title" = "Transfer money or pay bills";
-"LockedTab.Payments.subtitle" = "Make payments easily wherever you are";
 
-"LanguageSelection.title" = "Choose language";
+"Tabbar.Tabs.Cards.title" = "Cards";
+
+
+"Tabbar.Tabs.Contacts.title" = "Contacts";
+
+
+"Tabbar.Tabs.Overview.title" = "Overview";
+
+
+"Tabbar.Tabs.Payments.title" = "Payments";
+
+
+"Tabbar.Tabs.Services.title" = "Services";

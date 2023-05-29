@@ -1,22 +1,33 @@
-/* 
-  Localizable.strings
-  Swedbank-Clone
 
-  Created by Hardijs Ķirsis on 22/05/2023.
-  
-*/
 
-"Tabbar.Tabs.Overview.title" = "Pārskats";
-"Tabbar.Tabs.Payments.title" = "Maksājumi";
-"Tabbar.Tabs.Cards.title" = "Kartes";
-"Tabbar.Tabs.Services.title" = "Servisi";
-"Tabbar.Tabs.Contacts.title" = "Kontakti";
+"LanguageSelection.title" = "Izvēlieties valodu";
+
+
+"LockedTab.Overview.subtitle" = "Ērts veids kā pārraudzīt savu naudu un redzēt, kur tā tiek tērēta";
+
+
+"LockedTab.Overview.title" = "Konta atlikums un pārskats";
+
+
+"LockedTab.Payments.subtitle" = "Veic maksājumus vieglim lai kur vien arī būtu";
+
+
+"LockedTab.Payments.title" = "Pārskaiti naudu vai apmaksā rēķinus";
+
 
 "Login.Button.title" = "Ienākt";
 
-"LockedTab.Overview.title" = "Konta atlikums un pārskats";
-"LockedTab.Overview.subtitle" = "Ērts veids kā pārraudzīt savu naudu un redzēt, kur tā tiek tērēta";
-"LockedTab.Payments.title" = "Pārskaiti naudu vai apmaksā rēķinus";
-"LockedTab.Payments.subtitle" = "Veic maksājumus vieglim lai kur vien arī būtu";
 
-"LanguageSelection.title" = "Izvēlieties valodu";
+"Tabbar.Tabs.Cards.title" = "Kartes";
+
+
+"Tabbar.Tabs.Contacts.title" = "Kontakti";
+
+
+"Tabbar.Tabs.Overview.title" = "Pārskats";
+
+
+"Tabbar.Tabs.Payments.title" = "Maksājumi";
+
+
+"Tabbar.Tabs.Services.title" = "Servisi";
