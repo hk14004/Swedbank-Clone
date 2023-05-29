@@ -39,13 +39,13 @@ extension LanguageSelectionScreenBottomSheetView {
                         Button {
                             viewModel.onClose()
                         } label: {
-                            Image(systemName: "x.circle")
-                                .foregroundColor(.black)
+                            Image(systemName: "xmark")
+                                .foregroundColor(Asset.Colors.color6.swiftUIColor)
                         }
                         Spacer()
                     }
                 }
-                .padding(8)
+                .padding()
             Divider()
         }
     }

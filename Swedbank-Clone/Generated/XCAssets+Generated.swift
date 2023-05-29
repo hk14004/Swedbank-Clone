@@ -30,6 +30,7 @@ internal enum Asset {
     internal static let color3 = ColorAsset(name: "color3")
     internal static let color4 = ColorAsset(name: "color4")
     internal static let color5 = ColorAsset(name: "color5")
+    internal static let color6 = ColorAsset(name: "color6")
   }
   internal enum Images {
     internal static let accentColor = ColorAsset(name: "AccentColor")
