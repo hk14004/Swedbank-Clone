@@ -6,8 +6,6 @@
   
 */
 
-// MARK: Tabbar
-
 "Tabbar.Tabs.Overview.title" = "Pārskats";
 "Tabbar.Tabs.Payments.title" = "Maksājumi";
 "Tabbar.Tabs.Cards.title" = "Kartes";

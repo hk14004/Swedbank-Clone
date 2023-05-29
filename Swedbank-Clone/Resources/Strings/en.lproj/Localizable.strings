@@ -6,8 +6,6 @@
   
 */
 
-// MARK: Tabbar
-
 "Tabbar.Tabs.Overview.title" = "Overview";
 "Tabbar.Tabs.Payments.title" = "Payments";
 "Tabbar.Tabs.Cards.title" = "Cards";
