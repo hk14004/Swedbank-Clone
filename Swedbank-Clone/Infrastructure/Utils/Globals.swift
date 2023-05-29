@@ -17,4 +17,8 @@ extension Globals {
         let suffix = "_flag"
         return prefix + language + suffix
     }
+    
+    static func makeLanguageNameKey(language: String) -> String {
+        return "LanguageSelection." + language
+    }
 }

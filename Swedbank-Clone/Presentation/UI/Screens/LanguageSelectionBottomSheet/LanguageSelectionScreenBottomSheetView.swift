@@ -68,7 +68,7 @@ extension LanguageSelectionScreenBottomSheetView {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 24)
-            Text(code)
+            Text(Globals.makeLanguageNameKey(language: code).runtimeLocalized())
                 .padding(.leading)
             Spacer()
             if selected {

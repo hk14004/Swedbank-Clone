@@ -11,6 +11,10 @@ import Foundation
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
   internal enum LanguageSelection {
+    /// English
+    internal static let en = L10n.tr("Localizable", "LanguageSelection.en", fallback: "English")
+    /// Latviešu
+    internal static let lv = L10n.tr("Localizable", "LanguageSelection.lv", fallback: "Latviešu")
     /// Choose language
     internal static let title = L10n.tr("Localizable", "LanguageSelection.title", fallback: "Choose language")
   }
@@ -45,10 +49,7 @@ internal enum L10n {
         internal static let title = L10n.tr("Localizable", "Tabbar.Tabs.Contacts.title", fallback: "Contacts")
       }
       internal enum Overview {
-        /// Localizable.strings
-        ///   Swedbank-Clone
-        /// 
-        ///   Created by Hardijs Ķirsis on 22/05/2023.
+        /// Overview
         internal static let title = L10n.tr("Localizable", "Tabbar.Tabs.Overview.title", fallback: "Overview")
       }
       internal enum Payments {
