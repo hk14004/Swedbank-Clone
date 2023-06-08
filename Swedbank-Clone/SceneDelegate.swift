@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DevToolsUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -14,6 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo
                session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
+        configureAppearance()
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         coordinator = AppCoordinator(window: window)
@@ -48,4 +50,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Save changes in the application's managed object context when the application transitions to the background.
     }
 
+    private func configureAppearance() {
+        let appearance = UITabBarAppearance()
+        appearance.backgroundColor = Asset.Colors.color7.color
+        appearance.stackedLayoutAppearance.selected.iconColor = Asset.Colors.color3.color
+        appearance.stackedLayoutAppearance.normal.iconColor = Asset.Colors.primaryText.color
+        appearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: Asset.Colors.color3.color]
+        appearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: Asset.Colors.primaryText.color]
+        appearance.shadowColor = UIColor.clear
+        AppearanceProxy.setDefault(tabbarAppearance: appearance)
+    }
 }
