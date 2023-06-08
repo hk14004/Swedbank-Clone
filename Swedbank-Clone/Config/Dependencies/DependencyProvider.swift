@@ -8,7 +8,7 @@
 import Foundation
 import Swinject
 
-let DIP = DependencyProvider()
+let DI = DependencyProvider()
 
 class DependencyProvider {
 

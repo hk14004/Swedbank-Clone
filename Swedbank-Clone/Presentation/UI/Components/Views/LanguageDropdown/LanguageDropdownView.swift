@@ -33,7 +33,7 @@ struct LanguageDropdownView_Previews: PreviewProvider {
 extension LanguageDropdownView {
     @ViewBuilder
     private func makeFlagImageView() -> some View {
-        let loc = DIP.container.resolve(RuntimeLocalization.self)!
+        let loc = DI.container.resolve(RuntimeLocalization.self)!
         Image(Globals.makeLanguageFlagName(language: loc.getCurrentLanguage()))
             .resizable()
             .scaledToFit()
