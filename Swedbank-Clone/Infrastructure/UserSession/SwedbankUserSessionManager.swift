@@ -8,42 +8,46 @@
 import Foundation
 import DevToolsCore
 
+// TODO: Add generic constraints?
 class SwedbankUserSessionManager {
     
+    typealias UserSessionType = SwedbankUserSession
+    typealias CredentialsStoreType = SwedbankUserSessionCredentialsStore
+    typealias UserSessionFactoryType = SwedbankUserSessionFactory
+    
+    private(set) var credentialsStore: SwedbankUserSessionCredentialsStore
+    private(set) var userSessionFactory: SwedbankUserSessionFactory
+    
+    init(credentialsStore: SwedbankUserSessionCredentialsStore, userSessionFactory: SwedbankUserSessionFactory) {
+        self.credentialsStore = credentialsStore
+        self.userSessionFactory = userSessionFactory
+    }
 }
 
 // MARK: UserSessionManager
 
 extension SwedbankUserSessionManager: UserSessionManager {
-    func startup() {
+    func startAllUserSessions() {
         
     }
     
-    func startUserSession(_ userSession: SwedbankUserSession) {
+    func startUserSession(withCredentialsID id: String) {
         
     }
     
-    func stopUserSession(_ userSession: SwedbankUserSession) {
+    func stopUserSession(forCredentialsID id: String) {
         
     }
     
-    func getStartedUserSession(credentialsID id: String) -> SwedbankUserSession? {
+    func deleteUserSession(credentialsID: String) {
+        
+    }
+    
+    func getStartedUserSession(forCredentialsID id: String) -> SwedbankUserSession? {
         return nil
     }
     
     func isSomebodyLoggedIn() -> Bool {
         return false
-    }
-    
-    func storeCredentials(_ credentials: SwedbankUserSessionCredentials) {
-        
-    }
-    
-    func getCredentials(id: String) -> SwedbankUserSessionCredentials? {
-        return nil
-    }
-    
-    func deleteCredentials(id: String) {
-        
     }
 }

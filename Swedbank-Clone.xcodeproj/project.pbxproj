@@ -20,6 +20,7 @@
 		D42FF5242A320DAB00036D83 /* SwedbankUserSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FF5232A320DAB00036D83 /* SwedbankUserSessionManager.swift */; };
 		D42FF5262A320F9700036D83 /* SwedbankUserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FF5252A320F9700036D83 /* SwedbankUserSession.swift */; };
 		D42FF5282A320FAD00036D83 /* SwedbankUserSessionCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FF5272A320FAD00036D83 /* SwedbankUserSessionCredentials.swift */; };
+		D42FF52A2A323D9600036D83 /* SwedbankUserSessionCredentialsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FF5292A323D9600036D83 /* SwedbankUserSessionCredentialsStore.swift */; };
 		D43599C12A1BD2750057AF7B /* AppTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43599C02A1BD2750057AF7B /* AppTabBarController.swift */; };
 		D43599C32A1BD95E0057AF7B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D43599C22A1BD95E0057AF7B /* Colors.xcassets */; };
 		D43599C62A1BDEF50057AF7B /* XCAssets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43599C52A1BDEF50057AF7B /* XCAssets+Generated.swift */; };
@@ -87,6 +88,7 @@
 		D42FF5232A320DAB00036D83 /* SwedbankUserSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwedbankUserSessionManager.swift; sourceTree = "<group>"; };
 		D42FF5252A320F9700036D83 /* SwedbankUserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwedbankUserSession.swift; sourceTree = "<group>"; };
 		D42FF5272A320FAD00036D83 /* SwedbankUserSessionCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwedbankUserSessionCredentials.swift; sourceTree = "<group>"; };
+		D42FF5292A323D9600036D83 /* SwedbankUserSessionCredentialsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwedbankUserSessionCredentialsStore.swift; sourceTree = "<group>"; };
 		D43599C02A1BD2750057AF7B /* AppTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBarController.swift; sourceTree = "<group>"; };
 		D43599C22A1BD95E0057AF7B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		D43599C52A1BDEF50057AF7B /* XCAssets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCAssets+Generated.swift"; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				D42FF5232A320DAB00036D83 /* SwedbankUserSessionManager.swift */,
 				D42FF5252A320F9700036D83 /* SwedbankUserSession.swift */,
 				D42FF5272A320FAD00036D83 /* SwedbankUserSessionCredentials.swift */,
+				D42FF5292A323D9600036D83 /* SwedbankUserSessionCredentialsStore.swift */,
 			);
 			path = UserSession;
 			sourceTree = "<group>";
@@ -690,6 +693,7 @@
 				D475C00B2A1531C40057422D /* AppCoordinator.swift in Sources */,
 				D475BFF72A152DA10057422D /* RepositoryAssembly.swift in Sources */,
 				D4B936122A1BC45100A39414 /* TabBarCoordinator.swift in Sources */,
+				D42FF52A2A323D9600036D83 /* SwedbankUserSessionCredentialsStore.swift in Sources */,
 				D475BFF82A152DA10057422D /* DataMapperAssembly.swift in Sources */,
 				D475BFA72A152C020057422D /* AppDelegate.swift in Sources */,
 				D42FF51F2A32036100036D83 /* UserSessionAssembly.swift in Sources */,
