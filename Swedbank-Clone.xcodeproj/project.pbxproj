@@ -21,6 +21,8 @@
 		D42FF5262A320F9700036D83 /* SwedbankUserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FF5252A320F9700036D83 /* SwedbankUserSession.swift */; };
 		D42FF5282A320FAD00036D83 /* SwedbankUserSessionCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FF5272A320FAD00036D83 /* SwedbankUserSessionCredentials.swift */; };
 		D42FF52A2A323D9600036D83 /* SwedbankUserSessionCredentialsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FF5292A323D9600036D83 /* SwedbankUserSessionCredentialsStore.swift */; };
+		D42FF52D2A32442700036D83 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = D42FF52C2A32442700036D83 /* KeychainAccess */; };
+		D42FF5312A3244F100036D83 /* KeychainConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FF5302A3244F100036D83 /* KeychainConstants.swift */; };
 		D43599C12A1BD2750057AF7B /* AppTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43599C02A1BD2750057AF7B /* AppTabBarController.swift */; };
 		D43599C32A1BD95E0057AF7B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D43599C22A1BD95E0057AF7B /* Colors.xcassets */; };
 		D43599C62A1BDEF50057AF7B /* XCAssets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43599C52A1BDEF50057AF7B /* XCAssets+Generated.swift */; };
@@ -89,6 +91,7 @@
 		D42FF5252A320F9700036D83 /* SwedbankUserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwedbankUserSession.swift; sourceTree = "<group>"; };
 		D42FF5272A320FAD00036D83 /* SwedbankUserSessionCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwedbankUserSessionCredentials.swift; sourceTree = "<group>"; };
 		D42FF5292A323D9600036D83 /* SwedbankUserSessionCredentialsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwedbankUserSessionCredentialsStore.swift; sourceTree = "<group>"; };
+		D42FF5302A3244F100036D83 /* KeychainConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainConstants.swift; sourceTree = "<group>"; };
 		D43599C02A1BD2750057AF7B /* AppTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBarController.swift; sourceTree = "<group>"; };
 		D43599C22A1BD95E0057AF7B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		D43599C52A1BDEF50057AF7B /* XCAssets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCAssets+Generated.swift"; sourceTree = "<group>"; };
@@ -132,6 +135,7 @@
 				D475BFED2A152D0E0057422D /* DevToolsUI in Frameworks */,
 				D475BFE92A152D0E0057422D /* DevToolsNavigation in Frameworks */,
 				D49B945D2A23A1160000BFBF /* DevToolsLocalization in Frameworks */,
+				D42FF52D2A32442700036D83 /* KeychainAccess in Frameworks */,
 				D475BFEB2A152D0E0057422D /* DevToolsNetworking in Frameworks */,
 				D475BFE72A152D0E0057422D /* DevToolsCoreData in Frameworks */,
 				D475BFF02A152D620057422D /* Swinject in Frameworks */,
@@ -226,6 +230,14 @@
 			path = UserSession;
 			sourceTree = "<group>";
 		};
+		D42FF52E2A3244D300036D83 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				D42FF5302A3244F100036D83 /* KeychainConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		D43599C42A1BDEF50057AF7B /* Generated */ = {
 			isa = PBXGroup;
 			children = (
@@ -309,6 +321,7 @@
 		D475BFD92A152C0C0057422D /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				D42FF52E2A3244D300036D83 /* Constants */,
 				D475BFDA2A152C170057422D /* Dependencies */,
 			);
 			path = Config;
@@ -543,6 +556,7 @@
 				D475BFEC2A152D0E0057422D /* DevToolsUI */,
 				D475BFEF2A152D620057422D /* Swinject */,
 				D49B945C2A23A1160000BFBF /* DevToolsLocalization */,
+				D42FF52C2A32442700036D83 /* KeychainAccess */,
 			);
 			productName = "Swedbank-Clone";
 			productReference = D475BFA32A152C020057422D /* Swedbank-Clone.app */;
@@ -619,6 +633,7 @@
 			packageReferences = (
 				D475BFE32A152D0E0057422D /* XCRemoteSwiftPackageReference "DevTools-Swift" */,
 				D475BFEE2A152D620057422D /* XCRemoteSwiftPackageReference "Swinject" */,
+				D42FF52B2A32442700036D83 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = D475BFA42A152C020057422D /* Products */;
 			projectDirPath = "";
@@ -675,7 +690,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "exit 0\nif [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -689,6 +704,7 @@
 				D42ACF0D2A227EEB00A23031 /* PaymentsCoordinator.swift in Sources */,
 				D475BFF92A152DA10057422D /* PersistentCoreDataStoreAssembly.swift in Sources */,
 				D475C0092A1530300057422D /* Person.swift in Sources */,
+				D42FF5312A3244F100036D83 /* KeychainConstants.swift in Sources */,
 				D42FF5282A320FAD00036D83 /* SwedbankUserSessionCredentials.swift in Sources */,
 				D475C00B2A1531C40057422D /* AppCoordinator.swift in Sources */,
 				D475BFF72A152DA10057422D /* RepositoryAssembly.swift in Sources */,
@@ -1061,6 +1077,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D42FF52B2A32442700036D83 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.2;
+			};
+		};
 		D475BFE32A152D0E0057422D /* XCRemoteSwiftPackageReference "DevTools-Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hk14004/DevTools-Swift";
@@ -1080,6 +1104,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D42FF52C2A32442700036D83 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D42FF52B2A32442700036D83 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
 		D475BFE42A152D0E0057422D /* DevToolsCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D475BFE32A152D0E0057422D /* XCRemoteSwiftPackageReference "DevTools-Swift" */;

@@ -12,7 +12,7 @@ struct SwedbankUserSessionCredentials: AuthorizationCredentials {
     
     // MARK: Types
     
-    struct Data {
+    struct Data: Codable {
         let bearerToken: String
     }
     
@@ -22,3 +22,5 @@ struct SwedbankUserSessionCredentials: AuthorizationCredentials {
     var authorizationData: Data
     
 }
+
+extension SwedbankUserSessionCredentials: Codable {}
