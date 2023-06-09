@@ -22,7 +22,7 @@
 		D42FF52A2A323D9600036D83 /* UserSessionCredentialsStoreImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FF5292A323D9600036D83 /* UserSessionCredentialsStoreImpl.swift */; };
 		D42FF52D2A32442700036D83 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = D42FF52C2A32442700036D83 /* KeychainAccess */; };
 		D42FF5312A3244F100036D83 /* KeychainConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FF5302A3244F100036D83 /* KeychainConstants.swift */; };
-		D42FF5442A3301C100036D83 /* SessionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FF5432A3301C000036D83 /* SessionManagerTests.swift */; };
+		D42FF5442A3301C100036D83 /* UserSessionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FF5432A3301C000036D83 /* UserSessionManagerTests.swift */; };
 		D42FF5462A33859B00036D83 /* UserSessionFactoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FF5452A33859B00036D83 /* UserSessionFactoryImpl.swift */; };
 		D43599C12A1BD2750057AF7B /* AppTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43599C02A1BD2750057AF7B /* AppTabBarController.swift */; };
 		D43599C32A1BD95E0057AF7B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D43599C22A1BD95E0057AF7B /* Colors.xcassets */; };
@@ -33,7 +33,6 @@
 		D475BFA92A152C020057422D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFA82A152C020057422D /* SceneDelegate.swift */; };
 		D475BFB12A152C020057422D /* Swedbank_Clone.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D475BFAF2A152C020057422D /* Swedbank_Clone.xcdatamodeld */; };
 		D475BFB32A152C030057422D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D475BFB22A152C030057422D /* Images.xcassets */; };
-		D475BFC12A152C030057422D /* SwedbankCloneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFC02A152C030057422D /* SwedbankCloneTests.swift */; };
 		D475BFCB2A152C030057422D /* SwedbankCloneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFCA2A152C030057422D /* SwedbankCloneUITests.swift */; };
 		D475BFCD2A152C030057422D /* SwedbankCloneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFCC2A152C030057422D /* SwedbankCloneUITestsLaunchTests.swift */; };
 		D475BFDD2A152C310057422D /* DependencyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475BFDC2A152C310057422D /* DependencyProvider.swift */; };
@@ -92,7 +91,7 @@
 		D42FF5272A320FAD00036D83 /* SwedbankUserSessionCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwedbankUserSessionCredentials.swift; sourceTree = "<group>"; };
 		D42FF5292A323D9600036D83 /* UserSessionCredentialsStoreImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionCredentialsStoreImpl.swift; sourceTree = "<group>"; };
 		D42FF5302A3244F100036D83 /* KeychainConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainConstants.swift; sourceTree = "<group>"; };
-		D42FF5432A3301C000036D83 /* SessionManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManagerTests.swift; sourceTree = "<group>"; };
+		D42FF5432A3301C000036D83 /* UserSessionManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSessionManagerTests.swift; sourceTree = "<group>"; };
 		D42FF5452A33859B00036D83 /* UserSessionFactoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionFactoryImpl.swift; sourceTree = "<group>"; };
 		D43599C02A1BD2750057AF7B /* AppTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBarController.swift; sourceTree = "<group>"; };
 		D43599C22A1BD95E0057AF7B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -107,7 +106,6 @@
 		D475BFB22A152C030057422D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D475BFB72A152C030057422D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D475BFBC2A152C030057422D /* Swedbank-CloneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swedbank-CloneTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D475BFC02A152C030057422D /* SwedbankCloneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwedbankCloneTests.swift; sourceTree = "<group>"; };
 		D475BFC62A152C030057422D /* Swedbank-CloneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swedbank-CloneUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D475BFCA2A152C030057422D /* SwedbankCloneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwedbankCloneUITests.swift; sourceTree = "<group>"; };
 		D475BFCC2A152C030057422D /* SwedbankCloneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwedbankCloneUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -360,8 +358,7 @@
 		D475BFBF2A152C030057422D /* Swedbank-CloneTests */ = {
 			isa = PBXGroup;
 			children = (
-				D475BFC02A152C030057422D /* SwedbankCloneTests.swift */,
-				D42FF5432A3301C000036D83 /* SessionManagerTests.swift */,
+				D42FF5432A3301C000036D83 /* UserSessionManagerTests.swift */,
 			);
 			path = "Swedbank-CloneTests";
 			sourceTree = "<group>";
@@ -801,8 +798,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D42FF5442A3301C100036D83 /* SessionManagerTests.swift in Sources */,
-				D475BFC12A152C030057422D /* SwedbankCloneTests.swift in Sources */,
+				D42FF5442A3301C100036D83 /* UserSessionManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
