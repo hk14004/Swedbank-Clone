@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import CoreData
+import DevToolsCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        configure()
         return true
     }
 
@@ -30,5 +31,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
 
+    }
+}
+
+// MARK: Private
+
+extension AppDelegate {
+    private func configure() {
+//        let userSessionManager = DI.container.resolve((any UserSessionManager).self)!
+//        userSessionManager.startAllUserSessions()
     }
 }

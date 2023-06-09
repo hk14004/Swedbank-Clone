@@ -8,19 +8,17 @@
 import Foundation
 import DevToolsCore
 
-struct SwedbankUserSessionCredentials: AuthorizationCredentials {
+struct SwedbankUserSessionCredentials: Codable, AuthorizationCredentials {
     
     // MARK: Types
     
     struct Data: Codable {
-        let bearerToken: String
+        var bearerToken: String
+        var refreshToken: String
     }
     
     // MARK: Properties
     
     var id: String
     var authorizationData: Data
-    
 }
-
-extension SwedbankUserSessionCredentials: Codable {}

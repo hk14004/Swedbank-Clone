@@ -9,13 +9,21 @@ import DevToolsCore
 import KeychainAccess
 import Foundation
 
-class SwedbankUserSessionCredentialsStore {
-    typealias CredentialsType = SwedbankUserSessionCredentials
-    private let keychain = Keychain(service: LOCAL_MAIN_KEYCHAIN_CREDENTIAL_SERVICE)
-}
+class UserSessionCredentialsStoreImpl: BaseUserSessionCredentialsStore<SwedbankUserSessionCredentials> {
 
-extension SwedbankUserSessionCredentialsStore: UserSessionCredentialsStore {
-    func storeCredentials(_ credentials: SwedbankUserSessionCredentials) {
+    // MARK: Properties
+    
+    private let keychain = Keychain(service: LOCAL_MAIN_KEYCHAIN_CREDENTIAL_SERVICE)
+    
+    // MARK: init
+    
+    override init() {
+        super.init()
+    }
+    
+    // MARK: Overriden
+    
+    override func storeCredentials(_ credentials: SwedbankUserSessionCredentials) {
         guard let data = try? JSONEncoder().encode(credentials) else {
             deleteCredentials(id: credentials.id)
             return
@@ -23,7 +31,7 @@ extension SwedbankUserSessionCredentialsStore: UserSessionCredentialsStore {
         try? keychain.set(data, key: credentials.id)
     }
     
-    func getCredentials(id: String) -> SwedbankUserSessionCredentials? {
+    override func getCredentials(id: String) -> SwedbankUserSessionCredentials? {
         guard let data = try? keychain.getData(id) else {
             deleteCredentials(id: id)
             return nil
@@ -32,18 +40,18 @@ extension SwedbankUserSessionCredentialsStore: UserSessionCredentialsStore {
         return decoded
     }
     
-    func getAllCredentials() -> [SwedbankUserSessionCredentials] {
+    override func getAllCredentials() -> [SwedbankUserSessionCredentials] {
         let result: [SwedbankUserSessionCredentials] = keychain.allKeys().compactMap { credID in
             getCredentials(id: credID)
         }
         return result
     }
     
-    func deleteCredentials(id: String) {
+    override func deleteCredentials(id: String) {
         try? keychain.remove(id)
     }
     
-    func deleteAllCredentials() {
+    override func deleteAllCredentials() {
         try? keychain.removeAll()
     }
 }

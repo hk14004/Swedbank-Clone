@@ -12,19 +12,16 @@ import DevToolsCore
 class UserSessionAssembly: Assembly {
     
     func assemble(container: Container) {
-        container.register(SwedbankUserSessionCredentialsStore.self) { _ in
-            return SwedbankUserSessionCredentialsStore()
+        container.register(BaseUserSessionCredentialsStore<SwedbankUserSessionCredentials>.self) { _ in
+            return UserSessionCredentialsStoreImpl()
         }.inObjectScope(.container)
-        container.register(SwedbankUserSessionFactory.self) { _ in
-            return SwedbankUserSessionFactory()
+        container.register(BaseUserSessionFactory<SwedbankUserSessionCredentials>.self) { _ in
+            return UserSessionFactoryImpl()
         }.inObjectScope(.container)
-        container.register((any UserSessionManager).self) { resolver in
-            return SwedbankUserSessionManager(credentialsStore: resolver.resolve(SwedbankUserSessionCredentialsStore.self)!,
-                                              userSessionFactory: resolver.resolve(SwedbankUserSessionFactory.self)!)
-        }
-        container.register((any UserSessionFactory).self) { _ in
-            return SwedbankUserSessionFactory()
-        }
+        container.register(BaseUserSessionManager<SwedbankUserSessionCredentials>.self) { resolver in
+            return UserSessionManagerImpl(credentialsStore: resolver.resolve(BaseUserSessionCredentialsStore<SwedbankUserSessionCredentials>.self)!,
+                                          userSessionFactory: resolver.resolve(BaseUserSessionFactory<SwedbankUserSessionCredentials>.self)!)
+        }.inObjectScope(.container)
     }
     
 }
