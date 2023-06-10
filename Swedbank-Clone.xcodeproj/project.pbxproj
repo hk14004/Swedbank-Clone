@@ -264,16 +264,8 @@
 		D42FF5372A32F3FC00036D83 /* Factories */ = {
 			isa = PBXGroup;
 			children = (
-				D42FF5382A32F42700036D83 /* UserSession */,
 			);
 			path = Factories;
-			sourceTree = "<group>";
-		};
-		D42FF5382A32F42700036D83 /* UserSession */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UserSession;
 			sourceTree = "<group>";
 		};
 		D42FF53B2A32F55500036D83 /* Factories */ = {
@@ -344,8 +336,8 @@
 			children = (
 				D475BFA62A152C020057422D /* AppDelegate.swift */,
 				D475BFA82A152C020057422D /* SceneDelegate.swift */,
-				D475BFFD2A152F070057422D /* Presentation */,
 				D475BFD92A152C0C0057422D /* Config */,
+				D475BFFD2A152F070057422D /* Presentation */,
 				D475BFDE2A152C590057422D /* Domain */,
 				D475C0022A152F500057422D /* Infrastructure */,
 				D475BFFC2A152EC80057422D /* Resources */,
@@ -395,32 +387,8 @@
 			children = (
 				D42FF5372A32F3FC00036D83 /* Factories */,
 				D475BFE22A152C7A0057422D /* Models */,
-				D475BFE12A152C6B0057422D /* Providers */,
-				D475BFE02A152C640057422D /* Repositories */,
-				D475BFDF2A152C600057422D /* Mappers */,
 			);
 			path = Domain;
-			sourceTree = "<group>";
-		};
-		D475BFDF2A152C600057422D /* Mappers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Mappers;
-			sourceTree = "<group>";
-		};
-		D475BFE02A152C640057422D /* Repositories */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Repositories;
-			sourceTree = "<group>";
-		};
-		D475BFE12A152C6B0057422D /* Providers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Providers;
 			sourceTree = "<group>";
 		};
 		D475BFE22A152C7A0057422D /* Models */ = {
