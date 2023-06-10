@@ -24,6 +24,9 @@
 		D42FF5312A3244F100036D83 /* KeychainConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FF5302A3244F100036D83 /* KeychainConstants.swift */; };
 		D42FF5442A3301C100036D83 /* UserSessionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FF5432A3301C000036D83 /* UserSessionManagerTests.swift */; };
 		D42FF5462A33859B00036D83 /* UserSessionFactoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FF5452A33859B00036D83 /* UserSessionFactoryImpl.swift */; };
+		D42FF5482A343E5F00036D83 /* AuthCredentialsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FF5472A343E5F00036D83 /* AuthCredentialsProvider.swift */; };
+		D42FF54D2A34405000036D83 /* AuthCredentialsProviderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FF54C2A34405000036D83 /* AuthCredentialsProviderImpl.swift */; };
+		D42FF54F2A34409400036D83 /* DevelopmentConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FF54E2A34409400036D83 /* DevelopmentConstants.swift */; };
 		D43599C12A1BD2750057AF7B /* AppTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43599C02A1BD2750057AF7B /* AppTabBarController.swift */; };
 		D43599C32A1BD95E0057AF7B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D43599C22A1BD95E0057AF7B /* Colors.xcassets */; };
 		D43599C62A1BDEF50057AF7B /* XCAssets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43599C52A1BDEF50057AF7B /* XCAssets+Generated.swift */; };
@@ -93,6 +96,9 @@
 		D42FF5302A3244F100036D83 /* KeychainConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainConstants.swift; sourceTree = "<group>"; };
 		D42FF5432A3301C000036D83 /* UserSessionManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSessionManagerTests.swift; sourceTree = "<group>"; };
 		D42FF5452A33859B00036D83 /* UserSessionFactoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionFactoryImpl.swift; sourceTree = "<group>"; };
+		D42FF5472A343E5F00036D83 /* AuthCredentialsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCredentialsProvider.swift; sourceTree = "<group>"; };
+		D42FF54C2A34405000036D83 /* AuthCredentialsProviderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCredentialsProviderImpl.swift; sourceTree = "<group>"; };
+		D42FF54E2A34409400036D83 /* DevelopmentConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevelopmentConstants.swift; sourceTree = "<group>"; };
 		D43599C02A1BD2750057AF7B /* AppTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBarController.swift; sourceTree = "<group>"; };
 		D43599C22A1BD95E0057AF7B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		D43599C52A1BDEF50057AF7B /* XCAssets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCAssets+Generated.swift"; sourceTree = "<group>"; };
@@ -232,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				D42FF5302A3244F100036D83 /* KeychainConstants.swift */,
+				D42FF54E2A34409400036D83 /* DevelopmentConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -247,6 +254,7 @@
 		D42FF5352A32F38300036D83 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				D42FF54B2A34404100036D83 /* Providers */,
 				D42FF53B2A32F55500036D83 /* Factories */,
 				D42FF5362A32F39A00036D83 /* Models */,
 			);
@@ -282,6 +290,30 @@
 				D42FF5452A33859B00036D83 /* UserSessionFactoryImpl.swift */,
 			);
 			path = UserSession;
+			sourceTree = "<group>";
+		};
+		D42FF5492A343F9D00036D83 /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				D42FF54A2A343FAC00036D83 /* AuthCredentialsProvider */,
+			);
+			path = Providers;
+			sourceTree = "<group>";
+		};
+		D42FF54A2A343FAC00036D83 /* AuthCredentialsProvider */ = {
+			isa = PBXGroup;
+			children = (
+				D42FF5472A343E5F00036D83 /* AuthCredentialsProvider.swift */,
+			);
+			path = AuthCredentialsProvider;
+			sourceTree = "<group>";
+		};
+		D42FF54B2A34404100036D83 /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				D42FF54C2A34405000036D83 /* AuthCredentialsProviderImpl.swift */,
+			);
+			path = Providers;
 			sourceTree = "<group>";
 		};
 		D43599C42A1BDEF50057AF7B /* Generated */ = {
@@ -385,6 +417,7 @@
 		D475BFDE2A152C590057422D /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				D42FF5492A343F9D00036D83 /* Providers */,
 				D42FF5372A32F3FC00036D83 /* Factories */,
 				D475BFE22A152C7A0057422D /* Models */,
 			);
@@ -474,7 +507,6 @@
 		D475C0022A152F500057422D /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
-				D42FF5352A32F38300036D83 /* Domain */,
 				D4B1BFA52A2353950028A39D /* Utils */,
 				D475C0032A152FC00057422D /* Data */,
 			);
@@ -484,6 +516,7 @@
 		D475C0032A152FC00057422D /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				D42FF5352A32F38300036D83 /* Domain */,
 				D475C0042A152FC60057422D /* Store */,
 			);
 			path = Data;
@@ -735,6 +768,7 @@
 				D4B936122A1BC45100A39414 /* TabBarCoordinator.swift in Sources */,
 				D42FF52A2A323D9600036D83 /* UserSessionCredentialsStoreImpl.swift in Sources */,
 				D475BFF82A152DA10057422D /* DataMapperAssembly.swift in Sources */,
+				D42FF54F2A34409400036D83 /* DevelopmentConstants.swift in Sources */,
 				D475BFA72A152C020057422D /* AppDelegate.swift in Sources */,
 				D42FF51F2A32036100036D83 /* UserSessionAssembly.swift in Sources */,
 				D49B945F2A23A3310000BFBF /* LocalizationAssembly.swift in Sources */,
@@ -742,8 +776,10 @@
 				D42FF5262A320F9700036D83 /* UserSessionImpl.swift in Sources */,
 				D42ACF042A22667600A23031 /* LoginButtonView.swift in Sources */,
 				D42ACF002A22661A00A23031 /* LockedTabScreenView.swift in Sources */,
+				D42FF54D2A34405000036D83 /* AuthCredentialsProviderImpl.swift in Sources */,
 				D475BFDD2A152C310057422D /* DependencyProvider.swift in Sources */,
 				D42FF5242A320DAB00036D83 /* UserSessionManagerImpl.swift in Sources */,
+				D42FF5482A343E5F00036D83 /* AuthCredentialsProvider.swift in Sources */,
 				D42ACF142A23462800A23031 /* LanguageDropdownView.swift in Sources */,
 				D43599CF2A1C07570057AF7B /* Strings+Generated.swift in Sources */,
 				D475BFB12A152C020057422D /* Swedbank_Clone.xcdatamodeld in Sources */,

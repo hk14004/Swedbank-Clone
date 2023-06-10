@@ -13,18 +13,21 @@ import DevToolsNetworking
 class DataProviderAssambly: Assembly {
     
     func assemble(container: Container) {
-//        container.register(MoyaProvider<CatalogTarget>.self) { resolver in
-//            MoyaProvider()
-//        }.inObjectScope(.container)
-//        
-//        container.register(RequestManager<CatalogTarget>.self) { resolver in
-//            RequestManager()
-//        }.inObjectScope(.container)
-//        
-//        container.register(CatalogProvider.self) { resolver in
-//            CatalogProviderImpl(provider: MoyaProvider<CatalogTarget>(),
-//                                requestManager: RequestManager<CatalogTarget>())
-//        }.inObjectScope(.container)
+        container.register(AuthCredentialsProvider.self) { resolver in
+            AuthCredentialsProviderImpl()
+        }.inObjectScope(.container)
+        //        container.register(MoyaProvider<CatalogTarget>.self) { resolver in
+        //            MoyaProvider()
+        //        }.inObjectScope(.container)
+        //
+        //        container.register(RequestManager<CatalogTarget>.self) { resolver in
+        //            RequestManager()
+        //        }.inObjectScope(.container)
+        //
+        //        container.register(CatalogProvider.self) { resolver in
+        //            CatalogProviderImpl(provider: MoyaProvider<CatalogTarget>(),
+        //                                requestManager: RequestManager<CatalogTarget>())
+        //        }.inObjectScope(.container)
     }
     
 }
