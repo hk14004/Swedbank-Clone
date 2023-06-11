@@ -7,6 +7,7 @@
 
 import SwiftUI
 import DevToolsNavigation
+import DevToolsCore
 
 // MARK: TODO: Check and subcribe to auth status
 
@@ -19,8 +20,14 @@ class OverviewCoordinator: NavigationCoordinator {
     var router: RouterProtocol
     var children: [NavigationCoordinator] = []
     
+    let manager = DI.container.resolve(BaseUserSessionManager<SwedbankUserSessionCredentials>.self)!
+    
     func start() {
-        goToUnauthorisedScreen()
+        if manager.isSomebodyLoggedIn() {
+            goToauthorisedScreen()   
+        } else {
+            goToUnauthorisedScreen()
+        }
     }
     
     init(router: RouterProtocol) {
@@ -46,6 +53,11 @@ extension OverviewCoordinator {
             self?.goToLanguageSelection()
         }
         
+        router.navigationController.setViewControllers([vc], animated: false)
+    }
+    
+    private func goToauthorisedScreen() {
+        let vc = UIHostingController(rootView: Color.green)
         router.navigationController.setViewControllers([vc], animated: false)
     }
 }
