@@ -140,5 +140,260 @@
             endingLineNumber = "34">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "02EF2757-4960-48B8-8059-5B0B894F78EF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Swedbank-Clone/Presentation/UI/Screens/Login/LoginScreenVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "setupTextFieldInputViews()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "20829490-F9DE-494E-B871-02F64EF1AE67"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Swedbank-Clone/Presentation/UI/Screens/Login/LoginScreenVMImpl.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "validate(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B8DAEA7F-AF5C-4534-86D2-238665DA1357"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Swedbank-Clone/Presentation/UI/Screens/Login/LoginScreenVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "getTextFieldType(field:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9A991BAA-C4B4-4064-A06F-9B56A9555C3E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Swedbank-Clone/Presentation/UI/Screens/Login/LoginScreenVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "getTextFieldType(field:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "02D6E1B2-99D3-4D07-8D86-AB6C05AE08D5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Swedbank-Clone/Presentation/UI/Screens/Login/LoginScreenVMImpl.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "performLogin(username:passw:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E4AC9386-53D9-4A83-821D-AA32D8F924D3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Swedbank-Clone/Config/Dependencies/Assemblies/UserSessionAssembly.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "assemble(container:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "559F28C3-AF2D-4CB9-ADCE-01FCA01C3059"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Swedbank-Clone/Presentation/UI/Screens/Login/LoginScreenVMImpl.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "performLogin(username:passw:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "559F28C3-AF2D-4CB9-ADCE-01FCA01C3059 - 16cc8be6d5751525"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for Swedbank_Clone.LoginScreenVMImpl.performLogin(username: Swift.String, passw: Swift.String) async -&gt; ()"
+                  moduleName = "Swedbank-Clone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hardijs/Documents/Projects/Swedbank-Clone/Swedbank-Clone/Presentation/UI/Screens/Login/LoginScreenVMImpl.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "392">
+               </Location>
+               <Location
+                  uuid = "559F28C3-AF2D-4CB9-ADCE-01FCA01C3059 - 42776259501af724"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for Swedbank_Clone.LoginScreenVMImpl.performLogin(username: Swift.String, passw: Swift.String) async -&gt; ()"
+                  moduleName = "Swedbank-Clone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hardijs/Documents/Projects/Swedbank-Clone/Swedbank-Clone/Presentation/UI/Screens/Login/LoginScreenVMImpl.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "120">
+               </Location>
+               <Location
+                  uuid = "559F28C3-AF2D-4CB9-ADCE-01FCA01C3059 - 42776259501af724"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for Swedbank_Clone.LoginScreenVMImpl.performLogin(username: Swift.String, passw: Swift.String) async -&gt; ()"
+                  moduleName = "Swedbank-Clone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hardijs/Documents/Projects/Swedbank-Clone/Swedbank-Clone/Presentation/UI/Screens/Login/LoginScreenVMImpl.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "140">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "55EED68D-D1E9-42C8-B7B5-974CAF2D7D35"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/Swedbank-Clone-grcfhljgbskoxxagofqwsxvuoqux/SourcePackages/checkouts/DevTools-Swift/Sources/DevToolsCore/UserSession/BaseUserSessionManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "startAllUserSessions()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ED4F51D4-F856-40E5-89BD-FF24355CC0FF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/Swedbank-Clone-grcfhljgbskoxxagofqwsxvuoqux/SourcePackages/checkouts/DevTools-Swift/Sources/DevToolsCore/UserSession/BaseUserSessionManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "startAllUserSessions()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "ED4F51D4-F856-40E5-89BD-FF24355CC0FF - df4f0a9c5aa48a12"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DevToolsCore.BaseUserSessionManager.startAllUserSessions() -&gt; ()"
+                  moduleName = "Swedbank-Clone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hardijs/Library/Developer/Xcode/DerivedData/Swedbank-Clone-grcfhljgbskoxxagofqwsxvuoqux/SourcePackages/checkouts/DevTools-Swift/Sources/DevToolsCore/UserSession/BaseUserSessionManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  uuid = "ED4F51D4-F856-40E5-89BD-FF24355CC0FF - 70ff608f321b534a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (&#x3c4;_0_0) -&gt; () in DevToolsCore.BaseUserSessionManager.startAllUserSessions() -&gt; ()"
+                  moduleName = "Swedbank-Clone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hardijs/Library/Developer/Xcode/DerivedData/Swedbank-Clone-grcfhljgbskoxxagofqwsxvuoqux/SourcePackages/checkouts/DevTools-Swift/Sources/DevToolsCore/UserSession/BaseUserSessionManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "120">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B220FC47-268E-4717-B7D2-AC2BDC193669"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Swedbank-Clone/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3AAFF52A-FCD5-4183-95AA-ABA4458038B1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Swedbank-Clone/SceneDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "scene(_:willConnectTo:options:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

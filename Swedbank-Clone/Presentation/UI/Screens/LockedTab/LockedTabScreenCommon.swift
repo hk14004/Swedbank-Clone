@@ -9,7 +9,7 @@ import Foundation
 import DevToolsCore
 
 class LockedTabScreenVMNavigationBindings {
-    var onGoToLogin: VoidCallback?
+    var onLoggedIn: VoidCallback?
     var onGoToLanguageChange: VoidCallback?
 }
 

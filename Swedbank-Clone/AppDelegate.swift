@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate {
     private func configure() {
-        let credentialProvider = DI.container.resolve(AuthCredentialsProvider.self)!
         let userSessionManager = DI.container.resolve(BaseUserSessionManager<SwedbankUserSessionCredentials>.self)!
+        userSessionManager.startAllUserSessions()
     }
 }

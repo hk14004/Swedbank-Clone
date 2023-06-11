@@ -34,6 +34,6 @@ extension LockedTabScreenVMImpl: LockedTabScreenVM {
     }
     
     func onAuthTapped() {
-        navigationBindings.onGoToLogin?()
+        navigationBindings.onLoggedIn?()
     }
 }

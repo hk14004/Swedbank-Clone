@@ -1,4 +1,10 @@
 
+/*  */
+"Globals.InputField.mustBeAtleastSize" = "Laukam jābūt vismaz %@ simbolu garam";
+
+/*  */
+"Globals.InputField.mustNotBeEmpty" = "Lauks nedrīkst būt tukšs";
+
 
 "LanguageSelection.en" = "English";
 
@@ -22,6 +28,12 @@
 
 
 "Login.Button.title" = "Ienākt";
+
+/*  */
+"Login.Password.placeholder" = "Ievadiet paroli";
+
+/*  */
+"Login.Username.placeholder" = "Ievadiet lietotājvārdu";
 
 
 "Tabbar.Tabs.Cards.title" = "Kartes";

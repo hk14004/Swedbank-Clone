@@ -39,7 +39,7 @@ extension PaymentsCoordinator {
         let view = LockedTabScreenView(viewModel: vm)
         let vc = UIHostingController(rootView: view)
         
-        vm.navigationBindings.onGoToLogin = { [weak self] in
+        vm.navigationBindings.onLoggedIn = { [weak self] in
             self?.goToAuth()
         }
         

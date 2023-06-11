@@ -1,5 +1,11 @@
 
 
+"Globals.InputField.mustBeAtleastSize" = "Should be at least %@ characters";
+
+
+"Globals.InputField.mustNotBeEmpty" = "Field must not be empty";
+
+
 "LanguageSelection.en" = "English";
 
 
@@ -22,6 +28,12 @@
 
 
 "Login.Button.title" = "Login";
+
+
+"Login.Password.placeholder" = "Enter password";
+
+
+"Login.Username.placeholder" = "Enter username";
 
 
 "Tabbar.Tabs.Cards.title" = "Cards";

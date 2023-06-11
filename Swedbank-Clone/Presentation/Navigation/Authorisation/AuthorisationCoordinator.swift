@@ -18,7 +18,16 @@ class AuthorisationCoordinator: NavigationCoordinator {
     var children: [NavigationCoordinator] = []
     
     func start() {
-        goToAuth()
+        let vm = LoginScreenVMImpl()
+        let vc = LoginScreenVC.instantiateViewController { coder in
+            LoginScreenVC(coder: coder, viewModel: vm)!
+        }!
+        vm.navigationBindings.onLoggedIn = { [weak vc] in
+            DispatchQueue.main.async {
+                vc?.dismiss(animated: true)
+            }
+        }
+        router.navigationController.present(vc, animated: true)
     }
     
     init(router: RouterProtocol) {
@@ -29,9 +38,5 @@ class AuthorisationCoordinator: NavigationCoordinator {
 // MARK: Private
 
 extension AuthorisationCoordinator {
-    private func goToAuth() {
-        let vc = UIViewController(nibName: nil, bundle: nil)
-        vc.view.backgroundColor = .red
-        router.navigationController.present(vc, animated: true)
-    }
+
 }

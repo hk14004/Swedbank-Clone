@@ -22,7 +22,8 @@ class DependencyProvider {
                 DataProviderAssambly(),
                 PersistentCoreDataStoreAssembly(),
                 RepositoryAssembly(),
-                LocalizationAssembly()
+                LocalizationAssembly(),
+                UserSessionAssembly()
             ],
             container: container
         )
