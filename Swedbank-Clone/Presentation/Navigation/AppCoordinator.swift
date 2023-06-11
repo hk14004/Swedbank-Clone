@@ -23,6 +23,7 @@ class AppCoordinator: NavigationCoordinator {
         router.navigationController.navigationBar.isHidden = true
         window.rootViewController = router.navigationController
         goToInitialScreen()
+        window.makeKeyAndVisible()
     }
     
     init(window: UIWindow) {
@@ -49,7 +50,7 @@ extension AppCoordinator {
     }
     
     private func goToRoot() {
-        let coordinator = TabBarCoordinator(router: router)
+        let coordinator = DI.container.resolve(TabBarCoordinator.self, argument: router)!
         store(coordinator: coordinator)
         coordinator.start()
     }

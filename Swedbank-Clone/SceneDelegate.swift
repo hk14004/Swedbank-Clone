@@ -10,17 +10,16 @@ import DevToolsUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
-    var coordinator: AppCoordinator!
+    var window: UIWindow?
     
     func scene(_ scene: UIScene, willConnectTo
                session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
         configureAppearance()
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        let window = UIWindow(windowScene: windowScene)
-        coordinator = AppCoordinator(window: window)
+        window = UIWindow(windowScene: windowScene)
+        let coordinator = DI.container.resolve(AppCoordinator.self)!
         coordinator.start()
-        window.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
