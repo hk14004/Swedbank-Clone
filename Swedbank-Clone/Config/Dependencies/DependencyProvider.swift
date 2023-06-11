@@ -24,6 +24,7 @@ class DependencyProvider {
                 RepositoryAssembly(),
                 LocalizationAssembly(),
                 UserSessionAssembly(),
+                ScreenCoordinatorAssembly(),
                 NavigationCoordinatorAssembly()
             ],
             container: container

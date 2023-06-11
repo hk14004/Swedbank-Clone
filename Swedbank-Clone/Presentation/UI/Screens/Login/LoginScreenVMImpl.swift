@@ -32,8 +32,16 @@ class LoginScreenVMImpl {
         .password: ""
     ]
     
-    private let authProvider = DI.container.resolve(AuthCredentialsProvider.self)!
-    private let sessionManager = DI.container.resolve(BaseUserSessionManager<SwedbankUserSessionCredentials>.self)!
+    private let authProvider: AuthCredentialsProvider
+    private let sessionManager: BaseUserSessionManager<SwedbankUserSessionCredentials>
+    
+    // MARK: Init
+    
+    init(authProvider: AuthCredentialsProvider, sessionManager: BaseUserSessionManager<SwedbankUserSessionCredentials>) {
+        self.authProvider = authProvider
+        self.sessionManager = sessionManager
+    }
+    
 }
 
 // MARK: LoginScreenVM

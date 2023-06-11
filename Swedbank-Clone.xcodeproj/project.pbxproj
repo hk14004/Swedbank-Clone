@@ -64,6 +64,7 @@
 		D4B936122A1BC45100A39414 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B936112A1BC45100A39414 /* TabBarCoordinator.swift */; };
 		D4B936152A1BC65D00A39414 /* OverviewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B936142A1BC65D00A39414 /* OverviewCoordinator.swift */; };
 		D4CEC2B72A363A0F00AFABF9 /* NavigationCoordinatorAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2B62A363A0F00AFABF9 /* NavigationCoordinatorAssembly.swift */; };
+		D4CEC2B92A36478900AFABF9 /* ScreenCoordinatorAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2B82A36478900AFABF9 /* ScreenCoordinatorAssembly.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +139,7 @@
 		D4B936112A1BC45100A39414 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		D4B936142A1BC65D00A39414 /* OverviewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewCoordinator.swift; sourceTree = "<group>"; };
 		D4CEC2B62A363A0F00AFABF9 /* NavigationCoordinatorAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinatorAssembly.swift; sourceTree = "<group>"; };
+		D4CEC2B82A36478900AFABF9 /* ScreenCoordinatorAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenCoordinatorAssembly.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -462,6 +464,7 @@
 				D49B945E2A23A3310000BFBF /* LocalizationAssembly.swift */,
 				D42FF51E2A32036100036D83 /* UserSessionAssembly.swift */,
 				D4CEC2B62A363A0F00AFABF9 /* NavigationCoordinatorAssembly.swift */,
+				D4CEC2B82A36478900AFABF9 /* ScreenCoordinatorAssembly.swift */,
 			);
 			path = Assemblies;
 			sourceTree = "<group>";
@@ -487,11 +490,10 @@
 		D475BFFE2A152F150057422D /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				D4B936102A1BC44500A39414 /* Root */,
 				D42ACF0E2A2334C200A23031 /* Authorisation */,
 				D42ACF0B2A227EDA00A23031 /* Payments */,
 				D4B936132A1BC64C00A39414 /* Overview */,
-				D4B936102A1BC44500A39414 /* Root */,
-				D475C00A2A1531C40057422D /* AppCoordinator.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -594,6 +596,7 @@
 		D4B936102A1BC44500A39414 /* Root */ = {
 			isa = PBXGroup;
 			children = (
+				D475C00A2A1531C40057422D /* AppCoordinator.swift */,
 				D4B936112A1BC45100A39414 /* TabBarCoordinator.swift */,
 				D43599C02A1BD2750057AF7B /* AppTabBarController.swift */,
 			);
@@ -814,6 +817,7 @@
 				D4B1BFAA2A23594E0028A39D /* LanguageSelectionScreenBottomSheetView.swift in Sources */,
 				D42ACF0A2A22787800A23031 /* LockedTabScreenVMImpl.swift in Sources */,
 				D43599C12A1BD2750057AF7B /* AppTabBarController.swift in Sources */,
+				D4CEC2B92A36478900AFABF9 /* ScreenCoordinatorAssembly.swift in Sources */,
 				D4CEC2B72A363A0F00AFABF9 /* NavigationCoordinatorAssembly.swift in Sources */,
 				D42FF55C2A35B3C600036D83 /* LoginScreenCommon.swift in Sources */,
 				D475BFA92A152C020057422D /* SceneDelegate.swift in Sources */,

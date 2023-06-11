@@ -72,13 +72,12 @@ extension OverviewCoordinator {
     }
     
     func goToLanguageSelection() {
-        let vm = LanguageSelectionScreenBottomSheetVMImpl()
+        let vm = DI.container.resolve((any LanguageSelectionScreenBottomSheetVM).self)! as! LanguageSelectionScreenBottomSheetVMImpl
         let view = LanguageSelectionScreenBottomSheetView(viewModel: vm)
         let vc = UIHostingController(rootView: view)
         
-        // TODO: Check mem leak
-        vm.navigationBindings.onClose = {
-            vc.dismiss(animated: true)
+        vm.navigationBindings.onClose = { [weak vc] in
+            vc?.dismiss(animated: true)
         }
         
         router.navigationController.present(vc, animated: true)
