@@ -55,9 +55,26 @@ extension OverviewScreenVC {
         
         mainNavigationBarView.updateTitle(key: "Tabbar.Tabs.Overview.title")
         mainNavigationBarView.viewDidLoad()
-        mainNavigationBarView.populateStackView { stackView in
-            let button = UIImageView(image: UIImage(systemName: "trash")!)
-            
-        }
+        mainNavigationBarView.configureDefault()
+    }
+    
+    private func makeItem1() -> UIView {
+        let img = UIImage(systemName: "bell.fill")!
+        let button = UIImageView(image: img)
+        button.tintColor = Asset.Colors.primaryText.color
+        button.contentMode = .scaleAspectFit
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.widthAnchor.constraint(equalToConstant: 26).isActive = true
+        return button
+    }
+    
+    private func makeItem2() -> UIView {
+        let img = UIImage(systemName: "person.fill")!
+        let button = UIImageView(image: img)
+        button.tintColor = Asset.Colors.primaryText.color
+        button.contentMode = .scaleAspectFit
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.widthAnchor.constraint(equalToConstant: 26).isActive = true
+        return button
     }
 }
