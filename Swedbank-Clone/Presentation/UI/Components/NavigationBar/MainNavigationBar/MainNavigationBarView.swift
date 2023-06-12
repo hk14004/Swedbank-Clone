@@ -45,4 +45,9 @@ extension MainNavigationBarView {
     func updateTitle(key: String) {
         titleLabelView.localizedStringKey = key
     }
+    
+    func viewDidLoad() {
+        titleLabelView.textColor = Asset.Colors.headlineText.color
+        titleLabelView.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+    }
 }

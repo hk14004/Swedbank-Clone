@@ -3,7 +3,6 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,19 +24,18 @@
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IpX-zT-Adc">
                             <rect key="frame" x="8" y="0.0" width="376" height="44"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Overview" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6g5-A6-YkU" userLabel="TitleLabel" customClass="RuntimeLocalizedLabel" customModule="DevToolsLocalization">
-                                    <rect key="frame" x="0.0" y="0.0" width="68" height="44"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6g5-A6-YkU" userLabel="TitleLabel" customClass="RuntimeLocalizedLabel" customModule="DevToolsLocalization">
+                                    <rect key="frame" x="0.0" y="0.0" width="31.666666666666668" height="44"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                    <color key="textColor" name="headlineText"/>
+                                    <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZOe-eT-jyj" userLabel="buttonStackView">
-                                    <rect key="frame" x="68" y="0.0" width="308" height="44"/>
+                                    <rect key="frame" x="31.666666666666657" y="0.0" width="344.33333333333337" height="44"/>
                                 </stackView>
                             </subviews>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" name="color1"/>
                     <constraints>
                         <constraint firstItem="IpX-zT-Adc" firstAttribute="top" secondItem="Ar3-8h-KGh" secondAttribute="top" id="1Lg-nJ-eCB"/>
                         <constraint firstItem="IpX-zT-Adc" firstAttribute="leading" secondItem="Ar3-8h-KGh" secondAttribute="leading" constant="8" id="5au-cc-tch"/>
@@ -61,15 +59,7 @@
     </objects>
     <designables>
         <designable name="6g5-A6-YkU">
-            <size key="intrinsicContentSize" width="68" height="19.333333333333332"/>
+            <size key="intrinsicContentSize" width="31.666666666666668" height="19.333333333333332"/>
         </designable>
     </designables>
-    <resources>
-        <namedColor name="color1">
-            <color red="0.24699999392032623" green="0.46299999952316284" blue="0.51800000667572021" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
-        <namedColor name="headlineText">
-            <color red="0.9100000262260437" green="0.36100000143051147" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
-    </resources>
 </document>

@@ -23,26 +23,16 @@ class OverviewScreenVC: UIViewController {
     // MARK: Properties
     
     let viewModel: any OverviewScreenVM
-    private var mainNavigationBar: MainNavigationBarView = {
-        let v = MainNavigationBarView()
-        v.runtimeLocalizedTitleKey = "Tabbar.Tabs.Payments.title"
-        v.translatesAutoresizingMaskIntoConstraints = false
-        return v
-    }()
+    private var mainNavigationBarView = MainNavigationBarView()
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
-    override func loadView() {
-        super.loadView()
-        loadMainNavigationBarView()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainNavigationBar.updateTitle(key: "Tabbar.Tabs.Payments.title")
+        startup()
     }
     
 }
@@ -50,11 +40,24 @@ class OverviewScreenVC: UIViewController {
 // MARK: Private
 
 extension OverviewScreenVC {
-    private func loadMainNavigationBarView() {
-        view.addSubview(mainNavigationBar)
-        mainNavigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        mainNavigationBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        mainNavigationBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        mainNavigationBar.heightAnchor.constraint(equalToConstant: 44).isActive = true
+    
+    private func startup() {
+        configureMainNavigationBarView()
+    }
+    
+    private func configureMainNavigationBarView() {
+        view.addSubview(mainNavigationBarView)
+        mainNavigationBarView.translatesAutoresizingMaskIntoConstraints = false
+        mainNavigationBarView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        mainNavigationBarView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        mainNavigationBarView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        mainNavigationBarView.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        
+        mainNavigationBarView.updateTitle(key: "Tabbar.Tabs.Overview.title")
+        mainNavigationBarView.viewDidLoad()
+        mainNavigationBarView.populateStackView { stackView in
+            let button = UIImageView(image: UIImage(systemName: "trash")!)
+            
+        }
     }
 }
