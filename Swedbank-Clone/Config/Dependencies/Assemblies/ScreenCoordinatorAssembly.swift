@@ -30,8 +30,8 @@ class ScreenCoordinatorAssembly: Assembly {
         container.register((any OverviewScreenVM).self) { (resolver) in
             return OverviewScreenVMImpl()
         }
-        container.register(OverviewScreenVC.self) { (resolver) in
-            return OverviewScreenVC(viewModel: resolver.resolve((any OverviewScreenVM).self)!)
+        container.register(OverviewScreenVC.self) { (resolver, viewModel: OverviewScreenVM) in
+            return OverviewScreenVC(viewModel: viewModel)
         }
     }
     

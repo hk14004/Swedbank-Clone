@@ -57,7 +57,8 @@ extension OverviewCoordinator {
     }
     
     private func goToauthorisedScreen() {
-        let vc = UIHostingController(rootView: Color.green)
+        let vm = DI.container.resolve((any OverviewScreenVM).self)!
+        let vc = DI.container.resolve(OverviewScreenVC.self, argument: vm)!
         router.navigationController.setViewControllers([vc], animated: false)
     }
 }

@@ -14,17 +14,22 @@ class MainNavigationBarView: UIView, StoryboardLoadableView {
     
     // MARK: Properties
     
-    @IBOutlet weak var buttonStackView: UIStackView!
-    @IBOutlet weak var titleLabelView: RuntimeLocalizedLabel!
+    @IBOutlet private weak var buttonStackView: UIStackView!
+    @IBOutlet private weak var titleLabelView: RuntimeLocalizedLabel!
     var loadedXibView: UIView!
     private var itemBuilder: ((UIStackView)->())?
+    var runtimeLocalizedTitleKey: String = ""
     
-    // MARK: Init
+    // MARK: init
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        buttonStackView.subviews.forEach({$0.removeFromSuperview()})
-        itemBuilder?(buttonStackView)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonXibInit()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        commonXibInit()
     }
     
 }
@@ -35,5 +40,9 @@ extension MainNavigationBarView {
     func populateStackView(itemBuilder: @escaping (UIStackView)->()) {
         buttonStackView.subviews.forEach({$0.removeFromSuperview()})
         self.itemBuilder = itemBuilder
+    }
+    
+    func updateTitle(key: String) {
+        titleLabelView.localizedStringKey = key
     }
 }

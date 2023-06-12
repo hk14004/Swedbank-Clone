@@ -66,7 +66,6 @@
 		D4CEC2B72A363A0F00AFABF9 /* NavigationCoordinatorAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2B62A363A0F00AFABF9 /* NavigationCoordinatorAssembly.swift */; };
 		D4CEC2B92A36478900AFABF9 /* ScreenCoordinatorAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2B82A36478900AFABF9 /* ScreenCoordinatorAssembly.swift */; };
 		D4F7E8A12A373ABB00CF49E1 /* OverviewScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F7E8A02A373ABB00CF49E1 /* OverviewScreenVC.swift */; };
-		D4F7E8A32A373AC300CF49E1 /* OverviewScreenVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4F7E8A22A373AC300CF49E1 /* OverviewScreenVC.storyboard */; };
 		D4F7E8A52A373CE800CF49E1 /* OverviewScreenCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F7E8A42A373CE800CF49E1 /* OverviewScreenCommon.swift */; };
 		D4F7E8A72A37413000CF49E1 /* OverviewScreenVMImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F7E8A62A37413000CF49E1 /* OverviewScreenVMImpl.swift */; };
 		D4F7E8AB2A3745CC00CF49E1 /* MainNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F7E8AA2A3745CC00CF49E1 /* MainNavigationBarView.swift */; };
@@ -147,7 +146,6 @@
 		D4CEC2B62A363A0F00AFABF9 /* NavigationCoordinatorAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinatorAssembly.swift; sourceTree = "<group>"; };
 		D4CEC2B82A36478900AFABF9 /* ScreenCoordinatorAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenCoordinatorAssembly.swift; sourceTree = "<group>"; };
 		D4F7E8A02A373ABB00CF49E1 /* OverviewScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewScreenVC.swift; sourceTree = "<group>"; };
-		D4F7E8A22A373AC300CF49E1 /* OverviewScreenVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OverviewScreenVC.storyboard; sourceTree = "<group>"; };
 		D4F7E8A42A373CE800CF49E1 /* OverviewScreenCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewScreenCommon.swift; sourceTree = "<group>"; };
 		D4F7E8A62A37413000CF49E1 /* OverviewScreenVMImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewScreenVMImpl.swift; sourceTree = "<group>"; };
 		D4F7E8AA2A3745CC00CF49E1 /* MainNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationBarView.swift; sourceTree = "<group>"; };
@@ -631,7 +629,6 @@
 				D4F7E8A02A373ABB00CF49E1 /* OverviewScreenVC.swift */,
 				D4F7E8A62A37413000CF49E1 /* OverviewScreenVMImpl.swift */,
 				D4F7E8A42A373CE800CF49E1 /* OverviewScreenCommon.swift */,
-				D4F7E8A22A373AC300CF49E1 /* OverviewScreenVC.storyboard */,
 			);
 			path = Overview;
 			sourceTree = "<group>";
@@ -773,7 +770,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4F7E8A32A373AC300CF49E1 /* OverviewScreenVC.storyboard in Resources */,
 				D43599C32A1BD95E0057AF7B /* Colors.xcassets in Resources */,
 				D42FF5622A35BED900036D83 /* LoginScreenVC.storyboard in Resources */,
 				D43599CA2A1C04830057AF7B /* Localizable.strings in Resources */,
