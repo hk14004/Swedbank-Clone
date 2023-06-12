@@ -185,6 +185,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D40D58E02A379F340008CC64 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				D40D58E22A379F5E0008CC64 /* UIView */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		D40D58E12A379F460008CC64 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				D42ACF112A2345EA00A23031 /* Views */,
+				D42ACF012A22663800A23031 /* Button */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		D40D58E22A379F5E0008CC64 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				D4F7E8A82A37450100CF49E1 /* NavigationBar */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
 		D42ACEFE2A22657A00A23031 /* LockedTab */ = {
 			isa = PBXGroup;
 			children = (
@@ -520,9 +545,8 @@
 		D475C0002A152F400057422D /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				D4F7E8A82A37450100CF49E1 /* NavigationBar */,
-				D42ACF112A2345EA00A23031 /* Views */,
-				D42ACF012A22663800A23031 /* Button */,
+				D40D58E12A379F460008CC64 /* SwiftUI */,
+				D40D58E02A379F340008CC64 /* UIKit */,
 			);
 			path = Components;
 			sourceTree = "<group>";
