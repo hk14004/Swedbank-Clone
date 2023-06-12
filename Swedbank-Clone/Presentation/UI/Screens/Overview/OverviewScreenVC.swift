@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Combine
+import DevToolsUI
 
 class OverviewScreenVC: UIViewController {
     
@@ -22,9 +24,13 @@ class OverviewScreenVC: UIViewController {
     
     // MARK: Properties
     
-    let viewModel: any OverviewScreenVM
+    /// Private
+    private let tableView = UITableView(frame: .zero, style: .plain)
+    private var dataSource: DiffableDataSource!
+    private let viewModel: any OverviewScreenVM
+    private var bag = Set<AnyCancellable>()
     private var mainNavigationBarView = MainNavigationBarView()
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -43,6 +49,55 @@ extension OverviewScreenVC {
     
     private func startup() {
         configureMainNavigationBarView()
+        configureTableView()
+        observeViewModel()
+    }
+    
+    private func configureTableView() {
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.allowsSelection = false
+        view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.topAnchor.constraint(equalTo: mainNavigationBarView.bottomAnchor, constant: 0).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        registerTableViewCells()
+        configureDataSource()
+    }
+    
+    private func registerTableViewCells() {
+        tableView.register(UINib.instanciateNib(type: CardBalanceTableViewCell.self),
+                           forCellReuseIdentifier: CardBalanceTableViewCell.reuseID)
+    }
+    
+    private func configureDataSource() {
+        dataSource = DiffableDataSource(viewModel: viewModel, tableView: tableView) { tableView, indexPath, item in
+            switch item {
+            case .cardBalance:
+                let cell = tableView.dequeueReusableCell(withIdentifier: CardBalanceTableViewCell.reuseID,
+                                                         for: indexPath) as? CardBalanceTableViewCell
+//                cell?.bindTo(viewModel: vm)
+                return cell
+            }
+        }
+        dataSource.defaultRowAnimation = .fade
+    }
+    
+    private func observeViewModel() {
+        viewModel.sectionsPublisher.receive(on: DispatchQueue.main).sink { [weak self] sections in
+            self?.renderTableViewSections(sections)
+        }.store(in: &bag)
+    }
+    
+    private func renderTableViewSections(_ sections: [OverviewScreenSection]) {
+        var snapshot = NSDiffableDataSourceSnapshot<OverviewScreenSection.Identifier, OverviewScreenSection.Cell>()
+        snapshot.appendSections(sections.map({$0.identifier}))
+        sections.forEach { section in
+            snapshot.appendItems(section.cells, toSection: section.identifier)
+        }
+        
+        dataSource.apply(snapshot, animatingDifferences: true)
     }
     
     private func configureMainNavigationBarView() {
@@ -76,5 +131,24 @@ extension OverviewScreenVC {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.widthAnchor.constraint(equalToConstant: 26).isActive = true
         return button
+    }
+}
+
+// MARK: Data source
+
+fileprivate extension OverviewScreenVC {
+    class DiffableDataSource: UITableViewDiffableDataSource<OverviewScreenSection.Identifier, OverviewScreenSection.Cell> {
+        
+        private var viewModel: any OverviewScreenVM
+        
+        init(viewModel: any OverviewScreenVM, tableView: UITableView,
+             cellProvider: @escaping UITableViewDiffableDataSource<OverviewScreenSection.Identifier, OverviewScreenSection.Cell>.CellProvider) {
+            self.viewModel = viewModel
+            super.init(tableView: tableView, cellProvider: cellProvider)
+        }
+        
+        override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+            viewModel.sections[section].title
+        }
     }
 }
