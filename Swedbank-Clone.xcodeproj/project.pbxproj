@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D40D58E72A37A37F0008CC64 /* CardBalanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40D58E52A37A37F0008CC64 /* CardBalanceTableViewCell.swift */; };
+		D40D58E82A37A37F0008CC64 /* CardBalanceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D40D58E62A37A37F0008CC64 /* CardBalanceTableViewCell.xib */; };
 		D42ACF002A22661A00A23031 /* LockedTabScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42ACEFF2A22661A00A23031 /* LockedTabScreenView.swift */; };
 		D42ACF042A22667600A23031 /* LoginButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42ACF032A22667600A23031 /* LoginButtonView.swift */; };
 		D42ACF062A2269B800A23031 /* LoginButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42ACF052A2269B800A23031 /* LoginButtonStyle.swift */; };
@@ -90,6 +92,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D40D58E52A37A37F0008CC64 /* CardBalanceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBalanceTableViewCell.swift; sourceTree = "<group>"; };
+		D40D58E62A37A37F0008CC64 /* CardBalanceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardBalanceTableViewCell.xib; sourceTree = "<group>"; };
 		D42ACEFF2A22661A00A23031 /* LockedTabScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedTabScreenView.swift; sourceTree = "<group>"; };
 		D42ACF032A22667600A23031 /* LoginButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonView.swift; sourceTree = "<group>"; };
 		D42ACF052A2269B800A23031 /* LoginButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonStyle.swift; sourceTree = "<group>"; };
@@ -188,6 +192,7 @@
 		D40D58E02A379F340008CC64 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				D40D58E32A37A23C0008CC64 /* UITableViewCell */,
 				D40D58E22A379F5E0008CC64 /* UIView */,
 			);
 			path = UIKit;
@@ -208,6 +213,23 @@
 				D4F7E8A82A37450100CF49E1 /* NavigationBar */,
 			);
 			path = UIView;
+			sourceTree = "<group>";
+		};
+		D40D58E32A37A23C0008CC64 /* UITableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				D40D58E42A37A2450008CC64 /* CardBalance */,
+			);
+			path = UITableViewCell;
+			sourceTree = "<group>";
+		};
+		D40D58E42A37A2450008CC64 /* CardBalance */ = {
+			isa = PBXGroup;
+			children = (
+				D40D58E52A37A37F0008CC64 /* CardBalanceTableViewCell.swift */,
+				D40D58E62A37A37F0008CC64 /* CardBalanceTableViewCell.xib */,
+			);
+			path = CardBalance;
 			sourceTree = "<group>";
 		};
 		D42ACEFE2A22657A00A23031 /* LockedTab */ = {
@@ -794,6 +816,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D40D58E82A37A37F0008CC64 /* CardBalanceTableViewCell.xib in Resources */,
 				D43599C32A1BD95E0057AF7B /* Colors.xcassets in Resources */,
 				D42FF5622A35BED900036D83 /* LoginScreenVC.storyboard in Resources */,
 				D43599CA2A1C04830057AF7B /* Localizable.strings in Resources */,
@@ -888,6 +911,7 @@
 				D4CEC2B72A363A0F00AFABF9 /* NavigationCoordinatorAssembly.swift in Sources */,
 				D4F7E8A12A373ABB00CF49E1 /* OverviewScreenVC.swift in Sources */,
 				D42FF55C2A35B3C600036D83 /* LoginScreenCommon.swift in Sources */,
+				D40D58E72A37A37F0008CC64 /* CardBalanceTableViewCell.swift in Sources */,
 				D475BFA92A152C020057422D /* SceneDelegate.swift in Sources */,
 				D42ACF062A2269B800A23031 /* LoginButtonStyle.swift in Sources */,
 				D4B936152A1BC65D00A39414 /* OverviewCoordinator.swift in Sources */,
