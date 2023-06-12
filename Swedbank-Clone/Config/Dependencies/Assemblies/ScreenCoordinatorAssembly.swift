@@ -13,26 +13,26 @@ import DevToolsCore
 class ScreenCoordinatorAssembly: Assembly {
     
     func assemble(container: Container) {
-        
-        // MARK: Login screen
-        
-        container.register((any LoginScreenVM).self.self) { (resolver) in
+        container.register((any LoginScreenVM).self) { (resolver) in
             return LoginScreenVMImpl(authProvider: resolver.resolve(AuthCredentialsProvider.self)!,
                                      sessionManager: resolver.resolve(BaseUserSessionManager<SwedbankUserSessionCredentials>.self)!)
         }
-        container.register(LoginScreenVC.self.self) { (resolver) in
+        container.register(LoginScreenVC.self) { (resolver) in
             return LoginScreenVC.instantiateViewController { coder in
                 LoginScreenVC(coder: coder, viewModel: resolver.resolve((any LoginScreenVM).self)!)!
             }
         }
         
-        // MARK: Language selection bottom screen
-        
         container.register((any LanguageSelectionScreenBottomSheetVM).self) { (resolver) in
             return LanguageSelectionScreenBottomSheetVMImpl()
         }
-        // View gets created manually
         
+        container.register((any OverviewScreenVM).self) { (resolver) in
+            return OverviewScreenVMImpl()
+        }
+        container.register(OverviewScreenVC.self) { (resolver) in
+            return OverviewScreenVC(viewModel: resolver.resolve((any OverviewScreenVM).self)!)
+        }
     }
     
 }

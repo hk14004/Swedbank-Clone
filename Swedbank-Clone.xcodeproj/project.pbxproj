@@ -65,6 +65,12 @@
 		D4B936152A1BC65D00A39414 /* OverviewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B936142A1BC65D00A39414 /* OverviewCoordinator.swift */; };
 		D4CEC2B72A363A0F00AFABF9 /* NavigationCoordinatorAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2B62A363A0F00AFABF9 /* NavigationCoordinatorAssembly.swift */; };
 		D4CEC2B92A36478900AFABF9 /* ScreenCoordinatorAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2B82A36478900AFABF9 /* ScreenCoordinatorAssembly.swift */; };
+		D4F7E8A12A373ABB00CF49E1 /* OverviewScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F7E8A02A373ABB00CF49E1 /* OverviewScreenVC.swift */; };
+		D4F7E8A32A373AC300CF49E1 /* OverviewScreenVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4F7E8A22A373AC300CF49E1 /* OverviewScreenVC.storyboard */; };
+		D4F7E8A52A373CE800CF49E1 /* OverviewScreenCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F7E8A42A373CE800CF49E1 /* OverviewScreenCommon.swift */; };
+		D4F7E8A72A37413000CF49E1 /* OverviewScreenVMImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F7E8A62A37413000CF49E1 /* OverviewScreenVMImpl.swift */; };
+		D4F7E8AB2A3745CC00CF49E1 /* MainNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F7E8AA2A3745CC00CF49E1 /* MainNavigationBarView.swift */; };
+		D4F7E8AD2A3745D500CF49E1 /* MainNavigationBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4F7E8AC2A3745D500CF49E1 /* MainNavigationBarView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +146,12 @@
 		D4B936142A1BC65D00A39414 /* OverviewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewCoordinator.swift; sourceTree = "<group>"; };
 		D4CEC2B62A363A0F00AFABF9 /* NavigationCoordinatorAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinatorAssembly.swift; sourceTree = "<group>"; };
 		D4CEC2B82A36478900AFABF9 /* ScreenCoordinatorAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenCoordinatorAssembly.swift; sourceTree = "<group>"; };
+		D4F7E8A02A373ABB00CF49E1 /* OverviewScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewScreenVC.swift; sourceTree = "<group>"; };
+		D4F7E8A22A373AC300CF49E1 /* OverviewScreenVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OverviewScreenVC.storyboard; sourceTree = "<group>"; };
+		D4F7E8A42A373CE800CF49E1 /* OverviewScreenCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewScreenCommon.swift; sourceTree = "<group>"; };
+		D4F7E8A62A37413000CF49E1 /* OverviewScreenVMImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewScreenVMImpl.swift; sourceTree = "<group>"; };
+		D4F7E8AA2A3745CC00CF49E1 /* MainNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationBarView.swift; sourceTree = "<group>"; };
+		D4F7E8AC2A3745D500CF49E1 /* MainNavigationBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainNavigationBarView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -510,6 +522,7 @@
 		D475C0002A152F400057422D /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				D4F7E8A82A37450100CF49E1 /* NavigationBar */,
 				D42ACF112A2345EA00A23031 /* Views */,
 				D42ACF012A22663800A23031 /* Button */,
 			);
@@ -519,6 +532,7 @@
 		D475C0012A152F440057422D /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				D4F7E89F2A373AAB00CF49E1 /* Overview */,
 				D42FF5592A35B39600036D83 /* Login */,
 				D4B1BFA82A23590C0028A39D /* LanguageSelectionBottomSheet */,
 				D42ACEFE2A22657A00A23031 /* LockedTab */,
@@ -609,6 +623,34 @@
 				D4B936142A1BC65D00A39414 /* OverviewCoordinator.swift */,
 			);
 			path = Overview;
+			sourceTree = "<group>";
+		};
+		D4F7E89F2A373AAB00CF49E1 /* Overview */ = {
+			isa = PBXGroup;
+			children = (
+				D4F7E8A02A373ABB00CF49E1 /* OverviewScreenVC.swift */,
+				D4F7E8A62A37413000CF49E1 /* OverviewScreenVMImpl.swift */,
+				D4F7E8A42A373CE800CF49E1 /* OverviewScreenCommon.swift */,
+				D4F7E8A22A373AC300CF49E1 /* OverviewScreenVC.storyboard */,
+			);
+			path = Overview;
+			sourceTree = "<group>";
+		};
+		D4F7E8A82A37450100CF49E1 /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				D4F7E8A92A3745A000CF49E1 /* MainNavigationBar */,
+			);
+			path = NavigationBar;
+			sourceTree = "<group>";
+		};
+		D4F7E8A92A3745A000CF49E1 /* MainNavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				D4F7E8AA2A3745CC00CF49E1 /* MainNavigationBarView.swift */,
+				D4F7E8AC2A3745D500CF49E1 /* MainNavigationBarView.xib */,
+			);
+			path = MainNavigationBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -731,10 +773,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4F7E8A32A373AC300CF49E1 /* OverviewScreenVC.storyboard in Resources */,
 				D43599C32A1BD95E0057AF7B /* Colors.xcassets in Resources */,
 				D42FF5622A35BED900036D83 /* LoginScreenVC.storyboard in Resources */,
 				D43599CA2A1C04830057AF7B /* Localizable.strings in Resources */,
 				D475BFB32A152C030057422D /* Images.xcassets in Resources */,
+				D4F7E8AD2A3745D500CF49E1 /* MainNavigationBarView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -790,9 +834,11 @@
 				D42FF5312A3244F100036D83 /* KeychainConstants.swift in Sources */,
 				D42FF5282A320FAD00036D83 /* SwedbankUserSessionCredentials.swift in Sources */,
 				D475C00B2A1531C40057422D /* AppCoordinator.swift in Sources */,
+				D4F7E8AB2A3745CC00CF49E1 /* MainNavigationBarView.swift in Sources */,
 				D475BFF72A152DA10057422D /* RepositoryAssembly.swift in Sources */,
 				D4B936122A1BC45100A39414 /* TabBarCoordinator.swift in Sources */,
 				D42FF52A2A323D9600036D83 /* UserSessionCredentialsStoreImpl.swift in Sources */,
+				D4F7E8A52A373CE800CF49E1 /* OverviewScreenCommon.swift in Sources */,
 				D475BFF82A152DA10057422D /* DataMapperAssembly.swift in Sources */,
 				D42FF54F2A34409400036D83 /* DevelopmentConstants.swift in Sources */,
 				D475BFA72A152C020057422D /* AppDelegate.swift in Sources */,
@@ -814,11 +860,13 @@
 				D42ACF082A226E5E00A23031 /* LockedTabScreenCommon.swift in Sources */,
 				D4B1BFAC2A2359930028A39D /* LanguageSelectionScreenBottomSheetCommon.swift in Sources */,
 				D4B1BFAE2A2359A00028A39D /* LanguageSelectionScreenBottomSheetVMimpl.swift in Sources */,
+				D4F7E8A72A37413000CF49E1 /* OverviewScreenVMImpl.swift in Sources */,
 				D4B1BFAA2A23594E0028A39D /* LanguageSelectionScreenBottomSheetView.swift in Sources */,
 				D42ACF0A2A22787800A23031 /* LockedTabScreenVMImpl.swift in Sources */,
 				D43599C12A1BD2750057AF7B /* AppTabBarController.swift in Sources */,
 				D4CEC2B92A36478900AFABF9 /* ScreenCoordinatorAssembly.swift in Sources */,
 				D4CEC2B72A363A0F00AFABF9 /* NavigationCoordinatorAssembly.swift in Sources */,
+				D4F7E8A12A373ABB00CF49E1 /* OverviewScreenVC.swift in Sources */,
 				D42FF55C2A35B3C600036D83 /* LoginScreenCommon.swift in Sources */,
 				D475BFA92A152C020057422D /* SceneDelegate.swift in Sources */,
 				D42ACF062A2269B800A23031 /* LoginButtonStyle.swift in Sources */,
