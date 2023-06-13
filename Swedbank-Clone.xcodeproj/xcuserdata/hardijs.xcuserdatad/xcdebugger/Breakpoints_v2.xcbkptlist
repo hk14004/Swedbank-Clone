@@ -683,5 +683,53 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "25E16172-A6C3-4DBD-8B42-8484E461CFEA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Swedbank-Clone/Presentation/Navigation/Authorisation/AuthorisationCoordinator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "start()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "25E16172-A6C3-4DBD-8B42-8484E461CFEA - 90b95728f40c8c83"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Swedbank_Clone.AuthorisationCoordinator.start() -&gt; ()"
+                  moduleName = "Swedbank-Clone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hardijs/Documents/Projects/Swedbank-Clone/Swedbank-Clone/Presentation/Navigation/Authorisation/AuthorisationCoordinator.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "156">
+               </Location>
+               <Location
+                  uuid = "25E16172-A6C3-4DBD-8B42-8484E461CFEA - 6d60a6ab7aeea924"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 () -&gt; () in Swedbank_Clone.AuthorisationCoordinator.start() -&gt; ()"
+                  moduleName = "Swedbank-Clone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hardijs/Documents/Projects/Swedbank-Clone/Swedbank-Clone/Presentation/Navigation/Authorisation/AuthorisationCoordinator.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

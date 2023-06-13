@@ -19,7 +19,7 @@ class AuthorisationCoordinator: NavigationCoordinator {
     
     func start() {
         let vm = DI.container.resolve((any LoginScreenVM).self)!
-        let vc = DI.container.resolve(LoginScreenVC.self)!
+        let vc = DI.container.resolve(LoginScreenVC.self, argument: vm)!
         vm.navigationBindings.onLoggedIn = { [weak vc] in
             DispatchQueue.main.async {
                 vc?.dismiss(animated: true)

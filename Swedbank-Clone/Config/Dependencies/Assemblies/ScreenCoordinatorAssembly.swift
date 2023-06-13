@@ -17,9 +17,9 @@ class ScreenCoordinatorAssembly: Assembly {
             return LoginScreenVMImpl(authProvider: resolver.resolve(AuthCredentialsProvider.self)!,
                                      sessionManager: resolver.resolve(BaseUserSessionManager<SwedbankUserSessionCredentials>.self)!)
         }
-        container.register(LoginScreenVC.self) { (resolver) in
+        container.register(LoginScreenVC.self) { (resolver, viewModel: LoginScreenVM) in
             return LoginScreenVC.instantiateViewController { coder in
-                LoginScreenVC(coder: coder, viewModel: resolver.resolve((any LoginScreenVM).self)!)!
+                LoginScreenVC(coder: coder, viewModel: viewModel)!
             }
         }
         
