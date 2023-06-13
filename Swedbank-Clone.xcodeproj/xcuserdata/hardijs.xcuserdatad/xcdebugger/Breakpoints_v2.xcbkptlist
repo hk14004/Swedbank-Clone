@@ -731,5 +731,53 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "69EEEAFD-8010-46A4-A44F-557AAA33AE08"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Swedbank-Clone/Presentation/UI/Screens/Overview/OverviewScreenVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "configureTableView()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "69EEEAFD-8010-46A4-A44F-557AAA33AE08 - caca8e01b6773d4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Swedbank_Clone.OverviewScreenVC.configureTableView() -&gt; ()"
+                  moduleName = "Swedbank-Clone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hardijs/Documents/Projects/Swedbank-Clone/Swedbank-Clone/Presentation/UI/Screens/Overview/OverviewScreenVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  uuid = "69EEEAFD-8010-46A4-A44F-557AAA33AE08 - caca8e01b6773d4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Swedbank_Clone.OverviewScreenVC.configureTableView() -&gt; ()"
+                  moduleName = "Swedbank-Clone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hardijs/Documents/Projects/Swedbank-Clone/Swedbank-Clone/Presentation/UI/Screens/Overview/OverviewScreenVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "88">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,7 +23,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IpX-zT-Adc">
-                            <rect key="frame" x="8" y="0.0" width="376" height="44"/>
+                            <rect key="frame" x="16" y="0.0" width="368" height="44"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6g5-A6-YkU" userLabel="TitleLabel" customClass="RuntimeLocalizedLabel" customModule="DevToolsLocalization">
                                     <rect key="frame" x="0.0" y="0.0" width="31.666666666666668" height="44"/>
@@ -31,14 +32,14 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZOe-eT-jyj" userLabel="buttonStackView">
-                                    <rect key="frame" x="31.666666666666657" y="0.0" width="344.33333333333337" height="44"/>
+                                    <rect key="frame" x="31.666666666666657" y="0.0" width="336.33333333333337" height="44"/>
                                 </stackView>
                             </subviews>
                         </stackView>
                     </subviews>
                     <constraints>
                         <constraint firstItem="IpX-zT-Adc" firstAttribute="top" secondItem="Ar3-8h-KGh" secondAttribute="top" id="1Lg-nJ-eCB"/>
-                        <constraint firstItem="IpX-zT-Adc" firstAttribute="leading" secondItem="Ar3-8h-KGh" secondAttribute="leading" constant="8" id="5au-cc-tch"/>
+                        <constraint firstItem="IpX-zT-Adc" firstAttribute="leading" secondItem="Ar3-8h-KGh" secondAttribute="leading" constant="16" id="5au-cc-tch"/>
                         <constraint firstAttribute="trailing" secondItem="IpX-zT-Adc" secondAttribute="trailing" constant="9" id="9z8-CC-qCB"/>
                         <constraint firstAttribute="bottom" secondItem="IpX-zT-Adc" secondAttribute="bottom" id="IgM-YY-wRb"/>
                     </constraints>

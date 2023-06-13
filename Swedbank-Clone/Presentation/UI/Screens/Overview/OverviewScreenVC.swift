@@ -54,6 +54,7 @@ extension OverviewScreenVC {
     }
     
     private func configureTableView() {
+        tableView.separatorInset = .zero
         tableView.rowHeight = UITableView.automaticDimension
         tableView.allowsSelection = false
         view.addSubview(tableView)
@@ -148,7 +149,10 @@ fileprivate extension OverviewScreenVC {
         }
         
         override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-            viewModel.sections[section].title
+            if section == 0 {
+                return nil
+            }
+            return viewModel.sections[section].title
         }
     }
 }
