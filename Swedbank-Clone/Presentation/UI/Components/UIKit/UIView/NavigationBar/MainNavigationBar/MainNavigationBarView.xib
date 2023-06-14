@@ -23,7 +23,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IpX-zT-Adc">
-                            <rect key="frame" x="16" y="0.0" width="368" height="44"/>
+                            <rect key="frame" x="16" y="0.0" width="361" height="44"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6g5-A6-YkU" userLabel="TitleLabel" customClass="RuntimeLocalizedLabel" customModule="DevToolsLocalization">
                                     <rect key="frame" x="0.0" y="0.0" width="31.666666666666668" height="44"/>
@@ -32,7 +32,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZOe-eT-jyj" userLabel="buttonStackView">
-                                    <rect key="frame" x="31.666666666666657" y="0.0" width="336.33333333333337" height="44"/>
+                                    <rect key="frame" x="31.666666666666657" y="0.0" width="329.33333333333337" height="44"/>
                                 </stackView>
                             </subviews>
                         </stackView>
@@ -40,7 +40,7 @@
                     <constraints>
                         <constraint firstItem="IpX-zT-Adc" firstAttribute="top" secondItem="Ar3-8h-KGh" secondAttribute="top" id="1Lg-nJ-eCB"/>
                         <constraint firstItem="IpX-zT-Adc" firstAttribute="leading" secondItem="Ar3-8h-KGh" secondAttribute="leading" constant="16" id="5au-cc-tch"/>
-                        <constraint firstAttribute="trailing" secondItem="IpX-zT-Adc" secondAttribute="trailing" constant="9" id="9z8-CC-qCB"/>
+                        <constraint firstAttribute="trailing" secondItem="IpX-zT-Adc" secondAttribute="trailing" constant="16" id="9z8-CC-qCB"/>
                         <constraint firstAttribute="bottom" secondItem="IpX-zT-Adc" secondAttribute="bottom" id="IgM-YY-wRb"/>
                     </constraints>
                 </view>

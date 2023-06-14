@@ -22,6 +22,7 @@ class OverviewScreenSection: UISectionModelProtocol {
     
     enum Cell: Hashable {
         case cardBalance
+        case offer
     }
     
     let identifier: Identifier

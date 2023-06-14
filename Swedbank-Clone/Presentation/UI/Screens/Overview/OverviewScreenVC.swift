@@ -56,6 +56,7 @@ extension OverviewScreenVC {
     private func configureTableView() {
         tableView.separatorInset = .zero
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.directionalLayoutMargins = .zero
         tableView.allowsSelection = false
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -70,6 +71,8 @@ extension OverviewScreenVC {
     private func registerTableViewCells() {
         tableView.register(UINib.instanciateNib(type: CardBalanceTableViewCell.self),
                            forCellReuseIdentifier: CardBalanceTableViewCell.reuseID)
+        tableView.register(DefaultTableViewCell.self,
+                           forCellReuseIdentifier: DefaultTableViewCell.reuseID)
     }
     
     private func configureDataSource() {
@@ -79,6 +82,16 @@ extension OverviewScreenVC {
                 let cell = tableView.dequeueReusableCell(withIdentifier: CardBalanceTableViewCell.reuseID,
                                                          for: indexPath) as? CardBalanceTableViewCell
 //                cell?.bindTo(viewModel: vm)
+                return cell
+            case .offer:
+                let cell = tableView.dequeueReusableCell(withIdentifier: DefaultTableViewCell.reuseID,
+                                                         for: indexPath) as? DefaultTableViewCell
+                cell?.accessoryType = .disclosureIndicator
+                var configuration = cell?.defaultContentConfiguration()
+                configuration?.text = "Check out this deal bro you will like it"
+                configuration?.textProperties.color = Asset.Colors.secondaryText.color
+                cell?.contentConfiguration = configuration
+                cell?.contentView.setMargins(direction: .both, constant: 16, ignoreSuperViewMargins: true)
                 return cell
             }
         }

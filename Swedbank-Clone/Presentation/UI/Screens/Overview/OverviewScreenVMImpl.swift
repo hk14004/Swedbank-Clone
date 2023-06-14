@@ -29,7 +29,7 @@ extension OverviewScreenVMImpl {
     private func startup() {
         sections = [
             .init(identifier: .overview, title: "Overview", cells: [
-                .cardBalance
+                .cardBalance, .offer
             ])
         ]
     }
