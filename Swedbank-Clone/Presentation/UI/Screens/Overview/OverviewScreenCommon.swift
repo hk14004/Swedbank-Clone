@@ -17,12 +17,12 @@ protocol OverviewScreenVM: ObservableObject {
 class OverviewScreenSection: UISectionModelProtocol {
     enum Identifier: String, CaseIterable {
         case overview
-        case expenses
     }
     
     enum Cell: Hashable {
         case cardBalance
         case offer
+        case expenses
     }
     
     let identifier: Identifier

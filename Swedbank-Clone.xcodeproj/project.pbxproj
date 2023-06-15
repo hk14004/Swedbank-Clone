@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		D40D58E72A37A37F0008CC64 /* CardBalanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40D58E52A37A37F0008CC64 /* CardBalanceTableViewCell.swift */; };
 		D40D58E82A37A37F0008CC64 /* CardBalanceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D40D58E62A37A37F0008CC64 /* CardBalanceTableViewCell.xib */; };
+		D40FCAC92A3B4AB30068657D /* ExpensesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40FCAC72A3B4AB30068657D /* ExpensesTableViewCell.swift */; };
+		D40FCACA2A3B4AB30068657D /* ExpensesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D40FCAC82A3B4AB30068657D /* ExpensesTableViewCell.xib */; };
 		D42ACF002A22661A00A23031 /* LockedTabScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42ACEFF2A22661A00A23031 /* LockedTabScreenView.swift */; };
 		D42ACF042A22667600A23031 /* LoginButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42ACF032A22667600A23031 /* LoginButtonView.swift */; };
 		D42ACF062A2269B800A23031 /* LoginButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42ACF052A2269B800A23031 /* LoginButtonStyle.swift */; };
@@ -94,6 +96,8 @@
 /* Begin PBXFileReference section */
 		D40D58E52A37A37F0008CC64 /* CardBalanceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBalanceTableViewCell.swift; sourceTree = "<group>"; };
 		D40D58E62A37A37F0008CC64 /* CardBalanceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardBalanceTableViewCell.xib; sourceTree = "<group>"; };
+		D40FCAC72A3B4AB30068657D /* ExpensesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesTableViewCell.swift; sourceTree = "<group>"; };
+		D40FCAC82A3B4AB30068657D /* ExpensesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpensesTableViewCell.xib; sourceTree = "<group>"; };
 		D42ACEFF2A22661A00A23031 /* LockedTabScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedTabScreenView.swift; sourceTree = "<group>"; };
 		D42ACF032A22667600A23031 /* LoginButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonView.swift; sourceTree = "<group>"; };
 		D42ACF052A2269B800A23031 /* LoginButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonStyle.swift; sourceTree = "<group>"; };
@@ -218,6 +222,7 @@
 		D40D58E32A37A23C0008CC64 /* UITableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				D40FCAC62A3B4A9C0068657D /* Expenses */,
 				D40D58E42A37A2450008CC64 /* CardBalance */,
 			);
 			path = UITableViewCell;
@@ -230,6 +235,15 @@
 				D40D58E62A37A37F0008CC64 /* CardBalanceTableViewCell.xib */,
 			);
 			path = CardBalance;
+			sourceTree = "<group>";
+		};
+		D40FCAC62A3B4A9C0068657D /* Expenses */ = {
+			isa = PBXGroup;
+			children = (
+				D40FCAC72A3B4AB30068657D /* ExpensesTableViewCell.swift */,
+				D40FCAC82A3B4AB30068657D /* ExpensesTableViewCell.xib */,
+			);
+			path = Expenses;
 			sourceTree = "<group>";
 		};
 		D42ACEFE2A22657A00A23031 /* LockedTab */ = {
@@ -820,6 +834,7 @@
 				D43599C32A1BD95E0057AF7B /* Colors.xcassets in Resources */,
 				D42FF5622A35BED900036D83 /* LoginScreenVC.storyboard in Resources */,
 				D43599CA2A1C04830057AF7B /* Localizable.strings in Resources */,
+				D40FCACA2A3B4AB30068657D /* ExpensesTableViewCell.xib in Resources */,
 				D475BFB32A152C030057422D /* Images.xcassets in Resources */,
 				D4F7E8AD2A3745D500CF49E1 /* MainNavigationBarView.xib in Resources */,
 			);
@@ -873,6 +888,7 @@
 				D475BFF92A152DA10057422D /* PersistentCoreDataStoreAssembly.swift in Sources */,
 				D475C0092A1530300057422D /* Person.swift in Sources */,
 				D42FF5462A33859B00036D83 /* UserSessionFactoryImpl.swift in Sources */,
+				D40FCAC92A3B4AB30068657D /* ExpensesTableViewCell.swift in Sources */,
 				D42FF5602A35B8F200036D83 /* LoginScreenVC.swift in Sources */,
 				D42FF5312A3244F100036D83 /* KeychainConstants.swift in Sources */,
 				D42FF5282A320FAD00036D83 /* SwedbankUserSessionCredentials.swift in Sources */,

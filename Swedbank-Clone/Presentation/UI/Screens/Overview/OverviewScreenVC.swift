@@ -73,6 +73,8 @@ extension OverviewScreenVC {
                            forCellReuseIdentifier: CardBalanceTableViewCell.reuseID)
         tableView.register(DefaultTableViewCell.self,
                            forCellReuseIdentifier: DefaultTableViewCell.reuseID)
+        tableView.register(UINib.instanciateNib(type: ExpensesTableViewCell.self),
+                           forCellReuseIdentifier: ExpensesTableViewCell.reuseID)
     }
     
     private func configureDataSource() {
@@ -81,7 +83,7 @@ extension OverviewScreenVC {
             case .cardBalance:
                 let cell = tableView.dequeueReusableCell(withIdentifier: CardBalanceTableViewCell.reuseID,
                                                          for: indexPath) as? CardBalanceTableViewCell
-//                cell?.bindTo(viewModel: vm)
+                //                cell?.bindTo(viewModel: vm)
                 return cell
             case .offer:
                 let cell = tableView.dequeueReusableCell(withIdentifier: DefaultTableViewCell.reuseID,
@@ -91,6 +93,12 @@ extension OverviewScreenVC {
                 configuration?.text = "Check out this deal bro you will like it"
                 configuration?.textProperties.color = Asset.Colors.secondaryText.color
                 cell?.contentConfiguration = configuration
+                cell?.contentView.setMargins(direction: .both, constant: 16, ignoreSuperViewMargins: true)
+                return cell
+            case .expenses:
+                let cell = tableView.dequeueReusableCell(withIdentifier: ExpensesTableViewCell.reuseID,
+                                                         for: indexPath) as? ExpensesTableViewCell
+                //                cell?.bindTo(viewModel: vm)
                 cell?.contentView.setMargins(direction: .both, constant: 16, ignoreSuperViewMargins: true)
                 return cell
             }
@@ -162,10 +170,7 @@ fileprivate extension OverviewScreenVC {
         }
         
         override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-            if section == 0 {
-                return nil
-            }
-            return viewModel.sections[section].title
+            return nil
         }
     }
 }
