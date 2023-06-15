@@ -30,6 +30,7 @@ class OverviewScreenVC: UIViewController {
     private let viewModel: any OverviewScreenVM
     private var bag = Set<AnyCancellable>()
     private var mainNavigationBarView = MainNavigationBarView()
+    private var initialRender = true
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -119,7 +120,10 @@ extension OverviewScreenVC {
             snapshot.appendItems(section.cells, toSection: section.identifier)
         }
         
-        dataSource.apply(snapshot, animatingDifferences: true)
+        dataSource.apply(snapshot, animatingDifferences: !initialRender)
+        if initialRender {
+            initialRender = false
+        }
     }
     
     private func configureMainNavigationBarView() {
