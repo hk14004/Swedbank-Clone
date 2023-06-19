@@ -350,13 +350,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		D42FF5372A32F3FC00036D83 /* Factories */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Factories;
-			sourceTree = "<group>";
-		};
 		D42FF53B2A32F55500036D83 /* Factories */ = {
 			isa = PBXGroup;
 			children = (
@@ -510,7 +503,6 @@
 			isa = PBXGroup;
 			children = (
 				D42FF5492A343F9D00036D83 /* Providers */,
-				D42FF5372A32F3FC00036D83 /* Factories */,
 				D475BFE22A152C7A0057422D /* Models */,
 			);
 			path = Domain;
