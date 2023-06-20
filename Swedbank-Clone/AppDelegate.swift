@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        configure()
+        startup()
         return true
     }
 
@@ -38,20 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 // MARK: Private
 
 extension AppDelegate {
-    private func configure() {
-        configureAppearance()
+    private func startup() {
         let userSessionManager = DI.container.resolve(BaseUserSessionManager<SwedbankUserSessionCredentials>.self)!
         userSessionManager.startAllUserSessions()
-    }
-    
-    private func configureAppearance() {
-        AppearanceProxy.setDefault(controlTintColor: Asset.Colors.color3.color)
-        AppearanceProxy.setDefault(navigationBarControlColor: Asset.Colors.primaryText.color)
-        let navAppearance = UINavigationBarAppearance()
-        navAppearance.configureWithOpaqueBackground()
-        navAppearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
-        navAppearance.titleTextAttributes = [.foregroundColor: Asset.Colors.color3.color]
-        navAppearance.shadowColor = .clear
-        AppearanceProxy.setDefault(navigationBarAppearance: navAppearance)
     }
 }

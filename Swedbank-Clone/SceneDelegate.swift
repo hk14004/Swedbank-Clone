@@ -58,5 +58,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         appearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: Asset.Colors.primaryText.color]
         appearance.shadowColor = UIColor.clear
         AppearanceProxy.setDefault(tabbarAppearance: appearance)
+        
+        let navAppearance = UINavigationBarAppearance()
+        AppearanceProxy.setDefault(controlTintColor: Asset.Colors.color3.color)
+        AppearanceProxy.setDefault(navigationBarControlColor: Asset.Colors.primaryText.color)
+        navAppearance.configureWithOpaqueBackground()
+        navAppearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
+        navAppearance.titleTextAttributes = [.foregroundColor: Asset.Colors.color3.color]
+        navAppearance.shadowColor = .clear
+        AppearanceProxy.setDefault(navigationBarAppearance: navAppearance)
     }
 }
