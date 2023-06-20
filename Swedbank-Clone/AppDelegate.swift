@@ -7,6 +7,7 @@
 
 import UIKit
 import DevToolsCore
+import DevToolsUI
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -38,7 +39,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate {
     private func configure() {
+        configureAppearance()
         let userSessionManager = DI.container.resolve(BaseUserSessionManager<SwedbankUserSessionCredentials>.self)!
         userSessionManager.startAllUserSessions()
+    }
+    
+    private func configureAppearance() {
+        AppearanceProxy.setDefault(controlTintColor: Asset.Colors.color3.color)
+        AppearanceProxy.setDefault(navigationBarControlColor: Asset.Colors.primaryText.color)
+        let navAppearance = UINavigationBarAppearance()
+        navAppearance.configureWithOpaqueBackground()
+        navAppearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
+        navAppearance.titleTextAttributes = [.foregroundColor: Asset.Colors.color3.color]
+        navAppearance.shadowColor = .clear
+        AppearanceProxy.setDefault(navigationBarAppearance: navAppearance)
     }
 }

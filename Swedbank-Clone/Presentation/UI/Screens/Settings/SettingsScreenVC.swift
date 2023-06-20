@@ -1,21 +1,22 @@
 //
-//  OverviewScreenVC.swift
+//  SettingsScreenVC.swift
 //  Swedbank-Clone
 //
-//  Created by Hardijs Ķirsis on 12/06/2023.
+//  Created by Hardijs Ķirsis on 19/06/2023.
 //
 
 import UIKit
 import Combine
 import DevToolsUI
 
-class OverviewScreenVC: UIViewController {
+class SettingsScreenVC: UIViewController {
     
     // MARK: Init
     
-    init(viewModel: any OverviewScreenVM) {
+    init(viewModel: any SettingsScreenVM) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        title = "Settings"
     }
     
     required init?(coder: NSCoder) {
@@ -27,15 +28,9 @@ class OverviewScreenVC: UIViewController {
     /// Private
     private let tableView = UITableView(frame: .zero, style: .plain)
     private var dataSource: DiffableDataSource!
-    private let viewModel: any OverviewScreenVM
+    private let viewModel: any SettingsScreenVM
     private var bag = Set<AnyCancellable>()
-    private var mainNavigationBarView = MainNavigationBarView()
     private var initialRender = true
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,10 +41,9 @@ class OverviewScreenVC: UIViewController {
 
 // MARK: Private
 
-extension OverviewScreenVC {
+extension SettingsScreenVC {
     
     private func startup() {
-        configureMainNavigationBarView()
         configureTableView()
         observeViewModel()
     }
@@ -58,48 +52,33 @@ extension OverviewScreenVC {
         tableView.separatorInset = .zero
         tableView.rowHeight = UITableView.automaticDimension
         tableView.directionalLayoutMargins = .zero
-        tableView.allowsSelection = false
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: mainNavigationBarView.bottomAnchor, constant: 0).isActive = true
+        tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         registerTableViewCells()
         configureDataSource()
+        tableView.delegate = self
     }
     
     private func registerTableViewCells() {
-        tableView.register(UINib.instanciateNib(type: CardBalanceTableViewCell.self),
-                           forCellReuseIdentifier: CardBalanceTableViewCell.reuseID)
         tableView.register(DefaultTableViewCell.self,
                            forCellReuseIdentifier: DefaultTableViewCell.reuseID)
-        tableView.register(UINib.instanciateNib(type: ExpensesTableViewCell.self),
-                           forCellReuseIdentifier: ExpensesTableViewCell.reuseID)
     }
     
     private func configureDataSource() {
         dataSource = DiffableDataSource(viewModel: viewModel, tableView: tableView) { tableView, indexPath, item in
             switch item {
-            case .cardBalance:
-                let cell = tableView.dequeueReusableCell(withIdentifier: CardBalanceTableViewCell.reuseID,
-                                                         for: indexPath) as? CardBalanceTableViewCell
-                //                cell?.bindTo(viewModel: vm)
-                return cell
-            case .offer:
+            case .navigation(let item):
                 let cell = tableView.dequeueReusableCell(withIdentifier: DefaultTableViewCell.reuseID,
                                                          for: indexPath) as? DefaultTableViewCell
                 cell?.accessoryType = .disclosureIndicator
                 var configuration = cell?.defaultContentConfiguration()
-                configuration?.text = "Check out this deal bro you will like it"
+                configuration?.text = item.title
                 configuration?.textProperties.color = Asset.Colors.secondaryText.color
                 cell?.contentConfiguration = configuration
-                cell?.contentView.setMargins(direction: .both, constant: 16, ignoreSuperViewMargins: true)
-                return cell
-            case .expenses:
-                let cell = tableView.dequeueReusableCell(withIdentifier: ExpensesTableViewCell.reuseID,
-                                                         for: indexPath) as? ExpensesTableViewCell
-                //                cell?.bindTo(viewModel: vm)
                 cell?.contentView.setMargins(direction: .both, constant: 16, ignoreSuperViewMargins: true)
                 return cell
             }
@@ -113,8 +92,8 @@ extension OverviewScreenVC {
         }.store(in: &bag)
     }
     
-    private func renderTableViewSections(_ sections: [OverviewScreenSection]) {
-        var snapshot = NSDiffableDataSourceSnapshot<OverviewScreenSection.Identifier, OverviewScreenSection.Cell>()
+    private func renderTableViewSections(_ sections: [SettingsScreenSection]) {
+        var snapshot = NSDiffableDataSourceSnapshot<SettingsScreenSection.Identifier, SettingsScreenSection.Cell>()
         snapshot.appendSections(sections.map({$0.identifier}))
         sections.forEach { section in
             snapshot.appendItems(section.cells, toSection: section.identifier)
@@ -125,37 +104,34 @@ extension OverviewScreenVC {
             initialRender = false
         }
     }
-    
-    private func configureMainNavigationBarView() {
-        view.addSubview(mainNavigationBarView)
-        mainNavigationBarView.translatesAutoresizingMaskIntoConstraints = false
-        mainNavigationBarView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        mainNavigationBarView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        mainNavigationBarView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        mainNavigationBarView.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        
-        mainNavigationBarView.updateTitle(key: "Tabbar.Tabs.Overview.title")
-        mainNavigationBarView.viewDidLoad()
-        mainNavigationBarView.configureDefault()
-    }
-    
 }
 
 // MARK: Data source
 
-fileprivate extension OverviewScreenVC {
-    class DiffableDataSource: UITableViewDiffableDataSource<OverviewScreenSection.Identifier, OverviewScreenSection.Cell> {
+fileprivate extension SettingsScreenVC {
+    class DiffableDataSource: UITableViewDiffableDataSource<SettingsScreenSection.Identifier, SettingsScreenSection.Cell> {
         
-        private var viewModel: any OverviewScreenVM
+        private var viewModel: any SettingsScreenVM
         
-        init(viewModel: any OverviewScreenVM, tableView: UITableView,
-             cellProvider: @escaping UITableViewDiffableDataSource<OverviewScreenSection.Identifier, OverviewScreenSection.Cell>.CellProvider) {
+        init(viewModel: any SettingsScreenVM, tableView: UITableView,
+             cellProvider: @escaping UITableViewDiffableDataSource<SettingsScreenSection.Identifier, SettingsScreenSection.Cell>.CellProvider) {
             self.viewModel = viewModel
             super.init(tableView: tableView, cellProvider: cellProvider)
         }
         
         override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-            return nil
+            return viewModel.sections[section].title
         }
+    }
+}
+
+extension SettingsScreenVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = viewModel.sections[indexPath.section].cells[indexPath.row]
+        switch cell {
+        case .navigation(let item):
+            item.navigate()
+        }
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 }

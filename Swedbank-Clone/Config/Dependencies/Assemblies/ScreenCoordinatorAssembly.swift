@@ -33,6 +33,27 @@ class ScreenCoordinatorAssembly: Assembly {
         container.register(OverviewScreenVC.self) { (resolver, viewModel: OverviewScreenVM) in
             return OverviewScreenVC(viewModel: viewModel)
         }
+        
+        container.register((any UserScreenVM).self) { (resolver) in
+            return UserScreenVMImpl()
+        }
+        container.register(UserScreenVC.self) { (resolver, viewModel: UserScreenVM) in
+            return UserScreenVC(viewModel: viewModel)
+        }
+        
+        container.register((any SettingsScreenVM).self) { (resolver) in
+            return SettingsScreenVMImpl()
+        }
+        container.register(SettingsScreenVC.self) { (resolver, viewModel: SettingsScreenVM) in
+            return SettingsScreenVC(viewModel: viewModel)
+        }
+        
+        container.register((any LanguageScreenVM).self) { (resolver) in
+            return LanguageScreenVMImpl()
+        }
+        container.register(LanguageScreenVC.self) { (resolver, viewModel: LanguageScreenVM) in
+            return LanguageScreenVC(viewModel: viewModel)
+        }
     }
     
 }

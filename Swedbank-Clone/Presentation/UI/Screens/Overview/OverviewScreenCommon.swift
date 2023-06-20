@@ -14,7 +14,7 @@ protocol OverviewScreenVM: ObservableObject {
     var sectionsPublisher: Published<[OverviewScreenSection]>.Publisher { get }
 }
 
-class OverviewScreenSection: UISectionModelProtocol {
+class OverviewScreenSection: UISectionModel {
     enum Identifier: String, CaseIterable {
         case overview
     }

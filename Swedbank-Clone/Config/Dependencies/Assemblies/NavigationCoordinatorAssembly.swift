@@ -30,11 +30,19 @@ class NavigationCoordinatorAssembly: Assembly {
         
         container.register(OverviewCoordinator.self.self) { (resolver, router: RouterProtocol) in
             return OverviewCoordinator(router: router)
-        }.inObjectScope(.container)
+        }
         
         container.register(PaymentsCoordinator.self.self) { (resolver, router: RouterProtocol) in
             return PaymentsCoordinator(router: router)
-        }.inObjectScope(.container)
+        }
+        
+        container.register(UserCoordinator.self) { (resolver, router: RouterProtocol) in
+            return UserCoordinator(router: router)
+        }
+        
+        container.register(SettingsCoordinator.self) { (resolver, router: RouterProtocol) in
+            return SettingsCoordinator(router: router)
+        }
     }
     
 }

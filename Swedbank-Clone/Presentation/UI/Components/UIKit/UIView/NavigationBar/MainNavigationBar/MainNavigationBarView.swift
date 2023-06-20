@@ -9,6 +9,7 @@ import UIKit
 import DevToolsUI
 import DevToolsCore
 import DevToolsLocalization
+import DevToolsNavigation
 
 class MainNavigationBarView: UIView, StoryboardLoadableView {
     
@@ -97,8 +98,13 @@ extension MainNavigationBarView {
         guard let topVC = UIViewController.getTopViewController() else {
             return
         }
-        let vc = UIViewController(nibName: nil, bundle: nil)
-        vc.view.backgroundColor = .blue
-        topVC.present(vc, animated: true)
+        
+        let navVC = UINavigationController()
+        let router = Router(navigationController: navVC)
+        let c = DI.container.resolve(UserCoordinator.self, argument: router as RouterProtocol)!
+        c.start()
+        let appC = DI.container.resolve(AppCoordinator.self)!
+        appC.store(coordinator: c)
+        topVC.present(navVC, animated: true)
     }
 }
