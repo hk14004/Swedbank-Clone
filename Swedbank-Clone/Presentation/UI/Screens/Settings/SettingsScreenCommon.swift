@@ -14,10 +14,6 @@ protocol SettingsScreenCoordinator: NavigationCoordinator {
     func goToLanguage()
 }
 
-class SettingsScreenVMNavigationBindings {
-    var onLanguage: VoidCallback?
-}
-
 protocol SettingsScreenVM: ObservableObject {
     var coordinator: SettingsScreenCoordinator { get }
     var sections: [SettingsScreenSection] { get }

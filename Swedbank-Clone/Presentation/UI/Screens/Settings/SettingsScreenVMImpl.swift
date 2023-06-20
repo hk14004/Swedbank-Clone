@@ -7,8 +7,11 @@
 
 import Foundation
 import DevToolsUI
+import DevToolsLocalization
 
 class SettingsScreenVMImpl: ObservableObject {
+    
+    @Published var language: String = RuntimeStringFileLocalization.shared.getCurrentLanguage()
     
     var coordinator: SettingsScreenCoordinator
     @Published var sections: [SettingsScreenSection] = []

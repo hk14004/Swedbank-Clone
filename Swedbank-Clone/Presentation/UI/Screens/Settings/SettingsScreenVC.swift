@@ -11,24 +11,13 @@ import DevToolsUI
 import DevToolsLocalization
 import DevToolsNavigation
 
-extension UIViewController {
-    func setRuntimeLocalizedTitle(key: String) -> ObserverHandle {
-        title = key.runtimeLocalized()
-        let handle = RuntimeStringFileLocalization.shared.observeLanguage { [weak self] _ in
-            self?.title = key.runtimeLocalized()
-        }
-        return handle
-    }
-}
-
-class SettingsScreenVC: UIViewController {
+class SettingsScreenVC: RuntimeLocalizedUIViewController {
     
     // MARK: Init
     
     init(viewModel: any SettingsScreenVM) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        self.titleObserver = setRuntimeLocalizedTitle(key: "Tabbar.Tabs.Payments.title")
     }
     
     required init?(coder: NSCoder) {
@@ -43,15 +32,10 @@ class SettingsScreenVC: UIViewController {
     private let viewModel: any SettingsScreenVM
     private var bag = Set<AnyCancellable>()
     private var initialRender = true
-    private var titleObserver: ObserverHandle?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         startup()
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(titleObserver!)
     }
     
 }
@@ -61,6 +45,7 @@ class SettingsScreenVC: UIViewController {
 extension SettingsScreenVC {
     
     private func startup() {
+        localizedStringKey = "Tabbar.Tabs.Cards.title"
         configureTableView()
         observeViewModel()
     }
