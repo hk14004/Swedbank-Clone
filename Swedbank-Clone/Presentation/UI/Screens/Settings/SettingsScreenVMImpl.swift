@@ -10,13 +10,14 @@ import DevToolsUI
 
 class SettingsScreenVMImpl: ObservableObject {
     
-    var navigationBindings: SettingsScreenVMNavigationBindings = .init()
+    var coordinator: SettingsScreenCoordinator
     @Published var sections: [SettingsScreenSection] = []
     var sectionsPublisher: Published<[SettingsScreenSection]>.Publisher {
         $sections
     }
     
-    init() {
+    init(coordinator: SettingsScreenCoordinator) {
+        self.coordinator = coordinator
         startup()
     }
 }
@@ -38,7 +39,7 @@ extension SettingsScreenVMImpl {
     
     private func makeLanguageSection() -> SettingsScreenSection {
         return .init(identifier: .language, title: "Language", cells: [
-            .navigation(NavigationItem(title: "Latviešu", subtitle: "", navigateClosure: { [weak self] in self?.navigationBindings.onLanguage?()}))
+            .navigation(NavigationItem(title: "Latviešu", subtitle: "", navigateClosure: { [weak self] in self?.coordinator.goToLanguage()}))
         ])
     }
 }

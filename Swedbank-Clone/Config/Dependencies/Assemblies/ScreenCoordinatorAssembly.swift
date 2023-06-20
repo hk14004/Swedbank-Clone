@@ -41,8 +41,8 @@ class ScreenCoordinatorAssembly: Assembly {
             return UserScreenVC(viewModel: viewModel)
         }
         
-        container.register((any SettingsScreenVM).self) { (resolver) in
-            return SettingsScreenVMImpl()
+        container.register((any SettingsScreenVM).self) { (resolver, coord: SettingsScreenCoordinator) in
+            return SettingsScreenVMImpl(coordinator: coord)
         }
         container.register(SettingsScreenVC.self) { (resolver, viewModel: SettingsScreenVM) in
             return SettingsScreenVC(viewModel: viewModel)

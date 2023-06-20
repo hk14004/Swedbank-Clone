@@ -9,7 +9,7 @@ import SwiftUI
 import DevToolsNavigation
 import DevToolsCore
 
-class SettingsCoordinator: NavigationCoordinator {
+class SettingsScreenCoordinatorImpl: SettingsScreenCoordinator {
     
     // MARK: Properties
         
@@ -17,12 +17,8 @@ class SettingsCoordinator: NavigationCoordinator {
     weak var navigationController: UINavigationController?
     
     func start() {
-        let vm = DI.container.resolve((any SettingsScreenVM).self)!
-        vm.navigationBindings.onLanguage = { [weak self] in
-            self?.goToLanguageSelect()
-        }
+        let vm = DI.container.resolve((any SettingsScreenVM).self, argument: self as SettingsScreenCoordinator)!
         let vc = DI.container.resolve(SettingsScreenVC.self, argument: vm)!
-        vc.coordinator = self
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -35,16 +31,10 @@ class SettingsCoordinator: NavigationCoordinator {
     }
 }
 
-// MARK: Private
-
-extension SettingsCoordinator {
-    
-}
-
 // MARK: Public
 
-extension SettingsCoordinator {
-    func goToLanguageSelect() {
+extension SettingsScreenCoordinatorImpl {
+    func goToLanguage() {
         let vm = DI.container.resolve((any LanguageScreenVM).self)!
         let vc = DI.container.resolve(LanguageScreenVC.self, argument: vm)!
         

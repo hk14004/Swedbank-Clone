@@ -47,7 +47,7 @@ extension UserCoordinator {
 
 extension UserCoordinator {
     func goToSettings() {
-        let c = DI.container.resolve(SettingsCoordinator.self, argument: navigationController!)!
+        let c = DI.container.resolve(SettingsScreenCoordinatorImpl.self, argument: navigationController!)!
         c.start()
     }
 }

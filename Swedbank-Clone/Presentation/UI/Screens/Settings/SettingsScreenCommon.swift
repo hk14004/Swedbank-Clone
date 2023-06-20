@@ -8,13 +8,18 @@
 import Foundation
 import DevToolsUI
 import DevToolsCore
+import DevToolsNavigation
+
+protocol SettingsScreenCoordinator: NavigationCoordinator {
+    func goToLanguage()
+}
 
 class SettingsScreenVMNavigationBindings {
     var onLanguage: VoidCallback?
 }
 
 protocol SettingsScreenVM: ObservableObject {
-    var navigationBindings: SettingsScreenVMNavigationBindings { get }
+    var coordinator: SettingsScreenCoordinator { get }
     var sections: [SettingsScreenSection] { get }
     var sectionsPublisher: Published<[SettingsScreenSection]>.Publisher { get }
 }

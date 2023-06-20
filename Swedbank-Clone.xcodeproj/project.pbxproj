@@ -15,7 +15,7 @@
 		D4222C6D2A40B38E0097AD8B /* UserScreenVMImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4222C6C2A40B38E0097AD8B /* UserScreenVMImpl.swift */; };
 		D4222C6F2A40B7140097AD8B /* UserScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4222C6E2A40B7140097AD8B /* UserScreenVC.swift */; };
 		D4222C722A40C6A70097AD8B /* UserCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4222C712A40C6A70097AD8B /* UserCoordinator.swift */; };
-		D4222C752A41ADAE0097AD8B /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4222C742A41ADAE0097AD8B /* SettingsCoordinator.swift */; };
+		D4222C752A41ADAE0097AD8B /* SettingsScreenCoordinatorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4222C742A41ADAE0097AD8B /* SettingsScreenCoordinatorImpl.swift */; };
 		D4222C782A41B0AA0097AD8B /* SettingsScreenCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4222C772A41B0AA0097AD8B /* SettingsScreenCommon.swift */; };
 		D4222C7A2A41B6940097AD8B /* SettingsScreenVMImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4222C792A41B6940097AD8B /* SettingsScreenVMImpl.swift */; };
 		D4222C7C2A41B9F40097AD8B /* SettingsScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4222C7B2A41B9F40097AD8B /* SettingsScreenVC.swift */; };
@@ -113,7 +113,7 @@
 		D4222C6C2A40B38E0097AD8B /* UserScreenVMImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserScreenVMImpl.swift; sourceTree = "<group>"; };
 		D4222C6E2A40B7140097AD8B /* UserScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserScreenVC.swift; sourceTree = "<group>"; };
 		D4222C712A40C6A70097AD8B /* UserCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCoordinator.swift; sourceTree = "<group>"; };
-		D4222C742A41ADAE0097AD8B /* SettingsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
+		D4222C742A41ADAE0097AD8B /* SettingsScreenCoordinatorImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsScreenCoordinatorImpl.swift; sourceTree = "<group>"; };
 		D4222C772A41B0AA0097AD8B /* SettingsScreenCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsScreenCommon.swift; sourceTree = "<group>"; };
 		D4222C792A41B6940097AD8B /* SettingsScreenVMImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsScreenVMImpl.swift; sourceTree = "<group>"; };
 		D4222C7B2A41B9F40097AD8B /* SettingsScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsScreenVC.swift; sourceTree = "<group>"; };
@@ -289,7 +289,7 @@
 		D4222C732A41ADA00097AD8B /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				D4222C742A41ADAE0097AD8B /* SettingsCoordinator.swift */,
+				D4222C742A41ADAE0097AD8B /* SettingsScreenCoordinatorImpl.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1001,7 +1001,7 @@
 				D4CEC2B72A363A0F00AFABF9 /* NavigationCoordinatorAssembly.swift in Sources */,
 				D4F7E8A12A373ABB00CF49E1 /* OverviewScreenVC.swift in Sources */,
 				D42FF55C2A35B3C600036D83 /* LoginScreenCommon.swift in Sources */,
-				D4222C752A41ADAE0097AD8B /* SettingsCoordinator.swift in Sources */,
+				D4222C752A41ADAE0097AD8B /* SettingsScreenCoordinatorImpl.swift in Sources */,
 				D40D58E72A37A37F0008CC64 /* CardBalanceTableViewCell.swift in Sources */,
 				D475BFA92A152C020057422D /* SceneDelegate.swift in Sources */,
 				D42ACF062A2269B800A23031 /* LoginButtonStyle.swift in Sources */,

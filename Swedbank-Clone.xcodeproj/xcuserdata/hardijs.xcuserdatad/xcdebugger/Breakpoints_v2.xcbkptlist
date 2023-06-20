@@ -1213,32 +1213,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8822CC78-606D-4BDD-9B8D-CF723A4F7F7A"
+            uuid = "EB5A2417-51BA-422C-8FD4-9CFC3577B1A8"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Swedbank-Clone/Presentation/Navigation/Settings/SettingsCoordinator.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "goToLanguageSelect()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "EB5A2417-51BA-422C-8FD4-9CFC3577B1A8"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Swedbank-Clone/Presentation/Navigation/Settings/SettingsCoordinator.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "SettingsCoordinator"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "SettingsScreenCoordinatorImpl"
             landmarkType = "3">
             <Locations>
                <Location
@@ -1278,7 +1262,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "D3D0E7B5-A01F-43BF-86FB-CEA0389A4BA3"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Swedbank-Clone/Presentation/UI/Screens/Settings/SettingsScreenVC.swift"
@@ -1319,6 +1303,21 @@
                   endingLineNumber = "18"
                   offsetFromSymbolStart = "88">
                </Location>
+               <Location
+                  uuid = "D3D0E7B5-A01F-43BF-86FB-CEA0389A4BA3 - d11934c0590410b0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.String) -&gt; () in __C.UIViewController.setRuntimeLocalizedTitle(key: Swift.String) -&gt; __C.NSObject"
+                  moduleName = "Swedbank-Clone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hardijs/Documents/Projects/Swedbank-Clone/Swedbank-Clone/Presentation/UI/Screens/Settings/SettingsScreenVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "88">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -1326,7 +1325,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "402EB243-0A86-4A1E-B66C-F27CCAE4E728"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Swedbank-Clone/Presentation/UI/Screens/Settings/SettingsScreenVC.swift"
@@ -1533,14 +1532,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "6B0A0D17-3953-4C8B-9568-B97472AEF86C"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Swedbank-Clone/Presentation/Navigation/Settings/SettingsCoordinator.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
             landmarkName = "init(navigationController:)"
             landmarkType = "7">
             <Locations>
@@ -1575,6 +1574,22 @@
                   offsetFromSymbolStart = "68">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7BB1F8AB-2735-4268-9A5E-5CD6264D8CD3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Swedbank-Clone/Presentation/Navigation/Settings/SettingsScreenCoordinatorImpl.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "SettingsScreenCoordinatorImpl"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
