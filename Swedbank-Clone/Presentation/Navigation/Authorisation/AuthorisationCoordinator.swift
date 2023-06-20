@@ -13,8 +13,7 @@ class AuthorisationCoordinator: NavigationCoordinator {
     // MARK: Properties
         
     // Coordinator
-    var onFree: FreeCoodinatorClosure = {}
-    var router: RouterProtocol
+    weak var navigationController: UINavigationController?
     var children: [NavigationCoordinator] = []
     
     func start() {
@@ -25,15 +24,15 @@ class AuthorisationCoordinator: NavigationCoordinator {
                 vc?.dismiss(animated: true)
             }
         }
-        router.navigationController.present(vc, animated: true)
+        navigationController?.present(vc, animated: true)
     }
     
-    init(router: RouterProtocol) {
-        self.router = router
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
     }
     
     deinit {
-        children.forEach({$0.onFree?()})
+//        children.forEach({$0.onFree?()})
     }
 }
 

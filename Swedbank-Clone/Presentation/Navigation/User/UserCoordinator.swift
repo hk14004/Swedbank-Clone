@@ -14,42 +14,40 @@ class UserCoordinator: NavigationCoordinator {
     // MARK: Properties
         
     // Coordinator
-    var onFree: FreeCoodinatorClosure = {}
-    var router: RouterProtocol
+    weak var navigationController: UINavigationController?
+        
     var children: [NavigationCoordinator] = []
     
     func start() {
-        goToUserScreen()
+        let vm = DI.container.resolve((any UserScreenVM).self)!
+        let vc = DI.container.resolve(UserScreenVC.self, argument: vm)!
+        vc.coordinator = self
+        vm.navigationBindings.onSettings = { [weak self] in
+            self?.goToSettings()
+        }
+        navigationController?.setViewControllers([vc], animated: true)
     }
     
-    init(router: RouterProtocol) {
-        self.router = router
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
     }
     
     deinit {
-        children.forEach({$0.onFree?()})
+        print("")
     }
 }
 
 // MARK: Private
 
 extension UserCoordinator {
-    private func goToUserScreen() {
-        let vm = DI.container.resolve((any UserScreenVM).self)!
-        let vc = DI.container.resolve(UserScreenVC.self, argument: vm)!
-        vm.navigationBindings.onSettings = { [weak self] in
-            self?.goToSettings()
-        }
-        router.navigationController.setViewControllers([vc], animated: false)
-    }
+
 }
 
 // MARK: Public
 
 extension UserCoordinator {
     func goToSettings() {
-        let c = DI.container.resolve(SettingsCoordinator.self, argument: router)!
-        store(coordinator: c)
+        let c = DI.container.resolve(SettingsCoordinator.self, argument: navigationController!)!
         c.start()
     }
 }

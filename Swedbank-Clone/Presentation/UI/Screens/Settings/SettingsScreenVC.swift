@@ -9,6 +9,7 @@ import UIKit
 import Combine
 import DevToolsUI
 import DevToolsLocalization
+import DevToolsNavigation
 
 extension UIViewController {
     func setRuntimeLocalizedTitle(key: String) {
@@ -42,6 +43,7 @@ class SettingsScreenVC: UIViewController {
     private let viewModel: any SettingsScreenVM
     private var bag = Set<AnyCancellable>()
     private var initialRender = true
+    var coordinator: NavigationCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()

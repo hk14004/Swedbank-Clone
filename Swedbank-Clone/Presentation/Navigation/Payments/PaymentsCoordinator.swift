@@ -15,20 +15,19 @@ class PaymentsCoordinator: NavigationCoordinator {
     // MARK: Properties
         
     // Coordinator
-    var onFree: FreeCoodinatorClosure = {}
-    var router: RouterProtocol
+    weak var navigationController: UINavigationController?
     var children: [NavigationCoordinator] = []
     
     func start() {
         goToUnauthorisedScreen()
     }
     
-    init(router: RouterProtocol) {
-        self.router = router
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
     }
     
     deinit {
-        children.forEach({$0.onFree?()})
+//        children.forEach({$0.onFree?()})
     }
 }
 
@@ -47,7 +46,7 @@ extension PaymentsCoordinator {
             self?.goToAuth()
         }
         
-        router.navigationController.setViewControllers([vc], animated: false)
+        navigationController?.setViewControllers([vc], animated: false)
     }
 }
 
@@ -55,8 +54,7 @@ extension PaymentsCoordinator {
 
 extension PaymentsCoordinator {
     func goToAuth() {
-        let coordinator = AuthorisationCoordinator(router: router)
-        store(coordinator: coordinator)
+        let coordinator = AuthorisationCoordinator(navigationController: navigationController!)
         coordinator.start()
     }
 }

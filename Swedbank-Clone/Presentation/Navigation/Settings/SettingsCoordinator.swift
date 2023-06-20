@@ -14,9 +14,7 @@ class SettingsCoordinator: NavigationCoordinator {
     // MARK: Properties
         
     // Coordinator
-    var onFree: FreeCoodinatorClosure = {}
-    var router: RouterProtocol
-    var children: [NavigationCoordinator] = []
+    weak var navigationController: UINavigationController?
     
     func start() {
         let vm = DI.container.resolve((any SettingsScreenVM).self)!
@@ -24,15 +22,16 @@ class SettingsCoordinator: NavigationCoordinator {
             self?.goToLanguageSelect()
         }
         let vc = DI.container.resolve(SettingsScreenVC.self, argument: vm)!
-        router.push(vc, isAnimated: true, onNavigateBack: onFree)
+        vc.coordinator = self
+        navigationController?.pushViewController(vc, animated: true)
     }
     
-    init(router: RouterProtocol) {
-        self.router = router
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
     }
     
     deinit {
-        children.forEach({$0.onFree?()})
+        print("")
     }
 }
 
@@ -50,10 +49,9 @@ extension SettingsCoordinator {
         let vc = DI.container.resolve(LanguageScreenVC.self, argument: vm)!
         
         vm.navigationBindings.onSelected = { [weak self] in
-            self?.router.pop(true)
-            self?.onFree?()
+            self?.navigationController?.popViewController(animated: true)
         }
         
-        router.push(vc, isAnimated: true, onNavigateBack: onFree)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -21,27 +21,27 @@ class NavigationCoordinatorAssembly: Assembly {
             return AppCoordinator(window: resolver.resolve(UIWindow.self)!)
         }.inObjectScope(.container)
         
-        container.register(AuthorisationCoordinator.self.self) { (resolver, router: RouterProtocol) in
-            return AuthorisationCoordinator(router: router)
+        container.register(AuthorisationCoordinator.self.self) { (resolver, navigationController: UINavigationController) in
+            return AuthorisationCoordinator(navigationController: navigationController)
         }
-        container.register(TabBarCoordinator.self.self) { (resolver, router: RouterProtocol) in
-            return TabBarCoordinator(router: router)
+        container.register(TabBarCoordinator.self.self) { (resolver, navigationController: UINavigationController) in
+            return TabBarCoordinator(navigationController: navigationController)
         }.inObjectScope(.container)
         
-        container.register(OverviewCoordinator.self.self) { (resolver, router: RouterProtocol) in
-            return OverviewCoordinator(router: router)
+        container.register(OverviewCoordinator.self.self) { (resolver, navigationController: UINavigationController) in
+            return OverviewCoordinator(navigationController: navigationController)
         }
         
-        container.register(PaymentsCoordinator.self.self) { (resolver, router: RouterProtocol) in
-            return PaymentsCoordinator(router: router)
+        container.register(PaymentsCoordinator.self.self) { (resolver, navigationController: UINavigationController) in
+            return PaymentsCoordinator(navigationController: navigationController)
         }
         
-        container.register(UserCoordinator.self) { (resolver, router: RouterProtocol) in
-            return UserCoordinator(router: router)
+        container.register(UserCoordinator.self) { (resolver, navigationController: UINavigationController) in
+            return UserCoordinator(navigationController: navigationController)
         }
         
-        container.register(SettingsCoordinator.self) { (resolver, router: RouterProtocol) in
-            return SettingsCoordinator(router: router)
+        container.register(SettingsCoordinator.self) { (resolver, navigationController: UINavigationController) in
+            return SettingsCoordinator(navigationController: navigationController)
         }
     }
     

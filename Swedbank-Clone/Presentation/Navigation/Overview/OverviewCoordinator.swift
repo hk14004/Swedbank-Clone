@@ -16,8 +16,7 @@ class OverviewCoordinator: NavigationCoordinator {
     // MARK: Properties
         
     // Coordinator
-    var onFree: FreeCoodinatorClosure = {}
-    var router: RouterProtocol
+    weak var navigationController: UINavigationController?
     var children: [NavigationCoordinator] = []
     
     let manager = DI.container.resolve(BaseUserSessionManager<SwedbankUserSessionCredentials>.self)!
@@ -30,12 +29,12 @@ class OverviewCoordinator: NavigationCoordinator {
         }
     }
     
-    init(router: RouterProtocol) {
-        self.router = router
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
     }
     
     deinit {
-        children.forEach({$0.onFree?()})
+//        children.forEach({$0.onFree?()})
     }
 }
 
@@ -57,13 +56,13 @@ extension OverviewCoordinator {
             self?.goToLanguageSelection()
         }
         
-        router.navigationController.setViewControllers([vc], animated: false)
+        navigationController?.setViewControllers([vc], animated: false)
     }
     
     private func goToauthorisedScreen() {
         let vm = DI.container.resolve((any OverviewScreenVM).self)!
         let vc = DI.container.resolve(OverviewScreenVC.self, argument: vm)!
-        router.navigationController.setViewControllers([vc], animated: false)
+        navigationController?.setViewControllers([vc], animated: false)
     }
 }
 
@@ -71,8 +70,7 @@ extension OverviewCoordinator {
 
 extension OverviewCoordinator {
     func goToAuth() {
-        let coordinator = AuthorisationCoordinator(router: router)
-        store(coordinator: coordinator)
+        let coordinator = AuthorisationCoordinator(navigationController: navigationController!)
         coordinator.start()
     }
     
@@ -85,6 +83,6 @@ extension OverviewCoordinator {
             vc?.dismiss(animated: true)
         }
         
-        router.navigationController.present(vc, animated: true)
+        navigationController?.present(vc, animated: true)
     }
 }

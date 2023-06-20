@@ -15,20 +15,19 @@ class AppCoordinator: NavigationCoordinator {
     private let window: UIWindow
     
     // Coordinator
-    var onFree: FreeCoodinatorClosure = {}
-    var router: RouterProtocol
+    var navigationController: UINavigationController?
     var children: [NavigationCoordinator] = []
     
     func start() {
-        router.navigationController.navigationBar.isHidden = true
-        window.rootViewController = router.navigationController
+        navigationController?.navigationBar.isHidden = true
+        window.rootViewController = navigationController
         goToInitialScreen()
         window.makeKeyAndVisible()
     }
     
     init(window: UIWindow) {
         self.window = window
-        router = Router(navigationController: .init())
+        navigationController = .init()
     }
 }
 
@@ -39,19 +38,9 @@ extension AppCoordinator {
         goToRoot()
     }
     
-    private func goToOnboarding() {
-//        let coordinator = CategoriesCoordinator(router: router)
-//        store(coordinator: coordinator)
-//        coordinator.start()
-//        let vModel = WelcomeScreenVMImpl()
-//        let view = WelcomeScreenView(viewModel: vModel)
-//        let vController = UIHostingController(rootView: view)
-//        router.push(vController, isAnimated: true, onNavigateBack: nil)
-    }
-    
     private func goToRoot() {
-        let coordinator = DI.container.resolve(TabBarCoordinator.self, argument: router)!
-        store(coordinator: coordinator)
+        let coordinator = DI.container.resolve(TabBarCoordinator.self, argument: navigationController!)!
+        children.append(coordinator)
         coordinator.start()
     }
 }

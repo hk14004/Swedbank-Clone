@@ -8,6 +8,7 @@
 import UIKit
 import Combine
 import DevToolsUI
+import DevToolsNavigation
 
 class UserScreenVC: UIViewController {
     
@@ -31,12 +32,16 @@ class UserScreenVC: UIViewController {
     private let viewModel: any UserScreenVM
     private var bag = Set<AnyCancellable>()
     private var initialRender = true
+    var coordinator: NavigationCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         startup()
     }
     
+    deinit {
+        print("")
+    }
 }
 
 // MARK: Private
