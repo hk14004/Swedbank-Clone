@@ -8,6 +8,17 @@
 import UIKit
 import Combine
 import DevToolsUI
+import DevToolsLocalization
+
+extension UIViewController {
+    func setRuntimeLocalizedTitle(key: String) {
+        title = key.runtimeLocalized()
+        let _ = RuntimeStringFileLocalization.shared.observeLanguage { [weak self] _ in
+            self?.title = key.runtimeLocalized()
+        }
+    }
+    
+}
 
 class SettingsScreenVC: UIViewController {
     
@@ -16,7 +27,7 @@ class SettingsScreenVC: UIViewController {
     init(viewModel: any SettingsScreenVM) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        title = "Settings"
+        setRuntimeLocalizedTitle(key: "Tabbar.Tabs.Payments.title")
     }
     
     required init?(coder: NSCoder) {
@@ -35,6 +46,10 @@ class SettingsScreenVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         startup()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
 }

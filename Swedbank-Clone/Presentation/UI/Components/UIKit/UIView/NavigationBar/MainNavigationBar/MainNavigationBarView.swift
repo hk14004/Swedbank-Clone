@@ -100,8 +100,8 @@ extension MainNavigationBarView {
         }
         
         let navVC = UINavigationController()
-        let router = Router(navigationController: navVC)
-        let c = DI.container.resolve(UserCoordinator.self, argument: router as RouterProtocol)!
+        let presentedRouter = Router(navigationController: navVC)
+        let c = DI.container.resolve(UserCoordinator.self, argument: presentedRouter as RouterProtocol)!
         c.start()
         let appC = DI.container.resolve(AppCoordinator.self)!
         appC.store(coordinator: c)

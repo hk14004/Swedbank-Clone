@@ -33,6 +33,10 @@ class OverviewCoordinator: NavigationCoordinator {
     init(router: RouterProtocol) {
         self.router = router
     }
+    
+    deinit {
+        children.forEach({$0.onFree?()})
+    }
 }
 
 // MARK: Private

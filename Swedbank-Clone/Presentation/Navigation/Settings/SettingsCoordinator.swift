@@ -32,7 +32,7 @@ class SettingsCoordinator: NavigationCoordinator {
     }
     
     deinit {
-        print("")
+        children.forEach({$0.onFree?()})
     }
 }
 
