@@ -32,6 +32,7 @@ class SettingsScreenVC: RuntimeLocalizedUIViewController {
     private let viewModel: any SettingsScreenVM
     private var bag = Set<AnyCancellable>()
     private var initialRender = true
+    var coordinator: NavigationCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +46,7 @@ class SettingsScreenVC: RuntimeLocalizedUIViewController {
 extension SettingsScreenVC {
     
     private func startup() {
-        localizedStringKey = "Tabbar.Tabs.Cards.title"
+        runtimeLocalizedTitleKey = "Tabbar.Tabs.Cards.title"
         configureTableView()
         observeViewModel()
     }

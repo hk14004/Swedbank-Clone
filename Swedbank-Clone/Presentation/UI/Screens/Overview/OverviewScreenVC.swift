@@ -8,8 +8,9 @@
 import UIKit
 import Combine
 import DevToolsUI
+import DevToolsLocalization
 
-class OverviewScreenVC: UIViewController {
+class OverviewScreenVC: RuntimeLocalizedUIViewController {
     
     // MARK: Init
     
@@ -49,6 +50,7 @@ class OverviewScreenVC: UIViewController {
 extension OverviewScreenVC {
     
     private func startup() {
+        runtimeLocalizedTitleKey = "Tabbar.Tabs.Cards.title"
         configureMainNavigationBarView()
         configureTableView()
         observeViewModel()

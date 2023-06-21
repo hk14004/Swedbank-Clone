@@ -42,7 +42,7 @@ extension MainNavigationBarView {
     }
     
     func updateTitle(key: String) {
-        titleLabelView.localizedStringKey = key
+        titleLabelView.runtimeLocalizedKey = key
     }
     
     func viewDidLoad() {

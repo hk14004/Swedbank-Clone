@@ -10,10 +10,6 @@ import DevToolsUI
 import DevToolsCore
 
 class UserScreenVMNavigationBindings {
-//    var onChangeLanguage: VoidCallback?
-//    var onAuthMethod: VoidCallback?
-//    var onWidget: VoidCallback?
-//    var onNotifications: VoidCallback?
     var onSettings: VoidCallback?
     var onPrivacy: VoidCallback?
 }

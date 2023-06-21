@@ -40,8 +40,8 @@ class NavigationCoordinatorAssembly: Assembly {
             return UserCoordinator(navigationController: navigationController)
         }
         
-        container.register(SettingsScreenCoordinatorImpl.self) { (resolver, navigationController: UINavigationController) in
-            return SettingsScreenCoordinatorImpl(navigationController: navigationController)
+        container.register(SettingsScreenCoordinator.self) { (resolver, navigationController: UINavigationController) in
+            return SettingsScreenCoordinator(navigationController: navigationController)
         }
     }
     

@@ -13,14 +13,13 @@ class SettingsScreenVMImpl: ObservableObject {
     
     @Published var language: String = RuntimeStringFileLocalization.shared.getCurrentLanguage()
     
-    var coordinator: SettingsScreenCoordinator
+    var navigationBindings = SettingsScreenVMNavigationBindings()
     @Published var sections: [SettingsScreenSection] = []
     var sectionsPublisher: Published<[SettingsScreenSection]>.Publisher {
         $sections
     }
     
-    init(coordinator: SettingsScreenCoordinator) {
-        self.coordinator = coordinator
+    init() {
         startup()
     }
 }
@@ -42,7 +41,7 @@ extension SettingsScreenVMImpl {
     
     private func makeLanguageSection() -> SettingsScreenSection {
         return .init(identifier: .language, title: "Language", cells: [
-            .navigation(NavigationItem(title: "Latviešu", subtitle: "", navigateClosure: { [weak self] in self?.coordinator.goToLanguage()}))
+            .navigation(NavigationItem(title: "Latviešu", subtitle: "", navigateClosure: { [weak self] in self?.navigationBindings.onLanguage?()}))
         ])
     }
 }

@@ -9,15 +9,15 @@ import UIKit
 import Combine
 import DevToolsUI
 import DevToolsNavigation
+import DevToolsLocalization
 
-class UserScreenVC: UIViewController {
+class UserScreenVC: RuntimeLocalizedUIViewController {
     
     // MARK: Init
     
     init(viewModel: any UserScreenVM) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        title = "User"
     }
     
     required init?(coder: NSCoder) {
@@ -49,6 +49,7 @@ class UserScreenVC: UIViewController {
 extension UserScreenVC {
     
     private func startup() {
+        runtimeLocalizedTitleKey = "Tabbar.Tabs.Cards.title"
         configureTableView()
         observeViewModel()
     }

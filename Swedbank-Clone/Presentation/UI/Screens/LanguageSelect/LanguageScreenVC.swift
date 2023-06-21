@@ -8,15 +8,15 @@
 import UIKit
 import Combine
 import DevToolsUI
+import DevToolsLocalization
 
-class LanguageScreenVC: UIViewController {
+class LanguageScreenVC: RuntimeLocalizedUIViewController {
     
     // MARK: Init
     
     init(viewModel: any LanguageScreenVM) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        title = "Language"
     }
     
     required init?(coder: NSCoder) {
@@ -44,6 +44,7 @@ class LanguageScreenVC: UIViewController {
 extension LanguageScreenVC {
     
     private func startup() {
+        runtimeLocalizedTitleKey = "Tabbar.Tabs.Cards.title"
         configureTableView()
         observeViewModel()
     }

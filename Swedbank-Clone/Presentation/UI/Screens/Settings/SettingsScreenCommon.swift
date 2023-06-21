@@ -10,12 +10,12 @@ import DevToolsUI
 import DevToolsCore
 import DevToolsNavigation
 
-protocol SettingsScreenCoordinator: NavigationCoordinator {
-    func goToLanguage()
+class SettingsScreenVMNavigationBindings {
+    var onLanguage: VoidCallback?
 }
 
 protocol SettingsScreenVM: ObservableObject {
-    var coordinator: SettingsScreenCoordinator { get }
+    var navigationBindings: SettingsScreenVMNavigationBindings { get }
     var sections: [SettingsScreenSection] { get }
     var sectionsPublisher: Published<[SettingsScreenSection]>.Publisher { get }
 }

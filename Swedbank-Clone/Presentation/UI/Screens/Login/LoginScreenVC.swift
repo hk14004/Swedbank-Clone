@@ -9,7 +9,7 @@ import UIKit
 import Combine
 import DevToolsLocalization
 
-class LoginScreenVC: UIViewController {
+class LoginScreenVC: RuntimeLocalizedUIViewController {
     
     // MARK: Properties
     
@@ -25,7 +25,6 @@ class LoginScreenVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Login"
         startup()
     }
     
@@ -54,6 +53,7 @@ class LoginScreenVC: UIViewController {
 
 extension LoginScreenVC {
     private func startup() {
+        runtimeLocalizedTitleKey = "Tabbar.Tabs.Cards.title"
         observeViewModel()
         setupTextFieldInputViews()
     }
