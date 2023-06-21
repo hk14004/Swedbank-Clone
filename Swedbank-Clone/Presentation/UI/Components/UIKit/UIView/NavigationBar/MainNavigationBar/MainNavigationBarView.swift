@@ -100,7 +100,7 @@ extension MainNavigationBarView {
         }
         
         let navVC = UINavigationController()
-        let c = DI.container.resolve(UserCoordinator.self, argument: navVC)!
+        let c = DI.container.resolve(UserScreenCoordinator.self, argument: navVC)!
         c.start()
         topVC.present(navVC, animated: true)
     }

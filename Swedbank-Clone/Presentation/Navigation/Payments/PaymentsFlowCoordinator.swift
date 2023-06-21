@@ -10,7 +10,7 @@ import DevToolsNavigation
 
 // MARK: TODO: Check and subcribe to auth status
 
-class PaymentsCoordinator: NavigationCoordinator {
+class PaymentsFlowCoordinator: NavigationCoordinator {
     
     // MARK: Properties
         
@@ -33,7 +33,7 @@ class PaymentsCoordinator: NavigationCoordinator {
 
 // MARK: Private
 
-extension PaymentsCoordinator {
+extension PaymentsFlowCoordinator {
     private func goToUnauthorisedScreen() {
         let vm = LockedTabScreenVMImpl(tabDescriptionIconName: Asset.Images.Icons.icPaymentsDescription.name,
                                        title: "LockedTab.Payments.title",
@@ -52,9 +52,9 @@ extension PaymentsCoordinator {
 
 // MARK: Public
 
-extension PaymentsCoordinator {
+extension PaymentsFlowCoordinator {
     func goToAuth() {
-        let coordinator = AuthorisationCoordinator(navigationController: navigationController!)
+        let coordinator = AuthorizationFlowCoordinator(navigationController: navigationController!)
         coordinator.start()
     }
 }

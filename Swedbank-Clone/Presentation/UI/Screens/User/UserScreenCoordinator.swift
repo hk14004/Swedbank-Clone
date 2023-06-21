@@ -9,7 +9,7 @@ import SwiftUI
 import DevToolsNavigation
 import DevToolsCore
 
-class UserCoordinator: NavigationCoordinator {
+class UserScreenCoordinator: NavigationCoordinator {
     
     // MARK: Properties
         
@@ -39,13 +39,13 @@ class UserCoordinator: NavigationCoordinator {
 
 // MARK: Private
 
-extension UserCoordinator {
+extension UserScreenCoordinator {
 
 }
 
 // MARK: Public
 
-extension UserCoordinator {
+extension UserScreenCoordinator {
     func goToSettings() {
         let c = DI.container.resolve(SettingsScreenCoordinator.self, argument: navigationController!)!
         c.start()

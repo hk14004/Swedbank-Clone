@@ -21,23 +21,23 @@ class NavigationCoordinatorAssembly: Assembly {
             return AppCoordinator(window: resolver.resolve(UIWindow.self)!)
         }.inObjectScope(.container)
         
-        container.register(AuthorisationCoordinator.self.self) { (resolver, navigationController: UINavigationController) in
-            return AuthorisationCoordinator(navigationController: navigationController)
+        container.register(AuthorizationFlowCoordinator.self.self) { (resolver, navigationController: UINavigationController) in
+            return AuthorizationFlowCoordinator(navigationController: navigationController)
         }
         container.register(TabBarCoordinator.self.self) { (resolver, navigationController: UINavigationController) in
             return TabBarCoordinator(navigationController: navigationController)
         }.inObjectScope(.container)
         
-        container.register(OverviewCoordinator.self.self) { (resolver, navigationController: UINavigationController) in
-            return OverviewCoordinator(navigationController: navigationController)
+        container.register(OverviewFlowCoordinator.self.self) { (resolver, navigationController: UINavigationController) in
+            return OverviewFlowCoordinator(navigationController: navigationController)
         }
         
-        container.register(PaymentsCoordinator.self.self) { (resolver, navigationController: UINavigationController) in
-            return PaymentsCoordinator(navigationController: navigationController)
+        container.register(PaymentsFlowCoordinator.self.self) { (resolver, navigationController: UINavigationController) in
+            return PaymentsFlowCoordinator(navigationController: navigationController)
         }
         
-        container.register(UserCoordinator.self) { (resolver, navigationController: UINavigationController) in
-            return UserCoordinator(navigationController: navigationController)
+        container.register(UserScreenCoordinator.self) { (resolver, navigationController: UINavigationController) in
+            return UserScreenCoordinator(navigationController: navigationController)
         }
         
         container.register(SettingsScreenCoordinator.self) { (resolver, navigationController: UINavigationController) in

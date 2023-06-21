@@ -11,7 +11,7 @@ import DevToolsCore
 
 // MARK: TODO: Check and subcribe to auth status
 
-class OverviewCoordinator: NavigationCoordinator {
+class OverviewFlowCoordinator: NavigationCoordinator {
     
     // MARK: Properties
         
@@ -40,7 +40,7 @@ class OverviewCoordinator: NavigationCoordinator {
 
 // MARK: Private
 
-extension OverviewCoordinator {
+extension OverviewFlowCoordinator {
     private func goToUnauthorisedScreen() {
         let vm = LockedTabScreenVMImpl(tabDescriptionIconName: Asset.Images.Icons.icOverviewDescription.name,
                                        title: "LockedTab.Overview.title",
@@ -68,9 +68,9 @@ extension OverviewCoordinator {
 
 // MARK: Public
 
-extension OverviewCoordinator {
+extension OverviewFlowCoordinator {
     func goToAuth() {
-        let coordinator = AuthorisationCoordinator(navigationController: navigationController!)
+        let coordinator = AuthorizationFlowCoordinator(navigationController: navigationController!)
         coordinator.start()
     }
     

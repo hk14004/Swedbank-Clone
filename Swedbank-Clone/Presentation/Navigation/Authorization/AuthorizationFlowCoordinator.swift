@@ -8,7 +8,7 @@
 import SwiftUI
 import DevToolsNavigation
 
-class AuthorisationCoordinator: NavigationCoordinator {
+class AuthorizationFlowCoordinator: NavigationCoordinator {
     
     // MARK: Properties
         
@@ -38,6 +38,6 @@ class AuthorisationCoordinator: NavigationCoordinator {
 
 // MARK: Private
 
-extension AuthorisationCoordinator {
+extension AuthorizationFlowCoordinator {
 
 }

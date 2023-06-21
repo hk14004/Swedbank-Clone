@@ -80,7 +80,7 @@ extension TabBarCoordinator {
         navVC.tabBarItem = item
         navVC.tabBarItem.image = UIImage(systemName: "house")!
         navVC.tabBarItem.selectedImage = UIImage(systemName: "house")!
-        let coordinator = DI.container.resolve(OverviewCoordinator.self, argument: navVC)!
+        let coordinator = DI.container.resolve(OverviewFlowCoordinator.self, argument: navVC)!
         children.append(coordinator)
         coordinator.start()
         return navVC
@@ -93,7 +93,7 @@ extension TabBarCoordinator {
         navVC.tabBarItem = item
         navVC.tabBarItem.image = UIImage(systemName: "arrow.left.arrow.right")!
         navVC.tabBarItem.selectedImage = UIImage(systemName: "arrow.left.arrow.right")!
-        let coordinator = DI.container.resolve(PaymentsCoordinator.self, argument: navVC)!
+        let coordinator = DI.container.resolve(PaymentsFlowCoordinator.self, argument: navVC)!
         children.append(coordinator)
         coordinator.start()
         return navVC
@@ -106,7 +106,7 @@ extension TabBarCoordinator {
         navVC.tabBarItem = item
         navVC.tabBarItem.image = UIImage(systemName: "creditcard")!
         navVC.tabBarItem.selectedImage = UIImage(systemName: "creditcard")!
-        let coordinator = DI.container.resolve(PaymentsCoordinator.self, argument: navVC)!
+        let coordinator = DI.container.resolve(PaymentsFlowCoordinator.self, argument: navVC)!
         children.append(coordinator)
         coordinator.start()
         return navVC
@@ -119,7 +119,7 @@ extension TabBarCoordinator {
         navVC.tabBarItem = item
         navVC.tabBarItem.image = UIImage(systemName: "list.clipboard")!
         navVC.tabBarItem.selectedImage = UIImage(systemName: "list.clipboard")!
-        let coordinator = DI.container.resolve(PaymentsCoordinator.self, argument: navVC)!
+        let coordinator = DI.container.resolve(PaymentsFlowCoordinator.self, argument: navVC)!
         children.append(coordinator)
         coordinator.start()
         return navVC
@@ -132,7 +132,7 @@ extension TabBarCoordinator {
         navVC.tabBarItem = item
         navVC.tabBarItem.image = UIImage(systemName: "bubble.left.and.bubble.right")!
         navVC.tabBarItem.selectedImage = UIImage(systemName: "bubble.left.and.bubble.right")!
-        let coordinator = DI.container.resolve(PaymentsCoordinator.self, argument: navVC)!
+        let coordinator = DI.container.resolve(PaymentsFlowCoordinator.self, argument: navVC)!
         children.append(coordinator)
         coordinator.start()
         return navVC

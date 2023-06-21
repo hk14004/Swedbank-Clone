@@ -14,8 +14,8 @@
 		D4222C6B2A40B17F0097AD8B /* UserScreenCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4222C6A2A40B17F0097AD8B /* UserScreenCommon.swift */; };
 		D4222C6D2A40B38E0097AD8B /* UserScreenVMImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4222C6C2A40B38E0097AD8B /* UserScreenVMImpl.swift */; };
 		D4222C6F2A40B7140097AD8B /* UserScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4222C6E2A40B7140097AD8B /* UserScreenVC.swift */; };
-		D4222C722A40C6A70097AD8B /* UserCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4222C712A40C6A70097AD8B /* UserCoordinator.swift */; };
-		D4222C752A41ADAE0097AD8B /* SettingsScreenCoordinatorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4222C742A41ADAE0097AD8B /* SettingsScreenCoordinatorImpl.swift */; };
+		D4222C722A40C6A70097AD8B /* UserScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4222C712A40C6A70097AD8B /* UserScreenCoordinator.swift */; };
+		D4222C752A41ADAE0097AD8B /* SettingsScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4222C742A41ADAE0097AD8B /* SettingsScreenCoordinator.swift */; };
 		D4222C782A41B0AA0097AD8B /* SettingsScreenCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4222C772A41B0AA0097AD8B /* SettingsScreenCommon.swift */; };
 		D4222C7A2A41B6940097AD8B /* SettingsScreenVMImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4222C792A41B6940097AD8B /* SettingsScreenVMImpl.swift */; };
 		D4222C7C2A41B9F40097AD8B /* SettingsScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4222C7B2A41B9F40097AD8B /* SettingsScreenVC.swift */; };
@@ -27,8 +27,8 @@
 		D42ACF062A2269B800A23031 /* LoginButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42ACF052A2269B800A23031 /* LoginButtonStyle.swift */; };
 		D42ACF082A226E5E00A23031 /* LockedTabScreenCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42ACF072A226E5E00A23031 /* LockedTabScreenCommon.swift */; };
 		D42ACF0A2A22787800A23031 /* LockedTabScreenVMImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42ACF092A22787800A23031 /* LockedTabScreenVMImpl.swift */; };
-		D42ACF0D2A227EEB00A23031 /* PaymentsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42ACF0C2A227EEB00A23031 /* PaymentsCoordinator.swift */; };
-		D42ACF102A2334DA00A23031 /* AuthorisationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42ACF0F2A2334DA00A23031 /* AuthorisationCoordinator.swift */; };
+		D42ACF0D2A227EEB00A23031 /* PaymentsFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42ACF0C2A227EEB00A23031 /* PaymentsFlowCoordinator.swift */; };
+		D42ACF102A2334DA00A23031 /* AuthorizationFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42ACF0F2A2334DA00A23031 /* AuthorizationFlowCoordinator.swift */; };
 		D42ACF142A23462800A23031 /* LanguageDropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42ACF132A23462800A23031 /* LanguageDropdownView.swift */; };
 		D42FF51F2A32036100036D83 /* UserSessionAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FF51E2A32036100036D83 /* UserSessionAssembly.swift */; };
 		D42FF5242A320DAB00036D83 /* UserSessionManagerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FF5232A320DAB00036D83 /* UserSessionManagerImpl.swift */; };
@@ -77,7 +77,7 @@
 		D4B1BFAC2A2359930028A39D /* LanguageSelectionScreenBottomSheetCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1BFAB2A2359930028A39D /* LanguageSelectionScreenBottomSheetCommon.swift */; };
 		D4B1BFAE2A2359A00028A39D /* LanguageSelectionScreenBottomSheetVMimpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1BFAD2A2359A00028A39D /* LanguageSelectionScreenBottomSheetVMimpl.swift */; };
 		D4B936122A1BC45100A39414 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B936112A1BC45100A39414 /* TabBarCoordinator.swift */; };
-		D4B936152A1BC65D00A39414 /* OverviewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B936142A1BC65D00A39414 /* OverviewCoordinator.swift */; };
+		D4B936152A1BC65D00A39414 /* OverviewFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B936142A1BC65D00A39414 /* OverviewFlowCoordinator.swift */; };
 		D4CEC2B72A363A0F00AFABF9 /* NavigationCoordinatorAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2B62A363A0F00AFABF9 /* NavigationCoordinatorAssembly.swift */; };
 		D4CEC2B92A36478900AFABF9 /* ScreenCoordinatorAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2B82A36478900AFABF9 /* ScreenCoordinatorAssembly.swift */; };
 		D4F7E8A12A373ABB00CF49E1 /* OverviewScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F7E8A02A373ABB00CF49E1 /* OverviewScreenVC.swift */; };
@@ -112,8 +112,8 @@
 		D4222C6A2A40B17F0097AD8B /* UserScreenCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserScreenCommon.swift; sourceTree = "<group>"; };
 		D4222C6C2A40B38E0097AD8B /* UserScreenVMImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserScreenVMImpl.swift; sourceTree = "<group>"; };
 		D4222C6E2A40B7140097AD8B /* UserScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserScreenVC.swift; sourceTree = "<group>"; };
-		D4222C712A40C6A70097AD8B /* UserCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCoordinator.swift; sourceTree = "<group>"; };
-		D4222C742A41ADAE0097AD8B /* SettingsScreenCoordinatorImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsScreenCoordinatorImpl.swift; sourceTree = "<group>"; };
+		D4222C712A40C6A70097AD8B /* UserScreenCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserScreenCoordinator.swift; sourceTree = "<group>"; };
+		D4222C742A41ADAE0097AD8B /* SettingsScreenCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsScreenCoordinator.swift; sourceTree = "<group>"; };
 		D4222C772A41B0AA0097AD8B /* SettingsScreenCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsScreenCommon.swift; sourceTree = "<group>"; };
 		D4222C792A41B6940097AD8B /* SettingsScreenVMImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsScreenVMImpl.swift; sourceTree = "<group>"; };
 		D4222C7B2A41B9F40097AD8B /* SettingsScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsScreenVC.swift; sourceTree = "<group>"; };
@@ -125,8 +125,8 @@
 		D42ACF052A2269B800A23031 /* LoginButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonStyle.swift; sourceTree = "<group>"; };
 		D42ACF072A226E5E00A23031 /* LockedTabScreenCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedTabScreenCommon.swift; sourceTree = "<group>"; };
 		D42ACF092A22787800A23031 /* LockedTabScreenVMImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedTabScreenVMImpl.swift; sourceTree = "<group>"; };
-		D42ACF0C2A227EEB00A23031 /* PaymentsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentsCoordinator.swift; sourceTree = "<group>"; };
-		D42ACF0F2A2334DA00A23031 /* AuthorisationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorisationCoordinator.swift; sourceTree = "<group>"; };
+		D42ACF0C2A227EEB00A23031 /* PaymentsFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentsFlowCoordinator.swift; sourceTree = "<group>"; };
+		D42ACF0F2A2334DA00A23031 /* AuthorizationFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationFlowCoordinator.swift; sourceTree = "<group>"; };
 		D42ACF132A23462800A23031 /* LanguageDropdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageDropdownView.swift; sourceTree = "<group>"; };
 		D42FF51E2A32036100036D83 /* UserSessionAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSessionAssembly.swift; sourceTree = "<group>"; };
 		D42FF5232A320DAB00036D83 /* UserSessionManagerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionManagerImpl.swift; sourceTree = "<group>"; };
@@ -172,7 +172,7 @@
 		D4B1BFAB2A2359930028A39D /* LanguageSelectionScreenBottomSheetCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionScreenBottomSheetCommon.swift; sourceTree = "<group>"; };
 		D4B1BFAD2A2359A00028A39D /* LanguageSelectionScreenBottomSheetVMimpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionScreenBottomSheetVMimpl.swift; sourceTree = "<group>"; };
 		D4B936112A1BC45100A39414 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
-		D4B936142A1BC65D00A39414 /* OverviewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewCoordinator.swift; sourceTree = "<group>"; };
+		D4B936142A1BC65D00A39414 /* OverviewFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewFlowCoordinator.swift; sourceTree = "<group>"; };
 		D4CEC2B62A363A0F00AFABF9 /* NavigationCoordinatorAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinatorAssembly.swift; sourceTree = "<group>"; };
 		D4CEC2B82A36478900AFABF9 /* ScreenCoordinatorAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenCoordinatorAssembly.swift; sourceTree = "<group>"; };
 		D4F7E8A02A373ABB00CF49E1 /* OverviewScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewScreenVC.swift; sourceTree = "<group>"; };
@@ -274,24 +274,9 @@
 				D4222C6A2A40B17F0097AD8B /* UserScreenCommon.swift */,
 				D4222C6C2A40B38E0097AD8B /* UserScreenVMImpl.swift */,
 				D4222C6E2A40B7140097AD8B /* UserScreenVC.swift */,
+				D4222C712A40C6A70097AD8B /* UserScreenCoordinator.swift */,
 			);
 			path = User;
-			sourceTree = "<group>";
-		};
-		D4222C702A40C6840097AD8B /* User */ = {
-			isa = PBXGroup;
-			children = (
-				D4222C712A40C6A70097AD8B /* UserCoordinator.swift */,
-			);
-			path = User;
-			sourceTree = "<group>";
-		};
-		D4222C732A41ADA00097AD8B /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				D4222C742A41ADAE0097AD8B /* SettingsScreenCoordinatorImpl.swift */,
-			);
-			path = Settings;
 			sourceTree = "<group>";
 		};
 		D4222C762A41B0980097AD8B /* Settings */ = {
@@ -300,6 +285,7 @@
 				D4222C772A41B0AA0097AD8B /* SettingsScreenCommon.swift */,
 				D4222C792A41B6940097AD8B /* SettingsScreenVMImpl.swift */,
 				D4222C7B2A41B9F40097AD8B /* SettingsScreenVC.swift */,
+				D4222C742A41ADAE0097AD8B /* SettingsScreenCoordinator.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -344,17 +330,9 @@
 		D42ACF0B2A227EDA00A23031 /* Payments */ = {
 			isa = PBXGroup;
 			children = (
-				D42ACF0C2A227EEB00A23031 /* PaymentsCoordinator.swift */,
+				D42ACF0C2A227EEB00A23031 /* PaymentsFlowCoordinator.swift */,
 			);
 			path = Payments;
-			sourceTree = "<group>";
-		};
-		D42ACF0E2A2334C200A23031 /* Authorisation */ = {
-			isa = PBXGroup;
-			children = (
-				D42ACF0F2A2334DA00A23031 /* AuthorisationCoordinator.swift */,
-			);
-			path = Authorisation;
 			sourceTree = "<group>";
 		};
 		D42ACF112A2345EA00A23031 /* Views */ = {
@@ -467,6 +445,14 @@
 				D42FF5612A35BED900036D83 /* LoginScreenVC.storyboard */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		D43226FE2A43041200DF9484 /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				D42ACF0F2A2334DA00A23031 /* AuthorizationFlowCoordinator.swift */,
+			);
+			path = Authorization;
 			sourceTree = "<group>";
 		};
 		D43599C42A1BDEF50057AF7B /* Generated */ = {
@@ -621,10 +607,8 @@
 		D475BFFE2A152F150057422D /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				D4222C732A41ADA00097AD8B /* Settings */,
-				D4222C702A40C6840097AD8B /* User */,
 				D4B936102A1BC44500A39414 /* Root */,
-				D42ACF0E2A2334C200A23031 /* Authorisation */,
+				D43226FE2A43041200DF9484 /* Authorization */,
 				D42ACF0B2A227EDA00A23031 /* Payments */,
 				D4B936132A1BC64C00A39414 /* Overview */,
 			);
@@ -743,7 +727,7 @@
 		D4B936132A1BC64C00A39414 /* Overview */ = {
 			isa = PBXGroup;
 			children = (
-				D4B936142A1BC65D00A39414 /* OverviewCoordinator.swift */,
+				D4B936142A1BC65D00A39414 /* OverviewFlowCoordinator.swift */,
 			);
 			path = Overview;
 			sourceTree = "<group>";
@@ -950,7 +934,7 @@
 				D4B1BFA72A2353A00028A39D /* Globals.swift in Sources */,
 				D4222C6F2A40B7140097AD8B /* UserScreenVC.swift in Sources */,
 				D42FF55E2A35B67600036D83 /* LoginScreenVMImpl.swift in Sources */,
-				D42ACF0D2A227EEB00A23031 /* PaymentsCoordinator.swift in Sources */,
+				D42ACF0D2A227EEB00A23031 /* PaymentsFlowCoordinator.swift in Sources */,
 				D475BFF92A152DA10057422D /* PersistentCoreDataStoreAssembly.swift in Sources */,
 				D475C0092A1530300057422D /* Person.swift in Sources */,
 				D42FF5462A33859B00036D83 /* UserSessionFactoryImpl.swift in Sources */,
@@ -958,7 +942,7 @@
 				D42FF5602A35B8F200036D83 /* LoginScreenVC.swift in Sources */,
 				D42FF5312A3244F100036D83 /* KeychainConstants.swift in Sources */,
 				D42FF5282A320FAD00036D83 /* SwedbankUserSessionCredentials.swift in Sources */,
-				D4222C722A40C6A70097AD8B /* UserCoordinator.swift in Sources */,
+				D4222C722A40C6A70097AD8B /* UserScreenCoordinator.swift in Sources */,
 				D475C00B2A1531C40057422D /* AppCoordinator.swift in Sources */,
 				D4F7E8AB2A3745CC00CF49E1 /* MainNavigationBarView.swift in Sources */,
 				D475BFF72A152DA10057422D /* RepositoryAssembly.swift in Sources */,
@@ -986,7 +970,7 @@
 				D42ACF142A23462800A23031 /* LanguageDropdownView.swift in Sources */,
 				D43599CF2A1C07570057AF7B /* Strings+Generated.swift in Sources */,
 				D475BFB12A152C020057422D /* Swedbank_Clone.xcdatamodeld in Sources */,
-				D42ACF102A2334DA00A23031 /* AuthorisationCoordinator.swift in Sources */,
+				D42ACF102A2334DA00A23031 /* AuthorizationFlowCoordinator.swift in Sources */,
 				D43599C62A1BDEF50057AF7B /* XCAssets+Generated.swift in Sources */,
 				D42ACF082A226E5E00A23031 /* LockedTabScreenCommon.swift in Sources */,
 				D4B1BFAC2A2359930028A39D /* LanguageSelectionScreenBottomSheetCommon.swift in Sources */,
@@ -1001,12 +985,12 @@
 				D4CEC2B72A363A0F00AFABF9 /* NavigationCoordinatorAssembly.swift in Sources */,
 				D4F7E8A12A373ABB00CF49E1 /* OverviewScreenVC.swift in Sources */,
 				D42FF55C2A35B3C600036D83 /* LoginScreenCommon.swift in Sources */,
-				D4222C752A41ADAE0097AD8B /* SettingsScreenCoordinatorImpl.swift in Sources */,
+				D4222C752A41ADAE0097AD8B /* SettingsScreenCoordinator.swift in Sources */,
 				D40D58E72A37A37F0008CC64 /* CardBalanceTableViewCell.swift in Sources */,
 				D475BFA92A152C020057422D /* SceneDelegate.swift in Sources */,
 				D42ACF062A2269B800A23031 /* LoginButtonStyle.swift in Sources */,
 				D4222C812A41C1B80097AD8B /* LanguageScreenVMImpl.swift in Sources */,
-				D4B936152A1BC65D00A39414 /* OverviewCoordinator.swift in Sources */,
+				D4B936152A1BC65D00A39414 /* OverviewFlowCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
