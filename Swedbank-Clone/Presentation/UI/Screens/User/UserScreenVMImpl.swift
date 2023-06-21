@@ -32,20 +32,35 @@ extension UserScreenVMImpl {
     
     private func makeSections() -> [UserScreenSection] {
         [
-            makeUserSection()
+            makeUserSection(),
+            makeSettingsSection(),
+            makePrivacySection()
         ]
     }
     
     private func makeUserSection() -> UserScreenSection {
-        return .init(identifier: .privatePerson, title: "Private person", cells: [
-            .navigation(NavigationItem(title: "Settings", subtitle: "", navigateClosure: {
+        return .init(identifier: .privatePerson, title: "Screen.User.Section.Private.title", cells: [
+            .navigation(NavigationItem(title: "Nothing", subtitle: "", navigateClosure: {
+                
+            }))
+        ])
+    }
+    
+    private func makeSettingsSection() -> UserScreenSection {
+        return .init(identifier: .settings, title: "", cells: [
+            .navigation(NavigationItem(title: "Screen.User.Section.Settings.settings", subtitle: "", navigateClosure: {
                 [weak self] in self?.navigationBindings.onSettings?()
             }))
         ])
     }
     
     private func makePrivacySection() -> UserScreenSection {
-        return .init(identifier: .privacy, title: "privacy", cells: [
+        return .init(identifier: .privacy, title: "Screen.User.Section.Privacy.title", cells: [
+            .navigation(NavigationItem(title: "Screen.User.Section.Privacy.privacySettings",
+                                       subtitle: "",
+                                       navigateClosure: {
+                                           [weak self] in self?.navigationBindings.onPrivacy?()
+                                       }))
         ])
     }
 }

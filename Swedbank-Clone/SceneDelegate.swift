@@ -67,5 +67,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         navAppearance.titleTextAttributes = [.foregroundColor: Asset.Colors.color3.color]
         navAppearance.shadowColor = .clear
         AppearanceProxy.setDefault(navigationBarAppearance: navAppearance)
+        
+        UITableViewHeaderFooterView.appearance().textLabel?.textColor = UIColor.red
+
     }
 }

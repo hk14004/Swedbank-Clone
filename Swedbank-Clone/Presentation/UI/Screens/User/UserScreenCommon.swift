@@ -24,6 +24,7 @@ class UserScreenSection: UISectionModel {
     
     enum Identifier: String, CaseIterable {
         case privatePerson
+        case settings
         case privacy
     }
     

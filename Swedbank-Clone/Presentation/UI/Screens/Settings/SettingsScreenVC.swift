@@ -27,7 +27,7 @@ class SettingsScreenVC: RuntimeLocalizedUIViewController {
     // MARK: Properties
     
     /// Private
-    private let tableView = UITableView(frame: .zero, style: .plain)
+    private let tableView = UITableView(frame: .zero, style: .grouped)
     private var dataSource: DiffableDataSource!
     private let viewModel: any SettingsScreenVM
     private var bag = Set<AnyCancellable>()
@@ -52,9 +52,8 @@ extension SettingsScreenVC {
     }
     
     private func configureTableView() {
-        tableView.separatorInset = .zero
+        tableView.backgroundColor = UIColor.systemBackground
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.directionalLayoutMargins = .zero
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
@@ -82,7 +81,6 @@ extension SettingsScreenVC {
                 configuration?.text = item.title
                 configuration?.textProperties.color = Asset.Colors.secondaryText.color
                 cell?.contentConfiguration = configuration
-                cell?.contentView.setMargins(direction: .both, constant: 16, ignoreSuperViewMargins: true)
                 return cell
             }
         }

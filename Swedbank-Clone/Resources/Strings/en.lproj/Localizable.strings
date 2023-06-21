@@ -6,6 +6,12 @@
 "Globals.InputField.mustNotBeEmpty" = "Field must not be empty";
 
 /*  */
+"Globals.login" = "Login";
+
+/*  */
+"Globals.logout" = "Logout";
+
+/*  */
 "Screen.LanguageSelection.en" = "English";
 
 /*  */
@@ -47,6 +53,27 @@
 /*  */
 "Screen.Overview.Expenses.title" = "Expenses";
 
+
+"Screen.Settings.title" = "Settings";
+
+/*  */
+"Screen.User.Section.Privacy.privacySettings" = "Privacy settings";
+
+/*  */
+"Screen.User.Section.Privacy.title" = "Privacy";
+
+/*  */
+"Screen.User.Section.Private.title" = "Private person";
+
+/*  */
+"Screen.User.Section.Settings.settings" = "Settings";
+
+/*  */
+"Screen.User.Section.Settings.title" = "";
+
+
+"Screen.User.title" = "User";
+
 /*  */
 "Tabbar.Tabs.Cards.title" = "Cards";
 
@@ -61,7 +88,3 @@
 
 /*  */
 "Tabbar.Tabs.Services.title" = "Services";
-
-"Screen.User.title" = "User";
-
-"Screen.Settings.title" = "Settings";

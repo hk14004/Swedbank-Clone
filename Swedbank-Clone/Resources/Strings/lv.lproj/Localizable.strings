@@ -6,6 +6,12 @@
 "Globals.InputField.mustNotBeEmpty" = "Lauks nedrīkst būt tukšs";
 
 
+"Globals.login" = "Ienākt";
+
+
+"Globals.logout" = "Iziet";
+
+
 "Screen.LanguageSelection.en" = "English";
 
 
@@ -48,6 +54,27 @@
 "Screen.Overview.Expenses.title" = "Izdevumi";
 
 
+"Screen.Settings.title" = "Uzstādījumi";
+
+
+"Screen.User.Section.Privacy.privacySettings" = "Privātuma iestatījumi";
+
+
+"Screen.User.Section.Privacy.title" = "Privātums";
+
+
+"Screen.User.Section.Private.title" = "Privātpersonām";
+
+
+"Screen.User.Section.Settings.settings" = "Uzstādījumi";
+
+
+"Screen.User.Section.Settings.title" = "";
+
+
+"Screen.User.title" = "Lietotājs";
+
+
 "Tabbar.Tabs.Cards.title" = "Kartes";
 
 
@@ -61,7 +88,3 @@
 
 
 "Tabbar.Tabs.Services.title" = "Servisi";
-
-"Screen.User.title" = "Lietotājs";
-
-"Screen.Settings.title" = "Uzstādījumi";

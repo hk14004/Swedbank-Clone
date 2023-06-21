@@ -27,7 +27,7 @@ class UserScreenVC: RuntimeLocalizedUIViewController {
     // MARK: Properties
     
     /// Private
-    private let tableView = UITableView(frame: .zero, style: .plain)
+    private let tableView = UITableView(frame: .zero, style: .grouped)
     private var dataSource: DiffableDataSource!
     private let viewModel: any UserScreenVM
     private var bag = Set<AnyCancellable>()
@@ -39,8 +39,9 @@ class UserScreenVC: RuntimeLocalizedUIViewController {
         startup()
     }
     
-    deinit {
-        print("")
+    override func updateRuntimeLocalizedStrings() {
+        super.updateRuntimeLocalizedStrings()
+        tableView.reloadData()
     }
 }
 
@@ -52,12 +53,12 @@ extension UserScreenVC {
         runtimeLocalizedTitleKey = "Screen.User.title"
         configureTableView()
         observeViewModel()
+        configureNavBar()
     }
     
     private func configureTableView() {
-        tableView.separatorInset = .zero
+        tableView.backgroundColor = .systemBackground
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.directionalLayoutMargins = .zero
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
@@ -72,6 +73,8 @@ extension UserScreenVC {
     private func registerTableViewCells() {
         tableView.register(DefaultTableViewCell.self,
                            forCellReuseIdentifier: DefaultTableViewCell.reuseID)
+        tableView.register(UINib.instanciateNib(type: BasicHeaderFooterView.self),
+                           forHeaderFooterViewReuseIdentifier: BasicHeaderFooterView.reuseID)
     }
     
     private func configureDataSource() {
@@ -82,10 +85,9 @@ extension UserScreenVC {
                                                          for: indexPath) as? DefaultTableViewCell
                 cell?.accessoryType = .disclosureIndicator
                 var configuration = cell?.defaultContentConfiguration()
-                configuration?.text = item.title
+                configuration?.text = item.title.runtimeLocalized()
                 configuration?.textProperties.color = Asset.Colors.secondaryText.color
                 cell?.contentConfiguration = configuration
-                cell?.contentView.setMargins(direction: .both, constant: 16, ignoreSuperViewMargins: true)
                 return cell
             }
         }
@@ -96,6 +98,24 @@ extension UserScreenVC {
         viewModel.sectionsPublisher.receive(on: DispatchQueue.main).sink { [weak self] sections in
             self?.renderTableViewSections(sections)
         }.store(in: &bag)
+    }
+    
+    private func configureNavBar() {
+        let image = UIImage(systemName: "xmark")?.withRenderingMode(.alwaysOriginal).withTintColor(Asset.Colors.primaryText.color)
+        let customView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: 12))
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = image
+        customView.addSubview(imageView)
+        imageView.pinToSuperviewEdges(useSafeArea: false)
+        let item = UIBarButtonItem(customView: customView)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onClose))
+        customView.addGestureRecognizer(tapGesture)
+        navigationItem.leftBarButtonItem = item
+    }
+    
+    @objc private func onClose() {
+        dismiss(animated: true)
     }
     
     private func renderTableViewSections(_ sections: [UserScreenSection]) {
@@ -124,10 +144,6 @@ fileprivate extension UserScreenVC {
             self.viewModel = viewModel
             super.init(tableView: tableView, cellProvider: cellProvider)
         }
-        
-        override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-            return viewModel.sections[section].title
-        }
     }
 }
 
@@ -139,5 +155,15 @@ extension UserScreenVC: UITableViewDelegate {
             item.navigate()
         }
         tableView.deselectRow(at: indexPath, animated: false)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: BasicHeaderFooterView.reuseID) as? BasicHeaderFooterView
+        let titleKey = viewModel.sections[section].title
+        headerView?.titleLabel.runtimeLocalizedKey = titleKey
+        if titleKey.isEmpty {
+            return nil
+        }
+        return headerView
     }
 }
