@@ -46,7 +46,7 @@ class SettingsScreenVC: RuntimeLocalizedUIViewController {
 extension SettingsScreenVC {
     
     private func startup() {
-        runtimeLocalizedTitleKey = "Tabbar.Tabs.Cards.title"
+        runtimeLocalizedTitleKey = "Screen.Settings.title"
         configureTableView()
         observeViewModel()
     }

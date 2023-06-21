@@ -1,51 +1,67 @@
 
+/*  */
+"Globals.InputField.mustBeAtleastSize" = "Field must be at least %@ size";
 
-"Globals.InputField.mustBeAtleastSize" = "Should be at least %@ characters";
-
-
+/*  */
 "Globals.InputField.mustNotBeEmpty" = "Field must not be empty";
 
+/*  */
+"Screen.LanguageSelection.en" = "English";
 
-"LanguageSelection.en" = "English";
+/*  */
+"Screen.LanguageSelection.lv" = "Latviešu";
 
+/*  */
+"Screen.LanguageSelection.title" = "Choose language";
 
-"LanguageSelection.lv" = "Latviešu";
+/*  */
+"Screen.LockedTab.Overview.subtitle" = "Great way to overview your money";
 
+/*  */
+"Screen.LockedTab.Overview.title" = "Account balance and overview";
 
-"LanguageSelection.title" = "Choose language";
+/*  */
+"Screen.LockedTab.Payments.subtitle" = "Pay where ever you are";
 
+/*  */
+"Screen.LockedTab.Payments.title" = "Make trasnactions or do somethign else";
 
-"LockedTab.Overview.subtitle" = "A convenient way to monitor your money and see where it is spent";
+/*  */
+"Screen.Login.Button.title" = "Login";
 
+/*  */
+"Screen.Login.Password.placeholder" = "Enter password";
 
-"LockedTab.Overview.title" = "Balance overview";
+/*  */
+"Screen.Login.Username.placeholder" = "Enter username";
 
+/*  */
+"Screen.Overview.Expenses.details" = "Details";
 
-"LockedTab.Payments.subtitle" = "Make payments easily wherever you are";
+/*  */
+"Screen.Overview.Expenses.spent" = "Spent";
 
+/*  */
+"Screen.Overview.Expenses.thisMonth" = "This month";
 
-"LockedTab.Payments.title" = "Transfer money or pay bills";
+/*  */
+"Screen.Overview.Expenses.title" = "Expenses";
 
-
-"Login.Button.title" = "Login";
-
-
-"Login.Password.placeholder" = "Enter password";
-
-
-"Login.Username.placeholder" = "Enter username";
-
-
+/*  */
 "Tabbar.Tabs.Cards.title" = "Cards";
 
-
+/*  */
 "Tabbar.Tabs.Contacts.title" = "Contacts";
 
-
+/*  */
 "Tabbar.Tabs.Overview.title" = "Overview";
 
-
+/*  */
 "Tabbar.Tabs.Payments.title" = "Payments";
 
-
+/*  */
 "Tabbar.Tabs.Services.title" = "Services";
+
+"Screen.User.title" = "User";
+
+"Screen.Settings.title" = "Settings";

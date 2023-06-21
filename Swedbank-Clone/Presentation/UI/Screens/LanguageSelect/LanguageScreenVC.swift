@@ -44,7 +44,7 @@ class LanguageScreenVC: RuntimeLocalizedUIViewController {
 extension LanguageScreenVC {
     
     private func startup() {
-        runtimeLocalizedTitleKey = "Tabbar.Tabs.Cards.title"
+        runtimeLocalizedTitleKey = "Screen.LanguageSelection.title"
         configureTableView()
         observeViewModel()
     }

@@ -6,34 +6,46 @@
 "Globals.InputField.mustNotBeEmpty" = "Lauks nedrīkst būt tukšs";
 
 
-"LanguageSelection.en" = "English";
+"Screen.LanguageSelection.en" = "English";
 
 
-"LanguageSelection.lv" = "Latviešu";
+"Screen.LanguageSelection.lv" = "Latviešu";
 
 
-"LanguageSelection.title" = "Izvēlieties valodu";
+"Screen.LanguageSelection.title" = "Izvēlieties valodu";
 
 
-"LockedTab.Overview.subtitle" = "Ērts veids kā pārraudzīt savu naudu un redzēt, kur tā tiek tērēta";
+"Screen.LockedTab.Overview.subtitle" = "Ērts veids kā pārraudzīt savu naudu un redzēt, kur tā tiek tērēta";
 
 
-"LockedTab.Overview.title" = "Konta atlikums un pārskats";
+"Screen.LockedTab.Overview.title" = "Konta atlikums un pārskats";
 
 
-"LockedTab.Payments.subtitle" = "Veic maksājumus vieglim lai kur vien arī būtu";
+"Screen.LockedTab.Payments.subtitle" = "Veic maksājumus viegli lai kur vien arī būtu";
 
 
-"LockedTab.Payments.title" = "Pārskaiti naudu vai apmaksā rēķinus";
+"Screen.LockedTab.Payments.title" = "Pārskaiti naudu vai apmaksā rēķinus";
 
 
-"Login.Button.title" = "Ienākt";
-
-/*  */
-"Login.Password.placeholder" = "Ievadiet paroli";
+"Screen.Login.Button.title" = "Ienākt";
 
 /*  */
-"Login.Username.placeholder" = "Ievadiet lietotājvārdu";
+"Screen.Login.Password.placeholder" = "Ievadiet paroli";
+
+/*  */
+"Screen.Login.Username.placeholder" = "Ievadiet lietotājvārdu";
+
+/*  */
+"Screen.Overview.Expenses.details" = "Skatīt detaļas";
+
+/*  */
+"Screen.Overview.Expenses.spent" = "Iztērēts";
+
+/*  */
+"Screen.Overview.Expenses.thisMonth" = "Šomēnes";
+
+/*  */
+"Screen.Overview.Expenses.title" = "Izdevumi";
 
 
 "Tabbar.Tabs.Cards.title" = "Kartes";
@@ -49,3 +61,7 @@
 
 
 "Tabbar.Tabs.Services.title" = "Servisi";
+
+"Screen.User.title" = "Lietotājs";
+
+"Screen.Settings.title" = "Uzstādījumi";

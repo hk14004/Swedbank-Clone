@@ -19,6 +19,6 @@ extension Globals {
     }
     
     static func makeLanguageNameKey(language: String) -> String {
-        return "LanguageSelection." + language
+        return "Screen.LanguageSelection." + language
     }
 }

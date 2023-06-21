@@ -15,8 +15,6 @@ class UserScreenCoordinator: NavigationCoordinator {
         
     // Coordinator
     weak var navigationController: UINavigationController?
-        
-    var children: [NavigationCoordinator] = []
     
     func start() {
         let vm = DI.container.resolve((any UserScreenVM).self)!
@@ -35,12 +33,6 @@ class UserScreenCoordinator: NavigationCoordinator {
     deinit {
         print("")
     }
-}
-
-// MARK: Private
-
-extension UserScreenCoordinator {
-
 }
 
 // MARK: Public

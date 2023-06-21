@@ -49,7 +49,7 @@ class UserScreenVC: RuntimeLocalizedUIViewController {
 extension UserScreenVC {
     
     private func startup() {
-        runtimeLocalizedTitleKey = "Tabbar.Tabs.Cards.title"
+        runtimeLocalizedTitleKey = "Screen.User.title"
         configureTableView()
         observeViewModel()
     }
