@@ -53,6 +53,30 @@
 /*  */
 "Screen.Overview.Expenses.title" = "Expenses";
 
+/*  */
+"Screen.Settings.Section.AppFeatures.authMethods" = "Authentification methods";
+
+/*  */
+"Screen.Settings.Section.AppFeatures.notifications" = "Mobile notifications";
+
+/*  */
+"Screen.Settings.Section.AppFeatures.title" = "App features";
+
+/*  */
+"Screen.Settings.Section.AppFeatures.widget" = "Widget";
+
+/*  */
+"Screen.Settings.Section.Language.title" = "Choose language";
+
+/*  */
+"Screen.Settings.Section.UserData.deleteUserData" = "Delete user data";
+
+/*  */
+"Screen.Settings.Section.UserData.rememberUser" = "Remember user";
+
+/*  */
+"Screen.Settings.Section.UserData.title" = "User data";
+
 
 "Screen.Settings.title" = "Settings";
 

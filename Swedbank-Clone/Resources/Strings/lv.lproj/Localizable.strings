@@ -54,6 +54,30 @@
 "Screen.Overview.Expenses.title" = "Izdevumi";
 
 
+"Screen.Settings.Section.AppFeatures.authMethods" = "Autentifikācijas veidi";
+
+
+"Screen.Settings.Section.AppFeatures.notifications" = "Mobilie paziņojumi";
+
+
+"Screen.Settings.Section.AppFeatures.title" = "Lietotnes funkcijas";
+
+
+"Screen.Settings.Section.AppFeatures.widget" = "Logrīks";
+
+
+"Screen.Settings.Section.Language.title" = "Izvēlies valodu";
+
+
+"Screen.Settings.Section.UserData.deleteUserData" = "Dzēst lietotāja datus";
+
+
+"Screen.Settings.Section.UserData.rememberUser" = "Atcerēties lietotāju";
+
+
+"Screen.Settings.Section.UserData.title" = "Lietotāja dati";
+
+
 "Screen.Settings.title" = "Uzstādījumi";
 
 

@@ -30,6 +30,8 @@ class SettingsScreenSection: UISectionModel {
     
     enum Cell: Hashable {
         case navigation(NavigationItem)
+        case currentLanguage(NavigationItem)
+        case deleteProfile(NavigationItem)
     }
     
     let identifier: Identifier

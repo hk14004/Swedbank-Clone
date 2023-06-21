@@ -39,6 +39,10 @@ class SettingsScreenVC: RuntimeLocalizedUIViewController {
         startup()
     }
     
+    override func updateRuntimeLocalizedStrings() {
+        super.updateRuntimeLocalizedStrings()
+        tableView.reloadData()
+    }
 }
 
 // MARK: Private
@@ -68,17 +72,39 @@ extension SettingsScreenVC {
     private func registerTableViewCells() {
         tableView.register(DefaultTableViewCell.self,
                            forCellReuseIdentifier: DefaultTableViewCell.reuseID)
+        tableView.register(UINib.instanciateNib(type: BasicHeaderFooterView.self),
+                           forHeaderFooterViewReuseIdentifier: BasicHeaderFooterView.reuseID)
     }
     
     private func configureDataSource() {
         dataSource = DiffableDataSource(viewModel: viewModel, tableView: tableView) { tableView, indexPath, item in
             switch item {
+            case .deleteProfile(let item):
+                let cell = tableView.dequeueReusableCell(withIdentifier: DefaultTableViewCell.reuseID,
+                                                         for: indexPath) as? DefaultTableViewCell
+                cell?.accessoryType = .disclosureIndicator
+                var configuration = cell?.defaultContentConfiguration()
+                configuration?.text = item.title.runtimeLocalized()
+                configuration?.textProperties.color = Asset.Colors.color1.color
+                cell?.contentConfiguration = configuration
+                return cell
+            case .currentLanguage:
+                let cell = tableView.dequeueReusableCell(withIdentifier: DefaultTableViewCell.reuseID,
+                                                         for: indexPath) as? DefaultTableViewCell
+                cell?.accessoryType = .disclosureIndicator
+                var configuration = cell?.defaultContentConfiguration()
+                configuration?.image = UIImage(named: Globals.makeLanguageFlagName(language: RuntimeStringFileLocalization.shared.getCurrentLanguage()))
+                configuration?.imageProperties.maximumSize = .init(width: 24, height: 24)
+                configuration?.text = Globals.makeLanguageNameKey(language: RuntimeStringFileLocalization.shared.getCurrentLanguage()).runtimeLocalized()
+                configuration?.textProperties.color = Asset.Colors.secondaryText.color
+                cell?.contentConfiguration = configuration
+                return cell
             case .navigation(let item):
                 let cell = tableView.dequeueReusableCell(withIdentifier: DefaultTableViewCell.reuseID,
                                                          for: indexPath) as? DefaultTableViewCell
                 cell?.accessoryType = .disclosureIndicator
                 var configuration = cell?.defaultContentConfiguration()
-                configuration?.text = item.title
+                configuration?.text = item.title.runtimeLocalized()
                 configuration?.textProperties.color = Asset.Colors.secondaryText.color
                 cell?.contentConfiguration = configuration
                 return cell
@@ -119,10 +145,6 @@ fileprivate extension SettingsScreenVC {
             self.viewModel = viewModel
             super.init(tableView: tableView, cellProvider: cellProvider)
         }
-        
-        override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-            return viewModel.sections[section].title
-        }
     }
 }
 
@@ -132,7 +154,21 @@ extension SettingsScreenVC: UITableViewDelegate {
         switch cell {
         case .navigation(let item):
             item.navigate()
+        case .currentLanguage(let item):
+            item.navigate()
+        case .deleteProfile(let item):
+            item.navigate()
         }
         tableView.deselectRow(at: indexPath, animated: false)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: BasicHeaderFooterView.reuseID) as? BasicHeaderFooterView
+        let titleKey = viewModel.sections[section].title
+        headerView?.titleLabel.runtimeLocalizedKey = titleKey
+        if titleKey.isEmpty {
+            return nil
+        }
+        return headerView
     }
 }
