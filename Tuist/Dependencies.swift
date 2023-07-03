@@ -12,7 +12,8 @@ let dependencies = Dependencies(
     swiftPackageManager: SwiftPackageManagerDependencies(
         [
             .remote(url: "https://github.com/hk14004/DevTools-Swift", requirement: .branch("dev")),
-        ]
-//        productTypes: ["DevTools-Swift": .framework]
+            .remote(url: "https://github.com/Swinject/Swinject", requirement: .upToNextMajor(from: "2.0.0")),
+        ],
+        productTypes: ["Swinject": .framework]
     ),
     platforms: [.iOS])
