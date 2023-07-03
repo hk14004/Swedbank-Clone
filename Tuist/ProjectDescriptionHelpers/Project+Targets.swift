@@ -28,7 +28,8 @@ extension Project {
                    entitlements: nil,
                    scripts: [],
                    dependencies: [
-                    .external(name: "Swinject")
+                    .external(name: "Swinject"),
+                    .external(name: "KeychainAccess")                    
                    ],
                    settings: .settings(configurations: [
                     .debug(name: .debug, settings: makeSettingsDictionary(identity: "iPhone Developer", provisioningPorfileSpecifier: "", variant: $0)),
