@@ -24,8 +24,8 @@ let project = Project(name: "Swedbank",
                       organizationName: Project.Constants.orgName, settings: Settings.settings(configurations: [
                         .debug(name: "Debug"),
                         .release(name: "Release")
-                      ])
-                      ,targets: Project.allTargets,
+                      ]),
+                      targets: Project.allTargets,
                       schemes: [
                         
                       ],

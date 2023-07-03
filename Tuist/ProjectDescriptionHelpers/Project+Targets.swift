@@ -28,6 +28,7 @@ extension Project {
                    entitlements: nil,
                    scripts: [],
                    dependencies: [
+//                    .external(name: "DevTools-Swift")
                    ],
                    settings: .settings(configurations: [
                     .debug(name: .debug, settings: makeSettingsDictionary(identity: "iPhone Developer", provisioningPorfileSpecifier: "", variant: $0)),
