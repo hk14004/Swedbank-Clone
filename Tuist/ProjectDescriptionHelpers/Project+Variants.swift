@@ -27,18 +27,33 @@ extension Project {
 
 extension Project {
     public static let variants: [Variant] = [
-    Variant(targetName: "SWED LV",
-            productName: "SWED",
-            displayName: "Swedbank clone",
-            bundleID: "com.hardijs.Swedbank-Clone",
+    Variant(targetName: "SWEDBANK LV",
+            productName: "SWEDBANK",
+            displayName: "Swed Latvija",
+            bundleID: "com.hardijs.swedbank",
+            configsSubdirectoryName: "",
+            resourcesSubdirectoryName: "",
+            teamID: "9FVL8NV4N7",
+            debugProvisioningProfile: "",
+            releaseProvisioningProfile: "",
+            isProductionEnvironment: true,
+            shouldSignWithDistributionCertificate: false,
+            allowArbitaryLoads: false,
+            appURLScheme: nil
+           ),
+    Variant(targetName: "SWEDBANK LV Dev",
+            productName: "SWEDBANK",
+            displayName: "Swed Latvija Dev",
+            bundleID: "com.hardijs.swedbank.dev",
             configsSubdirectoryName: "",
             resourcesSubdirectoryName: "",
             teamID: "9FVL8NV4N7",
             debugProvisioningProfile: "",
             releaseProvisioningProfile: "",
             isProductionEnvironment: false,
-            shouldSignWithDistributionCertificate: true,
+            shouldSignWithDistributionCertificate: false,
             allowArbitaryLoads: true,
-            appURLScheme: nil)
+            appURLScheme: nil
+           ),
     ]
 }
