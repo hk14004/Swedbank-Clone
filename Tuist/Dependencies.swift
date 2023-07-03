@@ -15,6 +15,13 @@ let dependencies = Dependencies(
             .remote(url: "https://github.com/Swinject/Swinject", requirement: .upToNextMajor(from: "2.0.0")),
             .remote(url: "https://github.com/kishikawakatsumi/KeychainAccess", requirement: .upToNextMajor(from: "4.2.2")),
         ],
-        productTypes: ["Swinject": .framework, "KeychainAccess": .framework]
+        productTypes: ["Swinject": .framework,
+                       "KeychainAccess": .framework,
+                       "DevToolsUI": .framework,
+                       "DevToolsNavigation": .framework,
+                       "DevToolsNetworking": .framework,
+                       "DevToolsCoreData": .framework,
+                       "DevToolsLocalization": .framework
+                      ]
     ),
     platforms: [.iOS])

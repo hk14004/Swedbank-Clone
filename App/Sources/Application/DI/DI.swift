@@ -7,7 +7,6 @@
 //
 
 import Swinject
-import KeychainAccess
 
 let DI = DependencyProvider()
 

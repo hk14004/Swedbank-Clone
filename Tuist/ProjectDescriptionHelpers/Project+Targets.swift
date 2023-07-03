@@ -29,7 +29,12 @@ extension Project {
                    scripts: [],
                    dependencies: [
                     .external(name: "Swinject"),
-                    .external(name: "KeychainAccess")                    
+                    .external(name: "KeychainAccess"),
+                    .external(name: "DevToolsUI"),
+                    .external(name: "DevToolsNavigation"),
+                    .external(name: "DevToolsNetworking"),
+                    .external(name: "DevToolsCoreData"),
+                    .external(name: "DevToolsLocalization")
                    ],
                    settings: .settings(configurations: [
                     .debug(name: .debug, settings: makeSettingsDictionary(identity: "iPhone Developer", provisioningPorfileSpecifier: "", variant: $0)),
