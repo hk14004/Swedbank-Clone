@@ -10,9 +10,30 @@ import UIKit
 
 class SplashVC: UIViewController {
     
+    // MARK: Properties
+    
+    private let viewModel: SplashVM
+    private lazy var rootView = SplashView.RootView()
+    
+    // MARK: Lifecycle
+    
+    init(viewModel: SplashVM) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func loadView() {
+        super.loadView()
+        view = rootView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .cyan
+        viewModel.onViewDidLoad()
     }
     
 }

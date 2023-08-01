@@ -23,7 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func configureWindow() {
         let window = UIWindow(frame: UIScreen.main.bounds)
-        let vc = SplashVC(nibName: nil, bundle: nil)
+        let router = DefaultSplashVMRouter()
+        let vm = DefaultSplashVM(router: router)
+        let vc = SplashVC(viewModel: vm)
         let nav = UINavigationController(rootViewController: vc)
         window.rootViewController = nav
         window.makeKeyAndVisible()
