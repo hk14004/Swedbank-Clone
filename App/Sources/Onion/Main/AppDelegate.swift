@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func configureWindow() {
         let window = UIWindow(frame: UIScreen.main.bounds)
-        let vc = SplashViewController(nibName: nil, bundle: nil)
+        let vc = SplashVC(nibName: nil, bundle: nil)
         let nav = UINavigationController(rootViewController: vc)
         window.rootViewController = nav
         window.makeKeyAndVisible()
