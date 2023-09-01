@@ -31,5 +31,5 @@ let project = Project(
     ),
     targets: Project.allTargets,
     schemes: [],
-    resourceSynthesizers: []
+    resourceSynthesizers: [.assets()]
 )

@@ -6,9 +6,16 @@
 //  Copyright © 2023 SWEDBANK AB. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-class DefaultSplashVMRouter: SplashVMRouter {
+struct DefaultSplashRouter: SplashRouter {
+    
+    private let viewController: UIViewController
+    
+    init(viewController: UIViewController) {
+        self.viewController = viewController
+    }
+    
     func onRouteToHome() {
         print("Routing to home bro")
     }

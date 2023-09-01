@@ -21,10 +21,11 @@ extension Project {
                                                                     allowArbitaryLoads: $0.allowArbitaryLoads,
                                                                     appURLScheme: $0.appURLScheme)),
                    sources: [
-                    .glob("App/Sources/**", excluding: "App/Sources/Common/Constants/**"),
-                    .glob("App/Sources/Common/Constants/\($0.configsSubdirectoryName)/**")
+                    .glob("App/Sources/**")
                    ],
-                   resources: [],
+                   resources: [
+                    "App/Resources/Assets/*"
+                   ],
                    entitlements: nil,
                    scripts: [],
                    dependencies: [

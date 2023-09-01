@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol SplashVMRouter {
+protocol SplashRouter {
     func onRouteToHome()
 }

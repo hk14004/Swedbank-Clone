@@ -17,5 +17,27 @@ protocol SplashVMInput {
 
 protocol SplashVMOutput {
     var onStartLoading: AnyPublisher<Void, Never> { get }
-    var router: SplashVMRouter { get }
+    var router: SplashRouter? { get set }
+}
+
+class DefaultSplashVM: SplashVM {
+        
+    // MARK: Properties
+    
+    var router: SplashRouter?
+    var onStartLoading: AnyPublisher<Void, Never> = CurrentValueSubject<Void, Never>(()).eraseToAnyPublisher()
+    
+    // MARK: Lifecycle
+    
+    init() {}
+}
+
+// MARK: Input
+
+extension DefaultSplashVM {
+    func onViewDidLoad() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            self?.router?.onRouteToHome()
+        }
+    }
 }
