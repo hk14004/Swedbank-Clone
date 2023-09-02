@@ -1,6 +1,4 @@
 import Swinject
-import UIKit
-import DevToolsUI
 
 class ScreenAssembly: Assembly {
     func assemble(container: Container) {
