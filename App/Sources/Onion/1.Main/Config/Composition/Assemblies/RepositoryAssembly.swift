@@ -4,6 +4,8 @@ import DevToolsCore
 
 class RepositoryAssembly: Assembly {
     func assemble(container: Container) {
-
+        container.register(ApplicationActivityRepository.self) { resolver in
+            DefaultApplicationActivityRepository()
+        }
     }
 }

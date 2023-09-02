@@ -9,16 +9,24 @@
 import Swinject
 
 class Composition {
+    // MARK: - Properties
+    static let shared = Composition()
+    private let container = Container()
+    private let assembler: Assembler
     
-    let container = Container()
-    let assembler: Assembler
-    
-    init() {
+    // MARK: - Lifecycle
+    private init() {
         assembler = Assembler(
             [
+                RepositoryAssembly(),
+                UseCaseAssembly(),
                 ScreenAssembly()
             ],
             container: container
         )
+    }
+    
+    static func resolve<T>() -> T {
+        shared.container.resolve(T.self)!
     }
 }

@@ -26,18 +26,23 @@ class DefaultSplashVM: SplashVM {
     
     var router: SplashRouter?
     var onStartLoading: AnyPublisher<Void, Never> = CurrentValueSubject<Void, Never>(()).eraseToAnyPublisher()
+    private let isAnyUserSessionActiveUseCase: IsAnyUserSessionActiveUseCase
     
     // MARK: Lifecycle
     
-    init() {}
+    init(isAnyUserSessionActiveUseCase: IsAnyUserSessionActiveUseCase) {
+        self.isAnyUserSessionActiveUseCase = isAnyUserSessionActiveUseCase
+    }
 }
 
 // MARK: Input
 
 extension DefaultSplashVM {
     func onViewDidLoad() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-            self?.router?.onRouteToHome()
+        if isAnyUserSessionActiveUseCase.use() {
+            
+        } else {
+            
         }
     }
 }

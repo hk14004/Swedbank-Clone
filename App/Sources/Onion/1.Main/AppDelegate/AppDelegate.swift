@@ -10,7 +10,6 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Properties
-    private let composition = Composition()
     var window: UIWindow?
     
     // MARK: - Lifecycle
@@ -21,20 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         startup()
         return true
     }
-}
-
-// MARK: Private
-extension AppDelegate {
-    private func startup() {
-        configureWindow()
-    }
     
-    private func configureWindow() {
-        let window = UIWindow(frame: UIScreen.main.bounds)
-        let vc = composition.container.resolve((any SplashScreenFactory).self)!.make()
-        let nav = UINavigationController(rootViewController: vc)
-        window.rootViewController = nav
-        window.makeKeyAndVisible()
-        self.window = window
+    func applicationWillTerminate(_ application: UIApplication) {
+        registerApplicationClose()
     }
 }
