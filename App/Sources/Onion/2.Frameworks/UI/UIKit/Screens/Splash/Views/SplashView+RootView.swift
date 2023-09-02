@@ -7,9 +7,22 @@
 //
 
 import UIKit
+import SnapKit
 
 extension SplashView {
     final class RootView: UIView {
+        // MARK: Constants
+        enum Constants {
+            static let logoHorizontalInset = 0
+        }
+        
+        // MARK: Views
+        private lazy var logoView = {
+           let view = UIImageView(image: SWEDBANKAsset.Images.swedbankLogo.image)
+            view.contentMode = .scaleAspectFit
+            return view
+        }()
+        
         // MARK: Lifecycle
         
         init() {
@@ -24,8 +37,15 @@ extension SplashView {
         // MARK: Setup
         
         private func setupView() {
-            backgroundColor = .cyan
+            setupLogoView()
         }
         
+        private func setupLogoView() {
+            addSubview(logoView)
+            logoView.snp.makeConstraints { make in
+                make.centerY.equalToSuperview()
+                make.horizontalEdges.equalToSuperview().inset(Constants.logoHorizontalInset)
+            }
+        }
     }
 }

@@ -29,6 +29,7 @@ extension Project {
                    entitlements: nil,
                    scripts: [],
                    dependencies: [
+                    .external(name: "SnapKit"),
                     .external(name: "Swinject"),
                     .external(name: "KeychainAccess"),
                     .external(name: "DevToolsUI"),
