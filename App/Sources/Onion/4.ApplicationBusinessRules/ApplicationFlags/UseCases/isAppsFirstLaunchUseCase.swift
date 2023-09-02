@@ -21,7 +21,7 @@ struct DefaultIsAppsFirstLaunchUseCase: isAppsFirstLaunchUseCase {
     }
     
     func use() -> Bool {
-        return applicationActivityRepository.getLastCloseDate() == nil
+        return applicationActivityRepository.getTerminationDate() == nil
     }
     
 }

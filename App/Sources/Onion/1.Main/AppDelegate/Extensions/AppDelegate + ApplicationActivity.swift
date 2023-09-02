@@ -9,12 +9,12 @@
 import Foundation
 
 extension AppDelegate {
-    func registerApplicationOpen() {
+    func registerApplicationLaunch() {
         let repository: ApplicationActivityRepository = Composition.resolve()
-        repository.saveLastOpenDate(date: Date())
+        repository.saveLaunchDate(date: Date())
     }
-    func registerApplicationClose() {
+    func registerApplicationTermination() {
         let repository: ApplicationActivityRepository = Composition.resolve()
-        repository.saveLastCloseDate(date: Date())
+        repository.saveTerminationDate(date: Date())
     }
 }

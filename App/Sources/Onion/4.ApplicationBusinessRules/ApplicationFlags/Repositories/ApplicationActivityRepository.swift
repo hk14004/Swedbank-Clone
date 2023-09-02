@@ -9,8 +9,8 @@
 import Foundation
 
 protocol ApplicationActivityRepository {
-    func getLastOpenDate() -> Date?
-    func saveLastOpenDate(date: Date?)
-    func getLastCloseDate() -> Date?
-    func saveLastCloseDate(date: Date?)
+    func getLaunchDate() -> Date?
+    func saveLaunchDate(date: Date?)
+    func getTerminationDate() -> Date?
+    func saveTerminationDate(date: Date?)
 }

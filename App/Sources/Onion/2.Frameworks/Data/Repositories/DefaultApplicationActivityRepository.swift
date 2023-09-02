@@ -9,19 +9,19 @@
 import Foundation
 
 class DefaultApplicationActivityRepository: ApplicationActivityRepository {
-    func getLastOpenDate() -> Date? {
+    func getLaunchDate() -> Date? {
         return nil
     }
     
-    func saveLastOpenDate(date: Date?) {
+    func saveLaunchDate(date: Date?) {
         return
     }
     
-    func getLastCloseDate() -> Date? {
+    func getTerminationDate() -> Date? {
         return nil
     }
     
-    func saveLastCloseDate(date: Date?) {
+    func saveTerminationDate(date: Date?) {
         return
     }
     
