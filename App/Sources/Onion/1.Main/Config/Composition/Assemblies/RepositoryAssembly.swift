@@ -7,5 +7,6 @@ class RepositoryAssembly: Assembly {
         container.register(ApplicationActivityRepository.self) { resolver in
             DefaultApplicationActivityRepository()
         }
+        .inObjectScope(.container)
     }
 }

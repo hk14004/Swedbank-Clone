@@ -9,6 +9,6 @@
 import Foundation
 
 enum ApplicationActivityFlag: String, Codable {
-    case lastOpenDate
-    case lastCloseDate
+    case launchDate
+    case terminationDate
 }

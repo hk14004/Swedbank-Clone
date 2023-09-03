@@ -1,18 +1,18 @@
 //
-//  isAppsFirstLaunchUseCase.swift
+//  SaveAppLaunchDateUseCase.swift
 //  Swedbank
 //
-//  Created by Hardijs Ķirsis on 02/09/2023.
+//  Created by Hardijs Ķirsis on 03/09/2023.
 //  Copyright © 2023 SWEDBANK AB. All rights reserved.
 //
 
 import Foundation
 
-protocol isAppsFirstLaunchUseCase {
-    func use() -> Bool
+protocol SaveAppTerminationDateUseCase {
+    func use(terminationDate: Date?)
 }
 
-struct DefaultIsAppsFirstLaunchUseCase: isAppsFirstLaunchUseCase {
+struct DefaultSaveAppTerminationDateUseCase: SaveAppTerminationDateUseCase {
     
     private let applicationActivityRepository: ApplicationActivityRepository
     
@@ -20,8 +20,8 @@ struct DefaultIsAppsFirstLaunchUseCase: isAppsFirstLaunchUseCase {
         self.applicationActivityRepository = applicationActivityRepository
     }
     
-    func use() -> Bool {
-        return applicationActivityRepository.getTerminationDate() == nil
+    func use(terminationDate: Date?) {
+        applicationActivityRepository.saveTerminationDate(date: Date())
     }
     
 }

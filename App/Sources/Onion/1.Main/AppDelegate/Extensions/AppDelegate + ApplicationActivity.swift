@@ -10,11 +10,11 @@ import Foundation
 
 extension AppDelegate {
     func registerApplicationLaunch() {
-        let repository: ApplicationActivityRepository = Composition.resolve()
-        repository.saveLaunchDate(date: Date())
+        let useCase: SaveAppLaunchDateUseCase = Composition.resolve()
+        useCase.use(launchDate: Date())
     }
     func registerApplicationTermination() {
-        let repository: ApplicationActivityRepository = Composition.resolve()
-        repository.saveTerminationDate(date: Date())
+        let useCase: SaveAppTerminationDateUseCase = Composition.resolve()
+        useCase.use(terminationDate: Date())
     }
 }
