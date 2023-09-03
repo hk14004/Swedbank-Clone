@@ -3,21 +3,40 @@ import Swinject
 class ScreenAssembly: Assembly {
     func assemble(container: Container) {
         assembleSplashScreen(container: container)
+        assambleLoginScreen(container: container)
     }
 }
 
 // MARK: - Splash
 extension ScreenAssembly {
     func assembleSplashScreen(container: Container) {
-        container.register(SplashVM.self) { resolver in
+        container.register(SplashScreenVM.self) { resolver in
             DefaultSplashVM(
-                isAnyUserSessionActiveUseCase: Composition.resolve()
+                isAnyUserSessionActiveUseCase: Composition.resolve(),
+                getCompletedOnboardingUseCase: Composition.resolve(),
+                startAllUserSessionsUseCase: Composition.resolve()
             )
         }
-        container.register(SplashVC.self) { resolver in
-            var vm = resolver.resolve(SplashVM.self)!
-            let vc = SplashVC(viewModel: vm)
-            let router = DefaultSplashRouter(viewController: vc)
+        container.register(SplashScreenVC.self) { resolver in
+            var vm = resolver.resolve(SplashScreenVM.self)!
+            let vc = SplashScreenVC(viewModel: vm)
+            let router = DefaultSplashScreenRouter(viewController: vc)
+            vm.router = router
+            return vc
+        }
+    }
+}
+
+// MARK: - Login
+extension ScreenAssembly {
+    func assambleLoginScreen(container: Container) {
+        container.register(LoginScreenVM.self) { resolver in
+           DefaultLoginScreenVM()
+        }
+        container.register(LoginScreenVC.self) { resolver in
+            var vm = resolver.resolve(LoginScreenVM.self)!
+            let vc = LoginScreenVC(viewModel: vm)
+            let router = DefaultLoginScreenRouter(viewController: vc)
             vm.router = router
             return vc
         }

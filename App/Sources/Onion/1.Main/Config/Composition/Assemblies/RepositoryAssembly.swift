@@ -4,6 +4,10 @@ import DevToolsCore
 
 class RepositoryAssembly: Assembly {
     func assemble(container: Container) {
+        container.register(UserJourneyRepository.self) { resolver in
+            DefaultUserJourneyRepository()
+        }
+        .inObjectScope(.container)
         container.register(ApplicationActivityRepository.self) { resolver in
             DefaultApplicationActivityRepository()
         }

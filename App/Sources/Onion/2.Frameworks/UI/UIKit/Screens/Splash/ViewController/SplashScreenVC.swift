@@ -8,16 +8,16 @@
 
 import UIKit
 
-class SplashVC: UIViewController {
+class SplashScreenVC: UIViewController {
     
     // MARK: Properties
     
-    private let viewModel: SplashVM
-    private lazy var rootView = SplashView.RootView()
+    private let viewModel: SplashScreenVM
+    private lazy var rootView = SplashScreenView.RootView()
     
     // MARK: Lifecycle
     
-    init(viewModel: SplashVM) {
+    init(viewModel: SplashScreenVM) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

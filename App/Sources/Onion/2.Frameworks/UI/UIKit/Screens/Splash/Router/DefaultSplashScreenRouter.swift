@@ -8,15 +8,24 @@
 
 import UIKit
 
-struct DefaultSplashRouter: SplashRouter {
-    
+struct DefaultSplashScreenRouter: SplashScreenRouter {
+
     private let viewController: UIViewController
     
     init(viewController: UIViewController) {
         self.viewController = viewController
     }
     
-    func onRouteToHome() {
+    func routeToHome() {
         print("Routing to home bro")
+    }
+    
+    func routeToOnboarding() {
+        print("Onboarding?")
+    }
+    
+    func routeToLogin() {
+        let vc: LoginScreenVC = Composition.resolve()
+        viewController.navigationController?.setViewControllers([vc], animated: false)
     }
 }

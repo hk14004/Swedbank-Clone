@@ -1,13 +1,11 @@
 //
-//  SplashVMRouter.swift
+//  SplashView.swift
 //  Swedbank
 //
 //  Created by Hardijs Ķirsis on 01/08/2023.
 //  Copyright © 2023 SWEDBANK AB. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-protocol SplashRouter {
-    func onRouteToHome()
-}
+enum SplashScreenView {}

@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-extension SplashView {
+extension SplashScreenView {
     final class RootView: UIView {
         // MARK: Constants
         enum Constants {
