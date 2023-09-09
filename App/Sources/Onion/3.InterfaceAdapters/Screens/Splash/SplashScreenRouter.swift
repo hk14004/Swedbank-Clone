@@ -1,5 +1,5 @@
 //
-//  SplashVMRouter.swift
+//  SplashScreenRouter.swift
 //  Swedbank
 //
 //  Created by Hardijs Ķirsis on 01/08/2023.
@@ -9,7 +9,6 @@
 import Foundation
 
 protocol SplashScreenRouter {
-    func routeToHome()
+    func routeToDashboard()
     func routeToOnboarding()
-    func routeToLogin()
 }

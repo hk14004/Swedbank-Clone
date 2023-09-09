@@ -52,10 +52,6 @@ extension DefaultSplashVM {
             return
         }
         startAllUserSessionsUseCase.use()
-        if isAnyUserSessionActiveUseCase.use() {
-            router?.routeToHome()
-        } else {
-            router?.routeToLogin()
-        }
+        router?.routeToDashboard()
     }
 }

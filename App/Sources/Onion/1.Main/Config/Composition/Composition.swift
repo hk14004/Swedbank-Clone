@@ -11,7 +11,7 @@ import Swinject
 class Composition {
     // MARK: - Properties
     static let shared = Composition()
-    private let container = Container()
+    let container = Container()
     private let assembler: Assembler
     
     // MARK: - Lifecycle

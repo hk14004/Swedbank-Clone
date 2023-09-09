@@ -16,8 +16,9 @@ struct DefaultSplashScreenRouter: SplashScreenRouter {
         self.viewController = viewController
     }
     
-    func routeToHome() {
-        print("Routing to home bro")
+    func routeToDashboard() {
+        let vc: DashboardScreenVC = Composition.resolve()
+        viewController.navigationController?.setViewControllers([vc], animated: false)
     }
     
     func routeToOnboarding() {

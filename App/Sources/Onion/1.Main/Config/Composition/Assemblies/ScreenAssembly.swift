@@ -4,6 +4,8 @@ class ScreenAssembly: Assembly {
     func assemble(container: Container) {
         assembleSplashScreen(container: container)
         assambleLoginScreen(container: container)
+        assableDashboardScreen(container: container)
+        assableLockedDashboardScreen(container: container)
     }
 }
 
@@ -37,6 +39,35 @@ extension ScreenAssembly {
             var vm = resolver.resolve(LoginScreenVM.self)!
             let vc = LoginScreenVC(viewModel: vm)
             let router = DefaultLoginScreenRouter(viewController: vc)
+            vm.router = router
+            return vc
+        }
+    }
+}
+
+// MARK: - Dashboard
+extension ScreenAssembly {
+    func assableDashboardScreen(container: Container) {
+        container.register(DashboardScreenVM.self) { resolver in
+            DefaultDashboardScreenVM()
+        }
+        container.register(DashboardScreenVC.self) { resolver in
+            var vm = resolver.resolve(DashboardScreenVM.self)!
+            let vc = DashboardScreenVC(viewModel: vm)
+            let router = DefaultDashboardScreenRouter(viewController: vc)
+            vm.router = router
+            return vc
+        }
+    }
+}
+
+// MARK: - Locked dashboard
+extension ScreenAssembly {
+    func assableLockedDashboardScreen(container: Container) {
+        container.register(LockedDashboardVC.self) { (resolver, config: LockedDashboardPresentationConfig) in
+            var vm = DefaultLockedDashboardVM(presentation: config)
+            let vc = LockedDashboardVC(viewModel: vm)
+            let router = DefaultLockedDashboardRouter(viewController: vc)
             vm.router = router
             return vc
         }

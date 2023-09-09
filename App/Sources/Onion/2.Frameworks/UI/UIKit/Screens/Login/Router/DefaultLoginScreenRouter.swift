@@ -12,7 +12,7 @@ class DefaultLoginScreenRouter: LoginScreenRouter {
 
     var viewController: UIViewController
 
-    internal init(viewController:UIViewController) {
+    init(viewController:UIViewController) {
         self.viewController = viewController
     }
     
