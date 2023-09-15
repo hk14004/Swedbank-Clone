@@ -20,6 +20,7 @@ let dependencies = Dependencies(
             "SnapKit": .framework,
             "Swinject": .framework,
             "KeychainAccess": .framework,
+            "DevToolsCore": .framework,
             "DevToolsUI": .framework,
             "DevToolsNavigation": .framework,
             "DevToolsNetworking": .framework,

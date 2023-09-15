@@ -17,6 +17,10 @@ let project = Project(
                product: .framework,
                bundleId: "com.hardijs.SwedInterfaceAdapters",
                deploymentTarget: .iOS(targetVersion: Project.Constants.targetVersion, devices: [.iphone, .ipad]),
-               sources: ["Sources/**"])
+               sources: ["Sources/**"],
+               dependencies: [
+                 .external(name: "DevToolsCore"),
+                 .project(target: "SwedApplicationBusinessRules", path: "../SwedApplicationBusinessRules")
+               ])
     ]
 )
