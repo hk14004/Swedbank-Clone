@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import Combine
 import DevToolsUI
+import SwedInterfaceAdapters
 
 enum LockedDashboardView {
     class RootView: UIView {

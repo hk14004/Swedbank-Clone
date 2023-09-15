@@ -1,5 +1,6 @@
 import Swinject
 import SwedApplicationBusinessRules
+import SwedInterfaceAdapters
 
 class ScreenAssembly: Assembly {
     func assemble(container: Container) {

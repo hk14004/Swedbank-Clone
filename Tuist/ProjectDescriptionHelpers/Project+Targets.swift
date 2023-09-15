@@ -29,6 +29,7 @@ extension Project {
                    entitlements: nil,
                    scripts: [],
                    dependencies: [
+                    .project(target: "SwedInterfaceAdapters", path: "Frameworks/SwedInterfaceAdapters"),
                     .project(target: "SwedEnterpriseBusinessRules", path: "Frameworks/SwedEnterpriseBusinessRules"),
                     .project(target: "SwedApplicationBusinessRules", path: "Frameworks/SwedApplicationBusinessRules"),
                     .external(name: "SnapKit"),

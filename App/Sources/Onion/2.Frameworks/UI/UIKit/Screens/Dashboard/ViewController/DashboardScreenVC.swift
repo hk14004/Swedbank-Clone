@@ -8,6 +8,7 @@
 
 import UIKit
 import Combine
+import SwedInterfaceAdapters
 
 class DashboardScreenVC: UITabBarController {
     

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwedInterfaceAdapters
 
 struct DefaultSplashScreenRouter: SplashScreenRouter {
 

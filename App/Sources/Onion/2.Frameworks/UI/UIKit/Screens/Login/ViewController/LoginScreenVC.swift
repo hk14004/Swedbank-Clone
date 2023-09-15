@@ -9,6 +9,7 @@
 import UIKit
 import DevToolsUI
 import Combine
+import SwedInterfaceAdapters
 
 class LoginScreenVC: UIViewController {
     

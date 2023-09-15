@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwedInterfaceAdapters
 
 class DefaultLoginScreenRouter: LoginScreenRouter {
 
