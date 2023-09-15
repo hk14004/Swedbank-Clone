@@ -21,6 +21,7 @@ class DefaultLockedDashboardRouter: LockedDashboardRouter {
     }
     
     func routeToLogin() {
-        print("Route to login")
+        let vc: LoginScreenVC = Composition.resolve()
+        viewController.present(vc, animated: true)
     }
 }

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Combine
+import DevToolsUI
 
 extension LoginScreenView {
     final class RootView: UIView {
@@ -22,20 +24,29 @@ extension LoginScreenView {
         }()
         private lazy var usernameField: PrimaryTextField = {
             let view = PrimaryTextField()
-            view.placeholder = "Username!"
+            view.placeholder = SWEDBANKStrings.Screen.Login.Username.placeholder
             return view
         }()
         private lazy var passwordField: PrimaryTextField = {
             let view = PrimaryTextField()
-            view.placeholder = "password!"
+            view.placeholder = SWEDBANKStrings.Screen.Login.Password.placeholder
             return view
         }()
         private lazy var loginButton: PrimaryButton = {
             let view = PrimaryButton()
-            view.setTitle("Login", for: .normal)
+            view.setTitle(SWEDBANKStrings.Screen.Login.Button.title,for: .normal)
             return view
         }()
         
+        var onLoginTap: AnyPublisher<Void, Never> {
+            loginButton.eventPublisher(for: .touchUpInside).eraseToAnyPublisher()
+        }
+        var usernameValue: String {
+            usernameField.text ?? ""
+        }
+        var passwordValue: String {
+            passwordField.text ?? ""
+        }
         override init(frame: CGRect) {
             super.init(frame: frame)
             setup()

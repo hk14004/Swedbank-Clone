@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import DevToolsUI
+import Combine
 
 class LoginScreenVC: UIViewController {
     
     private let viewModel: LoginScreenVM
     private lazy var rootView = LoginScreenView.RootView()
+    private var bag = Set<AnyCancellable>()
     
     init(viewModel: LoginScreenVM) {
         self.viewModel = viewModel
@@ -24,11 +27,24 @@ class LoginScreenVC: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
         viewModel.viewDidLoad()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func bind() {
+        rootView.onLoginTap
+            .receiveOnMainThread()
+            .sink { [weak self] in
+                self?.viewModel.onLoginTapped(
+                    username: self?.rootView.usernameValue ?? "",
+                    password: self?.rootView.passwordValue ?? ""
+                )
+            }
+            .store(in: &bag)
     }
     
 }

@@ -24,7 +24,7 @@ extension Project {
                     .glob("App/Sources/**")
                    ],
                    resources: [
-                    "App/Resources/Assets/*"
+                    "App/Resources/**"
                    ],
                    entitlements: nil,
                    scripts: [],

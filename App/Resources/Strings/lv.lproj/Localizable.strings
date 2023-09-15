@@ -1,0 +1,114 @@
+
+/*  */
+"Globals.InputField.mustBeAtleastSize" = "Laukam jābūt vismaz %@ simbolu garam";
+
+/*  */
+"Globals.InputField.mustNotBeEmpty" = "Lauks nedrīkst būt tukšs";
+
+
+"Globals.login" = "Ienākt";
+
+
+"Globals.logout" = "Iziet";
+
+
+"Screen.LanguageSelection.en" = "English";
+
+
+"Screen.LanguageSelection.lv" = "Latviešu";
+
+
+"Screen.LanguageSelection.title" = "Izvēlieties valodu";
+
+
+"Screen.LockedTab.Overview.subtitle" = "Ērts veids kā pārraudzīt savu naudu un redzēt, kur tā tiek tērēta";
+
+
+"Screen.LockedTab.Overview.title" = "Konta atlikums un pārskats";
+
+
+"Screen.LockedTab.Payments.subtitle" = "Veic maksājumus viegli lai kur vien arī būtu";
+
+
+"Screen.LockedTab.Payments.title" = "Pārskaiti naudu vai apmaksā rēķinus";
+
+
+"Screen.Login.Button.title" = "Ienākt";
+
+/*  */
+"Screen.Login.Password.placeholder" = "Ievadiet paroli";
+
+/*  */
+"Screen.Login.Username.placeholder" = "Ievadiet lietotājvārdu";
+
+/*  */
+"Screen.Overview.Expenses.details" = "Skatīt detaļas";
+
+/*  */
+"Screen.Overview.Expenses.spent" = "Iztērēts";
+
+/*  */
+"Screen.Overview.Expenses.thisMonth" = "Šomēnes";
+
+/*  */
+"Screen.Overview.Expenses.title" = "Izdevumi";
+
+
+"Screen.Settings.Section.AppFeatures.authMethods" = "Autentifikācijas veidi";
+
+
+"Screen.Settings.Section.AppFeatures.notifications" = "Mobilie paziņojumi";
+
+
+"Screen.Settings.Section.AppFeatures.title" = "Lietotnes funkcijas";
+
+
+"Screen.Settings.Section.AppFeatures.widget" = "Logrīks";
+
+
+"Screen.Settings.Section.Language.title" = "Izvēlies valodu";
+
+
+"Screen.Settings.Section.UserData.deleteUserData" = "Dzēst lietotāja datus";
+
+
+"Screen.Settings.Section.UserData.rememberUser" = "Atcerēties lietotāju";
+
+
+"Screen.Settings.Section.UserData.title" = "Lietotāja dati";
+
+
+"Screen.Settings.title" = "Uzstādījumi";
+
+
+"Screen.User.Section.Privacy.privacySettings" = "Privātuma iestatījumi";
+
+
+"Screen.User.Section.Privacy.title" = "Privātums";
+
+
+"Screen.User.Section.Private.title" = "Privātpersonām";
+
+
+"Screen.User.Section.Settings.settings" = "Uzstādījumi";
+
+
+"Screen.User.Section.Settings.title" = "";
+
+
+"Screen.User.title" = "Lietotājs";
+
+
+"Tabbar.Tabs.Cards.title" = "Kartes";
+
+
+"Tabbar.Tabs.Contacts.title" = "Kontakti";
+
+
+"Tabbar.Tabs.Overview.title" = "Pārskats";
+
+
+"Tabbar.Tabs.Payments.title" = "Maksājumi";
+
+
+"Tabbar.Tabs.Services.title" = "Servisi";

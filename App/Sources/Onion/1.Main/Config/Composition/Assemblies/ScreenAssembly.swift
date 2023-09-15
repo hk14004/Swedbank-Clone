@@ -33,7 +33,7 @@ extension ScreenAssembly {
 extension ScreenAssembly {
     func assambleLoginScreen(container: Container) {
         container.register(LoginScreenVM.self) { resolver in
-           DefaultLoginScreenVM()
+            DefaultLoginScreenVM(loginUseCase: resolver.resolve(LoginUseCase.self)!)
         }
         container.register(LoginScreenVC.self) { resolver in
             var vm = resolver.resolve(LoginScreenVM.self)!
