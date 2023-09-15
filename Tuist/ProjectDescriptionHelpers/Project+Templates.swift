@@ -20,13 +20,13 @@ extension Project {
     // MARK: - Private
 
     /// Helper function to create a framework target and an associated unit test target
-    private static func makeFrameworkTargets(name: String, platform: Platform) -> [Target] {
+    static func makeFrameworkTargets(name: String, platform: Platform) -> [Target] {
         let sources = Target(name: name,
                 platform: platform,
                 product: .framework,
                 bundleId: "io.tuist.\(name)",
                 infoPlist: .default,
-                sources: ["Targets/\(name)/Sources/**"],
+                sources: ["Framwork/\(name)/Sources/**"],
                 resources: [],
                 dependencies: [])
         let tests = Target(name: "\(name)Tests",
@@ -34,7 +34,7 @@ extension Project {
                 product: .unitTests,
                 bundleId: "io.tuist.\(name)Tests",
                 infoPlist: .default,
-                sources: ["Targets/\(name)/Tests/**"],
+                sources: ["Framwork/\(name)/Tests/**"],
                 resources: [],
                 dependencies: [.target(name: name)])
         return [sources, tests]

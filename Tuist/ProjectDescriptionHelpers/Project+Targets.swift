@@ -9,7 +9,7 @@ import ProjectDescription
 
 extension Project {
     public static var allTargets: [ProjectDescription.Target] {
-        var targets = variants.map {
+        let targets = variants.map {
             Target(name: $0.targetName,
                    platform: .iOS,
                    product: .app,
@@ -29,6 +29,7 @@ extension Project {
                    entitlements: nil,
                    scripts: [],
                    dependencies: [
+                    .project(target: "SwedEnterpriseBusinessRules", path: "Frameworks/SwedEnterpriseBusinessRules"),
                     .external(name: "SnapKit"),
                     .external(name: "Swinject"),
                     .external(name: "KeychainAccess"),
@@ -51,7 +52,7 @@ extension Project {
 
 extension Project {
     private static func makeInfoPlist(displayName: String, isProductionEnvironment: Bool, allowArbitaryLoads: Bool, appURLScheme: String?) -> [String: InfoPlist.Value] {
-        var infoPlist: [String : InfoPlist.Value] = [
+        let infoPlist: [String : InfoPlist.Value] = [
             "CFBundleShortVersionString": InfoPlist.Value(stringLiteral: makeVersionNumber(isProd: isProductionEnvironment)),
             "CFBundleVersion": InfoPlist.Value(stringLiteral: makeBuildNumber(isProd: isProductionEnvironment)),
             "CFBundleDisplayName": InfoPlist.Value(stringLiteral: displayName),
