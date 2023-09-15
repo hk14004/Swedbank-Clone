@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwedApplicationBusinessRules
 
 class DefaultUserJourneyRepository: UserJourneyRepository {
     func update(completedOnboarding: Bool) {

@@ -9,6 +9,7 @@
 import Foundation
 import Swinject
 import DevToolsCore
+import SwedApplicationBusinessRules
 
 class UserSessionAssembly: Assembly {
     func assemble(container: Container) {

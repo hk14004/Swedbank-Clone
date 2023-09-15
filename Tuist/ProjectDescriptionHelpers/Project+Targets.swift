@@ -30,6 +30,7 @@ extension Project {
                    scripts: [],
                    dependencies: [
                     .project(target: "SwedEnterpriseBusinessRules", path: "Frameworks/SwedEnterpriseBusinessRules"),
+                    .project(target: "SwedApplicationBusinessRules", path: "Frameworks/SwedApplicationBusinessRules"),
                     .external(name: "SnapKit"),
                     .external(name: "Swinject"),
                     .external(name: "KeychainAccess"),

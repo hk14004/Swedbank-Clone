@@ -1,6 +1,7 @@
 import Foundation
 import Swinject
 import DevToolsCore
+import SwedApplicationBusinessRules
 
 class RepositoryAssembly: Assembly {
     func assemble(container: Container) {

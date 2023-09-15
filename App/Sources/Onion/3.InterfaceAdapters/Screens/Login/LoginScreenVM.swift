@@ -9,6 +9,7 @@
 import Foundation
 import Combine
 import DevToolsCore
+import SwedApplicationBusinessRules
 
 protocol LoginScreenVMInput {
     func viewDidLoad()
@@ -23,7 +24,7 @@ protocol LoginScreenVMOutput {
 
 protocol LoginScreenVM: LoginScreenVMInput,LoginScreenVMOutput {}
 
-class DefaultLoginScreenVM: LoginScreenVM {
+public class DefaultLoginScreenVM: LoginScreenVM {
     var router: LoginScreenRouter?
     private(set) var loading: CurrentValueSubject<Bool, Never> = .init(false)
     private let loginUseCase: LoginUseCase

@@ -9,6 +9,7 @@
 import DevToolsCore
 import KeychainAccess
 import Foundation
+import SwedApplicationBusinessRules
 
 class DefaultUserSessionCredentialsStore: BaseUserSessionCredentialsStore<UserSessionCredentials> {
 
