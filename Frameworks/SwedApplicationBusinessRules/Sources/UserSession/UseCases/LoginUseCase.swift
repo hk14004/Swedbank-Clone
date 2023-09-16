@@ -43,7 +43,7 @@ public struct DefaultLoginUseCase: LoginUseCase {
         .flatMap { response -> AnyPublisher<CustomerDTO, Error> in
             // Save creds
             let creds = UserSessionCredentials(
-                id: response.customerID,
+                id: username,
                 authorizationData: .init(
                     bearerToken: response.bearerToken,
                     refreshToken: response.refreshToken
@@ -52,7 +52,7 @@ public struct DefaultLoginUseCase: LoginUseCase {
             userSessionCredentialsRepository.save(credentials: creds)
             // Fetch customer
             return fetchCustomerService.use(
-                input: .init(customerID: response.customerID)
+                input: .init(customerID: username)
             )
             .flatMap { customerResponse -> AnyPublisher<CustomerDTO, Error> in
                 // Start session
