@@ -58,14 +58,14 @@ public extension DefaultLoginScreenVM {
 
 extension DefaultLoginScreenVM {
     private func onLoggedIn(customer: CustomerDTO) {
-        print("Route to dashboard")
+        print("Route to dashboard with customer:", customer.name)
     }
     
     private func handleLoginCompletion(_ completion: Subscribers.Completion<Error>) {
         loading.send(false)
         switch completion {
         case .finished:
-            print("load")
+            print("Login finished")
         case .failure(let error):
             printError(error)
         }

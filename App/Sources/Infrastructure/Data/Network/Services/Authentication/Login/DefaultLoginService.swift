@@ -34,3 +34,21 @@ class DefaultLoginService: LoginService {
         )
     }
 }
+
+class MockLoginService: LoginService {
+    private let networkClient: DevNetworkClient
+    
+    init(networkClient: DevNetworkClient) {
+        self.networkClient = networkClient
+    }
+    
+    func use(input: LoginServiceInput) -> AnyPublisher<LoginServiceOutput, Error> {
+        .just(
+            LoginServiceOutput(
+                bearerToken: "token",
+                refreshToken: "refresh token",
+                expirationDuration: 9999
+            )
+        )
+    }
+}
