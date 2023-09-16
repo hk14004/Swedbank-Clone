@@ -1,6 +1,6 @@
 import Foundation
 
-struct FetchCredentialsLoginOutgoing: Codable {
+struct BasicLoginInfoOutgoing: Codable {
     let username: String
     let password: String
 }

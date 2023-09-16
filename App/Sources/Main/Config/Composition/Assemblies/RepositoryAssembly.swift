@@ -13,5 +13,9 @@ class RepositoryAssembly: Assembly {
             DefaultApplicationActivityRepository()
         }
         .inObjectScope(.container)
+        container.register(UserSessionCredentialsRepository.self) { resolver in
+            DefaultUserSessionCredentialsRepository()
+        }
+        .inObjectScope(.container)
     }
 }

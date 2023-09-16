@@ -15,26 +15,26 @@ public protocol LoginUseCase {
 
 public struct DefaultLoginUseCase: LoginUseCase {
     
-    private let fetchCredentialsService: FetchCredentialsService
+    private let loginService: LoginService
     private let manager: UserSessionManager
     private let fetchCustomerService: FetchCustomerService
     private let userSessionCredentialsRepository: UserSessionCredentialsRepository
     
     public init(
-        fetchCredentialsService: FetchCredentialsService,
+        loginService: LoginService,
         manager: UserSessionManager,
         fetchCustomerService: FetchCustomerService,
         userSessionCredentialsRepository: UserSessionCredentialsRepository
     ) {
-        self.fetchCredentialsService = fetchCredentialsService
+        self.loginService = loginService
         self.manager = manager
         self.fetchCustomerService = fetchCustomerService
         self.userSessionCredentialsRepository = userSessionCredentialsRepository
     }
     
     public func use(username: String, password: String) -> AnyPublisher<CustomerDTO, Error> {
-        // Fetch token
-        fetchCredentialsService.use(
+        // Fetch tokens
+        loginService.use(
             input: .init(
                 username: username,
                 password: password
@@ -57,7 +57,7 @@ public struct DefaultLoginUseCase: LoginUseCase {
             .flatMap { customerResponse -> AnyPublisher<CustomerDTO, Error> in
                 // Start session
                 manager.startUserSession(with: creds)
-                return Just(customerResponse.data).setFailureType(to: Error.self)
+                return Just(customerResponse.customer).setFailureType(to: Error.self)
                     .eraseToAnyPublisher()
             }.eraseToAnyPublisher()
         }

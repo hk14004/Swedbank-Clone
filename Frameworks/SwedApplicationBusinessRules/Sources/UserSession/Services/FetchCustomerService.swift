@@ -14,15 +14,25 @@ public protocol FetchCustomerService {
 }
 
 public struct FetchCustomerServiceInput {
-    let customerID: String
+    public let customerID: String
 }
 
 public struct FetchCustomerServiceOutput {
-    let data: CustomerDTO
+    public let customer: CustomerDTO
+    
+    public init(customer: CustomerDTO) {
+        self.customer = customer
+    }
 }
 
 public struct CustomerDTO {
-    let id: String
-    let name: String
-    let surname: String
+    public let id: String
+    public let name: String
+    public let surname: String
+    
+    public init(id: String, name: String, surname: String) {
+        self.id = id
+        self.name = name
+        self.surname = surname
+    }
 }

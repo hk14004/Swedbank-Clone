@@ -2,18 +2,18 @@ import Combine
 import DevToolsNetworking
 import SwedApplicationBusinessRules
 
-class DefaultFetchCredentialsService: FetchCredentialsService {
+class DefaultLoginService: LoginService {
     private let networkClient: DevNetworkClient
     
     init(networkClient: DevNetworkClient) {
         self.networkClient = networkClient
     }
     
-    func use(input: FetchCredentialsServiceInput) -> AnyPublisher<FetchCredentialsServiceOutput, Error> {
+    func use(input: LoginServiceInput) -> AnyPublisher<LoginServiceOutput, Error> {
         fetchResponse(input: input)
-            .flatMap { response -> AnyPublisher<FetchCredentialsServiceOutput, Error> in
+            .flatMap { response -> AnyPublisher<LoginServiceOutput, Error> in
                     .just(
-                        FetchCredentialsServiceOutput(
+                        LoginServiceOutput(
                             bearerToken: response.accessToken,
                             refreshToken: response.refreshToken,
                             expirationDuration: response.accessTokenExpirationDuration
@@ -23,10 +23,10 @@ class DefaultFetchCredentialsService: FetchCredentialsService {
             .eraseToAnyPublisher()
     }
     
-    private func fetchResponse(input: FetchCredentialsServiceInput) -> AnyPublisher<FetchCredentialsResponse, Error> {
+    private func fetchResponse(input: LoginServiceInput) -> AnyPublisher<LoginResponse, Error> {
         networkClient.execute(
-            FetchCredentialsRequestConfig.login(
-                FetchCredentialsLoginOutgoing(
+            LoginRequestConfig.login(
+                BasicLoginInfoOutgoing(
                     username: input.username,
                     password: input.password
                 )

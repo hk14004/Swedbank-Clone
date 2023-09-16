@@ -9,18 +9,16 @@
 import Foundation
 import Combine
 
-public protocol FetchCredentialsService {
-    func use(
-        input: FetchCredentialsServiceInput
-    ) -> AnyPublisher<FetchCredentialsServiceOutput, Error>
+public protocol LoginService {
+    func use(input: LoginServiceInput) -> AnyPublisher<LoginServiceOutput, Error>
 }
 
-public struct FetchCredentialsServiceInput {
+public struct LoginServiceInput {
     public let username: String
     public let password: String
 }
 
-public struct FetchCredentialsServiceOutput {
+public struct LoginServiceOutput {
     public let bearerToken: String
     public let refreshToken: String
     public let expirationDuration: Int

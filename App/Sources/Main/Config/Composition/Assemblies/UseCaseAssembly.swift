@@ -7,7 +7,7 @@ class UseCaseAssembly: Assembly {
     func assemble(container: Container) {
         container.register(LoginUseCase.self) { resolver in
             DefaultLoginUseCase(
-                fetchCredentialsService: resolver.resolve(FetchCredentialsService.self)!,
+                loginService: resolver.resolve(LoginService.self)!,
                 manager: resolver.resolve(UserSessionManager.self)!,
                 fetchCustomerService: resolver.resolve(FetchCustomerService.self)!,
                 userSessionCredentialsRepository: resolver.resolve(UserSessionCredentialsRepository.self)!
