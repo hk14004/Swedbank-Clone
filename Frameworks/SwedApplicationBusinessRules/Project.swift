@@ -9,17 +9,17 @@ import ProjectDescriptionHelpers
 import ProjectDescription
 
 let project = Project(
-    name: "SwedApplicationBusinessRules",
+    name: Project.Framework.SwedApplicationBusinessRules.rawValue,
     organizationName: Project.Root.orgName,
     targets: [
-        Target(name: "SwedApplicationBusinessRules",
+        Target(name: Project.Framework.SwedApplicationBusinessRules.rawValue,
                platform: .iOS,
                product: .framework,
-               bundleId: "com.hardijs.SwedApplicationBusinessRules",
-               deploymentTarget: .iOS(targetVersion: Project.Root.targetVersion, devices: [.iphone, .ipad]),
+               bundleId: "com.hardijs.\(Project.Framework.SwedApplicationBusinessRules.rawValue)",
+               deploymentTarget: .iOS(targetVersion: Project.Root.targetVersion, devices: Project.Root.devices),
                sources: ["Sources/**"],
                dependencies: [
-                 .external(name: "DevToolsCore")
+                .external(name: Project.Dependencies.DevToolsCore.rawValue)
                ])
     ]
 )

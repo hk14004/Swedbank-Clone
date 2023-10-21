@@ -6,20 +6,8 @@
 //
 
 import ProjectDescription
+import ProjectDescriptionHelpers
 
-public extension Dependencies {
-    enum Constants: String {
-        case SnapKit
-        case Swinject
-        case KeychainAccess
-        case DevToolsCore
-        case DevToolsUI
-        case DevToolsNavigation
-        case DevToolsNetworking
-        case DevToolsCoreData
-        case DevToolsLocalization
-    }
-}
 let dependencies = Dependencies(
     carthage: CarthageDependencies([]),
     swiftPackageManager: SwiftPackageManagerDependencies(
@@ -30,15 +18,15 @@ let dependencies = Dependencies(
             .remote(url: "https://github.com/SnapKit/SnapKit", requirement: .upToNextMajor(from: "5.6.0")),
         ],
         productTypes: [
-            Dependencies.Constants.SnapKit.rawValue: .framework,
-            Dependencies.Constants.Swinject.rawValue: .framework,
-            Dependencies.Constants.KeychainAccess.rawValue: .framework,
-            Dependencies.Constants.DevToolsCore.rawValue: .framework,
-            Dependencies.Constants.DevToolsUI.rawValue: .framework,
-            Dependencies.Constants.DevToolsNavigation.rawValue: .framework,
-            Dependencies.Constants.DevToolsNetworking.rawValue: .framework,
-            Dependencies.Constants.DevToolsCoreData.rawValue: .framework,
-            Dependencies.Constants.DevToolsLocalization.rawValue: .framework
+            Project.Dependencies.SnapKit.rawValue: .framework,
+            Project.Dependencies.Swinject.rawValue: .framework,
+            Project.Dependencies.KeychainAccess.rawValue: .framework,
+            Project.Dependencies.DevToolsCore.rawValue: .framework,
+            Project.Dependencies.DevToolsUI.rawValue: .framework,
+            Project.Dependencies.DevToolsNavigation.rawValue: .framework,
+            Project.Dependencies.DevToolsNetworking.rawValue: .framework,
+            Project.Dependencies.DevToolsCoreData.rawValue: .framework,
+            Project.Dependencies.DevToolsLocalization.rawValue: .framework
         ]
     ),
     platforms: [.iOS])

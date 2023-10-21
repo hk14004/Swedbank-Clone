@@ -12,5 +12,6 @@ extension Project {
         public static let name = "Swedbank"
         public static let orgName = "SWEDBANK AB"
         public static let targetVersion = "14.0"
+        public static let devices: DeploymentDevice = [.iphone, .ipad]
     }
 }

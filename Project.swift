@@ -29,7 +29,7 @@ let project = Project(
             .release(name: "Release")
         ]
     ),
-    targets: Project.allTargets,
+    targets: Project.Root.allTargets,
     schemes: [],
     resourceSynthesizers: [.assets(), .strings()]
 )

@@ -1,5 +1,5 @@
 //
-//  Project+Variants.swift
+//  Project+Targets.swift
 //  ProjectDescriptionHelpers
 //
 //  Created by Hardijs Ķirsis on 03/07/2023.
@@ -7,27 +7,33 @@
 
 import ProjectDescription
 
-extension Project {
-    public struct Variant {
-        public let targetName: String
-        public let productName: String
-        public let displayName: String
-        public let bundleID: String
-        public let configsSubdirectoryName: String
-        public let resourcesSubdirectoryName: String
-        public let teamID: String
-        public let debugProvisioningProfile: String
-        public let releaseProvisioningProfile: String
-        public let isProductionEnvironment: Bool
-        public let shouldSignWithDistributionCertificate: Bool
-        public let allowArbitaryLoads: Bool
-        public let appURLScheme: String?
+extension Project.Root {
+    public static var allTargets: [ProjectDescription.Target] {
+        return appTargets
+    }
+    
+    private static var appTargets: [Target] {
+        variants.map { $0.toTuistTarget() }
+    }
+    
+    private static var appUnitTestTargets: [Target] {
+        let variant = variants[1]
+        return [
+            Target(name: "Swedbank Unit Tests",
+                   platform: .iOS,
+                   product: .unitTests,
+                   bundleId: "\(variant.bundleID).unittest",
+                   deploymentTarget: .iOS(targetVersion: Project.Root.targetVersion, devices: [.iphone, .ipad]),
+                   infoPlist: .default,
+                   sources: ["App/Tests/Unit/**"],
+                   dependencies: [.target(name: variant.name)])
+        ]
     }
 }
 
-extension Project {
-    public static let variants: [Variant] = [
-    Variant(targetName: "SWEDBANK LV",
+extension Project.Root {
+    public static let variants: [AppVariant] = [
+        AppVariant(name: "SWEDBANK LV",
             productName: "SWEDBANK",
             displayName: "Swed Latvija",
             bundleID: "com.hardijs.swedbank",
@@ -41,7 +47,7 @@ extension Project {
             allowArbitaryLoads: false,
             appURLScheme: nil
            ),
-    Variant(targetName: "SWEDBANK LV Dev",
+        AppVariant(name: "SWEDBANK LV Dev",
             productName: "SWEDBANK",
             displayName: "Swed Latvija Dev",
             bundleID: "com.hardijs.swedbank.dev",
