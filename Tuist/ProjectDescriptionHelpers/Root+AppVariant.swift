@@ -27,29 +27,30 @@ extension Project.Root {
 
 extension Project.Root.AppVariant {
     func toTuistTarget() -> Target {
-        Target(name: name,
-               platform: .iOS,
-               product: .app,
-               productName: productName,
-               bundleId: bundleID,
-               deploymentTarget: .iOS(targetVersion: Project.Root.targetVersion, devices: Project.Root.devices),
-               infoPlist: .extendingDefault(
+        Target(
+            name: name,
+            platform: .iOS,
+            product: .app,
+            productName: productName,
+            bundleId: bundleID,
+            deploymentTarget: .iOS(targetVersion: Project.Root.targetVersion, devices: Project.Root.devices),
+            infoPlist: .extendingDefault(
                 with: Project.makeInfoPlist(
                     displayName: displayName,
                     isProductionEnvironment: isProductionEnvironment,
                     allowArbitaryLoads: allowArbitaryLoads,
                     appURLScheme: appURLScheme
                 )
-               ),
-               sources: [
+            ),
+            sources: [
                 .glob("App/Sources/**")
-               ],
-               resources: [
+            ],
+            resources: [
                 "App/Resources/**"
-               ],
-               entitlements: nil,
-               scripts: [],
-               dependencies: [
+            ],
+            entitlements: nil,
+            scripts: [],
+            dependencies: [
                 .project(
                     target: Project.Framework.SwedInterfaceAdapters.rawValue,
                     path: Project.Framework.SwedInterfaceAdapters.getPath()
@@ -70,8 +71,8 @@ extension Project.Root.AppVariant {
                 .external(name: Project.Dependencies.DevToolsNetworking.rawValue),
                 .external(name: Project.Dependencies.DevToolsCoreData.rawValue),
                 .external(name: Project.Dependencies.DevToolsLocalization.rawValue)
-               ],
-               settings: .settings(configurations: [
+            ],
+            settings: .settings(configurations: [
                 .debug(name: .debug, settings: Project.makeSettingsDictionary(
                     identity: "iPhone Developer",
                     provisioningPorfileSpecifier: "", variant: self)
@@ -79,7 +80,7 @@ extension Project.Root.AppVariant {
                 .release(name: .release, settings: Project.makeSettingsDictionary(
                     identity: "iPhone Developer", provisioningPorfileSpecifier: "", variant: self)
                 )
-               ])
+            ])
         )
     }
 }

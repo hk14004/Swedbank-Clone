@@ -8,32 +8,33 @@
 import ProjectDescription
 
 extension Project.Root {
-    public static var allTargets: [ProjectDescription.Target] {
-        return appTargets
+    public static var allTargets: [Target] {
+        return appTargets + appUnitTestTargets
     }
     
     private static var appTargets: [Target] {
-        variants.map { $0.toTuistTarget() }
+        appVariants.map { $0.toTuistTarget() }
     }
     
     private static var appUnitTestTargets: [Target] {
-        let variant = variants[1]
+        let variant = appVariants[1]
         return [
-            Target(name: "Swedbank Unit Tests",
-                   platform: .iOS,
-                   product: .unitTests,
-                   bundleId: "\(variant.bundleID).unittest",
-                   deploymentTarget: .iOS(targetVersion: Project.Root.targetVersion, devices: [.iphone, .ipad]),
-                   infoPlist: .default,
-                   sources: ["App/Tests/Unit/**"],
-                   dependencies: [.target(name: variant.name)])
+            Target(
+                name: "App Unit Tests",
+                platform: .iOS,
+                product: .unitTests,
+                bundleId: "\(variant.bundleID).unittest",
+                deploymentTarget: .iOS(targetVersion: Project.Root.targetVersion, devices: Project.Root.devices),
+                infoPlist: .default,
+                sources: ["App/UnitTests/**"],
+                dependencies: [.target(name: variant.name)]
+            )
         ]
     }
-}
-
-extension Project.Root {
-    public static let variants: [AppVariant] = [
-        AppVariant(name: "SWEDBANK LV",
+    
+    public static let appVariants: [AppVariant] = [
+        AppVariant(
+            name: "SWEDBANK LV",
             productName: "SWEDBANK",
             displayName: "Swed Latvija",
             bundleID: "com.hardijs.swedbank",
@@ -46,8 +47,9 @@ extension Project.Root {
             shouldSignWithDistributionCertificate: false,
             allowArbitaryLoads: false,
             appURLScheme: nil
-           ),
-        AppVariant(name: "SWEDBANK LV Dev",
+        ),
+        AppVariant(
+            name: "SWEDBANK LV Dev",
             productName: "SWEDBANK",
             displayName: "Swed Latvija Dev",
             bundleID: "com.hardijs.swedbank.dev",
@@ -60,6 +62,6 @@ extension Project.Root {
             shouldSignWithDistributionCertificate: false,
             allowArbitaryLoads: true,
             appURLScheme: nil
-           ),
+        )
     ]
 }
