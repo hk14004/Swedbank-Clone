@@ -23,7 +23,7 @@ extension Project.Root {
                 name: "App Unit Tests",
                 platform: .iOS,
                 product: .unitTests,
-                bundleId: "\(variant.bundleID).unittest",
+                bundleId: "\(variant.bundleID).test",
                 deploymentTarget: .iOS(targetVersion: Project.Root.targetVersion, devices: Project.Root.devices),
                 infoPlist: .default,
                 sources: ["App/UnitTests/**"],
