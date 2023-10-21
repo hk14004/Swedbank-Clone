@@ -9,13 +9,11 @@ import ProjectDescriptionHelpers
 import ProjectDescription
 
 enum Constants {
-    static let name = "SwedEnterpriseBusinessRules"
-    static let bundleId = "com.hardijs.SwedEnterpriseBusinessRules"
-    static let devices: ProjectDescription.DeploymentDevice = [.iphone, .ipad]
+    static let bundleId = "com.hardijs.\(Project.Framework.SwedEnterpriseBusinessRules.rawValue)"
 }
 
 let project = Project(
-    name: Constants.name,
+    name: Project.Framework.SwedEnterpriseBusinessRules.rawValue,
     organizationName: Project.Root.orgName,
     settings: Settings.settings(
         configurations: [
@@ -24,28 +22,28 @@ let project = Project(
         ]
     ),
     targets: [
-        Target(name: Constants.name,
+        Target(name: Project.Framework.SwedEnterpriseBusinessRules.rawValue,
                platform: .iOS,
                product: .framework,
                bundleId: Constants.bundleId,
-               deploymentTarget: .iOS(targetVersion: Project.Root.targetVersion, devices: Constants.devices),
+               deploymentTarget: .iOS(targetVersion: Project.Root.targetVersion, devices: Project.Root.devices),
                sources: ["Sources/**"],
                dependencies: [
-                .external(name: "DevToolsCore")
+                .external(name: Project.Dependencies.DevToolsCore.rawValue)
                ]),
-        Target(name: Constants.name + "Tests",
+        Target(name: Project.Framework.SwedEnterpriseBusinessRules.getTestTargetName(),
                platform: .iOS,
                product: .unitTests,
                bundleId: Constants.bundleId + ".test",
-               deploymentTarget: .iOS(targetVersion: Project.Root.targetVersion, devices: Constants.devices),
+               deploymentTarget: .iOS(targetVersion: Project.Root.targetVersion, devices: Project.Root.devices),
                infoPlist: .default,
                sources: ["Tests/**"],
                dependencies: [
-                .target(name: Constants.name),
-                .external(name: "DevToolsCore")
+                .target(name: Project.Framework.SwedEnterpriseBusinessRules.rawValue),
+                .external(name: Project.Dependencies.DevToolsCore.rawValue)
                ])
     ],
     schemes: [
-        Project.appTargetScheme(name: "\(Constants.name + "Tests")")
+        Project.appTargetScheme(name: Project.Framework.SwedEnterpriseBusinessRules.getTestTargetName())
     ]
 )
