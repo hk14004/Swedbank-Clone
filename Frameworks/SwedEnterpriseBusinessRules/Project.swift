@@ -8,18 +8,44 @@
 import ProjectDescriptionHelpers
 import ProjectDescription
 
+enum Constants {
+    static let name = "SwedEnterpriseBusinessRules"
+    static let bundleId = "com.hardijs.SwedEnterpriseBusinessRules"
+    static let devices: ProjectDescription.DeploymentDevice = [.iphone, .ipad]
+}
+
 let project = Project(
-    name: "SwedEnterpriseBusinessRules",
+    name: Constants.name,
     organizationName: Project.Constants.orgName,
+    settings: Settings.settings(
+        configurations: [
+            .debug(name: "Debug"),
+            .release(name: "Release")
+        ]
+    ),
     targets: [
-        Target(name: "SwedEnterpriseBusinessRules",
+        Target(name: Constants.name,
                platform: .iOS,
                product: .framework,
-               bundleId: "com.hardijs.SwedEnterpriseBusinessRules",
-               deploymentTarget: .iOS(targetVersion: Project.Constants.targetVersion, devices: [.iphone, .ipad]),
+               bundleId: Constants.bundleId,
+               deploymentTarget: .iOS(targetVersion: Project.Constants.targetVersion, devices: Constants.devices),
                sources: ["Sources/**"],
-              dependencies: [
+               dependencies: [
                 .external(name: "DevToolsCore")
-              ])
+               ]),
+        Target(name: Constants.name + "Tests",
+               platform: .iOS,
+               product: .unitTests,
+               bundleId: Constants.bundleId + ".test",
+               deploymentTarget: .iOS(targetVersion: Project.Constants.targetVersion, devices: Constants.devices),
+               infoPlist: .default,
+               sources: ["Tests/**"],
+               dependencies: [
+                .target(name: Constants.name),
+                .external(name: "DevToolsCore")
+               ])
+    ],
+    schemes: [
+        Project.appTargetScheme(name: "\(Constants.name + "Tests")")
     ]
 )

@@ -12,7 +12,7 @@ extension Project {
         Scheme(name: name,
                shared: true,
                buildAction: .buildAction(targets: [TargetReference(stringLiteral: name)]),
-               testAction: .testPlans(testPlans),
+               testAction: .targets([TestableTarget(stringLiteral: name)]),
                runAction: .runAction()
         )
     }

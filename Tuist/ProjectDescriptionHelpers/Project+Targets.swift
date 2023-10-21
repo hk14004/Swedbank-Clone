@@ -9,7 +9,41 @@ import ProjectDescription
 
 extension Project {
     public static var allTargets: [ProjectDescription.Target] {
-        let targets = variants.map {
+        return appTargets
+    }
+}
+
+extension Project {
+    private static func makeInfoPlist(displayName: String, isProductionEnvironment: Bool, allowArbitaryLoads: Bool, appURLScheme: String?) -> [String: InfoPlist.Value] {
+        let infoPlist: [String : InfoPlist.Value] = [
+            "CFBundleShortVersionString": InfoPlist.Value(stringLiteral: makeVersionNumber(isProd: isProductionEnvironment)),
+            "CFBundleVersion": InfoPlist.Value(stringLiteral: makeBuildNumber(isProd: isProductionEnvironment)),
+            "CFBundleDisplayName": InfoPlist.Value(stringLiteral: displayName),
+            "UIMainStoryboardFile": "",
+            "UILaunchStoryboardName": "LaunchScreen",
+            "NSAppTransportSecurity": [
+                "NSAllowArbitaryLoads": InfoPlist.Value(booleanLiteral: allowArbitaryLoads)
+            ]
+        ]
+        
+        return infoPlist
+    }
+    
+    private static func makeVersionNumber(isProd: Bool) -> String {
+        isProd ? prodVersionNumber : devVersionNumber
+    }
+    
+    private static func makeBuildNumber(isProd: Bool) -> String {
+        isProd ? prodBuildNumber : prodVersionNumber
+    }
+    
+    private static func makeSettingsDictionary(identity: String, provisioningPorfileSpecifier: String, variant: Variant) -> SettingsDictionary {
+        
+        return SettingsDictionary().automaticCodeSigning(devTeam: variant.teamID).currentProjectVersion(makeBuildNumber(isProd: variant.isProductionEnvironment))
+    }
+    
+    private static var appTargets: [Target] {
+        variants.map {
             Target(name: $0.targetName,
                    platform: .iOS,
                    product: .app,
@@ -47,42 +81,19 @@ extension Project {
                    ])
             )
         }
-        
-        return targets
-    }
-}
-
-extension Project {
-    private static func makeInfoPlist(displayName: String, isProductionEnvironment: Bool, allowArbitaryLoads: Bool, appURLScheme: String?) -> [String: InfoPlist.Value] {
-        let infoPlist: [String : InfoPlist.Value] = [
-            "CFBundleShortVersionString": InfoPlist.Value(stringLiteral: makeVersionNumber(isProd: isProductionEnvironment)),
-            "CFBundleVersion": InfoPlist.Value(stringLiteral: makeBuildNumber(isProd: isProductionEnvironment)),
-            "CFBundleDisplayName": InfoPlist.Value(stringLiteral: displayName),
-            "UIMainStoryboardFile": "",
-            "UILaunchStoryboardName": "LaunchScreen",
-            "NSAppTransportSecurity": [
-                "NSAllowArbitaryLoads": InfoPlist.Value(booleanLiteral: allowArbitaryLoads)
-            ]
-        ]
-        
-        return infoPlist
-    }
-//    InfoPlist.Value
-    private static func makeVersionNumber(isProd: Bool) -> String {
-        isProd ? prodVersionNumber : devVersionNumber
     }
     
-    private static func makeBuildNumber(isProd: Bool) -> String {
-        isProd ? prodBuildNumber : prodVersionNumber
-    }
-    
-    private static func makeSettingsDictionary(identity: String, provisioningPorfileSpecifier: String, variant: Variant) -> SettingsDictionary {
-        
-        return SettingsDictionary().automaticCodeSigning(devTeam: variant.teamID).currentProjectVersion(makeBuildNumber(isProd: variant.isProductionEnvironment))
-    }
-    
-    private static var appTestTargets: [Target] {
-        [
+    private static var appUnitTestTargets: [Target] {
+        let variant = variants[1]
+        return [
+            Target(name: "Swedbank Unit Tests",
+                   platform: .iOS,
+                   product: .unitTests,
+                   bundleId: "\(variant.bundleID).unittest",
+                   deploymentTarget: .iOS(targetVersion: Project.Constants.targetVersion, devices: [.iphone, .ipad]),
+                   infoPlist: .default,
+                   sources: ["App/Tests/Unit/**"],
+                   dependencies: [.target(name: variant.targetName)])
         ]
     }
 }
