@@ -50,21 +50,35 @@ extension Project.Root.AppVariant {
                entitlements: nil,
                scripts: [],
                dependencies: [
-                .project(target: "SwedInterfaceAdapters", path: "Frameworks/SwedInterfaceAdapters"),
-                .project(target: "SwedEnterpriseBusinessRules", path: "Frameworks/SwedEnterpriseBusinessRules"),
-                .project(target: "SwedApplicationBusinessRules", path: "Frameworks/SwedApplicationBusinessRules"),
-                .external(name: "SnapKit"),
-                .external(name: "Swinject"),
-                .external(name: "KeychainAccess"),
-                .external(name: "DevToolsUI"),
-                .external(name: "DevToolsNavigation"),
-                .external(name: "DevToolsNetworking"),
-                .external(name: "DevToolsCoreData"),
-                .external(name: "DevToolsLocalization")
+                .project(
+                    target: Project.Framework.SwedInterfaceAdapters.rawValue,
+                    path: Project.Framework.SwedInterfaceAdapters.getPath()
+                ),
+                .project(
+                    target: Project.Framework.SwedEnterpriseBusinessRules.rawValue,
+                    path: Project.Framework.SwedEnterpriseBusinessRules.getPath()
+                ),
+                .project(
+                    target: Project.Framework.SwedApplicationBusinessRules.rawValue,
+                    path: Project.Framework.SwedApplicationBusinessRules.getPath()
+                ),
+                .external(name: Project.Dependencies.SnapKit.rawValue),
+                .external(name: Project.Dependencies.Swinject.rawValue),
+                .external(name: Project.Dependencies.KeychainAccess.rawValue),
+                .external(name: Project.Dependencies.DevToolsUI.rawValue),
+                .external(name: Project.Dependencies.DevToolsNavigation.rawValue),
+                .external(name: Project.Dependencies.DevToolsNetworking.rawValue),
+                .external(name: Project.Dependencies.DevToolsCoreData.rawValue),
+                .external(name: Project.Dependencies.DevToolsLocalization.rawValue)
                ],
                settings: .settings(configurations: [
-                .debug(name: .debug, settings: Project.makeSettingsDictionary(identity: "iPhone Developer", provisioningPorfileSpecifier: "", variant: self)),
-                .release(name: .release, settings: Project.makeSettingsDictionary(identity: "iPhone Developer", provisioningPorfileSpecifier: "", variant: self))
+                .debug(name: .debug, settings: Project.makeSettingsDictionary(
+                    identity: "iPhone Developer",
+                    provisioningPorfileSpecifier: "", variant: self)
+                ),
+                .release(name: .release, settings: Project.makeSettingsDictionary(
+                    identity: "iPhone Developer", provisioningPorfileSpecifier: "", variant: self)
+                )
                ])
         )
     }

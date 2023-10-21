@@ -17,7 +17,7 @@ public extension Project {
 }
 
 extension Project.Framework {
-    func getPath() -> String {
-        Project.frameworkDir + "/" + rawValue
+    func getPath() -> Path {
+        "\(Project.frameworkDir + "/" + rawValue)"
     }
 }
