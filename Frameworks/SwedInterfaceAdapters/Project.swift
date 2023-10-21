@@ -10,13 +10,13 @@ import ProjectDescription
 
 let project = Project(
     name: "SwedInterfaceAdapters",
-    organizationName: Project.Constants.orgName,
+    organizationName: Project.Root.orgName,
     targets: [
         Target(name: "SwedInterfaceAdapters",
                platform: .iOS,
                product: .framework,
                bundleId: "com.hardijs.SwedInterfaceAdapters",
-               deploymentTarget: .iOS(targetVersion: Project.Constants.targetVersion, devices: [.iphone, .ipad]),
+               deploymentTarget: .iOS(targetVersion: Project.Root.targetVersion, devices: [.iphone, .ipad]),
                sources: ["Sources/**"],
                dependencies: [
                  .external(name: "DevToolsCore"),

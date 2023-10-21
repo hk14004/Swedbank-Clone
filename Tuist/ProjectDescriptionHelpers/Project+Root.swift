@@ -8,7 +8,8 @@
 import ProjectDescription
 
 extension Project {
-    public enum Constants {
+    public struct Root {
+        public static let name = "Swedbank"
         public static let orgName = "SWEDBANK AB"
         public static let targetVersion = "14.0"
     }

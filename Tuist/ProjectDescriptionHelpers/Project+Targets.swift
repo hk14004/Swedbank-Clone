@@ -49,7 +49,7 @@ extension Project {
                    product: .app,
                    productName: $0.productName,
                    bundleId: $0.bundleID,
-                   deploymentTarget: .iOS(targetVersion: Project.Constants.targetVersion, devices: [.iphone, .ipad]),
+                   deploymentTarget: .iOS(targetVersion: Project.Root.targetVersion, devices: [.iphone, .ipad]),
                    infoPlist: .extendingDefault(with: makeInfoPlist(displayName: $0.displayName,
                                                                     isProductionEnvironment: $0.isProductionEnvironment,
                                                                     allowArbitaryLoads: $0.allowArbitaryLoads,
@@ -90,7 +90,7 @@ extension Project {
                    platform: .iOS,
                    product: .unitTests,
                    bundleId: "\(variant.bundleID).unittest",
-                   deploymentTarget: .iOS(targetVersion: Project.Constants.targetVersion, devices: [.iphone, .ipad]),
+                   deploymentTarget: .iOS(targetVersion: Project.Root.targetVersion, devices: [.iphone, .ipad]),
                    infoPlist: .default,
                    sources: ["App/Tests/Unit/**"],
                    dependencies: [.target(name: variant.targetName)])

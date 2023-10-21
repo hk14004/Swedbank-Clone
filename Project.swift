@@ -21,8 +21,8 @@ import ProjectDescriptionHelpers
 
 // Creates our project using a helper function defined in ProjectDescriptionHelpers
 let project = Project(
-    name: "Swedbank",
-    organizationName: Project.Constants.orgName,
+    name: Project.Root.name,
+    organizationName: Project.Root.orgName,
     settings: Settings.settings(
         configurations: [
             .debug(name: "Debug"),

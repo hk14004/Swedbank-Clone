@@ -8,7 +8,7 @@
 import ProjectDescription
 
 extension Project {
-    public static func appTargetScheme(name: String, testPlans: [Path] = []) -> Scheme {
+    public static func appTargetScheme(name: String) -> Scheme {
         Scheme(name: name,
                shared: true,
                buildAction: .buildAction(targets: [TargetReference(stringLiteral: name)]),

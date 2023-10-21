@@ -16,7 +16,7 @@ enum Constants {
 
 let project = Project(
     name: Constants.name,
-    organizationName: Project.Constants.orgName,
+    organizationName: Project.Root.orgName,
     settings: Settings.settings(
         configurations: [
             .debug(name: "Debug"),
@@ -28,7 +28,7 @@ let project = Project(
                platform: .iOS,
                product: .framework,
                bundleId: Constants.bundleId,
-               deploymentTarget: .iOS(targetVersion: Project.Constants.targetVersion, devices: Constants.devices),
+               deploymentTarget: .iOS(targetVersion: Project.Root.targetVersion, devices: Constants.devices),
                sources: ["Sources/**"],
                dependencies: [
                 .external(name: "DevToolsCore")
@@ -37,7 +37,7 @@ let project = Project(
                platform: .iOS,
                product: .unitTests,
                bundleId: Constants.bundleId + ".test",
-               deploymentTarget: .iOS(targetVersion: Project.Constants.targetVersion, devices: Constants.devices),
+               deploymentTarget: .iOS(targetVersion: Project.Root.targetVersion, devices: Constants.devices),
                infoPlist: .default,
                sources: ["Tests/**"],
                dependencies: [
