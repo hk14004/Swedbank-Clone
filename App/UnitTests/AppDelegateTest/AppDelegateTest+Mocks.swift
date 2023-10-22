@@ -6,8 +6,7 @@
 //  Copyright © 2023 SWEDBANK AB. All rights reserved.
 //
 
-import Foundation
-@testable import SWEDBANK
+@testable import SwedApplicationBusinessRules
 
 extension AppDelegateTest {
     final class Mocks {

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-@testable import SwedApplicationBusinessRules
 
 class MockSaveAppTerminationDateUseCase: SaveAppTerminationDateUseCase {
     var useCalledSpy: ((Date?)->())?

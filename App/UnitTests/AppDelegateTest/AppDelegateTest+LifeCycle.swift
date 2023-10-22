@@ -8,6 +8,7 @@
 
 import XCTest
 @testable import SWEDBANK
+@testable import SwedApplicationBusinessRules
 
 extension AppDelegateTest {
     func testAppLaunch_didRegisterStartup() {
