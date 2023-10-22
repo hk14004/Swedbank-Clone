@@ -17,7 +17,7 @@ extension ScreenAssembly {
         container.register(SplashScreenVM.self) { resolver in
             DefaultSplashVM(
                 isAnyUserSessionActiveUseCase: Composition.resolve(),
-                getCompletedOnboardingUseCase: Composition.resolve(),
+                isOnboardingCompletedUseCase: Composition.resolve(),
                 startAllUserSessionsUseCase: Composition.resolve()
             )
         }

@@ -28,18 +28,18 @@ public class DefaultSplashVM: SplashScreenVM {
     public var router: SplashScreenRouter?
     public var onStartLoading: AnyPublisher<Void, Never> = CurrentValueSubject<Void, Never>(()).eraseToAnyPublisher()
     private let isAnyUserSessionActiveUseCase: IsAnyUserSessionActiveUseCase
-    private let getCompletedOnboardingUseCase: isOnboardingCompletedUseCase
+    private let isOnboardingCompletedUseCase: isOnboardingCompletedUseCase
     private let startAllUserSessionsUseCase: StartAllUserSessionsUseCase
     
     // MARK: Lifecycle
     
     public init(
         isAnyUserSessionActiveUseCase: IsAnyUserSessionActiveUseCase,
-        getCompletedOnboardingUseCase: isOnboardingCompletedUseCase,
+        isOnboardingCompletedUseCase: isOnboardingCompletedUseCase,
         startAllUserSessionsUseCase: StartAllUserSessionsUseCase
     ) {
         self.isAnyUserSessionActiveUseCase = isAnyUserSessionActiveUseCase
-        self.getCompletedOnboardingUseCase = getCompletedOnboardingUseCase
+        self.isOnboardingCompletedUseCase = isOnboardingCompletedUseCase
         self.startAllUserSessionsUseCase = startAllUserSessionsUseCase
     }
 }
@@ -48,7 +48,7 @@ public class DefaultSplashVM: SplashScreenVM {
 
 public extension DefaultSplashVM {
     func onViewDidLoad() {
-        guard getCompletedOnboardingUseCase.use() else {
+        guard isOnboardingCompletedUseCase.use() else {
             router?.routeToOnboarding()
             return
         }
