@@ -8,7 +8,6 @@
 import UIKit
 import SwedApplicationBusinessRules
 
-@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Properties
     var window: UIWindow?
