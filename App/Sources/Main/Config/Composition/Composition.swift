@@ -32,4 +32,8 @@ class Composition {
     static func resolve<T>() -> T {
         shared.container.resolve(T.self)!
     }
+    
+    func resolve<T>() -> T {
+        container.resolve(T.self)!
+    }
 }

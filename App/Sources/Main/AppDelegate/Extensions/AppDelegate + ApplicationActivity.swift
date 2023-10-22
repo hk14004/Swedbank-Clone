@@ -11,11 +11,9 @@ import SwedApplicationBusinessRules
 
 extension AppDelegate {
     func registerApplicationLaunch() {
-        let useCase: SaveAppLaunchDateUseCase = Composition.resolve()
-        useCase.use(launchDate: Date())
+        saveAppLaunchDateUseCase.use(launchDate: Date())
     }
     func registerApplicationTermination() {
-        let useCase: SaveAppTerminationDateUseCase = Composition.resolve()
-        useCase.use(terminationDate: Date())
+        saveAppTerminationDateUseCase.use(terminationDate: Date())
     }
 }

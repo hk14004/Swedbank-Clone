@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import SwedApplicationBusinessRules
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Properties
     var window: UIWindow?
+    var saveAppLaunchDateUseCase: SaveAppLaunchDateUseCase = Composition.resolve()
+    var saveAppTerminationDateUseCase: SaveAppTerminationDateUseCase = Composition.resolve()
     
     // MARK: - Lifecycle
     func application(
@@ -20,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         startup()
         return true
     }
+    
     
     func applicationWillTerminate(_ application: UIApplication) {
         registerApplicationTermination()
