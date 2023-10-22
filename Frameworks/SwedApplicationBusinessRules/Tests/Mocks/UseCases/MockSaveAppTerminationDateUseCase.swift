@@ -1,5 +1,5 @@
 //
-//  MockSaveAppLaunchDateUseCase.swift
+//  MockSaveAppTerminationDateUseCase.swift
 //  App Unit Tests
 //
 //  Created by Hardijs Ķirsis on 22/10/2023.
@@ -9,9 +9,9 @@
 import Foundation
 @testable import SwedApplicationBusinessRules
 
-class MockSaveAppLaunchDateUseCase: SaveAppLaunchDateUseCase {
+class MockSaveAppTerminationDateUseCase: SaveAppTerminationDateUseCase {
     var useCalledSpy: ((Date?)->())?
-    func use(launchDate: Date?) {
-        useCalledSpy?(launchDate)
+    func use(terminationDate: Date?) {
+        useCalledSpy?(terminationDate)
     }
 }
