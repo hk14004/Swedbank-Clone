@@ -8,11 +8,11 @@
 
 import Foundation
 
-public protocol GetCompletedOnboardingUseCase {
+public protocol isOnboardingCompletedUseCase {
     func use() -> Bool
 }
 
-public struct DefaultGetCompletedOnboardingUseCase: GetCompletedOnboardingUseCase {
+public struct DefaultIsOnboardingCompletedUseCase: isOnboardingCompletedUseCase {
     
     private let userJourneyRepository: UserJourneyRepository
     

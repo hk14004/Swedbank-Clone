@@ -16,8 +16,8 @@ extension GetCompletedOnboardingUseCaseTests {
 }
 
 extension GetCompletedOnboardingUseCaseTests {
-    func makeSUT() -> DefaultGetCompletedOnboardingUseCase {
-        DefaultGetCompletedOnboardingUseCase(
+    func makeSUT() -> DefaultIsOnboardingCompletedUseCase {
+        DefaultIsOnboardingCompletedUseCase(
             userJourneyRepository: mocks.mockUserJourneyRepository
         )
     }

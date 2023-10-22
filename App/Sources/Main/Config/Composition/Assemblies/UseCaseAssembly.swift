@@ -18,8 +18,8 @@ class UseCaseAssembly: Assembly {
                 manager: resolver.resolve(UserSessionManager.self)!
             )
         }
-        container.register(GetCompletedOnboardingUseCase.self) { resolver in
-            DefaultGetCompletedOnboardingUseCase(
+        container.register(isOnboardingCompletedUseCase.self) { resolver in
+            DefaultIsOnboardingCompletedUseCase(
                 userJourneyRepository: resolver.resolve(UserJourneyRepository.self)!
             )
         }

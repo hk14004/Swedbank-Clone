@@ -28,14 +28,14 @@ public class DefaultSplashVM: SplashScreenVM {
     public var router: SplashScreenRouter?
     public var onStartLoading: AnyPublisher<Void, Never> = CurrentValueSubject<Void, Never>(()).eraseToAnyPublisher()
     private let isAnyUserSessionActiveUseCase: IsAnyUserSessionActiveUseCase
-    private let getCompletedOnboardingUseCase: GetCompletedOnboardingUseCase
+    private let getCompletedOnboardingUseCase: isOnboardingCompletedUseCase
     private let startAllUserSessionsUseCase: StartAllUserSessionsUseCase
     
     // MARK: Lifecycle
     
     public init(
         isAnyUserSessionActiveUseCase: IsAnyUserSessionActiveUseCase,
-        getCompletedOnboardingUseCase: GetCompletedOnboardingUseCase,
+        getCompletedOnboardingUseCase: isOnboardingCompletedUseCase,
         startAllUserSessionsUseCase: StartAllUserSessionsUseCase
     ) {
         self.isAnyUserSessionActiveUseCase = isAnyUserSessionActiveUseCase
