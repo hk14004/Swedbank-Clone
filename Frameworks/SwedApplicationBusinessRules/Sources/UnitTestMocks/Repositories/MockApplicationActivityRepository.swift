@@ -20,9 +20,11 @@ class MockApplicationActivityRepository: ApplicationActivityRepository {
         saveLaunchDateCalledSpy?(date)
     }
     
+    var getTerminationDateCalledSpy: (()->())?
     var getTerminationDateMock: Date?
     func getTerminationDate() -> Date? {
-        getTerminationDateMock
+        getTerminationDateCalledSpy?()
+        return getTerminationDateMock
     }
     
     var saveTerminationDateCalledSpy: ((Date?)->())?

@@ -20,8 +20,8 @@ public struct DefaultSaveAppTerminationDateUseCase: SaveAppTerminationDateUseCas
         self.applicationActivityRepository = applicationActivityRepository
     }
     
-    public func use(terminationDate: Date?) {
-        applicationActivityRepository.saveTerminationDate(date: Date())
+    public func use(terminationDate: Date? = Date()) {
+        applicationActivityRepository.saveTerminationDate(date: terminationDate)
     }
     
 }
