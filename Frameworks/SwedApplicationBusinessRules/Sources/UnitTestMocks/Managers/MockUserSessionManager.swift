@@ -18,6 +18,11 @@ class MockUserSessionManager: UserSessionManager {
         return isSomebodyLoggedInMock
     }
     
+    var startAllUserSessionsCalledSpy: (()->())?
+    override func startAllUserSessions() {
+        startAllUserSessionsCalledSpy?()
+    }
+    
     init() {
         let credentialsStore = BaseUserSessionCredentialsStore<UserSessionCredentials>()
         let userSessionFactory = BaseUserSessionFactory<UserSessionCredentials>()
