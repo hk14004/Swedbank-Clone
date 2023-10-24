@@ -16,7 +16,7 @@ final class LoginUseCaseTests: XCTestCase {
     func testUse() throws {
         // Arrange
         let sut = makeSUT()
-        let mockOutput = StartSessionServiceOutput(bearerToken: "", refreshToken: "", expirationDuration: 0)
+        let mockOutput = StartSessionServiceOutput(bearerToken: "", refreshToken: "", expirationDuration: 0, userID: "")
         let mockCustomer = CustomerDTO(id: "", name: "James", surname: "007")
         mocks.mockLoginService.mockResult = .just(mockOutput)
         mocks.mockFetchCustomerService.mockResult = .just(.init(customer: mockCustomer))

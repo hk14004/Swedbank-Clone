@@ -22,10 +22,12 @@ public struct StartSessionServiceOutput {
     public let bearerToken: String
     public let refreshToken: String
     public let expirationDuration: Int
+    public let userID: String
     
-    public init(bearerToken: String, refreshToken: String, expirationDuration: Int) {
+    public init(bearerToken: String, refreshToken: String, expirationDuration: Int, userID: String) {
         self.bearerToken = bearerToken
         self.refreshToken = refreshToken
         self.expirationDuration = expirationDuration
+        self.userID = userID
     }
 }
