@@ -7,9 +7,22 @@
 //
 
 import XCTest
+@testable import SwedApplicationBusinessRules
 
 final class LoginUseCaseTests: XCTestCase {
-    func testExample() throws {
-        XCTFail("TODO")
+    
+    let mocks = Mocks()
+    
+    func testUse() throws {
+        // Arrange
+        let sut = makeSUT()
+        let mockOutput = LoginServiceOutput(bearerToken: "", refreshToken: "", expirationDuration: 0)
+        mocks.mockLoginService.mockResult = .just(mockOutput)
+        let expectedUsername = "James"
+        let expectedPassword = "Pass"
+        // Act
+        let _ = sut.use(username: expectedUsername, password: expectedPassword)
+        
+        // Assert
     }
 }
