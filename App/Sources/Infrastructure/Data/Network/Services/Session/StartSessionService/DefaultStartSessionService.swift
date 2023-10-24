@@ -2,7 +2,7 @@ import Combine
 import DevToolsNetworking
 import SwedApplicationBusinessRules
 
-class DefaultLoginService: StartSessionService {
+class DefaultStartSessionService: StartSessionService {
     private let networkClient: DevNetworkClient
     
     init(networkClient: DevNetworkClient) {
@@ -16,38 +16,21 @@ class DefaultLoginService: StartSessionService {
                         StartSessionServiceOutput(
                             bearerToken: response.accessToken,
                             refreshToken: response.refreshToken,
-                            expirationDuration: response.accessTokenExpirationDuration
+                            expirationDuration: response.accessTokenExpirationDuration, 
+                            userID: response.userID
                         )
                     )
             }
             .eraseToAnyPublisher()
     }
     
-    private func fetchResponse(input: StartSessionServiceInput) -> AnyPublisher<LoginResponse, Error> {
+    private func fetchResponse(input: StartSessionServiceInput) -> AnyPublisher<StartSessionResponse, Error> {
         networkClient.execute(
-            LoginRequestConfig.login(
-                BasicLoginInfoOutgoing(
+            SessionRequestConfig.startSession(
+                StartSessionDataOutgoing(
                     username: input.username,
                     password: input.password
                 )
-            )
-        )
-    }
-}
-
-class MockLoginService: StartSessionService {
-    private let networkClient: DevNetworkClient
-    
-    init(networkClient: DevNetworkClient) {
-        self.networkClient = networkClient
-    }
-    
-    func use(input: StartSessionServiceInput) -> AnyPublisher<StartSessionServiceOutput, Error> {
-        .just(
-            StartSessionServiceOutput(
-                bearerToken: "token",
-                refreshToken: "refresh token",
-                expirationDuration: 9999
             )
         )
     }

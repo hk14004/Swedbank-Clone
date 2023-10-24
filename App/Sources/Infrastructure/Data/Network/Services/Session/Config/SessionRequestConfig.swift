@@ -1,11 +1,11 @@
 import Foundation
 import DevToolsNetworking
 
-enum LoginRequestConfig {
-    case login(BasicLoginInfoOutgoing)
+enum SessionRequestConfig {
+    case startSession(StartSessionDataOutgoing)
 }
 
-extension LoginRequestConfig: DevRequestConfig {
+extension SessionRequestConfig: DevRequestConfig {
     var baseURL: String {
         ""
     }
@@ -24,7 +24,7 @@ extension LoginRequestConfig: DevRequestConfig {
     
     var bodyParameters: Data? {
         switch self {
-        case .login(let basicLoginInfoOutgoing):
+        case .startSession(let basicLoginInfoOutgoing):
             return try? JSONEncoder().encode(basicLoginInfoOutgoing)
         }
     }

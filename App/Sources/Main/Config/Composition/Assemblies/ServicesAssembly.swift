@@ -6,7 +6,7 @@ import SwedApplicationBusinessRules
 class ServicesAssembly: Assembly {
     func assemble(container: Container) {
         container.register(StartSessionService.self) { resolver in
-            MockLoginService(networkClient: container.resolve(SwedNetworkClient.self)!)
+            DefaultStartSessionService(networkClient: container.resolve(SwedNetworkClient.self)!)
         }
         .inObjectScope(.container)
         container.register(FetchCustomerService.self) { resolver in

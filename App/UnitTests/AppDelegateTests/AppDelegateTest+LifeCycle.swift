@@ -1,5 +1,5 @@
 //
-//  AppDelegateTest+Launch.swift
+//  AppDelegateTests+LifeCycle.swift
 //  App Unit Tests
 //
 //  Created by Hardijs Ķirsis on 22/10/2023.
@@ -10,7 +10,7 @@ import XCTest
 @testable import SWEDBANK
 @testable import SwedApplicationBusinessRules
 
-extension AppDelegateTest {
+extension AppDelegateTests {
     func testAppLaunch_didRegisterStartup() {
         // Arrange
         let sut = makeSUT()
