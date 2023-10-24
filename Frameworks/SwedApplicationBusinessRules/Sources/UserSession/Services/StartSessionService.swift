@@ -1,5 +1,5 @@
 //
-//  FetchUserSessionTokenService.swift
+//  CreateSessionService.swift
 //  Swedbank
 //
 //  Created by Hardijs Ķirsis on 14/09/2023.
@@ -9,16 +9,16 @@
 import Foundation
 import Combine
 
-public protocol LoginService {
-    func use(input: LoginServiceInput) -> AnyPublisher<LoginServiceOutput, Error>
+public protocol StartSessionService {
+    func use(input: StartSessionServiceInput) -> AnyPublisher<StartSessionServiceOutput, Error>
 }
 
-public struct LoginServiceInput {
+public struct StartSessionServiceInput {
     public let username: String
     public let password: String
 }
 
-public struct LoginServiceOutput {
+public struct StartSessionServiceOutput {
     public let bearerToken: String
     public let refreshToken: String
     public let expirationDuration: Int

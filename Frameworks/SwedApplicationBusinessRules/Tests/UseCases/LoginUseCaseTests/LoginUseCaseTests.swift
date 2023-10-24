@@ -16,13 +16,15 @@ final class LoginUseCaseTests: XCTestCase {
     func testUse() throws {
         // Arrange
         let sut = makeSUT()
-        let mockOutput = LoginServiceOutput(bearerToken: "", refreshToken: "", expirationDuration: 0)
+        let mockOutput = StartSessionServiceOutput(bearerToken: "", refreshToken: "", expirationDuration: 0)
+        let mockCustomer = CustomerDTO(id: "", name: "James", surname: "007")
         mocks.mockLoginService.mockResult = .just(mockOutput)
-        let expectedUsername = "James"
-        let expectedPassword = "Pass"
+        mocks.mockFetchCustomerService.mockResult = .just(.init(customer: mockCustomer))
+
         // Act
-        let _ = sut.use(username: expectedUsername, password: expectedPassword)
+        let result = try awaitPublisher(sut.use(username: "", password: ""), timeout: defaultTimeout)
         
         // Assert
+        XCTAssertEqual(result?.isSuccess, true)
     }
 }

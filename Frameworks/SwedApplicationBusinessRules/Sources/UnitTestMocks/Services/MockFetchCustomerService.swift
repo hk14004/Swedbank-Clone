@@ -9,7 +9,6 @@
 import Combine
 
 class MockFetchCustomerService: FetchCustomerService {
-    
     var mockResult: AnyPublisher<FetchCustomerServiceOutput, Error>!
     func use(input: FetchCustomerServiceInput) -> AnyPublisher<FetchCustomerServiceOutput, Error> {
         mockResult

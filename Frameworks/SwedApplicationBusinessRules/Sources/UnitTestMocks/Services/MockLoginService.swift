@@ -9,9 +9,9 @@
 import Foundation
 import Combine
 
-class MockLoginService: LoginService {
-    var mockResult: AnyPublisher<LoginServiceOutput, Error>!
-    func use(input: LoginServiceInput) -> AnyPublisher<LoginServiceOutput, Error> {
+class MockLoginService: StartSessionService {
+    var mockResult: AnyPublisher<StartSessionServiceOutput, Error>!
+    func use(input: StartSessionServiceInput) -> AnyPublisher<StartSessionServiceOutput, Error> {
         mockResult
     }
 }

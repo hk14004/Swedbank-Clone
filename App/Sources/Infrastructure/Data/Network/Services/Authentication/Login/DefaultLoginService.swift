@@ -2,18 +2,18 @@ import Combine
 import DevToolsNetworking
 import SwedApplicationBusinessRules
 
-class DefaultLoginService: LoginService {
+class DefaultLoginService: StartSessionService {
     private let networkClient: DevNetworkClient
     
     init(networkClient: DevNetworkClient) {
         self.networkClient = networkClient
     }
     
-    func use(input: LoginServiceInput) -> AnyPublisher<LoginServiceOutput, Error> {
+    func use(input: StartSessionServiceInput) -> AnyPublisher<StartSessionServiceOutput, Error> {
         fetchResponse(input: input)
-            .flatMap { response -> AnyPublisher<LoginServiceOutput, Error> in
+            .flatMap { response -> AnyPublisher<StartSessionServiceOutput, Error> in
                     .just(
-                        LoginServiceOutput(
+                        StartSessionServiceOutput(
                             bearerToken: response.accessToken,
                             refreshToken: response.refreshToken,
                             expirationDuration: response.accessTokenExpirationDuration
@@ -23,7 +23,7 @@ class DefaultLoginService: LoginService {
             .eraseToAnyPublisher()
     }
     
-    private func fetchResponse(input: LoginServiceInput) -> AnyPublisher<LoginResponse, Error> {
+    private func fetchResponse(input: StartSessionServiceInput) -> AnyPublisher<LoginResponse, Error> {
         networkClient.execute(
             LoginRequestConfig.login(
                 BasicLoginInfoOutgoing(
@@ -35,16 +35,16 @@ class DefaultLoginService: LoginService {
     }
 }
 
-class MockLoginService: LoginService {
+class MockLoginService: StartSessionService {
     private let networkClient: DevNetworkClient
     
     init(networkClient: DevNetworkClient) {
         self.networkClient = networkClient
     }
     
-    func use(input: LoginServiceInput) -> AnyPublisher<LoginServiceOutput, Error> {
+    func use(input: StartSessionServiceInput) -> AnyPublisher<StartSessionServiceOutput, Error> {
         .just(
-            LoginServiceOutput(
+            StartSessionServiceOutput(
                 bearerToken: "token",
                 refreshToken: "refresh token",
                 expirationDuration: 9999

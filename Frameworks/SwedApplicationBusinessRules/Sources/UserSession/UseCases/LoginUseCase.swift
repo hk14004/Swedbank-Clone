@@ -15,18 +15,18 @@ public protocol LoginUseCase {
 
 public struct DefaultLoginUseCase: LoginUseCase {
     
-    private let loginService: LoginService
+    private let startSessionService: StartSessionService
     private let manager: UserSessionManager
     private let fetchCustomerService: FetchCustomerService
     private let userSessionCredentialsRepository: UserSessionCredentialsRepository
     
     public init(
-        loginService: LoginService,
+        startSessionService: StartSessionService,
         manager: UserSessionManager,
         fetchCustomerService: FetchCustomerService,
         userSessionCredentialsRepository: UserSessionCredentialsRepository
     ) {
-        self.loginService = loginService
+        self.startSessionService = startSessionService
         self.manager = manager
         self.fetchCustomerService = fetchCustomerService
         self.userSessionCredentialsRepository = userSessionCredentialsRepository
@@ -34,7 +34,7 @@ public struct DefaultLoginUseCase: LoginUseCase {
     
     public func use(username: String, password: String) -> AnyPublisher<CustomerDTO, Error> {
         // Fetch tokens
-        loginService.use(
+        startSessionService.use(
             input: .init(
                 username: username,
                 password: password
