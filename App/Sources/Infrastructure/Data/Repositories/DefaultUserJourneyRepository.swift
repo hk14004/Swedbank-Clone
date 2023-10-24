@@ -11,10 +11,10 @@ import SwedApplicationBusinessRules
 
 class DefaultUserJourneyRepository: UserJourneyRepository {
     func update(completedOnboarding: Bool) {
-        
+        fatalError()
     }
     
-    func getCompletedOnboarding() -> Bool {
-        return true
+    func getIsOnboardingCompleted() -> Bool {
+        fatalError()
     }
 }

@@ -17,7 +17,7 @@ class MockUserJourneyRepository: UserJourneyRepository {
     
     var getCompletedOnboardingMock: Bool!
     var getCompletedOnboardingCalledSpy: (()->())?
-    func getCompletedOnboarding() -> Bool {
+    func getIsOnboardingCompleted() -> Bool {
         getCompletedOnboardingCalledSpy?()
         return getCompletedOnboardingMock
     }

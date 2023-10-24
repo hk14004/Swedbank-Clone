@@ -11,7 +11,7 @@ import UIKit
 extension AppDelegate {
     func startup() {
         registerApplicationLaunch()
-        configureWindow() // Exclude if unit test
+        configureWindow()
     }
     
     private func configureWindow() {

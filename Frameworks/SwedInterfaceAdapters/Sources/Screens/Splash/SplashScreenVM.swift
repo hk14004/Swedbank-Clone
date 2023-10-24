@@ -17,7 +17,7 @@ public protocol SplashVMInput {
 }
 
 public protocol SplashVMOutput {
-    var onStartLoading: AnyPublisher<Void, Never> { get }
+    var isLoadingPublisher: AnyPublisher<Bool, Never> { get }
     var router: SplashScreenRouter? { get set }
 }
 
@@ -26,10 +26,11 @@ public class DefaultSplashVM: SplashScreenVM {
     // MARK: Properties
     
     public var router: SplashScreenRouter?
-    public var onStartLoading: AnyPublisher<Void, Never> = CurrentValueSubject<Void, Never>(()).eraseToAnyPublisher()
+    public var isLoadingPublisher: AnyPublisher<Bool, Never> { $isLoading.eraseToAnyPublisher() }
     private let isAnyUserSessionActiveUseCase: IsAnyUserSessionActiveUseCase
     private let isOnboardingCompletedUseCase: isOnboardingCompletedUseCase
     private let startAllUserSessionsUseCase: StartAllUserSessionsUseCase
+    @Published private var isLoading: Bool = false
     
     // MARK: Lifecycle
     

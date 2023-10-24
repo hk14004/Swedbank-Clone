@@ -17,13 +17,13 @@ class MockUserSessionCredentialsRepository: UserSessionCredentialsRepository {
     
     var getCalledSpy: ((String)->())?
     var getMockResult: UserSessionCredentials!
-    func get(id: String) -> UserSessionCredentials {
+    func getCredentials(id: String) -> UserSessionCredentials? {
         getCalledSpy?(id)
         return getMockResult
     }
     
     var deleteCalledSpy: ((String)->())?
-    func delete(id: String) {
+    func deleteCredentials(id: String) {
         deleteCalledSpy?(id)
     }
 

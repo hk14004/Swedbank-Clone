@@ -21,7 +21,7 @@ public struct DefaultIsOnboardingCompletedUseCase: isOnboardingCompletedUseCase 
     }
     
     public func use() -> Bool {
-        userJourneyRepository.getCompletedOnboarding()
+        userJourneyRepository.getIsOnboardingCompleted()
     }
     
 }

@@ -10,5 +10,5 @@ import Foundation
 
 public protocol UserJourneyRepository {
     func update(completedOnboarding: Bool)
-    func getCompletedOnboarding() -> Bool
+    func getIsOnboardingCompleted() -> Bool
 }

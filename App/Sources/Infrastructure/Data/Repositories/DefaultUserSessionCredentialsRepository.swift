@@ -11,14 +11,14 @@ import SwedApplicationBusinessRules
 
 class DefaultUserSessionCredentialsRepository: UserSessionCredentialsRepository {
     func save(credentials: UserSessionCredentials) {
-        
+        fatalError()
     }
     
-    func get(id: String) -> UserSessionCredentials {
-        .init(id: id, authorizationData: .init(bearerToken: "bear", refreshToken: "refresh"))
+    func getCredentials(id: String) -> UserSessionCredentials? {
+        fatalError()
     }
     
-    func delete(id: String) {
-        
+    func deleteCredentials(id: String) {
+        fatalError()
     }
 }

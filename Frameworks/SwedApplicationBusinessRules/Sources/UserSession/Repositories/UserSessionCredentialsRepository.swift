@@ -10,6 +10,6 @@ import Foundation
 
 public protocol UserSessionCredentialsRepository {
     func save(credentials: UserSessionCredentials)
-    func get(id: String) -> UserSessionCredentials
-    func delete(id: String)
+    func getCredentials(id: String) -> UserSessionCredentials?
+    func deleteCredentials(id: String)
 }
