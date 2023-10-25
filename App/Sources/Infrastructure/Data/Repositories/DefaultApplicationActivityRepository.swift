@@ -7,48 +7,32 @@
 //
 
 import Foundation
-import KeychainAccess
+import SwiftyUserDefaults
 import SwedApplicationBusinessRules
 
 class DefaultApplicationActivityRepository: ApplicationActivityRepository {
+    private let defaultsStore: DefaultsAdapter<DefaultsKeys>
     
-    let keychain = Keychain(service: "com.example.github-token")
+    init(defaultsStore: UserDefaults = UserDefaults.standard) {
+        self.defaultsStore = DefaultsAdapter<DefaultsKeys>(
+            defaults: defaultsStore,
+            keyStore: .init()
+        )
+    }
     
     func getLaunchDate() -> Date? {
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .secondsSince1970
-        guard let data = keychain[data: ApplicationActivityFlag.launchDate.rawValue] else {
-            return nil
-        }
-        return try? decoder.decode(Date.self, from: data)
+        defaultsStore[\.appLaunchDate]
     }
     
     func saveLaunchDate(date: Date?) {
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .secondsSince1970
-        guard let data = try? encoder.encode(date) else {
-            return
-        }
-        keychain[data: ApplicationActivityFlag.launchDate.rawValue] = data
+        defaultsStore[\.appLaunchDate] = date
     }
     
     func getTerminationDate() -> Date? {
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .secondsSince1970
-        guard let data = keychain[data: ApplicationActivityFlag.terminationDate.rawValue] else {
-            return nil
-        }
-        return try? decoder.decode(Date.self, from: data)
+        defaultsStore[\.appTerminationDate]
     }
     
     func saveTerminationDate(date: Date?) {
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .secondsSince1970
-        guard let data = try? encoder.encode(date) else {
-            return
-        }
-        keychain[data: ApplicationActivityFlag.terminationDate.rawValue] = data
+        defaultsStore[\.appTerminationDate] = date
     }
-    
-    
 }
