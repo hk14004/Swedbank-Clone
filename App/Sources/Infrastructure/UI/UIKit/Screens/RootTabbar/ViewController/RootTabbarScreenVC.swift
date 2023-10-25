@@ -9,6 +9,7 @@
 import UIKit
 import Combine
 import SwedInterfaceAdapters
+import DevToolsLocalization
 
 class RootTabbarScreenVC: UITabBarController {
     
@@ -27,6 +28,7 @@ class RootTabbarScreenVC: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         startup()
+        viewModel.viewDidLoad()
     }
 }
 
@@ -36,7 +38,7 @@ extension RootTabbarScreenVC {
     }
     
     private func bindToViewModel() {
-        viewModel.tabs.receiveOnMainThread()
+        viewModel.tabsPublisher.receiveOnMainThread()
             .map { [weak self] tabs in
                 self?.makeTabs(tabs: tabs)
             }
@@ -46,11 +48,11 @@ extension RootTabbarScreenVC {
             .store(in: &bag)
     }
     
-    private func makeTabs(tabs: [DashboardTab]) -> [UINavigationController] {
+    private func makeTabs(tabs: [PresentableDashboardTab]) -> [UINavigationController] {
         tabs.map { tab in
-            switch tab {
+            switch tab.type {
             case .overview:
-                return makeOverViewTab()
+                return makeOverViewTab(presentable: tab)
             case .payments:
                 return makePaymentsTab()
             case .cards:
@@ -63,21 +65,33 @@ extension RootTabbarScreenVC {
         }
     }
     
-    private func makeOverViewTab() -> UINavigationController {
+    private func makeOverViewTab(presentable: PresentableDashboardTab) -> UINavigationController {
         let navVC = UINavigationController()
-        let item = UITabBarItem()
+        let item = RuntimeLocalizedTabBarItem()
+        item.image = UIImage(systemName: presentable.unselectedImageName)!
+        item.selectedImage = UIImage(systemName: presentable.selectedImageName)!
+        item.runtimeLocalizedKey = presentable.nameKey
         navVC.tabBarItem = item
-        navVC.tabBarItem.image = UIImage(systemName: "house")!
-        navVC.tabBarItem.selectedImage = UIImage(systemName: "house")!
-        let config = LockedDashboardPresentationConfig(
-            title: "title",
-            subtitle: "sub",
-            backgroundColorName: "Content1",
-            tabDescriptionIconName: ""
-        )
-        let vc = Composition.shared.container.resolve(
-            LockedDashboardVC.self, argument: config
-        )!
+        
+        let vc: UIViewController = {
+            if presentable.locked {
+                let config = LockedDashboardPresentationConfig(
+                    title: "Over view is locked",
+                    subtitle: "Please login dude",
+                    backgroundColorName: "Content1",
+                    tabDescriptionIconName: ""
+                )
+                let vc = Composition.shared.container.resolve(
+                    LockedDashboardVC.self, argument: config
+                )!
+                return vc
+            } else {
+                let vc = UIViewController()
+                vc.view.backgroundColor = .green
+                return vc
+            }
+        }()
+        
         navVC.setViewControllers([vc], animated: false)
         return navVC
     }

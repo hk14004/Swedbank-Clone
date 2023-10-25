@@ -51,7 +51,9 @@ extension ScreenAssembly {
 extension ScreenAssembly {
     func assableDashboardScreen(container: Container) {
         container.register(RootTabbarScreenVM.self) { resolver in
-            DefaultDashboardScreenVM()
+            DefaultDashboardScreenVM(
+                isAnyUserSessionActiveUseCase: resolver.resolve(IsAnyUserSessionActiveUseCase.self)!
+            )
         }
         container.register(RootTabbarScreenVC.self) { resolver in
             var vm = resolver.resolve(RootTabbarScreenVM.self)!

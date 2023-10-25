@@ -7,9 +7,11 @@
 //
 
 import Combine
+import UIKit
+import SwedApplicationBusinessRules
 
 public protocol DashboardScreenVMOutput {
-    var tabs: CurrentValueSubject<[DashboardTab], Never> { get }
+    var tabsPublisher: AnyPublisher<[PresentableDashboardTab], Never> { get }
     var router: RootTabbarScreenRouter! { get set }
 }
 
@@ -21,11 +23,15 @@ public protocol RootTabbarScreenVM: DashboardScreenVMInput, DashboardScreenVMOut
 
 public class DefaultDashboardScreenVM: RootTabbarScreenVM {
 
-    public var tabs: CurrentValueSubject<[DashboardTab], Never>
+    public var tabsPublisher: AnyPublisher<[PresentableDashboardTab], Never> {
+        $presentableTabs.eraseToAnyPublisher()
+    }
     public var router: RootTabbarScreenRouter!
+    @Published private var presentableTabs: [PresentableDashboardTab] = []
+    private var isAnyUserSessionActiveUseCase: IsAnyUserSessionActiveUseCase
     
-    public init() {
-        self.tabs = .init([.overview])
+    public init(isAnyUserSessionActiveUseCase: IsAnyUserSessionActiveUseCase) {
+        self.isAnyUserSessionActiveUseCase = isAnyUserSessionActiveUseCase
     }
     
 }
@@ -34,7 +40,26 @@ public class DefaultDashboardScreenVM: RootTabbarScreenVM {
 
 extension DefaultDashboardScreenVM {
     public func viewDidLoad() {
-        
+        presentableTabs = makePresentableTabs()
     }
 }
 
+// MARK: Private
+
+extension DefaultDashboardScreenVM {
+    private func makePresentableTabs() -> [PresentableDashboardTab] {
+        [
+            .init(
+                type: .overview,
+                nameKey: "Tabbar.Tabs.Overview.title",
+                unselectedImageName: "house",
+                selectedImageName: "house",
+                locked: isOveriewTabLocked()
+            )
+        ]
+    }
+    
+    private func isOveriewTabLocked() -> Bool {
+        !isAnyUserSessionActiveUseCase.use()
+    }
+}
