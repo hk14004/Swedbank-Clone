@@ -1,5 +1,5 @@
 //
-//  DashboardVC.swift
+//  RootTabbarScreenVC.swift
 //  Swedbank
 //
 //  Created by Hardijs Ķirsis on 09/09/2023.
@@ -10,12 +10,12 @@ import UIKit
 import Combine
 import SwedInterfaceAdapters
 
-class DashboardScreenVC: UITabBarController {
+class RootTabbarScreenVC: UITabBarController {
     
-    private let viewModel: DashboardScreenVM
+    private let viewModel: RootTabbarScreenVM
     private var bag = Set<AnyCancellable>()
     
-    init(viewModel: DashboardScreenVM) {
+    init(viewModel: RootTabbarScreenVM) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -30,7 +30,7 @@ class DashboardScreenVC: UITabBarController {
     }
 }
 
-extension DashboardScreenVC {
+extension RootTabbarScreenVC {
     private func startup() {
         tabBar.isTranslucent = false
         tabBar.unselectedItemTintColor = .red

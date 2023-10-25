@@ -50,13 +50,13 @@ extension ScreenAssembly {
 // MARK: - Dashboard
 extension ScreenAssembly {
     func assableDashboardScreen(container: Container) {
-        container.register(DashboardScreenVM.self) { resolver in
+        container.register(RootTabbarScreenVM.self) { resolver in
             DefaultDashboardScreenVM()
         }
-        container.register(DashboardScreenVC.self) { resolver in
-            var vm = resolver.resolve(DashboardScreenVM.self)!
-            let vc = DashboardScreenVC(viewModel: vm)
-            let router = DefaultDashboardScreenRouter(viewController: vc)
+        container.register(RootTabbarScreenVC.self) { resolver in
+            var vm = resolver.resolve(RootTabbarScreenVM.self)!
+            let vc = RootTabbarScreenVC(viewModel: vm)
+            let router = DefaultRootTabbarScreenRouter(viewController: vc)
             vm.router = router
             return vc
         }

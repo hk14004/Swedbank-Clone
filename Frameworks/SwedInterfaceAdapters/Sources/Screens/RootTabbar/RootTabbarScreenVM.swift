@@ -10,19 +10,19 @@ import Combine
 
 public protocol DashboardScreenVMOutput {
     var tabs: CurrentValueSubject<[DashboardTab], Never> { get }
-    var router: DashboardScreenRouter! { get set }
+    var router: RootTabbarScreenRouter! { get set }
 }
 
 public protocol DashboardScreenVMInput {
     func viewDidLoad()
 }
 
-public protocol DashboardScreenVM: DashboardScreenVMInput, DashboardScreenVMOutput {}
+public protocol RootTabbarScreenVM: DashboardScreenVMInput, DashboardScreenVMOutput {}
 
-public class DefaultDashboardScreenVM: DashboardScreenVM {
+public class DefaultDashboardScreenVM: RootTabbarScreenVM {
 
     public var tabs: CurrentValueSubject<[DashboardTab], Never>
-    public var router: DashboardScreenRouter!
+    public var router: RootTabbarScreenRouter!
     
     public init() {
         self.tabs = .init([.overview])

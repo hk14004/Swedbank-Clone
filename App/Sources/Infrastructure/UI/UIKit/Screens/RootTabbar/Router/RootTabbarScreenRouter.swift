@@ -9,7 +9,7 @@
 import UIKit
 import SwedInterfaceAdapters
 
-class DefaultDashboardScreenRouter: DashboardScreenRouter {
+class DefaultRootTabbarScreenRouter: RootTabbarScreenRouter {
     
     var viewController: UIViewController
 

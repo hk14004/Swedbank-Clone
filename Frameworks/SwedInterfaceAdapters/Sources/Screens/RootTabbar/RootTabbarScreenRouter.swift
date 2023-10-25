@@ -8,6 +8,6 @@
 
 import Foundation
 
-public protocol DashboardScreenRouter {
+public protocol RootTabbarScreenRouter {
     func routeTo(tab: DashboardTab)
 }
