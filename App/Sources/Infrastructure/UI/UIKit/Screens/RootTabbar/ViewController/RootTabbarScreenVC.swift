@@ -32,9 +32,6 @@ class RootTabbarScreenVC: UITabBarController {
 
 extension RootTabbarScreenVC {
     private func startup() {
-        tabBar.isTranslucent = false
-        tabBar.unselectedItemTintColor = .red
-        tabBar.tintColor = .blue
         bindToViewModel()
     }
     
