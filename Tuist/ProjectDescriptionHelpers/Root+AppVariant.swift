@@ -63,6 +63,7 @@ extension Project.Root.AppVariant {
                     target: Project.Framework.SwedApplicationBusinessRules.rawValue,
                     path: Project.Framework.SwedApplicationBusinessRules.getPath()
                 ),
+                .external(name: Project.Dependencies.SwiftyUserDefaults.rawValue),
                 .external(name: Project.Dependencies.SnapKit.rawValue),
                 .external(name: Project.Dependencies.Swinject.rawValue),
                 .external(name: Project.Dependencies.KeychainAccess.rawValue),

@@ -10,4 +10,5 @@ import XCTest
 
 public extension XCTestCase {
     var defaultTimeout: TimeInterval { 0.3 }
+    static var userDefaultsSuiteName: String { "com.userdefaults.tests" }
 }

@@ -8,13 +8,24 @@
 
 import Foundation
 import SwedApplicationBusinessRules
+import SwiftyUserDefaults
 
 class DefaultUserJourneyRepository: UserJourneyRepository {
+    
+    private let defaultsStore: DefaultsAdapter<DefaultsKeys>
+    
+    init(defaultsStore: UserDefaults = UserDefaults.standard) {
+        self.defaultsStore = DefaultsAdapter<DefaultsKeys>(
+            defaults: defaultsStore,
+            keyStore: .init()
+        )
+    }
+    
     func update(completedOnboarding: Bool) {
-        fatalError()
+        defaultsStore[\.isOnboardingCompleted] = completedOnboarding
     }
     
     func getIsOnboardingCompleted() -> Bool {
-        fatalError()
+        defaultsStore[\.isOnboardingCompleted]
     }
 }

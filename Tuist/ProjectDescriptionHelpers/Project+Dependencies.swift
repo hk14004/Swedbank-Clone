@@ -9,6 +9,7 @@ import ProjectDescription
 
 public extension Project {
     enum Dependencies: String {
+        case SwiftyUserDefaults
         case SnapKit
         case Swinject
         case KeychainAccess
