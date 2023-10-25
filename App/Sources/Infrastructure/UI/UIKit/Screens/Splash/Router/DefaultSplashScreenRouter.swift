@@ -23,7 +23,7 @@ struct DefaultSplashScreenRouter: SplashScreenRouter {
     }
     
     func routeToOnboarding() {
-        print("Onboarding?")
+        print("routeToOnboarding")
     }
     
     func routeToLogin() {
