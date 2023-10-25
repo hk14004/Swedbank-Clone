@@ -28,12 +28,8 @@ public class DefaultDashboardScreenVM: RootTabbarScreenVM {
     }
     public var router: RootTabbarScreenRouter!
     @Published private var presentableTabs: [PresentableDashboardTab] = []
-    private var isAnyUserSessionActiveUseCase: IsAnyUserSessionActiveUseCase
     
-    public init(isAnyUserSessionActiveUseCase: IsAnyUserSessionActiveUseCase) {
-        self.isAnyUserSessionActiveUseCase = isAnyUserSessionActiveUseCase
-    }
-    
+    public init() {}
 }
 
 // MARK: Input
@@ -53,13 +49,8 @@ extension DefaultDashboardScreenVM {
                 type: .overview,
                 nameKey: "Tabbar.Tabs.Overview.title",
                 unselectedImageName: "house",
-                selectedImageName: "house",
-                locked: isOveriewTabLocked()
+                selectedImageName: "house"
             )
         ]
-    }
-    
-    private func isOveriewTabLocked() -> Bool {
-        !isAnyUserSessionActiveUseCase.use()
     }
 }

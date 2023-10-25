@@ -1,6 +1,8 @@
 import Swinject
 import SwedApplicationBusinessRules
 import SwedInterfaceAdapters
+import DevToolsNavigation
+import UIKit
 
 class ScreenAssembly: Assembly {
     func assemble(container: Container) {
@@ -50,10 +52,14 @@ extension ScreenAssembly {
 // MARK: - Dashboard
 extension ScreenAssembly {
     func assableDashboardScreen(container: Container) {
-        container.register(RootTabbarScreenVM.self) { resolver in
-            DefaultDashboardScreenVM(
+        container.register((DashboardRouter & UIKitRouter).self) { resolver, arg1 in
+            DefaultDashboardRouter(
+                viewController: arg1,
                 isAnyUserSessionActiveUseCase: resolver.resolve(IsAnyUserSessionActiveUseCase.self)!
             )
+        }
+        container.register(RootTabbarScreenVM.self) { resolver in
+            DefaultDashboardScreenVM()
         }
         container.register(RootTabbarScreenVC.self) { resolver in
             var vm = resolver.resolve(RootTabbarScreenVM.self)!

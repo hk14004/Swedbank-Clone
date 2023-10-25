@@ -21,5 +21,4 @@ public struct PresentableDashboardTab {
     public let nameKey: String
     public let unselectedImageName: String
     public let selectedImageName: String
-    public let locked: Bool
 }

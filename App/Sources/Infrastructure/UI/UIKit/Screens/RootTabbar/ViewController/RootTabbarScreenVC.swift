@@ -10,6 +10,7 @@ import UIKit
 import Combine
 import SwedInterfaceAdapters
 import DevToolsLocalization
+import DevToolsNavigation
 
 class RootTabbarScreenVC: UITabBarController {
     
@@ -72,27 +73,11 @@ extension RootTabbarScreenVC {
         item.selectedImage = UIImage(systemName: presentable.selectedImageName)!
         item.runtimeLocalizedKey = presentable.nameKey
         navVC.tabBarItem = item
-        
-        let vc: UIViewController = {
-            if presentable.locked {
-                let config = LockedDashboardPresentationConfig(
-                    title: "Over view is locked",
-                    subtitle: "Please login dude",
-                    backgroundColorName: "Content1",
-                    tabDescriptionIconName: ""
-                )
-                let vc = Composition.shared.container.resolve(
-                    LockedDashboardVC.self, argument: config
-                )!
-                return vc
-            } else {
-                let vc = UIViewController()
-                vc.view.backgroundColor = .green
-                return vc
-            }
-        }()
-        
-        navVC.setViewControllers([vc], animated: false)
+        let router = Composition.shared.container.resolve(
+            (DashboardRouter & UIKitRouter).self,
+            argument: navVC as UIViewController
+        )
+        router?.goToRoot()
         return navVC
     }
     
