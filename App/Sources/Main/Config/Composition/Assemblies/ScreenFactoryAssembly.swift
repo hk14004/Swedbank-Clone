@@ -15,48 +15,17 @@ class ScreenFactoryAssembly: Assembly {
         container.register(LoginScreenFactory.self) { resolver in
             DefaultLoginScreenFactory()
         }
-        assableRootTabbarScreen(container: container)
-        assableDashboard(container: container)
-        assableLockedDashboardScreen(container: container)
-    }
-}
-
-// MARK: - Dashboard
-extension ScreenFactoryAssembly {
-    func assableRootTabbarScreen(container: Container) {
-        container.register(RootTabbarScreenVM.self) { resolver in
-            DefaultRootTabbarScreenVM(isAnyUserSessionActiveUseCase: Composition.resolve())
+        // MARK: Root tabbar
+        container.register(RootTabbarScreenFactory.self) { resolver in
+            DefaultRootTabbarScreenFactory()
         }
-        container.register(RootTabbarScreenVC.self) { resolver in
-            var vm = resolver.resolve(RootTabbarScreenVM.self)!
-            let vc = RootTabbarScreenVC(viewModel: vm)
-            let router = DefaultRootTabbarScreenRouter(viewController: vc)
-            vm.router = router
-            return vc
+        // MARK: Dashboard
+        container.register(DashboardScreenFactory.self) { resolver in
+            DefaultDashboardScreenFactory()
         }
-    }
-    
-    func assableDashboard(container: Container) {
-        container.register(DashboardScreenVM.self) { resolver in
-            DefaultDashboardScreenVM()
-        }
-        container.register(DashboardScreenVC.self) { resolver in
-            var vm = resolver.resolve(DashboardScreenVM.self)!
-            let vc = DashboardScreenVC()
-            return vc
-        }
-    }
-}
-
-// MARK: - Locked dashboard
-extension ScreenFactoryAssembly {
-    func assableLockedDashboardScreen(container: Container) {
-        container.register(LockedTabScreenVC.self) { (resolver, config: LockedDashboardPresentationConfig) in
-            let vm = DefaultLockedDashboardVM(presentation: config)
-            let vc = LockedTabScreenVC(viewModel: vm)
-            let router = DefaultLockedDashboardRouter(viewController: vc)
-            vm.router = router
-            return vc
+        // MARK: Locked dashboard
+        container.register(LockedTabScreenFactory.self) { resolver in
+            DefaultLockedTabScreenFactory()
         }
     }
 }

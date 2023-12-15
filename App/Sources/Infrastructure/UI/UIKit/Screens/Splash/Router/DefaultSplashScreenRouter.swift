@@ -18,7 +18,8 @@ struct DefaultSplashScreenRouter: SplashScreenRouter {
     }
     
     func routeToDashboard() {
-        let vc: RootTabbarScreenVC = Composition.resolve()
+        let factory: RootTabbarScreenFactory = Composition.resolve()
+        let vc = factory.make()
         viewController.navigationController?.setViewControllers([vc], animated: false)
     }
     
