@@ -8,8 +8,9 @@
 
 import UIKit
 import SwedInterfaceAdapters
+import DevToolsNavigation
 
-class DefaultLockedDashboardRouter: LockedDashboardRouter {
+class DefaultLockedDashboardRouter: LockedDashboardRouter, UIKitRouter {
     
     var viewController: UIViewController
 
@@ -18,7 +19,7 @@ class DefaultLockedDashboardRouter: LockedDashboardRouter {
     }
     
     func routeToLanguageChange() {
-        
+        print("routeToLanguageChange")
     }
     
     func routeToLogin() {

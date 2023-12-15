@@ -1,5 +1,5 @@
 //
-//  DashboardTab.swift
+//  RootTab.swift
 //  Swedbank
 //
 //  Created by Hardijs Ķirsis on 09/09/2023.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum DashboardTab {
+public enum RootTab {
     case overview
     case payments
     case cards
@@ -16,9 +16,10 @@ public enum DashboardTab {
     case contacts
 }
 
-public struct PresentableDashboardTab {
-    public let type: DashboardTab
+public struct PresentableRootTab {
+    public let type: RootTab
     public let nameKey: String
     public let unselectedImageName: String
     public let selectedImageName: String
+    public let locked: Bool
 }

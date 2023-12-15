@@ -9,5 +9,5 @@
 import Foundation
 
 public protocol RootTabbarScreenRouter {
-    func routeTo(tab: DashboardTab)
+    func routeTo(tab: RootTab)
 }

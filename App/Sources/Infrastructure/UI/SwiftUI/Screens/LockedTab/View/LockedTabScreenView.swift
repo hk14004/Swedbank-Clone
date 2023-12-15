@@ -1,0 +1,81 @@
+//
+//  LockedTabScreenView.swift
+//  Swedbank-Clone
+//
+//  Created by Hardijs Ķirsis on 27/05/2023.
+//
+
+import SwiftUI
+import DevToolsUI
+import DevToolsLocalization
+import SwedInterfaceAdapters
+
+struct LockedTabScreenView<ViewModel: LockedDashboardVM>: View {
+    
+    @ObservedObject var viewModel: ViewModel
+    @ObservedObject var loc = RuntimeLocalizationObserver()
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            HStack {
+                Spacer()
+                LanguageDropdownView()
+                    .onTapGesture {
+                        viewModel.onLanguageChangeTap()
+                    }
+            }
+            
+            Spacer()
+            Group {
+                Image(viewModel.presentation.tabDescriptionIconName)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 250, height: 200)
+                Text(viewModel.presentation.title.runtimeLocalized())
+                    .font(.title)
+                    .foregroundColor(Colors.orange1.swiftUIColor)
+                    .padding(.top)
+                Text(viewModel.presentation.subtitle.runtimeLocalized())
+                    .padding(.top)
+            }
+            .layoutPriority(1)
+            Spacer()
+            LoginButtonView(action: {
+                viewModel.onLoginTapped()
+            })
+            .padding(.vertical)
+        }
+        .padding()
+        .background(Color(viewModel.presentation.backgroundColorName))
+        .navigationBarHidden(true)
+    }
+}
+
+struct LockedTabView_Previews: PreviewProvider {
+    static var previews: some View {
+        RuntimeLocalizedPreview(language: "lv")
+        LockedTabScreenView(viewModel: LockedTabScreenVMPreview())
+    }
+}
+
+private class LockedTabScreenVMPreview {
+
+    var presentation: SwedInterfaceAdapters.LockedDashboardPresentationConfig {
+        .init(title: "LockedTab.Overview.title", subtitle: "LockedTab.Overview.subtitle", backgroundColorName: "color4", tabDescriptionIconName: "Images.Icons.icOverviewDescription.name")
+    }
+    var router: LockedDashboardRouter!
+    
+}
+
+extension LockedTabScreenVMPreview: LockedDashboardVM {
+    
+    
+    func onLoginTapped() {
+        
+    }
+    
+    func onLanguageChangeTap() {
+        
+    }
+
+}

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CardBalanceTableViewCell" rowHeight="34" id="KGk-i7-Jjw" customClass="CardBalanceTableViewCell" customModule="Swedbank_Clone" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8mE-4J-QJi" userLabel="ContainerView">
+                        <rect key="frame" x="16" y="16" width="288" height="18"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="LV16HABA123456789" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zTD-7a-wsv" userLabel="CardLabel">
+                                <rect key="frame" x="0.0" y="0.0" width="171.33333333333334" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" name="secondaryText"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="19120.44 EUR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8dH-6H-BQb" userLabel="AmountLabel">
+                                <rect key="frame" x="179.33333333333334" y="0.0" width="108.66666666666666" height="18"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <color key="textColor" name="primaryText"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="zTD-7a-wsv" firstAttribute="top" secondItem="8mE-4J-QJi" secondAttribute="top" id="3p3-jH-I9p"/>
+                            <constraint firstAttribute="trailing" secondItem="8dH-6H-BQb" secondAttribute="trailing" id="DOA-Cq-xqT"/>
+                            <constraint firstAttribute="bottom" secondItem="8dH-6H-BQb" secondAttribute="bottom" id="Nzo-Fx-FCm"/>
+                            <constraint firstItem="zTD-7a-wsv" firstAttribute="leading" secondItem="8mE-4J-QJi" secondAttribute="leading" id="PGz-G3-GJc"/>
+                            <constraint firstItem="8dH-6H-BQb" firstAttribute="top" secondItem="8mE-4J-QJi" secondAttribute="top" id="axW-cc-IxU"/>
+                            <constraint firstAttribute="bottom" secondItem="zTD-7a-wsv" secondAttribute="bottom" id="eJU-bd-gzN"/>
+                            <constraint firstItem="8dH-6H-BQb" firstAttribute="leading" secondItem="zTD-7a-wsv" secondAttribute="trailing" constant="8" id="r13-CH-MU3"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="8mE-4J-QJi" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="162-wU-1ew"/>
+                    <constraint firstItem="8mE-4J-QJi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="KrT-cC-wdI"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="8mE-4J-QJi" secondAttribute="bottom" id="MMU-Jn-HKt"/>
+                    <constraint firstItem="8mE-4J-QJi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="b5S-5x-IIu"/>
+                </constraints>
+                <edgeInsets key="layoutMargins" top="16" left="16" bottom="16" right="16"/>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="amountLabel" destination="8dH-6H-BQb" id="Kq7-Jd-x4K"/>
+                <outlet property="cardLabel" destination="zTD-7a-wsv" id="nUG-VG-d0b"/>
+            </connections>
+            <point key="canvasLocation" x="32.061068702290072" y="-2.8169014084507045"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="primaryText">
+            <color red="0.28200000524520874" green="0.15299999713897705" blue="0.14100000262260437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="secondaryText">
+            <color red="0.54900002479553223" green="0.47499999403953552" blue="0.47099998593330383" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

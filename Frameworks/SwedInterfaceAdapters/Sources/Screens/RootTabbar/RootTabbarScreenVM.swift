@@ -10,47 +10,56 @@ import Combine
 import UIKit
 import SwedApplicationBusinessRules
 
-public protocol DashboardScreenVMOutput {
-    var tabsPublisher: AnyPublisher<[PresentableDashboardTab], Never> { get }
+public protocol RootTabbarScreenVMOutput {
+    var tabsPublisher: AnyPublisher<[PresentableRootTab], Never> { get }
     var router: RootTabbarScreenRouter! { get set }
 }
 
-public protocol DashboardScreenVMInput {
+public protocol RootTabbarScreenVMInput {
     func viewDidLoad()
 }
 
-public protocol RootTabbarScreenVM: DashboardScreenVMInput, DashboardScreenVMOutput {}
+public protocol RootTabbarScreenVM: RootTabbarScreenVMInput, RootTabbarScreenVMOutput {}
 
-public class DefaultDashboardScreenVM: RootTabbarScreenVM {
-
-    public var tabsPublisher: AnyPublisher<[PresentableDashboardTab], Never> {
+public class DefaultRootTabbarScreenVM: RootTabbarScreenVM {
+    
+    public var tabsPublisher: AnyPublisher<[PresentableRootTab], Never> {
         $presentableTabs.eraseToAnyPublisher()
     }
     public var router: RootTabbarScreenRouter!
-    @Published private var presentableTabs: [PresentableDashboardTab] = []
+    @Published private var presentableTabs: [PresentableRootTab] = []
+    private let isAnyUserSessionActiveUseCase: IsAnyUserSessionActiveUseCase
     
-    public init() {}
+    public init(isAnyUserSessionActiveUseCase: IsAnyUserSessionActiveUseCase) {
+        self.isAnyUserSessionActiveUseCase = isAnyUserSessionActiveUseCase
+        presentableTabs = makePresentableTabs()
+    }
+    
 }
 
 // MARK: Input
 
-extension DefaultDashboardScreenVM {
-    public func viewDidLoad() {
-        presentableTabs = makePresentableTabs()
-    }
+extension DefaultRootTabbarScreenVM {
+    public func viewDidLoad() {}
 }
 
 // MARK: Private
 
-extension DefaultDashboardScreenVM {
-    private func makePresentableTabs() -> [PresentableDashboardTab] {
+extension DefaultRootTabbarScreenVM {
+    private func makePresentableTabs() -> [PresentableRootTab] {
         [
-            .init(
-                type: .overview,
-                nameKey: "Tabbar.Tabs.Overview.title",
-                unselectedImageName: "house",
-                selectedImageName: "house"
-            )
+            makeOverViewTab()
         ]
+    }
+    
+    private func makeOverViewTab() -> PresentableRootTab {
+        let locked = !isAnyUserSessionActiveUseCase.use()
+        return .init(
+            type: .overview,
+            nameKey: "Tabbar.Tabs.Overview.title",
+            unselectedImageName: locked ? "lock" : "house",
+            selectedImageName: locked ? "lock" : "house",
+            locked: locked
+        )
     }
 }

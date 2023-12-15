@@ -25,9 +25,4 @@ struct DefaultSplashScreenRouter: SplashScreenRouter {
     func routeToOnboarding() {
         print("routeToOnboarding")
     }
-    
-    func routeToLogin() {
-        let vc: LoginScreenVC = Composition.resolve()
-        viewController.navigationController?.setViewControllers([vc], animated: false)
-    }
 }

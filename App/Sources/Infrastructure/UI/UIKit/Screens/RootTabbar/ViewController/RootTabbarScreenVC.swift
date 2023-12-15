@@ -6,7 +6,7 @@
 //  Copyright © 2023 SWEDBANK AB. All rights reserved.
 //
 
-import UIKit
+import SwiftUI
 import Combine
 import SwedInterfaceAdapters
 import DevToolsLocalization
@@ -49,7 +49,7 @@ extension RootTabbarScreenVC {
             .store(in: &bag)
     }
     
-    private func makeTabs(tabs: [PresentableDashboardTab]) -> [UINavigationController] {
+    private func makeTabs(tabs: [PresentableRootTab]) -> [UINavigationController] {
         tabs.map { tab in
             switch tab.type {
             case .overview:
@@ -66,18 +66,32 @@ extension RootTabbarScreenVC {
         }
     }
     
-    private func makeOverViewTab(presentable: PresentableDashboardTab) -> UINavigationController {
+    private func makeOverViewTab(presentable: PresentableRootTab) -> UINavigationController {
         let navVC = UINavigationController()
         let item = RuntimeLocalizedTabBarItem()
         item.image = UIImage(systemName: presentable.unselectedImageName)!
         item.selectedImage = UIImage(systemName: presentable.selectedImageName)!
         item.runtimeLocalizedKey = presentable.nameKey
         navVC.tabBarItem = item
-        let router = Composition.shared.container.resolve(
-            (DashboardRouter & UIKitRouter).self,
-            argument: navVC as UIViewController
-        )
-        router?.goToRoot()
+        
+        let vc: UIViewController = {
+            guard !presentable.locked else {
+                let vc = Composition.shared.container.resolve(
+                    LockedTabScreenVC.self,
+                    argument: LockedDashboardPresentationConfig(
+                        title: "LockedTab.Overview.title",
+                        subtitle: "LockedTab.Overview.subtitle",
+                        backgroundColorName: "Blue2",
+                        tabDescriptionIconName: "1"
+                    )
+                )!
+                return vc
+            }
+            let vc: DashboardScreenVC = Composition.resolve()
+            return vc
+        }()
+        
+        navVC.setViewControllers([vc], animated: false)
         return navVC
     }
     

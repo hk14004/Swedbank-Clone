@@ -17,7 +17,7 @@ class DefaultRootTabbarScreenRouter: RootTabbarScreenRouter {
         self.viewController = viewController
     }
     
-    func routeTo(tab: DashboardTab) {
+    func routeTo(tab: RootTab) {
         print("")
     }
     

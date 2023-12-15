@@ -3,12 +3,14 @@ import SwedApplicationBusinessRules
 import SwedInterfaceAdapters
 import DevToolsNavigation
 import UIKit
+import SwiftUI
 
 class ScreenAssembly: Assembly {
     func assemble(container: Container) {
         assembleSplashScreen(container: container)
         assambleLoginScreen(container: container)
-        assableDashboardScreen(container: container)
+        assableRootTabbarScreen(container: container)
+        assableDashboard(container: container)
         assableLockedDashboardScreen(container: container)
     }
 }
@@ -51,15 +53,9 @@ extension ScreenAssembly {
 
 // MARK: - Dashboard
 extension ScreenAssembly {
-    func assableDashboardScreen(container: Container) {
-        container.register((DashboardRouter & UIKitRouter).self) { resolver, arg1 in
-            DefaultDashboardRouter(
-                viewController: arg1,
-                isAnyUserSessionActiveUseCase: resolver.resolve(IsAnyUserSessionActiveUseCase.self)!
-            )
-        }
+    func assableRootTabbarScreen(container: Container) {
         container.register(RootTabbarScreenVM.self) { resolver in
-            DefaultDashboardScreenVM()
+            DefaultRootTabbarScreenVM(isAnyUserSessionActiveUseCase: Composition.resolve())
         }
         container.register(RootTabbarScreenVC.self) { resolver in
             var vm = resolver.resolve(RootTabbarScreenVM.self)!
@@ -69,14 +65,25 @@ extension ScreenAssembly {
             return vc
         }
     }
+    
+    func assableDashboard(container: Container) {
+        container.register(DashboardScreenVM.self) { resolver in
+            DefaultDashboardScreenVM()
+        }
+        container.register(DashboardScreenVC.self) { resolver in
+            var vm = resolver.resolve(DashboardScreenVM.self)!
+            let vc = DashboardScreenVC()
+            return vc
+        }
+    }
 }
 
 // MARK: - Locked dashboard
 extension ScreenAssembly {
     func assableLockedDashboardScreen(container: Container) {
-        container.register(LockedDashboardVC.self) { (resolver, config: LockedDashboardPresentationConfig) in
-            var vm = DefaultLockedDashboardVM(presentation: config)
-            let vc = LockedDashboardVC(viewModel: vm)
+        container.register(LockedTabScreenVC.self) { (resolver, config: LockedDashboardPresentationConfig) in
+            let vm = DefaultLockedDashboardVM(presentation: config)
+            let vc = LockedTabScreenVC(viewModel: vm)
             let router = DefaultLockedDashboardRouter(viewController: vc)
             vm.router = router
             return vc

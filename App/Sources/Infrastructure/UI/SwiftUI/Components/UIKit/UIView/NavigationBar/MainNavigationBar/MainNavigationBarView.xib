@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainNavigationBarView" customModule="Swedbank_Clone" customModuleProvider="target">
+            <connections>
+                <outlet property="buttonStackView" destination="ZOe-eT-jyj" id="lgC-wU-14j"/>
+                <outlet property="titleLabelView" destination="6g5-A6-YkU" id="y0N-zu-5mF"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="MainNavigationBarView" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ar3-8h-KGh" userLabel="contentView">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IpX-zT-Adc">
+                            <rect key="frame" x="16" y="0.0" width="361" height="44"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6g5-A6-YkU" userLabel="TitleLabel" customClass="RuntimeLocalizedLabel" customModule="DevToolsLocalization">
+                                    <rect key="frame" x="0.0" y="0.0" width="31.666666666666668" height="44"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZOe-eT-jyj" userLabel="buttonStackView">
+                                    <rect key="frame" x="31.666666666666657" y="0.0" width="329.33333333333337" height="44"/>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="IpX-zT-Adc" firstAttribute="top" secondItem="Ar3-8h-KGh" secondAttribute="top" id="1Lg-nJ-eCB"/>
+                        <constraint firstItem="IpX-zT-Adc" firstAttribute="leading" secondItem="Ar3-8h-KGh" secondAttribute="leading" constant="16" id="5au-cc-tch"/>
+                        <constraint firstAttribute="trailing" secondItem="IpX-zT-Adc" secondAttribute="trailing" constant="16" id="9z8-CC-qCB"/>
+                        <constraint firstAttribute="bottom" secondItem="IpX-zT-Adc" secondAttribute="bottom" id="IgM-YY-wRb"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Ar3-8h-KGh" secondAttribute="trailing" id="7nD-0G-ddO"/>
+                <constraint firstAttribute="top" secondItem="Ar3-8h-KGh" secondAttribute="top" id="IMI-1H-p3v"/>
+                <constraint firstItem="Ar3-8h-KGh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="KDe-zk-csQ"/>
+                <constraint firstItem="Ar3-8h-KGh" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="bqZ-qB-OrU"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="139.69465648854961" y="-228.16901408450704"/>
+        </view>
+    </objects>
+    <designables>
+        <designable name="6g5-A6-YkU">
+            <size key="intrinsicContentSize" width="31.666666666666668" height="19.333333333333332"/>
+        </designable>
+    </designables>
+</document>

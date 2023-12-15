@@ -18,7 +18,7 @@ public protocol LockedDashboardVMOutput {
     var router: LockedDashboardRouter! { get set }
 }
 
-public protocol LockedDashboardVM: LockedDashboardVMInput, LockedDashboardVMOutput {}
+public protocol LockedDashboardVM: ObservableObject, LockedDashboardVMInput, LockedDashboardVMOutput {}
 
 public class DefaultLockedDashboardVM: LockedDashboardVM {
     public var presentation: LockedDashboardPresentationConfig
