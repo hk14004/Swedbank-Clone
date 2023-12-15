@@ -23,7 +23,8 @@ class DefaultLockedDashboardRouter: LockedDashboardRouter, UIKitRouter {
     }
     
     func routeToLogin() {
-        let vc: LoginScreenVC = Composition.resolve()
+        let factory: LoginScreenFactory = Composition.resolve()
+        let vc = factory.make()
         viewController.present(vc, animated: true)
     }
 }

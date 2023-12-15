@@ -7,30 +7,17 @@ import SwiftUI
 
 class ScreenFactoryAssembly: Assembly {
     func assemble(container: Container) {
-        // Splash
+        // MARK: Splash
         container.register(SplashScreenFactory.self) { resolver in
             DefaultSplashScreenFactory()
         }
-        assambleLoginScreen(container: container)
+        // MARK: Login
+        container.register(LoginScreenFactory.self) { resolver in
+            DefaultLoginScreenFactory()
+        }
         assableRootTabbarScreen(container: container)
         assableDashboard(container: container)
         assableLockedDashboardScreen(container: container)
-    }
-}
-
-// MARK: - Login
-extension ScreenFactoryAssembly {
-    func assambleLoginScreen(container: Container) {
-        container.register(LoginScreenVM.self) { resolver in
-            DefaultLoginScreenVM(loginUseCase: resolver.resolve(LoginUseCase.self)!)
-        }
-        container.register(LoginScreenVC.self) { resolver in
-            var vm = resolver.resolve(LoginScreenVM.self)!
-            let vc = LoginScreenVC(viewModel: vm)
-            let router = DefaultLoginScreenRouter(viewController: vc)
-            vm.router = router
-            return vc
-        }
     }
 }
 
