@@ -9,7 +9,7 @@
 import SwiftyUserDefaults
 import Foundation
 
-extension DefaultsKeys {
+public extension DefaultsKeys {
     var appLaunchDate: DefaultsKey<Date?> { .init("appLaunchDate", defaultValue: nil) }
     var appTerminationDate: DefaultsKey<Date?> { .init("appTerminationDate", defaultValue: nil) }
 }

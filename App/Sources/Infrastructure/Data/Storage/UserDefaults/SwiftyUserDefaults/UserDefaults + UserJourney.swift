@@ -8,6 +8,6 @@
 
 import SwiftyUserDefaults
 
-extension DefaultsKeys {
+public extension DefaultsKeys {
     var isOnboardingCompleted: DefaultsKey<Bool> { .init("isOnboardingCompleted", defaultValue: false) }
 }
