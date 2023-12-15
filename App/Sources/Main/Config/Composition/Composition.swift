@@ -23,7 +23,7 @@ class Composition {
                 UserSessionAssembly(),
                 RepositoryAssembly(),
                 UseCaseAssembly(),
-                ScreenAssembly()
+                ScreenFactoryAssembly()
             ],
             container: container
         )

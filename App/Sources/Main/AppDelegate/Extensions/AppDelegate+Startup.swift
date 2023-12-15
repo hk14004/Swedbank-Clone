@@ -17,7 +17,8 @@ extension AppDelegate {
     
     private func configureWindow() {
         let window = UIWindow(frame: UIScreen.main.bounds)
-        let vc: SplashScreenVC = Composition.resolve()
+        let screenFactory: SplashScreenFactory = Composition.resolve()
+        let vc: SplashScreenVC = screenFactory.make()
         let nav = UINavigationController(rootViewController: vc)
         window.rootViewController = nav
         window.makeKeyAndVisible()

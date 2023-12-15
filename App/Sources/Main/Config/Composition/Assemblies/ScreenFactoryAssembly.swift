@@ -5,9 +5,12 @@ import DevToolsNavigation
 import UIKit
 import SwiftUI
 
-class ScreenAssembly: Assembly {
+class ScreenFactoryAssembly: Assembly {
     func assemble(container: Container) {
-        assembleSplashScreen(container: container)
+        // Splash
+        container.register(SplashScreenFactory.self) { resolver in
+            DefaultSplashScreenFactory()
+        }
         assambleLoginScreen(container: container)
         assableRootTabbarScreen(container: container)
         assableDashboard(container: container)
@@ -15,28 +18,8 @@ class ScreenAssembly: Assembly {
     }
 }
 
-// MARK: - Splash
-extension ScreenAssembly {
-    func assembleSplashScreen(container: Container) {
-        container.register(SplashScreenVM.self) { resolver in
-            DefaultSplashVM(
-                isAnyUserSessionActiveUseCase: Composition.resolve(),
-                isOnboardingCompletedUseCase: Composition.resolve(),
-                startAllUserSessionsUseCase: Composition.resolve()
-            )
-        }
-        container.register(SplashScreenVC.self) { resolver in
-            var vm = resolver.resolve(SplashScreenVM.self)!
-            let vc = SplashScreenVC(viewModel: vm)
-            let router = DefaultSplashScreenRouter(viewController: vc)
-            vm.router = router
-            return vc
-        }
-    }
-}
-
 // MARK: - Login
-extension ScreenAssembly {
+extension ScreenFactoryAssembly {
     func assambleLoginScreen(container: Container) {
         container.register(LoginScreenVM.self) { resolver in
             DefaultLoginScreenVM(loginUseCase: resolver.resolve(LoginUseCase.self)!)
@@ -52,7 +35,7 @@ extension ScreenAssembly {
 }
 
 // MARK: - Dashboard
-extension ScreenAssembly {
+extension ScreenFactoryAssembly {
     func assableRootTabbarScreen(container: Container) {
         container.register(RootTabbarScreenVM.self) { resolver in
             DefaultRootTabbarScreenVM(isAnyUserSessionActiveUseCase: Composition.resolve())
@@ -79,7 +62,7 @@ extension ScreenAssembly {
 }
 
 // MARK: - Locked dashboard
-extension ScreenAssembly {
+extension ScreenFactoryAssembly {
     func assableLockedDashboardScreen(container: Container) {
         container.register(LockedTabScreenVC.self) { (resolver, config: LockedDashboardPresentationConfig) in
             let vm = DefaultLockedDashboardVM(presentation: config)
