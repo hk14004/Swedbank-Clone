@@ -7,23 +7,44 @@
 //
 
 import XCTest
+import KeychainAccess
 
 final class KeychainAccessTests: XCTestCase {
-
+    
+    var mocks: Mocks!
+    var sut: Keychain!
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+        mocks = Mocks()
+        sut = mocks.makeSUT()
     }
     
+    override func tearDownWithError() throws {
+        mocks = nil
+        sut = nil
+    }
+    
+    func testKeychainWriteAndRead() {
+        // Unique key and value for testing
+        let testKey = "testKey"
+        let testValue = "testValue"
+        
+        // Write the test value to the keychain
+        do {
+            try sut.set(testValue, key: testKey)
+        } catch {
+            XCTFail("Failed to write to the keychain: \(error)")
+        }
+        
+        // Read the value back from the keychain
+        var retrievedValue: String?
+        do {
+            retrievedValue = try sut.get(testKey)
+        } catch {
+            XCTFail("Failed to read from the keychain: \(error)")
+        }
+        
+        // Assert that the retrieved value matches the test value
+        XCTAssertEqual(retrievedValue, testValue, "The value retrieved from the keychain should match the test value.")
+    }
 }
