@@ -8,16 +8,22 @@
 
 import UIKit
 import SwedInterfaceAdapters
+import Combine
 
 class DefaultLoginScreenRouter: LoginScreenRouter {
 
     var viewController: UIViewController
+    let didLoginPublisher: PassthroughSubject<Void, Never>
 
-    init(viewController:UIViewController) {
+    init(
+        viewController:UIViewController,
+        didLoginPublisher: PassthroughSubject<Void, Never>
+    ) {
         self.viewController = viewController
+        self.didLoginPublisher = didLoginPublisher
     }
     
-    func routeToDashboard() {
-        print("Route to dashboard plz")
+    func routeToLoginCompleted() {
+        didLoginPublisher.send()
     }
 }

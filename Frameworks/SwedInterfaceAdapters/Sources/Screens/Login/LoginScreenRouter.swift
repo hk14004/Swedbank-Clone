@@ -9,5 +9,5 @@
 import Foundation
 
 public protocol LoginScreenRouter {
-    func routeToDashboard()
+    func routeToLoginCompleted()
 }

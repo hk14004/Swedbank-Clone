@@ -19,14 +19,14 @@ public protocol LoginScreenVMInput {
 
 public protocol LoginScreenVMOutput {
     var router: LoginScreenRouter? { get set}
-    var loading: CurrentValueSubject<Bool, Never> { get }
+    var loadingPublisher: CurrentValueSubject<Bool, Never> { get }
 }
 
 public protocol LoginScreenVM: LoginScreenVMInput,LoginScreenVMOutput {}
 
 public class DefaultLoginScreenVM: LoginScreenVM {
     public var router: LoginScreenRouter?
-    private(set) public var loading: CurrentValueSubject<Bool, Never> = .init(false)
+    private(set) public var loadingPublisher: CurrentValueSubject<Bool, Never> = .init(false)
     private let loginUseCase: LoginUseCase
     private var bag = Set<AnyCancellable>()
     
@@ -41,7 +41,7 @@ public extension DefaultLoginScreenVM {
     func viewDidLoad() {}
     
     func onLoginTapped(username: String, password: String) {
-        loading.send(true)
+        loadingPublisher.send(true)
         loginUseCase.use(username: username, password: password)
             .receiveOnMainThread()
             .sink { [weak self] completion in
@@ -50,7 +50,6 @@ public extension DefaultLoginScreenVM {
                 self?.onLoggedIn(customer: customer)
             }
             .store(in: &bag)
-        
     }
     
     func onRecoverPasswordTapped() {}
@@ -62,7 +61,7 @@ extension DefaultLoginScreenVM {
     }
     
     private func handleLoginCompletion(_ completion: Subscribers.Completion<Error>) {
-        loading.send(false)
+        loadingPublisher.send(false)
         switch completion {
         case .finished:
             print("Login finished")

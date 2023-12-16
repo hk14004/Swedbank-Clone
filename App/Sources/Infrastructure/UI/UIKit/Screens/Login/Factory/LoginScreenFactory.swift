@@ -8,16 +8,20 @@
 
 import UIKit
 import SwedInterfaceAdapters
+import Combine
 
 protocol LoginScreenFactory {
-    func make() -> LoginScreenVC
+    func make(didLoginPublisher: PassthroughSubject<Void, Never>) -> LoginScreenVC
 }
 
 class DefaultLoginScreenFactory: LoginScreenFactory {
-    func make() -> LoginScreenVC {
+    func make(didLoginPublisher: PassthroughSubject<Void, Never>) -> LoginScreenVC {
         let vm = DefaultLoginScreenVM(loginUseCase: Composition.resolve())
         let vc = LoginScreenVC(viewModel: vm)
-        let router = DefaultLoginScreenRouter(viewController: vc)
+        let router = DefaultLoginScreenRouter(
+            viewController: vc,
+            didLoginPublisher: didLoginPublisher
+        )
         vm.router = router
         return vc
     }

@@ -35,7 +35,12 @@ class DefaultLockedDashboardRouter: LockedDashboardRouter, UIKitRouter {
     
     func routeToLogin() {
         let factory: LoginScreenFactory = Composition.resolve()
-        let vc = factory.make()
+        let didLoginPublisher = PassthroughSubject<Void, Never>()
+        let vc = factory.make(didLoginPublisher: didLoginPublisher)
+        didLoginPublisher.sink { _ in
+            vc.dismiss(animated: true)
+        }
+        .store(in: &cancelBag)
         viewController.present(vc, animated: true)
     }
 }
