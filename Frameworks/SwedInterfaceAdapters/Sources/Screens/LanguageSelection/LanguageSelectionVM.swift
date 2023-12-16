@@ -22,15 +22,15 @@ public protocol LanguageSelectionScreenVMOutput {
 
 public protocol LanguageSelectionScreenVM: ObservableObject, LanguageSelectionScreenVMInput, LanguageSelectionScreenVMOutput {}
 
-class DefaultLanguageSelectionScreenVM: LanguageSelectionScreenVM {
-    var router: LanguageSelectionRouter!
-    @Published var selectedLanguage: String
-    @Published var availableLanguages: [String]
+public class DefaultLanguageSelectionScreenVM: LanguageSelectionScreenVM {
+    public var router: LanguageSelectionRouter!
+    @Published public var selectedLanguage: String
+    @Published public var availableLanguages: [String]
     private let getCurrentLanguageUseCase: GetCurrentLanguageUseCase
     private let getAvailableLanguagesUseCase: GetAvailableLanguagesUseCase
     private let setCurrentLanguagesUseCase: SetCurrentLanguagesUseCase
     
-    init(
+    public init(
         getCurrentLanguageUseCase: GetCurrentLanguageUseCase,
         getAvailableLanguagesUseCase: GetAvailableLanguagesUseCase,
         setCurrentLanguagesUseCase: SetCurrentLanguagesUseCase
@@ -44,7 +44,7 @@ class DefaultLanguageSelectionScreenVM: LanguageSelectionScreenVM {
 }
 
 // MARK: Public
-extension DefaultLanguageSelectionScreenVM {
+public extension DefaultLanguageSelectionScreenVM {
     func onClose() {
         router.selectedLanguage(code: selectedLanguage)
     }
