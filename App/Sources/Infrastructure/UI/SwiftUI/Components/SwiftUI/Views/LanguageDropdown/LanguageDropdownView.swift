@@ -7,11 +7,10 @@
 
 import SwiftUI
 import DevToolsUI
-import DevToolsLocalization
 
 struct LanguageDropdownView: View {
     
-    @ObservedObject var loc = RuntimeLocalizationObserver()
+    @ObservedObject var loc: AppLocalizationObserver = Composition.resolve()
     
     var body: some View {
         VStack {
@@ -25,7 +24,7 @@ struct LanguageDropdownView: View {
 
 struct LanguageDropdownView_Previews: PreviewProvider {
     static var previews: some View {
-        RuntimeLocalizedPreview(language: "lv")
+        AppLocalizedPreview(language: "lv")
         LanguageDropdownView()
     }
 }
@@ -33,8 +32,7 @@ struct LanguageDropdownView_Previews: PreviewProvider {
 extension LanguageDropdownView {
     @ViewBuilder
     private func makeFlagImageView() -> some View {
-//        let loc: RuntimeLocalization = Composition.resolve()
-        Image("Globals.makeLanguageFlagName(language: loc.getCurrentLanguage())")
+        Image(SWEDBANKAsset.Images.makeLanguageFlagName(language: "lv"))
             .resizable()
             .scaledToFit()
             .frame(width: 20)

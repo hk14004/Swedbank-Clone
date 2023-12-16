@@ -10,17 +10,11 @@ import UIKit
 import SwedInterfaceAdapters
 
 struct DefaultSplashScreenRouter: SplashScreenRouter {
-
-    private let viewController: UIViewController
-    
-    init(viewController: UIViewController) {
-        self.viewController = viewController
-    }
     
     func routeToDashboard() {
         let factory: RootTabbarScreenFactory = Composition.resolve()
         let vc = factory.make()
-        viewController.navigationController?.setViewControllers([vc], animated: false)
+        UIApplication.shared.delegate?.window??.rootViewController = vc
     }
     
     func routeToOnboarding() {

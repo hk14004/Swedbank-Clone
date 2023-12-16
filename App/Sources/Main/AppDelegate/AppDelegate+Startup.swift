@@ -20,6 +20,7 @@ extension AppDelegate {
         let screenFactory: SplashScreenFactory = Composition.resolve()
         let vc: SplashScreenVC = screenFactory.make()
         let nav = UINavigationController(rootViewController: vc)
+        nav.navigationBar.isHidden = true
         window.rootViewController = nav
         window.makeKeyAndVisible()
         self.window = window

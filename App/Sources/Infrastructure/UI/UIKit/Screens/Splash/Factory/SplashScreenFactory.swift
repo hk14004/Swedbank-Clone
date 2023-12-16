@@ -22,7 +22,7 @@ class DefaultSplashScreenFactory: SplashScreenFactory {
             startAllUserSessionsUseCase: Composition.resolve()
         )
         let vc = SplashScreenVC(viewModel: vm)
-        let router = DefaultSplashScreenRouter(viewController: vc)
+        let router = DefaultSplashScreenRouter()
         vm.router = router
         return vc
     }

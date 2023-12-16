@@ -82,10 +82,10 @@ extension RootTabbarScreenVC {
             let factory: LockedTabScreenFactory = Composition.resolve()
             let vc = factory.make(
                 config: LockedDashboardPresentationConfig(
-                    title: "LockedTab.Overview.title",
-                    subtitle: "LockedTab.Overview.subtitle",
-                    backgroundColorName: "Blue2",
-                    tabDescriptionIconName: "1"
+                    title: "Screen.LockedTab.Overview.title",
+                    subtitle: "Screen.LockedTab.Overview.subtitle",
+                    backgroundColorName: "White3",
+                    tabDescriptionIconName: "ic_overview_description"
                 )
             )
             return vc

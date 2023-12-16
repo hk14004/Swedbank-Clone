@@ -18,6 +18,7 @@ class Composition {
     private init() {
         assembler = Assembler(
             [
+                LocalizationAssembly(),
                 StorageAssembly(),
                 NetworkClientAssembly(),
                 ServicesAssembly(),

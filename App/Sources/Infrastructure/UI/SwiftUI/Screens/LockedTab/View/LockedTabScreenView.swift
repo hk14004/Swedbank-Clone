@@ -46,7 +46,7 @@ struct LockedTabScreenView<ViewModel: LockedDashboardVM>: View {
             .padding(.vertical)
         }
         .padding()
-        .background(Color(viewModel.presentation.backgroundColorName))
+        .background(Color(viewModel.presentation.backgroundColorName).ignoresSafeArea())
         .navigationBarHidden(true)
     }
 }
@@ -61,7 +61,7 @@ struct LockedTabView_Previews: PreviewProvider {
 private class LockedTabScreenVMPreview {
 
     var presentation: SwedInterfaceAdapters.LockedDashboardPresentationConfig {
-        .init(title: "LockedTab.Overview.title", subtitle: "LockedTab.Overview.subtitle", backgroundColorName: "color4", tabDescriptionIconName: "Images.Icons.icOverviewDescription.name")
+        .init(title: "Screen.LockedTab.Overview.title", subtitle: "Screen.LockedTab.Overview.subtitle", backgroundColorName: "White3", tabDescriptionIconName: "ic_overview_description")
     }
     var router: LockedDashboardRouter!
     

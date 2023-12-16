@@ -18,7 +18,7 @@ struct LoginButtonView: View {
         } label: {
             HStack {
                 Spacer()
-                Text("SWEDBANKStrings.Login.Button.title.runtimeLocalized()")
+                Text("Screen.Login.Button.title".runtimeLocalized())
                 Spacer()
             }
         }
