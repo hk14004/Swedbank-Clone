@@ -13,8 +13,13 @@ public protocol GetAvailableLanguagesUseCase {
 }
 
 public class DefaultGetAvailableLanguagesUseCase: GetAvailableLanguagesUseCase {
-    public init() {}
+    private let languageRepository: LanguageRepository
+    
+    public init(languageRepository: LanguageRepository) {
+        self.languageRepository = languageRepository
+    }
+    
     public func use() -> [LanguageKey] {
-        ["lv", "en"]
+        languageRepository.getAvailableLanguages()
     }
 }

@@ -17,5 +17,11 @@ class RepositoryAssembly: Assembly {
             DefaultUserSessionCredentialsRepository(store: Composition.resolve())
         }
         .inObjectScope(.container)
+        container.register(LanguageRepository.self) { resolver in
+            DefaultLanguageRepository(
+                appLocalization: Composition.resolve()
+            )
+        }
+        .inObjectScope(.container)
     }
 }

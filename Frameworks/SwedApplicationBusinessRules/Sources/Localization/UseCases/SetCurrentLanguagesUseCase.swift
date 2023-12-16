@@ -13,9 +13,12 @@ public protocol SetCurrentLanguagesUseCase {
 }
 
 public class DefaultSetCurrentLanguagesUseCase: SetCurrentLanguagesUseCase {
-    public init() {}
+    private let languageRepository: LanguageRepository
+    
+    public init(languageRepository: LanguageRepository) {
+        self.languageRepository = languageRepository
+    }
     public func use(languageCode: LanguageKey) {
-        // TODO: Implement
-        print("Implement DefaultSetCurrentLanguagesUseCase")
+        languageRepository.updateCurrentLanguage(code: languageCode)
     }
 }

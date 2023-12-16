@@ -13,10 +13,13 @@ public protocol GetCurrentLanguageUseCase {
 }
 
 public class DefaultGetCurrentLanguageUseCase: GetCurrentLanguageUseCase {
+    private let languageRepository: LanguageRepository
     
-    public init() {}
+    public init(languageRepository: LanguageRepository) {
+        self.languageRepository = languageRepository
+    }
     
     public func use() -> LanguageKey {
-        "lv"
+        languageRepository.getCurrentLanguage()
     }
 }

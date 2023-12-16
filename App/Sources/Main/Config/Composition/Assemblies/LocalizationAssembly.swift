@@ -23,4 +23,3 @@ class LocalizationAssembly: Assembly {
         }.inObjectScope(.container)
     }
 }
-

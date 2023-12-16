@@ -7,13 +7,12 @@
 
 import SwiftUI
 import DevToolsUI
-import DevToolsLocalization
 import SwedInterfaceAdapters
 
 struct LockedTabScreenView<ViewModel: LockedDashboardVM>: View {
     
     @ObservedObject var viewModel: ViewModel
-    @ObservedObject var loc = RuntimeLocalizationObserver()
+    @ObservedObject var loc = AppLocalizationObserver()
     
     var body: some View {
         VStack(spacing: 0) {
@@ -53,7 +52,7 @@ struct LockedTabScreenView<ViewModel: LockedDashboardVM>: View {
 
 struct LockedTabView_Previews: PreviewProvider {
     static var previews: some View {
-        RuntimeLocalizedPreview(language: "lv")
+        AppLocalizedPreview(language: "lv")
         LockedTabScreenView(viewModel: LockedTabScreenVMPreview())
     }
 }

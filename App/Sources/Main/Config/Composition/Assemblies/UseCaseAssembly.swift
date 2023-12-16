@@ -7,30 +7,30 @@ class UseCaseAssembly: Assembly {
     func assemble(container: Container) {
         container.register(LoginUseCase.self) { resolver in
             DefaultLoginUseCase(
-                startSessionService: resolver.resolve(StartSessionService.self)!,
-                manager: resolver.resolve(UserSessionManager.self)!,
-                fetchCustomerService: resolver.resolve(FetchCustomerService.self)!,
-                userSessionCredentialsRepository: resolver.resolve(UserSessionCredentialsRepository.self)!
+                startSessionService: Composition.resolve(),
+                manager: Composition.resolve(),
+                fetchCustomerService: Composition.resolve(),
+                userSessionCredentialsRepository: Composition.resolve()
             )
         }
         container.register(StartAllUserSessionsUseCase.self) { resolver in
             DefaultStartAllUserSessionsUseCase(
-                manager: resolver.resolve(UserSessionManager.self)!
+                manager: Composition.resolve()
             )
         }
         container.register(isOnboardingCompletedUseCase.self) { resolver in
             DefaultIsOnboardingCompletedUseCase(
-                userJourneyRepository: resolver.resolve(UserJourneyRepository.self)!
+                userJourneyRepository: Composition.resolve()
             )
         }
         container.register(SaveAppLaunchDateUseCase.self) { resolver in
             DefaultSaveAppLaunchDateUseCase(
-                applicationActivityRepository: resolver.resolve(ApplicationActivityRepository.self)!
+                applicationActivityRepository: Composition.resolve()
             )
         }
         container.register(SaveAppTerminationDateUseCase.self) { resolver in
             DefaultSaveAppTerminationDateUseCase(
-                applicationActivityRepository: resolver.resolve(ApplicationActivityRepository.self)!
+                applicationActivityRepository: Composition.resolve()
             )
         }
         container.register(IsAnyUserSessionActiveUseCase.self) { resolver in
@@ -39,13 +39,13 @@ class UseCaseAssembly: Assembly {
             )
         }
         container.register(GetCurrentLanguageUseCase.self) { resolver in
-            DefaultGetCurrentLanguageUseCase()
+            DefaultGetCurrentLanguageUseCase(languageRepository: Composition.resolve())
         }
         container.register(GetAvailableLanguagesUseCase.self) { resolver in
-            DefaultGetAvailableLanguagesUseCase()
+            DefaultGetAvailableLanguagesUseCase(languageRepository: Composition.resolve())
         }
         container.register(SetCurrentLanguagesUseCase.self) { resolver in
-            DefaultSetCurrentLanguagesUseCase()
+            DefaultSetCurrentLanguagesUseCase(languageRepository: Composition.resolve())
         }
     }
 }

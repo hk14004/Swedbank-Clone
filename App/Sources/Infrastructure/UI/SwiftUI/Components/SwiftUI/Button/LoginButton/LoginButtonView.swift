@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import DevToolsLocalization
 
 struct LoginButtonView: View {
     
@@ -28,7 +27,7 @@ struct LoginButtonView: View {
 
 struct LoginButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        RuntimeLocalizedPreview(language: "lv")
+        AppLocalizedPreview(language: "lv")
         LoginButtonView {}
     }
 }
