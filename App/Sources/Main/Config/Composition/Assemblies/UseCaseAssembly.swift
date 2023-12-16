@@ -38,5 +38,14 @@ class UseCaseAssembly: Assembly {
                 userSessionManager: resolver.resolve(UserSessionManager.self)!
             )
         }
+        container.register(GetCurrentLanguageUseCase.self) { resolver in
+            DefaultGetCurrentLanguageUseCase()
+        }
+        container.register(GetAvailableLanguagesUseCase.self) { resolver in
+            DefaultGetAvailableLanguagesUseCase()
+        }
+        container.register(SetCurrentLanguagesUseCase.self) { resolver in
+            DefaultSetCurrentLanguagesUseCase()
+        }
     }
 }

@@ -27,5 +27,9 @@ class ScreenFactoryAssembly: Assembly {
         container.register(LockedTabScreenFactory.self) { resolver in
             DefaultLockedTabScreenFactory()
         }
+        // MARK: Language selection
+        container.register(LanguageSelectionScreenFactory.self) { resolver in
+            DefaultLanguageSelectionScreenFactory()
+        }
     }
 }
