@@ -10,11 +10,13 @@ import Foundation
 import Swinject
 import DevToolsCore
 import SwedApplicationBusinessRules
+import KeychainAccess
 
 class UserSessionAssembly: Assembly {
     func assemble(container: Container) {
         container.register(BaseUserSessionCredentialsStore<UserSessionCredentials>.self) { resolver in
-            DefaultUserSessionCredentialsStore()
+            // TODO: Move to config
+            DefaultUserSessionCredentialsStore(keychain: Keychain(service: "com.keychain"))
         }
         container.register(UserSessionManager.self) { resolver in
             UserSessionManager(

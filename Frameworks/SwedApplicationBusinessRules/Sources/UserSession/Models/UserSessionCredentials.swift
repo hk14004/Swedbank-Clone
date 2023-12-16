@@ -9,11 +9,11 @@
 import Foundation
 import DevToolsCore
 
-public struct UserSessionCredentials: Codable, AuthorizationCredentials {
+public struct UserSessionCredentials: Codable, Equatable, AuthorizationCredentials {
     
     // MARK: Types
     
-    public struct Data: Codable {
+    public struct Data: Codable, Equatable {
         public var bearerToken: String
         public var refreshToken: String
         

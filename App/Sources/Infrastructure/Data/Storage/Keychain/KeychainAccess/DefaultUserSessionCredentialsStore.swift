@@ -15,12 +15,12 @@ class DefaultUserSessionCredentialsStore: BaseUserSessionCredentialsStore<UserSe
 
     // MARK: Properties
     
-    private let keychain = Keychain(service: "LOCAL_MAIN_KEYCHAIN_CREDENTIAL_SERVICE")
+    let keychain: Keychain
     
     // MARK: init
     
-    override init() {
-        super.init()
+    init(keychain: Keychain) {
+        self.keychain = keychain
     }
     
     // MARK: Overriden
