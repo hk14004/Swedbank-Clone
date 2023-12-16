@@ -10,6 +10,7 @@ import XCTest
 @testable import SWEDBANK
 @testable import SwedApplicationBusinessRules
 
+// TODO: Add more tests
 final class DefaultUserSessionCredentialsStoreTests: XCTestCase {
 
     var mocks: Mocks!

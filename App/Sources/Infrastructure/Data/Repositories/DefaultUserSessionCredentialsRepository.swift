@@ -8,17 +8,25 @@
 
 import Foundation
 import SwedApplicationBusinessRules
+import DevToolsCore
 
 class DefaultUserSessionCredentialsRepository: UserSessionCredentialsRepository {
+    
+    private let store: BaseUserSessionCredentialsStore<UserSessionCredentials>
+    
+    init(store: BaseUserSessionCredentialsStore<UserSessionCredentials>) {
+        self.store = store
+    }
+    
     func save(credentials: UserSessionCredentials) {
-        fatalError()
+        store.storeCredentials(credentials)
     }
     
     func getCredentials(id: String) -> UserSessionCredentials? {
-        fatalError()
+        store.getCredentials(id: id)
     }
     
     func deleteCredentials(id: String) {
-        fatalError()
+        store.deleteCredentials(id: id)
     }
 }

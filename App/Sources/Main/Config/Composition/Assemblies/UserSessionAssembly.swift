@@ -14,14 +14,13 @@ import KeychainAccess
 
 class UserSessionAssembly: Assembly {
     func assemble(container: Container) {
-        container.register(BaseUserSessionCredentialsStore<UserSessionCredentials>.self) { resolver in
-            // TODO: Move to config
-            DefaultUserSessionCredentialsStore(keychain: Keychain(service: "com.keychain"))
+        container.register(BaseUserSessionFactory<UserSessionCredentials>.self) { resolver in
+            BaseUserSessionFactory<UserSessionCredentials>()
         }
         container.register(UserSessionManager.self) { resolver in
             UserSessionManager(
-                credentialsStore: resolver.resolve(BaseUserSessionCredentialsStore<UserSessionCredentials>.self)!,
-                userSessionFactory: BaseUserSessionFactory<UserSessionCredentials>()
+                credentialsStore: Composition.resolve(),
+                userSessionFactory: Composition.resolve()
             )
         }
     }

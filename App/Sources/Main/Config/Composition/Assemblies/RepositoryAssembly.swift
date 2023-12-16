@@ -14,7 +14,7 @@ class RepositoryAssembly: Assembly {
         }
         .inObjectScope(.container)
         container.register(UserSessionCredentialsRepository.self) { resolver in
-            DefaultUserSessionCredentialsRepository()
+            DefaultUserSessionCredentialsRepository(store: Composition.resolve())
         }
         .inObjectScope(.container)
     }
