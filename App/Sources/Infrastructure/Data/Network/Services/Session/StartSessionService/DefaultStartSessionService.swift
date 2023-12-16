@@ -1,6 +1,7 @@
 import Combine
 import DevToolsNetworking
 import SwedApplicationBusinessRules
+import Foundation
 
 class DefaultStartSessionService: StartSessionService {
     private let networkClient: DevNetworkClient
@@ -16,7 +17,7 @@ class DefaultStartSessionService: StartSessionService {
                         StartSessionServiceOutput(
                             bearerToken: response.accessToken,
                             refreshToken: response.refreshToken,
-                            expirationDuration: response.accessTokenExpirationDuration, 
+                            expirationDuration: response.accessTokenExpirationDuration,
                             userID: response.userID
                         )
                     )
@@ -33,5 +34,23 @@ class DefaultStartSessionService: StartSessionService {
                 )
             )
         )
+    }
+}
+
+class MockStartSessionService: StartSessionService {
+    func use(input: StartSessionServiceInput) -> AnyPublisher<StartSessionServiceOutput, Error> {
+        guard input.username == "007" else {
+            return .fail(NSError(domain: "dddd", code: 0))
+        }
+        return .just(
+            StartSessionServiceOutput(
+                bearerToken: "accessToken123",
+                refreshToken: "refreshToken123",
+                expirationDuration: 3600,
+                userID: input.username
+            )
+        )
+        .delay(for: .seconds(0.5), scheduler: RunLoop.main, options: .none)
+        .eraseToAnyPublisher()
     }
 }

@@ -18,15 +18,15 @@ public protocol LoginScreenVMInput {
 }
 
 public protocol LoginScreenVMOutput {
-    var router: LoginScreenRouter? { get set}
+    var router: LoginScreenRouter! { get set}
     var loadingPublisher: CurrentValueSubject<Bool, Never> { get }
 }
 
 public protocol LoginScreenVM: LoginScreenVMInput,LoginScreenVMOutput {}
 
 public class DefaultLoginScreenVM: LoginScreenVM {
-    public var router: LoginScreenRouter?
-    private(set) public var loadingPublisher: CurrentValueSubject<Bool, Never> = .init(false)
+    public var router: LoginScreenRouter!
+    public var loadingPublisher: CurrentValueSubject<Bool, Never> = .init(false)
     private let loginUseCase: LoginUseCase
     private var bag = Set<AnyCancellable>()
     
@@ -36,7 +36,7 @@ public class DefaultLoginScreenVM: LoginScreenVM {
     
 }
 
-// MARK: - LoginVMInput
+// MARK: - Public
 public extension DefaultLoginScreenVM {
     func viewDidLoad() {}
     
@@ -55,16 +55,17 @@ public extension DefaultLoginScreenVM {
     func onRecoverPasswordTapped() {}
 }
 
+// MARK: Private
 extension DefaultLoginScreenVM {
     private func onLoggedIn(customer: CustomerDTO) {
-        print("Route to dashboard with customer:", customer.name)
+        router.routeToLoginCompleted()
     }
     
     private func handleLoginCompletion(_ completion: Subscribers.Completion<Error>) {
         loadingPublisher.send(false)
         switch completion {
         case .finished:
-            print("Login finished")
+            return
         case .failure(let error):
             printError(error)
         }

@@ -6,11 +6,11 @@ import SwedApplicationBusinessRules
 class ServicesAssembly: Assembly {
     func assemble(container: Container) {
         container.register(StartSessionService.self) { resolver in
-            DefaultStartSessionService(networkClient: container.resolve(SwedNetworkClient.self)!)
+            MockStartSessionService()
         }
         .inObjectScope(.container)
         container.register(FetchCustomerService.self) { resolver in
-            MockFetchCustomerService(networkClient: container.resolve(SwedNetworkClient.self)!)
+            MockFetchCustomerService()
         }
         .inObjectScope(.container)
     }

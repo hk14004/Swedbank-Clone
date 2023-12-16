@@ -37,6 +37,11 @@ extension LoginScreenView {
             view.setTitle(SWEDBANKStrings.Screen.Login.Button.title,for: .normal)
             return view
         }()
+        private lazy var loadingIndicatorView: UIActivityIndicatorView = {
+            let view = UIActivityIndicatorView(style: .large)
+            view.hidesWhenStopped = true
+            return view
+        }()
         
         var onLoginTap: AnyPublisher<Void, Never> {
             loginButton.eventPublisher(for: .touchUpInside).eraseToAnyPublisher()
@@ -63,6 +68,7 @@ extension LoginScreenView {
             setupUsernameView()
             setupPasswordView()
             setupLoginButtonView()
+            setupLoadingIndicatorView()
         }
         
         private func setupLogo() {
@@ -103,6 +109,24 @@ extension LoginScreenView {
                 make.top.equalTo(passwordField.snp.bottom).offset(16)
                 make.bottom.horizontalEdges.equalToSuperview()
             }
+        }
+        
+        private func setupLoadingIndicatorView() {
+            addSubview(loadingIndicatorView)
+            loadingIndicatorView.snp.makeConstraints { make in
+                make.center.equalToSuperview()
+            }
+        }
+    }
+}
+
+// MARK: Public
+extension LoginScreenView.RootView {
+    func configure(loading: Bool) {
+        if loading {
+            loadingIndicatorView.startAnimating()
+        } else {
+            loadingIndicatorView.stopAnimating()
         }
     }
 }

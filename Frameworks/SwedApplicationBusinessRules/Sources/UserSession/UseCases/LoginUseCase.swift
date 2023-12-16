@@ -57,8 +57,8 @@ public struct DefaultLoginUseCase: LoginUseCase {
             .flatMap { customerResponse -> AnyPublisher<CustomerDTO, Error> in
                 // Start session
                 manager.startUserSession(with: creds)
-                return Just(customerResponse.customer).setFailureType(to: Error.self)
-                    .eraseToAnyPublisher()
+                return .just(customerResponse.customer)
+                    
             }.eraseToAnyPublisher()
         }
         .eraseToAnyPublisher()

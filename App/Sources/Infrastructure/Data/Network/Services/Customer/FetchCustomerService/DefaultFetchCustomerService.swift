@@ -37,12 +37,6 @@ class DefaultFetchCustomerService: FetchCustomerService {
 }
 
 class MockFetchCustomerService: FetchCustomerService {
-    private let networkClient: DevNetworkClient
-    
-    init(networkClient: DevNetworkClient) {
-        self.networkClient = networkClient
-    }
-    
     func use(input: FetchCustomerServiceInput) -> AnyPublisher<FetchCustomerServiceOutput, Error> {
         .just(.init(customer: CustomerDTO(id: "007", name: "James", surname: "Bond")))
     }

@@ -28,7 +28,8 @@ class LoginScreenVC: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        bind()
+        bindActions()
+        bindOutput()
         viewModel.viewDidLoad()
     }
     
@@ -36,16 +37,34 @@ class LoginScreenVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func bind() {
-        rootView.onLoginTap
+    private func bindOutput() {
+        bindIsLoading()
+    }
+    
+    private func bindActions() {
+        bindLoginTappedAction()
+    }
+    
+    private func bindIsLoading() {
+        viewModel.loadingPublisher
             .receiveOnMainThread()
-            .sink { [weak self] in
-                self?.viewModel.onLoginTapped(
-                    username: self?.rootView.usernameValue ?? "",
-                    password: self?.rootView.passwordValue ?? ""
-                )
+            .sink { [weak self] loading in
+                guard let self = self else { return }
+                rootView.configure(loading: loading)
             }
             .store(in: &bag)
     }
     
+    private func bindLoginTappedAction() {
+        rootView.onLoginTap
+            .receiveOnMainThread()
+            .sink { [weak self] in
+                guard let self = self else { return }
+                viewModel.onLoginTapped(
+                    username: rootView.usernameValue,
+                    password: rootView.passwordValue
+                )
+            }
+            .store(in: &bag)
+    }
 }
