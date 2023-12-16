@@ -29,6 +29,6 @@ class DefaultLanguageRepository: LanguageRepository {
     }
     
     func observeCurrentLanguage() -> AnyPublisher<LanguageKey, Never> {
-        .just("")
+        appLocalization.observeCurrentLanguage()
     }
 }

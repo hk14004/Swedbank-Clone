@@ -32,7 +32,7 @@ struct LanguageDropdownView_Previews: PreviewProvider {
 extension LanguageDropdownView {
     @ViewBuilder
     private func makeFlagImageView() -> some View {
-        Image(SWEDBANKAsset.Images.makeLanguageFlagName(language: "lv"))
+        Image(SWEDBANKAsset.Images.makeLanguageFlagName(language: loc.languageCode))
             .resizable()
             .scaledToFit()
             .frame(width: 20)
