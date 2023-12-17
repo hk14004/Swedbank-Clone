@@ -20,6 +20,11 @@ class DashboardScreenVC: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
     override func loadView() {
         super.loadView()
         view = rootView
