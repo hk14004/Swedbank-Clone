@@ -35,7 +35,7 @@ class UseCaseAssembly: Assembly {
         }
         container.register(IsAnyUserSessionActiveUseCase.self) { resolver in
             DefaultIsAnyUserSessionActiveUseCase(
-                userSessionManager: resolver.resolve(UserSessionManager.self)!
+                userSessionManager: Composition.resolve()
             )
         }
         container.register(GetCurrentLanguageUseCase.self) { resolver in

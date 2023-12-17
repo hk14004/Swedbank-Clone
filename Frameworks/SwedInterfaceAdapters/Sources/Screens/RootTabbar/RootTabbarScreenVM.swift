@@ -17,12 +17,12 @@ public protocol RootTabbarScreenVMOutput {
 
 public protocol RootTabbarScreenVMInput {
     func viewDidLoad()
+    func didUnlockOverview(customer: CustomerDTO)
 }
 
 public protocol RootTabbarScreenVM: RootTabbarScreenVMInput, RootTabbarScreenVMOutput {}
 
 public class DefaultRootTabbarScreenVM: RootTabbarScreenVM {
-    
     public var tabsPublisher: AnyPublisher<[PresentableRootTab], Never> {
         $presentableTabs.eraseToAnyPublisher()
     }
@@ -38,13 +38,14 @@ public class DefaultRootTabbarScreenVM: RootTabbarScreenVM {
 }
 
 // MARK: Input
-
-extension DefaultRootTabbarScreenVM {
-    public func viewDidLoad() {}
+public extension DefaultRootTabbarScreenVM {
+    func viewDidLoad() {}
+    func didUnlockOverview(customer: CustomerDTO) {
+        presentableTabs = makePresentableTabs()
+    }
 }
 
 // MARK: Private
-
 extension DefaultRootTabbarScreenVM {
     private func makePresentableTabs() -> [PresentableRootTab] {
         [

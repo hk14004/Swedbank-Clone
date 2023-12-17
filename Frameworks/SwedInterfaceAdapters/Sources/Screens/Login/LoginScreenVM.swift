@@ -58,7 +58,7 @@ public extension DefaultLoginScreenVM {
 // MARK: Private
 extension DefaultLoginScreenVM {
     private func onLoggedIn(customer: CustomerDTO) {
-        router.routeToLoginCompleted()
+        router.routeToLoginCompleted(customer: customer)
     }
     
     private func handleLoginCompletion(_ completion: Subscribers.Completion<Error>) {

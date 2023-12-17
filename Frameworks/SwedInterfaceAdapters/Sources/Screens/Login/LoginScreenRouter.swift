@@ -7,7 +7,8 @@
 //
 
 import Foundation
+import SwedApplicationBusinessRules
 
 public protocol LoginScreenRouter {
-    func routeToLoginCompleted()
+    func routeToLoginCompleted(customer: CustomerDTO)
 }

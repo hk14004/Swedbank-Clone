@@ -8,16 +8,27 @@
 
 import Foundation
 import SwedInterfaceAdapters
+import SwedApplicationBusinessRules
+import Combine
 
 protocol LockedTabScreenFactory {
-    func make(config: LockedDashboardPresentationConfig) -> LockedTabScreenVC
+    func make(
+        config: LockedDashboardPresentationConfig,
+        didUnlockDashboardPublisher: PassthroughSubject<CustomerDTO, Never>
+    ) -> LockedTabScreenVC
 }
 
 class DefaultLockedTabScreenFactory: LockedTabScreenFactory {
-    func make(config: LockedDashboardPresentationConfig) -> LockedTabScreenVC {
+    func make(
+        config: LockedDashboardPresentationConfig,
+        didUnlockDashboardPublisher: PassthroughSubject<CustomerDTO, Never>
+    ) -> LockedTabScreenVC {
         let vm = DefaultLockedDashboardVM(presentation: config)
         let vc = LockedTabScreenVC(viewModel: vm)
-        let router = DefaultLockedDashboardRouter(viewController: vc)
+        let router = DefaultLockedDashboardRouter(
+            viewController: vc,
+            didUnlockDashboardPublisher: didUnlockDashboardPublisher
+        )
         vm.router = router
         return vc
     }

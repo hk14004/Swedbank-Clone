@@ -9,21 +9,22 @@
 import UIKit
 import SwedInterfaceAdapters
 import Combine
+import SwedApplicationBusinessRules
 
 class DefaultLoginScreenRouter: LoginScreenRouter {
-
+    
     var viewController: UIViewController
-    let didLoginPublisher: PassthroughSubject<Void, Never>
-
+    let didLoginPublisher: PassthroughSubject<CustomerDTO, Never>
+    
     init(
-        viewController:UIViewController,
-        didLoginPublisher: PassthroughSubject<Void, Never>
+        viewController: UIViewController,
+        didLoginPublisher: PassthroughSubject<CustomerDTO, Never>
     ) {
         self.viewController = viewController
         self.didLoginPublisher = didLoginPublisher
     }
     
-    func routeToLoginCompleted() {
-        didLoginPublisher.send()
+    func routeToLoginCompleted(customer: CustomerDTO) {
+        didLoginPublisher.send(customer)
     }
 }

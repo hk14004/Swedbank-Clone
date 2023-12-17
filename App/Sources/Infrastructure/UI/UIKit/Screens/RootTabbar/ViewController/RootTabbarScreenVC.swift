@@ -11,6 +11,7 @@ import Combine
 import SwedInterfaceAdapters
 import DevToolsLocalization
 import DevToolsNavigation
+import SwedApplicationBusinessRules
 
 class RootTabbarScreenVC: UITabBarController {
     
@@ -66,6 +67,27 @@ extension RootTabbarScreenVC {
         }
     }
     
+    private func makeLockedOverview() -> UIViewController {
+        let didUnlockDashboardPublisher = PassthroughSubject<CustomerDTO, Never>()
+        let factory: LockedTabScreenFactory = Composition.resolve()
+        let vc = factory.make(
+            config: LockedDashboardPresentationConfig(
+                title: "Screen.LockedTab.Overview.title",
+                subtitle: "Screen.LockedTab.Overview.subtitle",
+                backgroundColorName: "White3",
+                tabDescriptionIconName: "ic_overview_description"
+            ),
+            didUnlockDashboardPublisher: didUnlockDashboardPublisher
+        )
+        didUnlockDashboardPublisher
+            .receiveOnMainThread()
+            .sink { [weak self] customer in
+                self?.viewModel.didUnlockOverview(customer: customer)
+            }
+            .store(in: &bag)
+        return vc
+    }
+    
     private func makeOverViewTab(presentable: PresentableRootTab) -> UINavigationController {
         let navVC = UINavigationController()
         let item = RuntimeLocalizedTabBarItem()
@@ -79,15 +101,7 @@ extension RootTabbarScreenVC {
                 let factory: DashboardScreenFactory = Composition.resolve()
                 return factory.make()
             }
-            let factory: LockedTabScreenFactory = Composition.resolve()
-            let vc = factory.make(
-                config: LockedDashboardPresentationConfig(
-                    title: "Screen.LockedTab.Overview.title",
-                    subtitle: "Screen.LockedTab.Overview.subtitle",
-                    backgroundColorName: "White3",
-                    tabDescriptionIconName: "ic_overview_description"
-                )
-            )
+            let vc = makeLockedOverview()
             return vc
         }()
         
