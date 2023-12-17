@@ -7,17 +7,25 @@
 //
 
 import UIKit
-import DevToolsUI
 import Combine
 import SwedInterfaceAdapters
 
 class OverviewScreenVC: UIViewController {
+    // MARK: Properties
+    lazy var rootView = OverviewScreenView.RootView()
+    let viewModel: OverviewScreenVM
+    private var cancelBag = Set<AnyCancellable>()
+    private lazy var dataSource: DiffableDataSource = makeDataSource()
+    private var initialRender = true
     
-    private lazy var rootView = OverviewScreenView.RootView()
-    private var bag = Set<AnyCancellable>()
-    
-    init() {
+    // MARK: Lifecycle
+    init(viewModel: OverviewScreenVM) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,15 +40,38 @@ class OverviewScreenVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bind()
+        setup()
+        viewModel.viewDidLoad()
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func bind() {
+}
 
+// MARK: Private
+extension OverviewScreenVC {
+    private func setup() {
+        rootView.tableView.dataSource = dataSource
+        dataSource.defaultRowAnimation = .fade
+        bindOutput()
     }
     
+    private func bindOutput() {
+        viewModel.sectionPublisher
+            .dropFirst()
+            .receiveOnMainThread()
+            .sink { [weak self] sections in
+                self?.renderTableViewSections(sections)
+            }
+            .store(in: &cancelBag)
+    }
+    
+    private func renderTableViewSections(_ sections: [OverviewScreenSection]) {
+        var snapshot = NSDiffableDataSourceSnapshot<OverviewScreenSection.Identifier, OverviewScreenSection.Cell>()
+        snapshot.appendSections(sections.map({$0.identifier}))
+        sections.forEach { section in
+            snapshot.appendItems(section.cells, toSection: section.identifier)
+        }
+        dataSource.apply(snapshot, animatingDifferences: !initialRender)
+        if initialRender {
+            initialRender = false
+        }
+    }
 }

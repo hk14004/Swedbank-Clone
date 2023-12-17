@@ -16,7 +16,7 @@ protocol OverviewScreenFactory {
 class DefaultDashboardScreenFactory: OverviewScreenFactory {
     func make() -> OverviewScreenVC {
         let vm = DefaultOverviewScreenVM()
-        let vc = OverviewScreenVC()
+        let vc = OverviewScreenVC(viewModel: vm)
         return vc
     }
 }

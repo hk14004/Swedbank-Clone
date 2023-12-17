@@ -22,6 +22,10 @@ extension OverviewScreenView {
             let view = UIView()
             return view
         }()
+        lazy var tableView: UITableView = {
+            let view = UITableView()
+            return view
+        }()
         override init(frame: CGRect) {
             super.init(frame: frame)
             setup()
@@ -35,6 +39,7 @@ extension OverviewScreenView {
             backgroundColor = SWEDBANKAsset.Colors.background1.color
             setupContainerView()
             setupNavigationBar()
+            setupTableView()
         }
         
         private func setupContainerView() {
@@ -50,6 +55,14 @@ extension OverviewScreenView {
             containerView.addSubview(navigationBarView)
             navigationBarView.snp.makeConstraints { make in
                 make.top.horizontalEdges.equalToSuperview()
+            }
+        }
+        
+        private func setupTableView() {
+            containerView.addSubview(tableView)
+            tableView.snp.makeConstraints { make in
+                make.horizontalEdges.bottom.equalToSuperview()
+                make.top.equalTo(navigationBarView.snp.bottom)
             }
         }
     }
