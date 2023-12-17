@@ -18,8 +18,5 @@ public enum RootTab {
 
 public struct PresentableRootTab {
     public let type: RootTab
-    public let nameKey: String
-    public let unselectedImageName: String
-    public let selectedImageName: String
     public let locked: Bool
 }

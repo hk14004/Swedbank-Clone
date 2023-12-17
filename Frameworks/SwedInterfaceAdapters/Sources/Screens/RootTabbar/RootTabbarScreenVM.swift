@@ -17,7 +17,7 @@ public protocol RootTabbarScreenVMOutput {
 
 public protocol RootTabbarScreenVMInput {
     func viewDidLoad()
-    func didUnlockOverview(customer: CustomerDTO)
+    func didUnlock(customer: CustomerDTO)
 }
 
 public protocol RootTabbarScreenVM: RootTabbarScreenVMInput, RootTabbarScreenVMOutput {}
@@ -40,7 +40,7 @@ public class DefaultRootTabbarScreenVM: RootTabbarScreenVM {
 // MARK: Input
 public extension DefaultRootTabbarScreenVM {
     func viewDidLoad() {}
-    func didUnlockOverview(customer: CustomerDTO) {
+    func didUnlock(customer: CustomerDTO) {
         presentableTabs = makePresentableTabs()
     }
 }
@@ -49,7 +49,11 @@ public extension DefaultRootTabbarScreenVM {
 extension DefaultRootTabbarScreenVM {
     private func makePresentableTabs() -> [PresentableRootTab] {
         [
-            makeOverViewTab()
+            makeOverViewTab(),
+            makePaymentsTab(),
+            makeCardsTab(),
+            makeServicesTab(),
+            makeContactsTab()
         ]
     }
     
@@ -57,9 +61,36 @@ extension DefaultRootTabbarScreenVM {
         let locked = !isAnyUserSessionActiveUseCase.use()
         return .init(
             type: .overview,
-            nameKey: "Tabbar.Tabs.Overview.title",
-            unselectedImageName: locked ? "lock" : "house",
-            selectedImageName: locked ? "lock" : "house",
+            locked: locked
+        )
+    }
+    
+    private func makePaymentsTab() -> PresentableRootTab {
+        let locked = !isAnyUserSessionActiveUseCase.use()
+        return .init(
+            type: .payments,
+            locked: locked
+        )
+    }
+    
+    private func makeCardsTab() -> PresentableRootTab {
+        let locked = !isAnyUserSessionActiveUseCase.use()
+        return .init(
+            type: .cards,
+            locked: locked
+        )
+    }
+    private func makeServicesTab() -> PresentableRootTab {
+        let locked = !isAnyUserSessionActiveUseCase.use()
+        return .init(
+            type: .services,
+            locked: locked
+        )
+    }
+    private func makeContactsTab() -> PresentableRootTab {
+        let locked = !isAnyUserSessionActiveUseCase.use()
+        return .init(
+            type: .contacts,
             locked: locked
         )
     }

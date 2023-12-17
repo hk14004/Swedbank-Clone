@@ -14,10 +14,11 @@ import DevToolsNavigation
 import SwedApplicationBusinessRules
 
 class RootTabbarScreenVC: UITabBarController {
+    // MARK: Properties
+    let viewModel: RootTabbarScreenVM
+    var bag = Set<AnyCancellable>()
     
-    private let viewModel: RootTabbarScreenVM
-    private var bag = Set<AnyCancellable>()
-    
+    // MARK: Lifecycle
     init(viewModel: RootTabbarScreenVM) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -29,18 +30,20 @@ class RootTabbarScreenVC: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        startup()
+        setup()
         viewModel.viewDidLoad()
     }
 }
 
+// MARK: Private
 extension RootTabbarScreenVC {
-    private func startup() {
-        bindToViewModel()
+    private func setup() {
+        bindOutput()
     }
     
-    private func bindToViewModel() {
-        viewModel.tabsPublisher.receiveOnMainThread()
+    private func bindOutput() {
+        viewModel.tabsPublisher
+            .receiveOnMainThread()
             .map { [weak self] tabs in
                 self?.makeTabs(tabs: tabs)
             }
@@ -48,112 +51,5 @@ extension RootTabbarScreenVC {
                 self?.viewControllers = controllers
             }
             .store(in: &bag)
-    }
-    
-    private func makeTabs(tabs: [PresentableRootTab]) -> [UINavigationController] {
-        tabs.map { tab in
-            switch tab.type {
-            case .overview:
-                return makeOverViewTab(presentable: tab)
-            case .payments:
-                return makePaymentsTab()
-            case .cards:
-                return makeCardsTab()
-            case .contacts:
-                return makeContactsTab()
-            case .services:
-                return makeServicesTab()
-            }
-        }
-    }
-    
-    private func makeLockedOverview() -> UIViewController {
-        let didUnlockDashboardPublisher = PassthroughSubject<CustomerDTO, Never>()
-        let factory: LockedTabScreenFactory = Composition.resolve()
-        let vc = factory.make(
-            config: LockedDashboardPresentationConfig(
-                title: "Screen.LockedTab.Overview.title",
-                subtitle: "Screen.LockedTab.Overview.subtitle",
-                backgroundColorName: "White3",
-                tabDescriptionIconName: "ic_overview_description"
-            ),
-            didUnlockDashboardPublisher: didUnlockDashboardPublisher
-        )
-        didUnlockDashboardPublisher
-            .receiveOnMainThread()
-            .sink { [weak self] customer in
-                self?.viewModel.didUnlockOverview(customer: customer)
-            }
-            .store(in: &bag)
-        return vc
-    }
-    
-    private func makeOverViewTab(presentable: PresentableRootTab) -> UINavigationController {
-        let navVC = UINavigationController()
-        let item = RuntimeLocalizedTabBarItem()
-        item.image = UIImage(systemName: presentable.unselectedImageName)!
-        item.selectedImage = UIImage(systemName: presentable.selectedImageName)!
-        item.runtimeLocalizedKey = presentable.nameKey
-        navVC.tabBarItem = item
-        
-        let vc: UIViewController = {
-            guard presentable.locked else {
-                let factory: DashboardScreenFactory = Composition.resolve()
-                return factory.make()
-            }
-            let vc = makeLockedOverview()
-            return vc
-        }()
-        
-        navVC.setViewControllers([vc], animated: false)
-        return navVC
-    }
-    
-    private func makePaymentsTab() -> UINavigationController {
-        let navVC = UINavigationController()
-        let item = UITabBarItem()
-        navVC.tabBarItem = item
-        navVC.tabBarItem.image = UIImage(systemName: "house")!
-        navVC.tabBarItem.selectedImage = UIImage(systemName: "house")!
-        let vc = UIViewController()
-        vc.view.backgroundColor = .blue
-        navVC.setViewControllers([vc], animated: false)
-        return navVC
-    }
-    
-    private func makeCardsTab() -> UINavigationController {
-        let navVC = UINavigationController()
-        let item = UITabBarItem()
-        navVC.tabBarItem = item
-        navVC.tabBarItem.image = UIImage(systemName: "house")!
-        navVC.tabBarItem.selectedImage = UIImage(systemName: "house")!
-        let vc = UIViewController()
-        vc.view.backgroundColor = .blue
-        navVC.setViewControllers([vc], animated: false)
-        return navVC
-    }
-    
-    private func makeServicesTab() -> UINavigationController {
-        let navVC = UINavigationController()
-        let item = UITabBarItem()
-        navVC.tabBarItem = item
-        navVC.tabBarItem.image = UIImage(systemName: "house")!
-        navVC.tabBarItem.selectedImage = UIImage(systemName: "house")!
-        let vc = UIViewController()
-        vc.view.backgroundColor = .blue
-        navVC.setViewControllers([vc], animated: false)
-        return navVC
-    }
-    
-    private func makeContactsTab() -> UINavigationController {
-        let navVC = UINavigationController()
-        let item = UITabBarItem()
-        navVC.tabBarItem = item
-        navVC.tabBarItem.image = UIImage(systemName: "house")!
-        navVC.tabBarItem.selectedImage = UIImage(systemName: "house")!
-        let vc = UIViewController()
-        vc.view.backgroundColor = .blue
-        navVC.setViewControllers([vc], animated: false)
-        return navVC
     }
 }
