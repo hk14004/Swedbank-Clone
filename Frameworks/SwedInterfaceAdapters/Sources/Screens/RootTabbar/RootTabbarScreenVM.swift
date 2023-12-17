@@ -42,7 +42,7 @@ public class DefaultRootTabbarScreenVM: RootTabbarScreenVM {
 // MARK: Input
 public extension DefaultRootTabbarScreenVM {
     func viewDidLoad() {
-        lockedPublisher.value = true//!isAnyUserSessionActiveUseCase.use()
+        lockedPublisher.value = !isAnyUserSessionActiveUseCase.use()
         tabsPublisher.value = makePresentableTabs()
     }
     
