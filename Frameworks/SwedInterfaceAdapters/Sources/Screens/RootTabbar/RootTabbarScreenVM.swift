@@ -11,87 +11,61 @@ import UIKit
 import SwedApplicationBusinessRules
 
 public protocol RootTabbarScreenVMOutput {
-    var tabsPublisher: AnyPublisher<[PresentableRootTab], Never> { get }
     var router: RootTabbarScreenRouter! { get set }
+    var tabsPublisher: CurrentValueSubject<[RootTab], Never> { get }
+    var lockedPublisher: CurrentValueSubject<Bool, Never> { get }
 }
 
 public protocol RootTabbarScreenVMInput {
     func viewDidLoad()
     func didUnlock(customer: CustomerDTO)
+    func didLock()
 }
 
 public protocol RootTabbarScreenVM: RootTabbarScreenVMInput, RootTabbarScreenVMOutput {}
 
 public class DefaultRootTabbarScreenVM: RootTabbarScreenVM {
-    public var tabsPublisher: AnyPublisher<[PresentableRootTab], Never> {
-        $presentableTabs.eraseToAnyPublisher()
-    }
+    
     public var router: RootTabbarScreenRouter!
-    @Published private var presentableTabs: [PresentableRootTab] = []
+    public var tabsPublisher: CurrentValueSubject<[RootTab], Never>
+    public var lockedPublisher: CurrentValueSubject<Bool, Never>
     private let isAnyUserSessionActiveUseCase: IsAnyUserSessionActiveUseCase
     
     public init(isAnyUserSessionActiveUseCase: IsAnyUserSessionActiveUseCase) {
         self.isAnyUserSessionActiveUseCase = isAnyUserSessionActiveUseCase
-        presentableTabs = makePresentableTabs()
+        self.tabsPublisher = .init([])
+        self.lockedPublisher = .init(true)
     }
     
 }
 
 // MARK: Input
 public extension DefaultRootTabbarScreenVM {
-    func viewDidLoad() {}
+    func viewDidLoad() {
+        lockedPublisher.value = true//!isAnyUserSessionActiveUseCase.use()
+        tabsPublisher.value = makePresentableTabs()
+    }
+    
     func didUnlock(customer: CustomerDTO) {
-        presentableTabs = makePresentableTabs()
+        lockedPublisher.value = false
+        tabsPublisher.value = makePresentableTabs()
+    }
+    
+    func didLock() {
+        lockedPublisher.value = true
+        tabsPublisher.value = makePresentableTabs()
     }
 }
 
 // MARK: Private
 extension DefaultRootTabbarScreenVM {
-    private func makePresentableTabs() -> [PresentableRootTab] {
+    private func makePresentableTabs() -> [RootTab] {
         [
-            makeOverViewTab(),
-            makePaymentsTab(),
-            makeCardsTab(),
-            makeServicesTab(),
-            makeContactsTab()
+            .overview,
+            .payments,
+            .cards,
+            .services,
+            .contacts
         ]
-    }
-    
-    private func makeOverViewTab() -> PresentableRootTab {
-        let locked = !isAnyUserSessionActiveUseCase.use()
-        return .init(
-            type: .overview,
-            locked: locked
-        )
-    }
-    
-    private func makePaymentsTab() -> PresentableRootTab {
-        let locked = !isAnyUserSessionActiveUseCase.use()
-        return .init(
-            type: .payments,
-            locked: locked
-        )
-    }
-    
-    private func makeCardsTab() -> PresentableRootTab {
-        let locked = !isAnyUserSessionActiveUseCase.use()
-        return .init(
-            type: .cards,
-            locked: locked
-        )
-    }
-    private func makeServicesTab() -> PresentableRootTab {
-        let locked = !isAnyUserSessionActiveUseCase.use()
-        return .init(
-            type: .services,
-            locked: locked
-        )
-    }
-    private func makeContactsTab() -> PresentableRootTab {
-        let locked = !isAnyUserSessionActiveUseCase.use()
-        return .init(
-            type: .contacts,
-            locked: locked
-        )
     }
 }

@@ -20,6 +20,12 @@
 /*  */
 "Screen.LanguageSelection.title" = "Choose language";
 
+
+"Screen.LockedTab.Cards.subtitle" = "Easy way how to manage your cards";
+
+
+"Screen.LockedTab.Cards.title" = "Manage your cards";
+
 /*  */
 "Screen.LockedTab.Overview.subtitle" = "Great way to overview your money";
 
@@ -31,6 +37,12 @@
 
 /*  */
 "Screen.LockedTab.Payments.title" = "Make trasnactions or do somethign else";
+
+
+"Screen.LockedTab.Services.subtitle" = "Choose avaialble services and enjoy them";
+
+
+"Screen.LockedTab.Services.title" = "Our services";
 
 /*  */
 "Screen.Login.Button.title" = "Login";
@@ -93,7 +105,7 @@
 "Screen.User.Section.Settings.settings" = "Settings";
 
 /*  */
-"Screen.User.Section.Settings.title" = "";
+"Screen.User.Section.Settings.title" = "Settings";
 
 
 "Screen.User.title" = "User";

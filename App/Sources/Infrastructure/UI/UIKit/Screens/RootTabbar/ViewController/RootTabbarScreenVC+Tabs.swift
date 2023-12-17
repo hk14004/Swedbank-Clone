@@ -13,19 +13,19 @@ import SwedApplicationBusinessRules
 import DevToolsLocalization
 
 extension RootTabbarScreenVC {
-    func makeTabs(tabs: [PresentableRootTab]) -> [UINavigationController] {
+    func makeTabs(tabs: [RootTab]) -> [UINavigationController] {
         tabs.map { tab in
-            switch tab.type {
+            switch tab {
             case .overview:
-                return makeOverviewTab(tabModel: tab)
+                return makeOverviewTab(locked: viewModel.lockedPublisher.value)
             case .payments:
-                return makePaymentsTab(tabModel: tab)
+                return makePaymentsTab(locked: viewModel.lockedPublisher.value)
             case .cards:
-                return makeCardsTab(tabModel: tab)
+                return makeCardsTab(locked: viewModel.lockedPublisher.value)
             case .contacts:
-                return makeContactsTab(tabModel: tab)
+                return makeContactsTab(locked: viewModel.lockedPublisher.value)
             case .services:
-                return makeServicesTab(tabModel: tab)
+                return makeServicesTab(locked: viewModel.lockedPublisher.value)
             }
         }
     }
@@ -46,7 +46,7 @@ extension RootTabbarScreenVC {
         return vc
     }
     
-    private func makeOverviewTab(tabModel: PresentableRootTab) -> UINavigationController {
+    private func makeOverviewTab(locked: Bool) -> UINavigationController {
         let navVC = UINavigationController()
         let item = RuntimeLocalizedTabBarItem()
         item.image = UIImage(systemName: "house")
@@ -55,7 +55,7 @@ extension RootTabbarScreenVC {
         navVC.tabBarItem = item
         
         let vc: UIViewController = {
-            guard tabModel.locked else {
+            guard locked else {
                 let factory: DashboardScreenFactory = Composition.resolve()
                 return factory.make()
             }
@@ -71,7 +71,7 @@ extension RootTabbarScreenVC {
         return navVC
     }
     
-    private func makePaymentsTab(tabModel: PresentableRootTab) -> UINavigationController {
+    private func makePaymentsTab(locked: Bool) -> UINavigationController {
         let navVC = UINavigationController()
         let item = RuntimeLocalizedTabBarItem()
         item.image = UIImage(systemName: "arrow.left.arrow.right")
@@ -80,7 +80,7 @@ extension RootTabbarScreenVC {
         navVC.tabBarItem = item
         
         let vc: UIViewController = {
-            guard tabModel.locked else {
+            guard locked else {
                 let vc = UIViewController()
                 vc.view.backgroundColor = .gray
                 return vc
@@ -88,7 +88,7 @@ extension RootTabbarScreenVC {
             let config = LockedDashboardPresentationConfig(
                 title: "Screen.LockedTab.Payments.title",
                 subtitle: "Screen.LockedTab.Payments.subtitle",
-                backgroundColorName: "White3",
+                backgroundColorName: "Pink1",
                 tabDescriptionIconName: "ic_payments_description"
             )
             return makeLockedTab(config: config)
@@ -97,16 +97,16 @@ extension RootTabbarScreenVC {
         return navVC
     }
     
-    private func makeCardsTab(tabModel: PresentableRootTab) -> UINavigationController {
+    private func makeCardsTab(locked: Bool) -> UINavigationController {
         let navVC = UINavigationController()
         let item = RuntimeLocalizedTabBarItem()
         item.image = UIImage(systemName: "creditcard")
         item.selectedImage = UIImage(systemName: "creditcard")
-        item.runtimeLocalizedKey = "Tabbar.Tabs.Payments.title"
+        item.runtimeLocalizedKey = "Tabbar.Tabs.Cards.title"
         navVC.tabBarItem = item
         
         let vc: UIViewController = {
-            guard tabModel.locked else {
+            guard locked else {
                 let vc = UIViewController()
                 vc.view.backgroundColor = .gray
                 return vc
@@ -123,7 +123,7 @@ extension RootTabbarScreenVC {
         return navVC
     }
     
-    private func makeServicesTab(tabModel: PresentableRootTab) -> UINavigationController {
+    private func makeServicesTab(locked: Bool) -> UINavigationController {
         let navVC = UINavigationController()
         let item = RuntimeLocalizedTabBarItem()
         item.image = UIImage(systemName: "list.clipboard")
@@ -132,7 +132,7 @@ extension RootTabbarScreenVC {
         navVC.tabBarItem = item
         
         let vc: UIViewController = {
-            guard tabModel.locked else {
+            guard locked else {
                 let vc = UIViewController()
                 vc.view.backgroundColor = .gray
                 return vc
@@ -140,7 +140,7 @@ extension RootTabbarScreenVC {
             let config = LockedDashboardPresentationConfig(
                 title: "Screen.LockedTab.Services.title",
                 subtitle: "Screen.LockedTab.Services.subtitle",
-                backgroundColorName: "White3",
+                backgroundColorName: "Pink1",
                 tabDescriptionIconName: "ic_services_description"
             )
             return makeLockedTab(config: config)
@@ -149,7 +149,7 @@ extension RootTabbarScreenVC {
         return navVC
     }
     
-    private func makeContactsTab(tabModel: PresentableRootTab) -> UINavigationController {
+    private func makeContactsTab(locked: Bool) -> UINavigationController {
         let navVC = UINavigationController()
         let item = RuntimeLocalizedTabBarItem()
         item.image = UIImage(systemName: "bubble.left.and.bubble.right")
@@ -157,20 +157,8 @@ extension RootTabbarScreenVC {
         item.runtimeLocalizedKey = "Tabbar.Tabs.Contacts.title"
         navVC.tabBarItem = item
         
-        let vc: UIViewController = {
-            guard tabModel.locked else {
-                let vc = UIViewController()
-                vc.view.backgroundColor = .gray
-                return vc
-            }
-            let config = LockedDashboardPresentationConfig(
-                title: "Screen.LockedTab.Contacts.title",
-                subtitle: "Screen.LockedTab.Contacts.subtitle",
-                backgroundColorName: "White3",
-                tabDescriptionIconName: "ic_contacts_description"
-            )
-            return makeLockedTab(config: config)
-        }()
+        let vc = UIViewController()
+        vc.view.backgroundColor = .gray
         navVC.setViewControllers([vc], animated: false)
         return navVC
     }

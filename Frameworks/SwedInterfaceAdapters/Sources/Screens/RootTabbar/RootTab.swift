@@ -15,8 +15,3 @@ public enum RootTab {
     case services
     case contacts
 }
-
-public struct PresentableRootTab {
-    public let type: RootTab
-    public let locked: Bool
-}

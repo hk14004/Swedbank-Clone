@@ -21,6 +21,12 @@
 "Screen.LanguageSelection.title" = "Izvēlieties valodu";
 
 
+"Screen.LockedTab.Cards.subtitle" = "Ērts veids kā pārvaldīt savas kartes";
+
+
+"Screen.LockedTab.Cards.title" = "Pārvaldi savas kartes";
+
+
 "Screen.LockedTab.Overview.subtitle" = "Ērts veids kā pārraudzīt savu naudu un redzēt, kur tā tiek tērēta";
 
 
@@ -31,6 +37,12 @@
 
 
 "Screen.LockedTab.Payments.title" = "Pārskaiti naudu vai apmaksā rēķinus";
+
+/*  */
+"Screen.LockedTab.Services.subtitle" = "Izvēlies visus iespējamos pakalpojumus šeit";
+
+/*  */
+"Screen.LockedTab.Services.title" = "Mūsu pakalpojumi";
 
 
 "Screen.Login.Button.title" = "Ienākt";
@@ -93,7 +105,7 @@
 "Screen.User.Section.Settings.settings" = "Uzstādījumi";
 
 
-"Screen.User.Section.Settings.title" = "";
+"Screen.User.Section.Settings.title" = "Uzstādījumi";
 
 
 "Screen.User.title" = "Lietotājs";
