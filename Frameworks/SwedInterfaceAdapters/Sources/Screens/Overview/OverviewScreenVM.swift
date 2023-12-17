@@ -1,5 +1,5 @@
 //
-//  DashboardScreenRouter.swift
+//  OverviewScreenVM.swift
 //  SwedInterfaceAdapters
 //
 //  Created by Hardijs Ķirsis on 15/12/2023.
@@ -8,10 +8,10 @@
 
 import Foundation
 
-public protocol DashboardScreenVM {
+public protocol OverviewScreenVM {
     
 }
 
-public class DefaultDashboardScreenVM: DashboardScreenVM {
+public class DefaultOverviewScreenVM: OverviewScreenVM {
     public init() {}
 }

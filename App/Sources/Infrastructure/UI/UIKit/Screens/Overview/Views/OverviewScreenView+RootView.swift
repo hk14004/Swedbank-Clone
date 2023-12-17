@@ -10,8 +10,8 @@ import UIKit
 import Combine
 import DevToolsUI
 
-enum DashboardScreenView{}
-extension DashboardScreenView {
+enum OverviewScreenView{}
+extension OverviewScreenView {
     final class RootView: UIView {
         // MARK: Properties
         lazy var navigationBarView: NavigationBarView = {

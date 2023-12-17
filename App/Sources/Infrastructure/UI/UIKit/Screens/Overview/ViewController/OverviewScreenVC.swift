@@ -11,9 +11,9 @@ import DevToolsUI
 import Combine
 import SwedInterfaceAdapters
 
-class DashboardScreenVC: UIViewController {
+class OverviewScreenVC: UIViewController {
     
-    private lazy var rootView = DashboardScreenView.RootView()
+    private lazy var rootView = OverviewScreenView.RootView()
     private var bag = Set<AnyCancellable>()
     
     init() {

@@ -9,10 +9,8 @@
 import SwiftUI
 import UIKit
 import SwedInterfaceAdapters
-import DevToolsNavigation
-import SwedApplicationBusinessRules
 
-class DefaultDashboardRouter: DashboardRouter, UIKitRouter {
+class DefaultOverviewScreenRouter: OverviewScreenRouter {
     var viewController: UIViewController
 
     init(viewController: UIViewController) {

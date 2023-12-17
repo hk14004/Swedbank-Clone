@@ -1,5 +1,5 @@
 //
-//  DashboardRouter.swift
+//  OverviewScreenRouter.swift
 //  SwedInterfaceAdapters
 //
 //  Created by Hardijs Ķirsis on 25/10/2023.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-public protocol DashboardRouter {
+public protocol OverviewScreenRouter {
     
 }

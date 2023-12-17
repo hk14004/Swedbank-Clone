@@ -9,7 +9,7 @@
 import UIKit
 import Combine
 
-extension DashboardScreenView {
+extension OverviewScreenView {
     final class NavigationBarView: UIView {
         enum Constants {
             static let padding: CGFloat = 16
@@ -37,7 +37,7 @@ extension DashboardScreenView {
 }
 
 // MARK: Private
-extension DashboardScreenView.NavigationBarView {
+extension OverviewScreenView.NavigationBarView {
     private func setup() {
         setupNavigationBar()
     }

@@ -56,7 +56,7 @@ extension RootTabbarScreenVC {
         
         let vc: UIViewController = {
             guard locked else {
-                let factory: DashboardScreenFactory = Composition.resolve()
+                let factory: OverviewScreenFactory = Composition.resolve()
                 return factory.make()
             }
             let config = LockedDashboardPresentationConfig(

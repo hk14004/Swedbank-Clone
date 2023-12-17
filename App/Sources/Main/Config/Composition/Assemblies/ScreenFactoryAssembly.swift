@@ -20,7 +20,7 @@ class ScreenFactoryAssembly: Assembly {
             DefaultRootTabbarScreenFactory()
         }
         // MARK: Dashboard
-        container.register(DashboardScreenFactory.self) { resolver in
+        container.register(OverviewScreenFactory.self) { resolver in
             DefaultDashboardScreenFactory()
         }
         // MARK: Locked dashboard
