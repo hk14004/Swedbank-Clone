@@ -17,6 +17,8 @@ class OverviewScreenVC: UIViewController {
     lazy var rootView = OverviewScreenView.RootView()
     let viewModel: OverviewScreenVM
     private var cancelBag = Set<AnyCancellable>()
+    lazy var dataSource = makeDataSource()
+    private var initialRender = true
     
     // MARK: Lifecycle
     init(viewModel: OverviewScreenVM) {
@@ -49,46 +51,43 @@ class OverviewScreenVC: UIViewController {
 // MARK: Private
 extension OverviewScreenVC {
     private func setup() {
-        rootView.tableView.dataSource = self
+        rootView.tableView.dataSource = dataSource
         bindOutput()
     }
     
     private func bindOutput() {
         viewModel.sectionsReloadPublisher
-            .dropFirst()
             .receiveOnMainThread()
             .sink { [weak self] in
-                self?.rootView.tableView.reloadData()
+                guard let self = self else { return }
+                layoutSections(viewModel.sections)
             }
             .store(in: &cancelBag)
         
         viewModel.sectionsChangePublisher
             .receiveOnMainThread()
             .sink { [weak self] change in
-                self?.rootView.tableView.animateContentChange(change)
+                guard let self = self else { return }
+                reloadTableViewCells(ids: [viewModel.sections[0].cells[1].hashValue])
             }
             .store(in: &cancelBag)
     }
-}
-
-public extension UITableView {
-    func animateContentChange(_ change: DevChangeSet, completion: ((Bool)->())? = nil) {
-        performBatchUpdates {
-            deleteRows(at: change.removed, with: .fade)
-            insertRows(at: change.inserted, with: .fade)
-            change.moved.forEach { move in
-                moveRow(at: move.from, to: move.to)
-            }
-        } completion: { [weak self] completed in
-            guard let self = self else {
-                completion?(completed)
-                return
-            }
-            performBatchUpdates {
-                self.reloadRows(at: change.updated, with: .fade)
-            } completion: { completed in
-                completion?(completed)
-            }
+    
+    private func layoutSections(_ sections: [OverviewScreenSection]) {
+        var snapshot = NSDiffableDataSourceSnapshot<OverviewScreenSection.SectionID, Int>()
+        snapshot.appendSections(sections.map{$0.id})
+        sections.forEach { section in
+            snapshot.appendItems(section.cells.map{$0.hashValue}, toSection: section.id)
         }
+        dataSource.apply(snapshot, animatingDifferences: !initialRender)
+        if initialRender {
+            initialRender = false
+        }
+    }
+    
+    private func reloadTableViewCells(ids: [Int]) {
+        var snapshot = dataSource.snapshot()
+        snapshot.reloadItems(ids)
+        dataSource.apply(snapshot, animatingDifferences: true)
     }
 }

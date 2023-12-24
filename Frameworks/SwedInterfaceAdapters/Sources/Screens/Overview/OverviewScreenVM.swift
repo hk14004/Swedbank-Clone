@@ -43,5 +43,6 @@ extension DefaultOverviewScreenVM {
                 .cardBalance(.init(id: "2", title: "title 2", text: "text 2")),
             ])
         ]
+        sectionsReloadPublisher.send()
     }
 }
