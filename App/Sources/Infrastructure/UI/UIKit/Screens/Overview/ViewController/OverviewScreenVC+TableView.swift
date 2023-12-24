@@ -9,44 +9,31 @@
 import UIKit
 import SwedInterfaceAdapters
 
-extension OverviewScreenVC {
-    class DiffableDataSource: UITableViewDiffableDataSource<OverviewScreenSection.Identifier, OverviewScreenSection.Cell> {
-        
-        private var viewModel: OverviewScreenVM
-        
-        init(
-            viewModel: OverviewScreenVM,
-            tableView: UITableView,
-            cellProvider: @escaping UITableViewDiffableDataSource<OverviewScreenSection.Identifier, OverviewScreenSection.Cell>.CellProvider
-        ) {
-            self.viewModel = viewModel
-            super.init(tableView: tableView, cellProvider: cellProvider)
-        }
-        
-        override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-            return nil
-        }
+extension OverviewScreenVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModel.sections[section].cells.count
     }
     
-    func makeDataSource() -> DiffableDataSource {
-        DiffableDataSource(
-            viewModel: viewModel,
-            tableView: rootView.tableView
-        ) { tableView, indexPath, itemIdentifier in
-            switch itemIdentifier {
-            case .cardBalance:
-                let cell = UITableViewCell()
-                cell.textLabel?.text = "cardbalance"
-                return cell
-            case .offer:
-                let cell = UITableViewCell()
-                cell.textLabel?.text = "offer"
-                return cell
-            case .expenses:
-                let cell = UITableViewCell()
-                cell.textLabel?.text = "expenses"
-                return cell
-            }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        viewModel.sections.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = viewModel.sections[indexPath.section].cells[indexPath.row]
+        switch item {
+        case .cardBalance(let model):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            cell.textLabel?.text = model.title
+            cell.detailTextLabel?.text = model.text
+            return cell
+        case .offer:
+            let cell = UITableViewCell()
+            cell.textLabel?.text = "offer"
+            return cell
+        case .expenses:
+            let cell = UITableViewCell()
+            cell.textLabel?.text = "expenses"
+            return cell
         }
     }
 }
