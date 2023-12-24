@@ -56,38 +56,26 @@ extension OverviewScreenVC {
     }
     
     private func bindOutput() {
-        viewModel.sectionsReloadPublisher
-            .receiveOnMainThread()
-            .sink { [weak self] in
-                guard let self = self else { return }
-                layoutSections(viewModel.sections)
-            }
-            .store(in: &cancelBag)
-        
         viewModel.sectionsChangePublisher
             .receiveOnMainThread()
             .sink { [weak self] change in
                 guard let self = self else { return }
-                reloadTableViewCells(ids: [viewModel.sections[0].cells[1].hashValue])
+                applyChanges(changeSet: change)
             }
             .store(in: &cancelBag)
     }
     
-    private func layoutSections(_ sections: [OverviewScreenSection]) {
+    private func applyChanges(changeSet: DevHashChangeSet) {
+        let sections = viewModel.sections
         var snapshot = NSDiffableDataSourceSnapshot<OverviewScreenSection.SectionID, Int>()
         snapshot.appendSections(sections.map{$0.id})
         sections.forEach { section in
             snapshot.appendItems(section.cells.map{$0.hashValue}, toSection: section.id)
         }
+        snapshot.reloadItems(changeSet.updated)
         dataSource.apply(snapshot, animatingDifferences: !initialRender)
         if initialRender {
             initialRender = false
         }
-    }
-    
-    private func reloadTableViewCells(ids: [Int]) {
-        var snapshot = dataSource.snapshot()
-        snapshot.reloadItems(ids)
-        dataSource.apply(snapshot, animatingDifferences: true)
     }
 }

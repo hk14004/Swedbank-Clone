@@ -16,22 +16,18 @@ public protocol OverviewScreenVMInput {
 
 public protocol OverviewScreenVMOutput {
     var sections: [OverviewScreenSection] { get }
-    var sectionsChangePublisher: PassthroughSubject<DevChangeSet, Never> { get }
-    var sectionsReloadPublisher: PassthroughSubject<Void, Never> { get }
+    var sectionsChangePublisher: PassthroughSubject<DevHashChangeSet, Never> { get }
 }
-
 
 public protocol OverviewScreenVM: OverviewScreenVMInput, OverviewScreenVMOutput {}
 
 public class DefaultOverviewScreenVM: OverviewScreenVM {
     public var sections: [OverviewScreenSection]
-    public var sectionsChangePublisher: PassthroughSubject<DevChangeSet, Never>
-    public var sectionsReloadPublisher: PassthroughSubject<Void, Never>
+    public var sectionsChangePublisher: PassthroughSubject<DevHashChangeSet, Never>
     
     public init() {
         sections = []
         sectionsChangePublisher = .init()
-        sectionsReloadPublisher = .init()
     }
 }
 
@@ -43,6 +39,7 @@ extension DefaultOverviewScreenVM {
                 .cardBalance(.init(id: "2", title: "title 2", text: "text 2")),
             ])
         ]
-        sectionsReloadPublisher.send()
+        let change = DevHashChangeSet.calculateChangeSet(old: [], new: sections[0].cells)
+        sectionsChangePublisher.send(change)
     }
 }
