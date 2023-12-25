@@ -58,15 +58,16 @@ extension OverviewScreenVC {
     private func bindOutput() {
         viewModel.sectionsChangePublisher
             .receiveOnMainThread()
-            .sink { [weak self] change in
+            .sink { [weak self] snapshot in
                 guard let self = self else { return }
-                applyChanges(changeSet: change)
+                applyChanges(changeSnapshot: snapshot)
             }
             .store(in: &cancelBag)
     }
     
-    private func applyChanges(changeSet: DevHashChangeSet) {
-        let sections = viewModel.sections
+    private func applyChanges(changeSnapshot: OverviewScreenSectionChangeSnapshot) {
+        let sections = changeSnapshot.sections
+        let changeSet = changeSnapshot.changes
         var snapshot = NSDiffableDataSourceSnapshot<OverviewScreenSection.SectionID, Int>()
         snapshot.appendSections(sections.map{$0.id})
         sections.forEach { section in

@@ -14,16 +14,21 @@ public protocol OverviewScreenVMInput {
     func viewDidLoad()
 }
 
+public struct OverviewScreenSectionChangeSnapshot {
+    public let sections: [OverviewScreenSection]
+    public let changes: DevHashChangeSet
+}
+
 public protocol OverviewScreenVMOutput {
     var sections: [OverviewScreenSection] { get }
-    var sectionsChangePublisher: PassthroughSubject<DevHashChangeSet, Never> { get }
+    var sectionsChangePublisher: PassthroughSubject<OverviewScreenSectionChangeSnapshot, Never> { get }
 }
 
 public protocol OverviewScreenVM: OverviewScreenVMInput, OverviewScreenVMOutput {}
 
 public class DefaultOverviewScreenVM: OverviewScreenVM {
     public var sections: [OverviewScreenSection]
-    public var sectionsChangePublisher: PassthroughSubject<DevHashChangeSet, Never>
+    public var sectionsChangePublisher: PassthroughSubject<OverviewScreenSectionChangeSnapshot, Never>
     
     public init() {
         sections = []
@@ -39,7 +44,7 @@ extension DefaultOverviewScreenVM {
                 .cardBalance(.init(id: "2", title: "title 2", text: "text 2")),
             ])
         ]
-        let change = DevHashChangeSet.calculateChangeSet(old: [], new: sections[0].cells)
-        sectionsChangePublisher.send(change)
+        let change = DevHashChangeSet.calculateCellChangeSet(old: [], new: sections)
+        sectionsChangePublisher.send(.init(sections: sections, changes: change))
     }
 }
