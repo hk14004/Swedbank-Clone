@@ -1,16 +1,19 @@
 //
-//  AppDelegate+Appearance.swift
+//  AppAppearance.swift
 //  Swedbank
 //
-//  Created by Hardijs Ķirsis on 25/10/2023.
+//  Created by Hardijs Ķirsis on 29/12/2023.
 //  Copyright © 2023 SWEDBANK AB. All rights reserved.
 //
 
 import UIKit
 import DevToolsUI
 
-extension AppDelegate {
-    func configureAppearance() {
+class AppAppearance {}
+
+// MARK: Public
+extension AppAppearance {
+    static func configureAppearance() {
         let appearance = UITabBarAppearance()
         appearance.backgroundColor = Colors.white2.color
         appearance.stackedLayoutAppearance.selected.iconColor = Colors.orange1.color

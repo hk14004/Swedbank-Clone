@@ -64,6 +64,8 @@ extension OverviewScreenView {
                 make.horizontalEdges.bottom.equalToSuperview()
                 make.top.equalTo(navigationBarView.snp.bottom)
             }
+            tableView.separatorInset = .zero
+            tableView.registerCell(BalanceCellView.self)
         }
     }
 }

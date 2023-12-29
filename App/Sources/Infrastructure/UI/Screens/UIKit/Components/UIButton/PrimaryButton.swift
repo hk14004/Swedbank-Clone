@@ -21,7 +21,7 @@ class PrimaryButton: UIButton {
     
     private func setup() {
         backgroundColor = SWEDBANKAsset.Colors.orange1.color
-        layer.cornerRadius = AppTheme.roundedCornerRadius
+        layer.cornerRadius = 16
         titleLabel?.adjustsFontForContentSizeCategory = true
         titleLabel?.font = AppTypography.body.scaledFont
     }

@@ -1,5 +1,5 @@
 //
-//  Theme.swift
+//  AppTypography.swift
 //  Swedbank
 //
 //  Created by Hardijs Ķirsis on 09/09/2023.
@@ -9,6 +9,8 @@
 import UIKit
 import DevToolsUI
 
+typealias Colors = SWEDBANKAsset.Colors
+
 enum AppTypography: DevTypography {
     case title
     case body
@@ -17,11 +19,11 @@ enum AppTypography: DevTypography {
     var scaledFont: UIFont {
         switch self {
         case .body:
-            return UIFontMetrics(forTextStyle: .body).scaledFont(for: .systemFont(ofSize: 12))
+            return UIFontMetrics(forTextStyle: .body).scaledFont(for: .systemFont(ofSize: 16))
         case .title:
-            return UIFontMetrics(forTextStyle: .title1).scaledFont(for: .boldSystemFont(ofSize: 12))
+            return UIFontMetrics(forTextStyle: .title1).scaledFont(for: .boldSystemFont(ofSize: 16))
         case .input:
-            return UIFontMetrics(forTextStyle: .title1).scaledFont(for: .systemFont(ofSize: 12))
+            return UIFontMetrics(forTextStyle: .title1).scaledFont(for: .systemFont(ofSize: 16))
         }
     }
 }

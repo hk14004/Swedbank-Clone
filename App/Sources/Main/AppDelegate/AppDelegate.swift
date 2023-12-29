@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var saveAppLaunchDateUseCase: SaveAppLaunchDateUseCase = Composition.resolve()
     var saveAppTerminationDateUseCase: SaveAppTerminationDateUseCase = Composition.resolve()
     
-    // MARK: - Lifecycle
+    // MARK: - Methods
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
@@ -23,8 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    
     func applicationWillTerminate(_ application: UIApplication) {
-        registerApplicationTermination()
+        terminate()
     }
 }

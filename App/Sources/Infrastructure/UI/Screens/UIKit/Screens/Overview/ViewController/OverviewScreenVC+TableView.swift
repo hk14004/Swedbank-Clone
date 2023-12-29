@@ -8,9 +8,9 @@
 
 import UIKit
 import SwedInterfaceAdapters
+import DevToolsUI
 
-extension OverviewScreenVC {
-    
+extension OverviewScreenVC {    
     class DiffableDataSource: UITableViewDiffableDataSource<OverviewScreenSection.SectionID, Int> {
         private var viewModel: OverviewScreenVM
         
@@ -38,9 +38,8 @@ extension OverviewScreenVC {
             }
             switch cell {
             case .cardBalance(let model):
-                let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-                cell.textLabel?.text = model.title
-                cell.detailTextLabel?.text = model.text
+                let cell: OverviewScreenView.BalanceCellView = tableView.dequeueReusableCell(for: indexPath)
+                cell.configure(model: model)
                 return cell
             case .offer:
                 let cell = UITableViewCell()

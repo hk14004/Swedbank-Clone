@@ -11,7 +11,7 @@ import UIKit
 extension AppDelegate {
     func startup() {
         registerApplicationLaunch()
-        configureAppearance()
+        AppAppearance.configureAppearance()
         configureWindow()
     }
     

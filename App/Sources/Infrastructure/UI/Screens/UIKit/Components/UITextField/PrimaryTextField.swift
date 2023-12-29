@@ -22,6 +22,6 @@ class PrimaryTextField: UITextField {
     private func setup() {
         font = AppTypography.input.scaledFont
         adjustsFontForContentSizeCategory = true
-        textColor = AppTheme.textColor
+        textColor = SWEDBANKAsset.Colors.text1.color
     }
 }
