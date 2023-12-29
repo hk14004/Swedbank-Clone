@@ -17,7 +17,7 @@ public class OverviewScreenSection: DevTableSection {
     
     public enum Cell: DevTableSectionCell {
         case cardBalance(OverviewScreenBalanceCellViewModel)
-        case offer
+        case offer(OverviewScreenOfferCellViewModel)
         case expenses
     }
     

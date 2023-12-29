@@ -40,7 +40,8 @@ extension DefaultOverviewScreenVM {
     public func viewDidLoad() {
         sections = [
             OverviewScreenSection.init(id: .overview, title: "title", cells: [
-                .cardBalance(.init(iban: "LV16HABA123456789", amount: 19120.44, currencyCode: "eur"))
+                .cardBalance(.init(iban: "LV16HABA123456789", amount: 19120.44, currencyCode: "eur")),
+                .offer(.init(offerID: "1", offerText: "Use your Credit Card for your next purchase and enjoy a 5% cashback bonus on your spending!", offerUrl: ""))
             ])
         ]
         let change = DevHashChangeSet.calculateCellChangeSet(old: [], new: sections)

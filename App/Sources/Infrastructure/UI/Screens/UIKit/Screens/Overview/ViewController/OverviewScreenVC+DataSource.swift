@@ -1,5 +1,5 @@
 //
-//  OverviewScreenVC+TableView.swift
+//  OverviewScreenVC+DataSource.swift
 //  Swedbank
 //
 //  Created by Hardijs Ķirsis on 17/12/2023.
@@ -13,7 +13,6 @@ import DevToolsUI
 extension OverviewScreenVC {    
     class DiffableDataSource: UITableViewDiffableDataSource<OverviewScreenSection.SectionID, Int> {
         private var viewModel: OverviewScreenVM
-        
         init(
             viewModel: OverviewScreenVM,
             tableView: UITableView,
@@ -29,6 +28,7 @@ extension OverviewScreenVC {
             viewModel: viewModel,
             tableView: rootView.tableView
         ) { tableView, indexPath, itemIdentifier in
+            // TODO: Improve
             guard let cell = self.viewModel.sections.flatMap({ section in
                 section.cells
             }).first(where: { cell in
@@ -41,9 +41,9 @@ extension OverviewScreenVC {
                 let cell: OverviewScreenView.BalanceCellView = tableView.dequeueReusableCell(for: indexPath)
                 cell.configure(model: model)
                 return cell
-            case .offer:
-                let cell = UITableViewCell()
-                cell.textLabel?.text = "offer"
+            case .offer(let model):
+                let cell: OverviewScreenView.OfferCellView = tableView.dequeueReusableCell(for: indexPath)
+                cell.configure(model: model)
                 return cell
             case .expenses:
                 let cell = UITableViewCell()

@@ -66,6 +66,7 @@ extension OverviewScreenView {
             }
             tableView.separatorInset = .zero
             tableView.registerCell(BalanceCellView.self)
+            tableView.registerCell(OfferCellView.self)
         }
     }
 }
