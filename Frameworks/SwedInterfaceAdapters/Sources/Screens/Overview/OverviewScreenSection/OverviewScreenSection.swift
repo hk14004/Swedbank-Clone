@@ -18,7 +18,7 @@ public class OverviewScreenSection: DevTableSection {
     public enum Cell: DevTableSectionCell {
         case cardBalance(OverviewScreenBalanceCellViewModel)
         case offer(OverviewScreenOfferCellViewModel)
-        case expenses
+        case expenses(OverviewScreenExpensesCellViewModel)
     }
     
     public let id: SectionID

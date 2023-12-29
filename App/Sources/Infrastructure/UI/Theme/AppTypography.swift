@@ -11,19 +11,29 @@ import DevToolsUI
 
 typealias Colors = SWEDBANKAsset.Colors
 
+// TODO: Refactor to have this only return font
 enum AppTypography: DevTypography {
     case title
+    case title2
+    case title3
     case body
     case input
+    case link1
     
     var scaledFont: UIFont {
         switch self {
         case .body:
-            return UIFontMetrics(forTextStyle: .body).scaledFont(for: .systemFont(ofSize: 16))
+            return UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: 16))
         case .title:
-            return UIFontMetrics(forTextStyle: .title1).scaledFont(for: .boldSystemFont(ofSize: 16))
+            return UIFontMetrics.default.scaledFont(for: .boldSystemFont(ofSize: 16))
+        case .title2:
+            return UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: 16, weight: .medium))
+        case .title3:
+            return UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: 14))
         case .input:
-            return UIFontMetrics(forTextStyle: .title1).scaledFont(for: .systemFont(ofSize: 16))
+            return UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: 16))
+        case .link1:
+            return UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: 18))
         }
     }
 }

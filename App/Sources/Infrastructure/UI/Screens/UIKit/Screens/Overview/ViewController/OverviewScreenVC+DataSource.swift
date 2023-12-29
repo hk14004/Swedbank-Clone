@@ -45,9 +45,9 @@ extension OverviewScreenVC {
                 let cell: OverviewScreenView.OfferCellView = tableView.dequeueReusableCell(for: indexPath)
                 cell.configure(model: model)
                 return cell
-            case .expenses:
-                let cell = UITableViewCell()
-                cell.textLabel?.text = "expenses"
+            case .expenses(let model):
+                let cell: OverviewScreenView.ExpensesCellView = tableView.dequeueReusableCell(for: indexPath)
+                cell.configure(model: model)
                 return cell
             }
         }
