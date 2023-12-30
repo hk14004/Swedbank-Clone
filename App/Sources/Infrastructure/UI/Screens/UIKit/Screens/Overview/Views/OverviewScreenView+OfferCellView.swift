@@ -23,7 +23,7 @@ extension OverviewScreenView {
         private lazy var offerTextLabel: UILabel = {
            let view = UILabel()
             view.numberOfLines = 0
-            view.textColor = SWEDBANKAsset.Colors.text2.color
+            view.textColor = SWEDBANKAsset.Colors.text3.color
             view.font = AppTypography.body.scaledFont
             return view
         }()
