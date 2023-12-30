@@ -10,11 +10,9 @@ import SwedApplicationBusinessRules
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Properties
-    var window: UIWindow?
-    var saveAppLaunchDateUseCase: SaveAppLaunchDateUseCase = Composition.resolve()
-    var saveAppTerminationDateUseCase: SaveAppTerminationDateUseCase = Composition.resolve()
+    var window: UIWindow? = Composition.resolve()
     
-    // MARK: - Methods
+    // MARK: - LifeCycle
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?

@@ -1,5 +1,5 @@
 //
-//  AppDelegate + ApplicationActivity.swift
+//  AppDelegate+ApplicationActivity.swift
 //  Swedbank
 //
 //  Created by Hardijs Ķirsis on 02/09/2023.
@@ -11,9 +11,11 @@ import SwedApplicationBusinessRules
 
 extension AppDelegate {
     func registerApplicationLaunch() {
+        let saveAppLaunchDateUseCase: SaveAppLaunchDateUseCase = Composition.resolve()
         saveAppLaunchDateUseCase.use(launchDate: Date())
     }
     func registerApplicationTermination() {
+        let saveAppTerminationDateUseCase: SaveAppTerminationDateUseCase = Composition.resolve()
         saveAppTerminationDateUseCase.use(terminationDate: Date())
     }
 }

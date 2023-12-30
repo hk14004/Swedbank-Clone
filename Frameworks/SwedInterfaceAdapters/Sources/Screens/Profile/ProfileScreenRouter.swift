@@ -9,7 +9,7 @@
 import Foundation
 import SwedApplicationBusinessRules
 
-public protocol ProfileScreenRouter: ToProfileScreenRouting {
+public protocol ProfileScreenRouter: ToSplashScreenRouting {
     
 }
 

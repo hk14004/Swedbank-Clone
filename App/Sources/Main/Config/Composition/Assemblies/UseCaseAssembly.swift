@@ -54,6 +54,9 @@ class UseCaseAssembly: Assembly {
                 customerRepository: Composition.resolve()
             )
         }
+        container.register(LogoutUseCase.self) { resolver in
+            DefaultLogoutUseCase(manager: Composition.resolve())
+        }
     }
 }
 

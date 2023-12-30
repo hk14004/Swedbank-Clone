@@ -21,3 +21,15 @@ class DefaultSplashScreenRouter: SplashScreenRouter, UIKitRouter {
         print("routeToOnboarding")
     }
 }
+
+extension ToSplashScreenRouting {
+    func routeToSplashScreen() {
+        let screenFactory: SplashScreenFactory = Composition.resolve()
+        let vc: SplashScreenVC = screenFactory.make()
+        let nav = UINavigationController(rootViewController: vc)
+        nav.navigationBar.isHidden = true
+        let rootWindow: UIWindow = Composition.resolve()
+        rootWindow.rootViewController = nav
+        rootWindow.makeKeyAndVisible()
+    }
+}

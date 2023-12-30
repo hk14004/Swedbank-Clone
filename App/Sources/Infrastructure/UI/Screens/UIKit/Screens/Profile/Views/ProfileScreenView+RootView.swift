@@ -22,6 +22,7 @@ extension ProfileScreenView {
             let view = UITableView()
             return view
         }()
+        
         override init(frame: CGRect) {
             super.init(frame: frame)
             setup()
@@ -52,7 +53,6 @@ extension ProfileScreenView {
                 make.edges.equalToSuperview()
             }
             tableView.separatorInset = .zero
-            
             tableView.registerCell(LogoutCell.self)
         }
     }

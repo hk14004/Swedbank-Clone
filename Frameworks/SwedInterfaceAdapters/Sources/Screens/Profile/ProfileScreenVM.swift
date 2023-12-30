@@ -9,6 +9,7 @@
 import Foundation
 import Combine
 import DevToolsCore
+import SwedApplicationBusinessRules
 
 public protocol ProfileScreenVMInput {
     func viewDidLoad()
@@ -16,6 +17,7 @@ public protocol ProfileScreenVMInput {
 }
 
 public protocol ProfileScreenVMOutput {
+    var router: ProfileScreenRouter! { get set }
     var sections: [ProfileScreenSection] { get }
     var sectionsChangePublisher: PassthroughSubject<ProfileScreenSectionChangeSnapshot, Never> { get }
 }
@@ -23,15 +25,21 @@ public protocol ProfileScreenVMOutput {
 public protocol ProfileScreenVM: ProfileScreenVMInput, ProfileScreenVMOutput {}
 
 public class DefaultProfileScreenVM: ProfileScreenVM {
+    public var router: ProfileScreenRouter!
     public var sections: [ProfileScreenSection]
-    public var sectionsChangePublisher: PassthroughSubject<ProfileScreenSectionChangeSnapshot, Never>
+    public let sectionsChangePublisher: PassthroughSubject<ProfileScreenSectionChangeSnapshot, Never>
+    private let logoutUseCase: LogoutUseCase
+    private var cancelBag = Set<AnyCancellable>()
     
-    public init() {
+    public init(logoutUseCase: LogoutUseCase) {
+        self.logoutUseCase = logoutUseCase
         self.sections = []
         self.sectionsChangePublisher = .init()
     }
-    
-    public func viewDidLoad() {
+}
+
+public extension DefaultProfileScreenVM {
+    func viewDidLoad() {
         let new: [ProfileScreenSection] = [
             .init(id: .privatePerson, title: "222", cells: [
                 .navigation(.init(title: "1", subtitle: "2", navigateClosure: {})),
@@ -43,7 +51,12 @@ public class DefaultProfileScreenVM: ProfileScreenVM {
         sectionsChangePublisher.send(.init(sections: sections, changes: change))
     }
     
-    public func onLogoutTapped() {
-        print("logout plz")
+    func onLogoutTapped() {
+        logoutUseCase.use()
+            .receiveOnMainThread()
+            .sink { [weak self] _ in
+                self?.router.routeToSplashScreen()
+            }
+            .store(in: &cancelBag)
     }
 }

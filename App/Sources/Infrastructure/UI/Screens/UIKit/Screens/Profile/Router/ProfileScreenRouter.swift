@@ -17,7 +17,6 @@ class DefaultProfileScreenRouter: ProfileScreenRouter, UIKitRouter {
     init(viewController: UIViewController) {
         self.viewController = viewController
     }
-    
 }
 
 extension ToProfileScreenRouting where Self: UIKitRouter {

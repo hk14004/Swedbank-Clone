@@ -12,3 +12,7 @@ import SwedApplicationBusinessRules
 public protocol SplashScreenRouter: ToRootTabbarScreenRouting {
     func routeToOnboarding()
 }
+
+public protocol ToSplashScreenRouting {
+    func routeToSplashScreen()
+}
