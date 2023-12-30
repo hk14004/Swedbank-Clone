@@ -8,6 +8,8 @@
 
 import UIKit
 import SwedInterfaceAdapters
+import DevToolsNavigation
+import SwedApplicationBusinessRules
 
 class DefaultRootTabbarScreenRouter: RootTabbarScreenRouter {
     
@@ -21,4 +23,12 @@ class DefaultRootTabbarScreenRouter: RootTabbarScreenRouter {
         print("")
     }
     
+}
+
+extension ToRootTabbarScreenRouting where Self: UIKitRouter {
+    func initRouteToRoot(customer: CustomerDTO?) {
+        let factory: RootTabbarScreenFactory = Composition.resolve()
+        let vc = factory.make(customer: customer)
+        UIApplication.shared.delegate?.window??.rootViewController = vc
+    }
 }

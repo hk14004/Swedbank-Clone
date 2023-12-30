@@ -17,12 +17,12 @@ protocol SplashScreenFactory {
 class DefaultSplashScreenFactory: SplashScreenFactory {
     func make() -> SplashScreenVC {
         let vm = DefaultSplashVM(
-            isAnyUserSessionActiveUseCase: Composition.resolve(),
             isOnboardingCompletedUseCase: Composition.resolve(),
-            startAllUserSessionsUseCase: Composition.resolve()
+            startAllUserSessionsUseCase: Composition.resolve(), 
+            getCurrentCustomerUseCase: Composition.resolve()
         )
         let vc = SplashScreenVC(viewModel: vm)
-        let router = DefaultSplashScreenRouter()
+        let router = DefaultSplashScreenRouter(viewController: vc)
         vm.router = router
         return vc
     }

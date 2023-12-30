@@ -8,15 +8,18 @@
 
 import Foundation
 import SwedInterfaceAdapters
+import SwedApplicationBusinessRules
 
 protocol OverviewScreenFactory {
-    func make() -> OverviewScreenVC
+    func make(customer: CustomerDTO) -> OverviewScreenVC
 }
 
 class DefaultDashboardScreenFactory: OverviewScreenFactory {
-    func make() -> OverviewScreenVC {
-        let vm = DefaultOverviewScreenVM()
+    func make(customer: CustomerDTO) -> OverviewScreenVC {
+        let vm = DefaultOverviewScreenVM(customer: customer)
         let vc = OverviewScreenVC(viewModel: vm)
+        let router = DefaultOverviewScreenRouter(viewController: vc)
+        vm.router = router
         return vc
     }
 }

@@ -31,5 +31,8 @@ class ScreenFactoryAssembly: Assembly {
         container.register(LanguageSelectionScreenFactory.self) { resolver in
             DefaultLanguageSelectionScreenFactory()
         }
+        container.register(ProfileScreenFactory.self) { resolver in
+            DefaultProfileScreenFactory()
+        }
     }
 }

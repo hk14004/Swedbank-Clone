@@ -48,5 +48,14 @@ class UseCaseAssembly: Assembly {
         container.register(SetCurrentLanguagesUseCase.self) { resolver in
             DefaultSetCurrentLanguagesUseCase(languageRepository: Composition.resolve())
         }
+        container.register(GetCurrentCustomerUseCase.self) { resolver in
+            DefaultGetCurrentCustomerUseCase(
+                userSessionManager: Composition.resolve(),
+                customerRepository: Composition.resolve()
+            )
+        }
     }
 }
+
+
+

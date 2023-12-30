@@ -9,14 +9,17 @@
 import Foundation
 import Combine
 import DevToolsCore
+import SwedApplicationBusinessRules
 
 public protocol OverviewScreenVMInput {
     func viewDidLoad()
+    func onProfileTapped()
 }
 
 public protocol OverviewScreenVMOutput {
     var sections: [OverviewScreenSection] { get }
     var sectionsChangePublisher: PassthroughSubject<OverviewScreenSectionChangeSnapshot, Never> { get }
+    var router: OverviewScreenRouter! { get }
 }
 
 public protocol OverviewScreenVM: OverviewScreenVMInput, OverviewScreenVMOutput {}
@@ -24,8 +27,11 @@ public protocol OverviewScreenVM: OverviewScreenVMInput, OverviewScreenVMOutput 
 public class DefaultOverviewScreenVM: OverviewScreenVM {
     public var sections: [OverviewScreenSection]
     public var sectionsChangePublisher: PassthroughSubject<OverviewScreenSectionChangeSnapshot, Never>
+    public var router: OverviewScreenRouter!
+    private var customer: CustomerDTO
     
-    public init() {
+    public init(customer: CustomerDTO) {
+        self.customer = customer
         sections = []
         sectionsChangePublisher = .init()
     }
@@ -42,5 +48,9 @@ public extension DefaultOverviewScreenVM {
         ]
         let change = DevHashChangeSet.calculateCellChangeSet(old: [], new: sections)
         sectionsChangePublisher.send(.init(sections: sections, changes: change))
+    }
+    
+    func onProfileTapped() {
+        router.routeToProfileScreen(customer: customer)
     }
 }

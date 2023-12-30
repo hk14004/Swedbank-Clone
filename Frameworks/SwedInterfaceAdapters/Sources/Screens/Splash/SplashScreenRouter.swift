@@ -7,8 +7,8 @@
 //
 
 import Foundation
+import SwedApplicationBusinessRules
 
-public protocol SplashScreenRouter {
-    func routeToDashboard()
+public protocol SplashScreenRouter: ToRootTabbarScreenRouting {
     func routeToOnboarding()
 }

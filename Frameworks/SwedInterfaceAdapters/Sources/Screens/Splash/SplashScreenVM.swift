@@ -22,26 +22,25 @@ public protocol SplashVMOutput {
 }
 
 public class DefaultSplashVM: SplashScreenVM {
-        
     // MARK: Properties
-    
     public var router: SplashScreenRouter?
     public var isLoadingPublisher: AnyPublisher<Bool, Never> { $isLoading.eraseToAnyPublisher() }
-    private let isAnyUserSessionActiveUseCase: IsAnyUserSessionActiveUseCase
     private let isOnboardingCompletedUseCase: isOnboardingCompletedUseCase
     private let startAllUserSessionsUseCase: StartAllUserSessionsUseCase
+    private let getCurrentCustomerUseCase: GetCurrentCustomerUseCase
     @Published private var isLoading: Bool = false
+    private var cancelBag = Set<AnyCancellable>()
     
     // MARK: Lifecycle
     
     public init(
-        isAnyUserSessionActiveUseCase: IsAnyUserSessionActiveUseCase,
         isOnboardingCompletedUseCase: isOnboardingCompletedUseCase,
-        startAllUserSessionsUseCase: StartAllUserSessionsUseCase
+        startAllUserSessionsUseCase: StartAllUserSessionsUseCase,
+        getCurrentCustomerUseCase: GetCurrentCustomerUseCase
     ) {
-        self.isAnyUserSessionActiveUseCase = isAnyUserSessionActiveUseCase
         self.isOnboardingCompletedUseCase = isOnboardingCompletedUseCase
         self.startAllUserSessionsUseCase = startAllUserSessionsUseCase
+        self.getCurrentCustomerUseCase = getCurrentCustomerUseCase
     }
 }
 
@@ -54,6 +53,11 @@ public extension DefaultSplashVM {
             return
         }
         startAllUserSessionsUseCase.use()
-        router?.routeToDashboard()
+        getCurrentCustomerUseCase.use()
+            .receiveOnMainThread()
+            .sink { [weak self] customer in
+                self?.router?.initRouteToRoot(customer: customer)
+        }
+        .store(in: &cancelBag)
     }
 }

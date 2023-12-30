@@ -14,6 +14,7 @@ public protocol RootTabbarScreenVMOutput {
     var router: RootTabbarScreenRouter! { get set }
     var tabsPublisher: CurrentValueSubject<[RootTab], Never> { get }
     var lockedPublisher: CurrentValueSubject<Bool, Never> { get }
+    var customer: CustomerDTO? { get }
 }
 
 public protocol RootTabbarScreenVMInput {
@@ -25,33 +26,34 @@ public protocol RootTabbarScreenVMInput {
 public protocol RootTabbarScreenVM: RootTabbarScreenVMInput, RootTabbarScreenVMOutput {}
 
 public class DefaultRootTabbarScreenVM: RootTabbarScreenVM {
-    
+    // MARK: Variables
+    public var customer: CustomerDTO?
     public var router: RootTabbarScreenRouter!
     public var tabsPublisher: CurrentValueSubject<[RootTab], Never>
     public var lockedPublisher: CurrentValueSubject<Bool, Never>
-    private let isAnyUserSessionActiveUseCase: IsAnyUserSessionActiveUseCase
+    private var cancelBag = Set<AnyCancellable>()
     
-    public init(isAnyUserSessionActiveUseCase: IsAnyUserSessionActiveUseCase) {
-        self.isAnyUserSessionActiveUseCase = isAnyUserSessionActiveUseCase
+    // MARK: LifeCycle
+    public init(customer: CustomerDTO?) {
+        self.customer = customer
         self.tabsPublisher = .init([])
-        self.lockedPublisher = .init(true)
+        self.lockedPublisher = .init(customer == nil)
+        self.tabsPublisher.value = makePresentableTabs()
     }
-    
 }
 
 // MARK: Input
 public extension DefaultRootTabbarScreenVM {
-    func viewDidLoad() {
-        lockedPublisher.value = !isAnyUserSessionActiveUseCase.use()
-        tabsPublisher.value = makePresentableTabs()
-    }
+    func viewDidLoad() {}
     
     func didUnlock(customer: CustomerDTO) {
+        self.customer = customer
         lockedPublisher.value = false
         tabsPublisher.value = makePresentableTabs()
     }
     
     func didLock() {
+        customer = nil
         lockedPublisher.value = true
         tabsPublisher.value = makePresentableTabs()
     }

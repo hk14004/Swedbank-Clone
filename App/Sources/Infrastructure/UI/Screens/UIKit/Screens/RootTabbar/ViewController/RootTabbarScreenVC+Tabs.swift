@@ -55,17 +55,18 @@ extension RootTabbarScreenVC {
         navVC.tabBarItem = item
         
         let vc: UIViewController = {
-            guard locked else {
+            if let customer = viewModel.customer {
                 let factory: OverviewScreenFactory = Composition.resolve()
-                return factory.make()
+                return factory.make(customer: customer)
+            } else {
+                let config = LockedDashboardPresentationConfig(
+                    title: "Screen.LockedTab.Overview.title",
+                    subtitle: "Screen.LockedTab.Overview.subtitle",
+                    backgroundColorName: "White3",
+                    tabDescriptionIconName: "ic_overview_description"
+                )
+                return makeLockedTab(config: config)
             }
-            let config = LockedDashboardPresentationConfig(
-                title: "Screen.LockedTab.Overview.title",
-                subtitle: "Screen.LockedTab.Overview.subtitle",
-                backgroundColorName: "White3",
-                tabDescriptionIconName: "ic_overview_description"
-            )
-            return makeLockedTab(config: config)
         }()
         navVC.setViewControllers([vc], animated: false)
         return navVC

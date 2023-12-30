@@ -7,7 +7,12 @@
 //
 
 import Foundation
+import SwedApplicationBusinessRules
 
 public protocol RootTabbarScreenRouter {
     func routeTo(tab: RootTab)
+}
+
+public protocol ToRootTabbarScreenRouting {
+    func initRouteToRoot(customer: CustomerDTO?)
 }

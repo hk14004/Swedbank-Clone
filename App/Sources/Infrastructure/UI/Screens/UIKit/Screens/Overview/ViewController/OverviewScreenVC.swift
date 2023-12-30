@@ -52,6 +52,7 @@ class OverviewScreenVC: UIViewController {
 extension OverviewScreenVC {
     private func setup() {
         rootView.tableView.dataSource = dataSource
+        bindActions()
         bindOutput()
     }
     
@@ -61,6 +62,15 @@ extension OverviewScreenVC {
             .sink { [weak self] snapshot in
                 guard let self = self else { return }
                 applyChanges(changeSnapshot: snapshot)
+            }
+            .store(in: &cancelBag)
+    }
+    
+    private func bindActions() {
+        rootView.navigationBarView.profileButtonTapPublisher
+            .receiveOnMainThread()
+            .sink { [weak self] _ in
+                self?.viewModel.onProfileTapped()
             }
             .store(in: &cancelBag)
     }

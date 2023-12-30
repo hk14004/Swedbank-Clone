@@ -8,14 +8,15 @@
 
 import Foundation
 import SwedInterfaceAdapters
+import SwedApplicationBusinessRules
 
 protocol RootTabbarScreenFactory {
-    func make() -> RootTabbarScreenVC
+    func make(customer: CustomerDTO?) -> RootTabbarScreenVC
 }
 
 class DefaultRootTabbarScreenFactory: RootTabbarScreenFactory {
-    func make() -> RootTabbarScreenVC {
-        let vm = DefaultRootTabbarScreenVM(isAnyUserSessionActiveUseCase: Composition.resolve())
+    func make(customer: CustomerDTO?) -> RootTabbarScreenVC {
+        let vm = DefaultRootTabbarScreenVM(customer: customer)
         let vc = RootTabbarScreenVC(viewModel: vm)
         let router = DefaultRootTabbarScreenRouter(viewController: vc)
         vm.router = router
