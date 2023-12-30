@@ -14,11 +14,6 @@ public protocol OverviewScreenVMInput {
     func viewDidLoad()
 }
 
-public struct OverviewScreenSectionChangeSnapshot {
-    public let sections: [OverviewScreenSection]
-    public let changes: DevHashChangeSet
-}
-
 public protocol OverviewScreenVMOutput {
     var sections: [OverviewScreenSection] { get }
     var sectionsChangePublisher: PassthroughSubject<OverviewScreenSectionChangeSnapshot, Never> { get }
@@ -36,8 +31,8 @@ public class DefaultOverviewScreenVM: OverviewScreenVM {
     }
 }
 
-extension DefaultOverviewScreenVM {
-    public func viewDidLoad() {
+public extension DefaultOverviewScreenVM {
+     func viewDidLoad() {
         sections = [
             OverviewScreenSection.init(id: .overview, title: "title", cells: [
                 .cardBalance(.init(iban: "LV16HABA123456789", amount: 19120.44, currencyCode: "eur")),
