@@ -18,17 +18,20 @@ public struct DefaultLoginUseCase: LoginUseCase {
     private let manager: UserSessionManager
     private let fetchRemoteCustomersService: FetchRemoteCustomersService
     private let userSessionCredentialsRepository: UserSessionCredentialsRepository
+    private let customerRepository: CustomerRepository
     
     public init(
         startSessionService: StartSessionService,
         manager: UserSessionManager,
         fetchRemoteCustomersService: FetchRemoteCustomersService,
-        userSessionCredentialsRepository: UserSessionCredentialsRepository
+        userSessionCredentialsRepository: UserSessionCredentialsRepository,
+        customerRepository: CustomerRepository
     ) {
         self.startSessionService = startSessionService
         self.manager = manager
         self.fetchRemoteCustomersService = fetchRemoteCustomersService
         self.userSessionCredentialsRepository = userSessionCredentialsRepository
+        self.customerRepository = customerRepository
     }
     
     public func use(username: String, password: String) -> AnyPublisher<CustomerDTO, Error> {
@@ -49,16 +52,26 @@ public struct DefaultLoginUseCase: LoginUseCase {
                 )
             )
             userSessionCredentialsRepository.save(credentials: creds)
-            // Fetch customer
+            // Fetch customers
             return fetchRemoteCustomersService.use()
-                .flatMap { customersResponse -> AnyPublisher<CustomerDTO, Error> in
+                .flatMap { customersResponse -> AnyPublisher<(selected: CustomerDTO, all: [CustomerDTO]), Error> in
                     // Find customer
                     guard let customer = customersResponse.first(where: {$0.id == username}) else {
                         return .fail(NSError(domain: "No user found", code: 0))
                     }
-                    // Start session
-                    manager.startUserSession(with: creds)
-                    return .just(customer)
+                    return .just((selected: customer, all: customersResponse))
+                        .eraseToAnyPublisher()
+                }
+                .flatMap { stream -> AnyPublisher<CustomerDTO, Error> in
+                    // Store customers
+                    customerRepository.addOrUpdate(stream.all)
+                        .flatMap { _ -> AnyPublisher<CustomerDTO, Error> in
+                            // Start user session
+                            manager.startUserSession(with: creds)
+                            // Return to caller the customer
+                            return .just(stream.selected)
+                        }
+                        .eraseToAnyPublisher()
                 }
                 .eraseToAnyPublisher()
         }

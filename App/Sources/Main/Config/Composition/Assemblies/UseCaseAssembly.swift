@@ -10,7 +10,8 @@ class UseCaseAssembly: Assembly {
                 startSessionService: Composition.resolve(),
                 manager: Composition.resolve(),
                 fetchRemoteCustomersService: Composition.resolve(),
-                userSessionCredentialsRepository: Composition.resolve()
+                userSessionCredentialsRepository: Composition.resolve(), 
+                customerRepository: Composition.resolve()
             )
         }
         container.register(StartAllUserSessionsUseCase.self) { resolver in
