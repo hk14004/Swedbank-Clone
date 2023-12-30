@@ -9,7 +9,7 @@ class ServicesAssembly: Assembly {
             MockStartSessionService()
         }
         .inObjectScope(.container)
-        container.register(FetchCustomerService.self) { resolver in
+        container.register(FetchRemoteCustomersService.self) { resolver in
             MockFetchCustomerService()
         }
         .inObjectScope(.container)

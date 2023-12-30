@@ -9,6 +9,4 @@
 import Foundation
 import DevToolsCore
 
-public class UserSessionManager: BaseUserSessionManager<UserSessionCredentials> {
-    
-}
+public class UserSessionManager: BaseUserSessionManager<UserSessionCredentials> {}

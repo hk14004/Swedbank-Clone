@@ -8,9 +8,9 @@
 
 import Combine
 
-class MockFetchCustomerService: FetchCustomerService {
-    var mockResult: AnyPublisher<FetchCustomerServiceOutput, Error>!
-    func use(input: FetchCustomerServiceInput) -> AnyPublisher<FetchCustomerServiceOutput, Error> {
+class MockFetchCustomerService: FetchRemoteCustomersService {
+    var mockResult: AnyPublisher<FetchRemoteCustomersServiceOutput, Error>!
+    func use() -> AnyPublisher<FetchRemoteCustomersServiceOutput, Error> {
         mockResult
     }
 }

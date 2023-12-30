@@ -9,7 +9,7 @@ class UseCaseAssembly: Assembly {
             DefaultLoginUseCase(
                 startSessionService: Composition.resolve(),
                 manager: Composition.resolve(),
-                fetchCustomerService: Composition.resolve(),
+                fetchRemoteCustomersService: Composition.resolve(),
                 userSessionCredentialsRepository: Composition.resolve()
             )
         }

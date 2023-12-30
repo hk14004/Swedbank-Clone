@@ -1,5 +1,5 @@
 //
-//  FetchCustomerRequestConfig.swift
+//  FetchCustomersRequestConfig.swift
 //  Swedbank
 //
 //  Created by Hardijs Ķirsis on 16/09/2023.
@@ -9,11 +9,11 @@
 import Foundation
 import DevToolsNetworking
 
-enum FetchCustomerRequestConfig {
-    case fetch(FetchCustomerServiceOutgoing)
+enum CustomerRequestConfig {
+    case fetchCustomers
 }
 
-extension FetchCustomerRequestConfig: DevRequestConfig {
+extension CustomerRequestConfig: DevRequestConfig {
     var baseURL: String {
         ""
     }
@@ -23,12 +23,10 @@ extension FetchCustomerRequestConfig: DevRequestConfig {
     }
     
     var method: DevHTTPMethod {
-        .post
+        .get
     }
     
     var authType: DevRequestAuthType {
-        .none
+        .bearer
     }
-    
-    
 }

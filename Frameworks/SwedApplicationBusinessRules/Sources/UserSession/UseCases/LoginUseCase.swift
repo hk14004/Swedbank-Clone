@@ -14,21 +14,20 @@ public protocol LoginUseCase {
 }
 
 public struct DefaultLoginUseCase: LoginUseCase {
-    
     private let startSessionService: StartSessionService
     private let manager: UserSessionManager
-    private let fetchCustomerService: FetchCustomerService
+    private let fetchRemoteCustomersService: FetchRemoteCustomersService
     private let userSessionCredentialsRepository: UserSessionCredentialsRepository
     
     public init(
         startSessionService: StartSessionService,
         manager: UserSessionManager,
-        fetchCustomerService: FetchCustomerService,
+        fetchRemoteCustomersService: FetchRemoteCustomersService,
         userSessionCredentialsRepository: UserSessionCredentialsRepository
     ) {
         self.startSessionService = startSessionService
         self.manager = manager
-        self.fetchCustomerService = fetchCustomerService
+        self.fetchRemoteCustomersService = fetchRemoteCustomersService
         self.userSessionCredentialsRepository = userSessionCredentialsRepository
     }
     
@@ -51,15 +50,17 @@ public struct DefaultLoginUseCase: LoginUseCase {
             )
             userSessionCredentialsRepository.save(credentials: creds)
             // Fetch customer
-            return fetchCustomerService.use(
-                input: .init(customerID: username)
-            )
-            .flatMap { customerResponse -> AnyPublisher<CustomerDTO, Error> in
-                // Start session
-                manager.startUserSession(with: creds)
-                return .just(customerResponse.customer)
-                    
-            }.eraseToAnyPublisher()
+            return fetchRemoteCustomersService.use()
+                .flatMap { customersResponse -> AnyPublisher<CustomerDTO, Error> in
+                    // Find customer
+                    guard let customer = customersResponse.first(where: {$0.id == username}) else {
+                        return .fail(NSError(domain: "No user found", code: 0))
+                    }
+                    // Start session
+                    manager.startUserSession(with: creds)
+                    return .just(customer)
+                }
+                .eraseToAnyPublisher()
         }
         .eraseToAnyPublisher()
     }
