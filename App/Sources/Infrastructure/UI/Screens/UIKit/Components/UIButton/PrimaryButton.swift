@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import DevToolsLocalization
 
-class PrimaryButton: UIButton {
+class PrimaryButton: RuntimeLocalizedButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)

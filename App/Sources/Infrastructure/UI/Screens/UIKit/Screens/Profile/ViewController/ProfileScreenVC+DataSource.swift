@@ -1,5 +1,5 @@
 //
-//  OverviewScreenVC+DataSource.swift
+//  ProfileScreenVC+DataSource.swift
 //  Swedbank
 //
 //  Created by Hardijs Ķirsis on 17/12/2023.
@@ -10,16 +10,16 @@ import UIKit
 import SwedInterfaceAdapters
 import DevToolsUI
 
-extension OverviewScreenVC {
-    class DiffableDataSource: UITableViewDiffableDataSource<OverviewScreenSection.SectionID, Int> {
+extension ProfileScreenVC {
+    class DiffableDataSource: UITableViewDiffableDataSource<ProfileScreenSection.SectionID, Int> {
         // MARK: Properties
-        private var viewModel: OverviewScreenVM
+        private var viewModel: ProfileScreenVM
         
         // MARK: Lifecycle
         init(
-            viewModel: OverviewScreenVM,
+            viewModel: ProfileScreenVM,
             tableView: UITableView,
-            cellProvider: @escaping UITableViewDiffableDataSource<OverviewScreenSection.SectionID, Int>.CellProvider
+            cellProvider: @escaping UITableViewDiffableDataSource<ProfileScreenSection.SectionID, Int>.CellProvider
         ) {
             self.viewModel = viewModel
             super.init(tableView: tableView, cellProvider: cellProvider)
@@ -40,17 +40,19 @@ extension OverviewScreenVC {
                 return UITableViewCell()
             }
             switch cell {
-            case .cardBalance(let model):
-                let cell: OverviewScreenView.BalanceCellView = tableView.dequeueReusableCell(for: indexPath)
-                cell.configure(model: model)
+            case .navigation(let model):
+                let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "123")
+                cell.textLabel?.text = model.title
+                cell.detailTextLabel?.text = model.subtitle
                 return cell
-            case .offer(let model):
-                let cell: OverviewScreenView.OfferCellView = tableView.dequeueReusableCell(for: indexPath)
-                cell.configure(model: model)
-                return cell
-            case .expenses(let model):
-                let cell: OverviewScreenView.ExpensesCellView = tableView.dequeueReusableCell(for: indexPath)
-                cell.configure(model: model)
+            case .logout:
+                let cell: ProfileScreenView.LogoutCell = tableView.dequeueReusableCell(for: indexPath)
+                cell.logoutButton.eventPublisher(for: .touchUpInside)
+                    .receiveOnMainThread()
+                    .sink { [weak self] _ in
+                        self?.viewModel.onLogoutTapped()
+                    }
+                    .store(in: &cell.cancelBag)
                 return cell
             }
         }

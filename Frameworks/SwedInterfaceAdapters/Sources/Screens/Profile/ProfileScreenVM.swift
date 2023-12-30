@@ -12,6 +12,7 @@ import DevToolsCore
 
 public protocol ProfileScreenVMInput {
     func viewDidLoad()
+    func onLogoutTapped()
 }
 
 public protocol ProfileScreenVMOutput {
@@ -31,6 +32,18 @@ public class DefaultProfileScreenVM: ProfileScreenVM {
     }
     
     public func viewDidLoad() {
-        
+        let new: [ProfileScreenSection] = [
+            .init(id: .privatePerson, title: "222", cells: [
+                .navigation(.init(title: "1", subtitle: "2", navigateClosure: {})),
+                .logout
+            ])
+        ]
+        sections = new
+        let change = DevHashChangeSet.calculateCellChangeSet(old: [], new: sections)
+        sectionsChangePublisher.send(.init(sections: sections, changes: change))
+    }
+    
+    public func onLogoutTapped() {
+        print("logout plz")
     }
 }

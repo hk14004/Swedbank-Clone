@@ -9,10 +9,15 @@
 import UIKit
 import DevToolsLocalization
 import SwedInterfaceAdapters
+import Combine
 
 class ProfileScreenVC: RuntimeLocalizedUIViewController {
     
-    private let viewModel: ProfileScreenVM
+    lazy var rootView = ProfileScreenView.RootView()
+    let viewModel: ProfileScreenVM
+    lazy var dataSource = makeDataSource()
+    private var cancelBag = Set<AnyCancellable>()
+    private var initialRender = true
     
     init(viewModel: ProfileScreenVM) {
         self.viewModel = viewModel
@@ -25,8 +30,12 @@ class ProfileScreenVC: RuntimeLocalizedUIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .gray
         setup()
+    }
+    
+    override func loadView() {
+        super.loadView()
+        view = rootView
     }
 }
 
@@ -34,6 +43,9 @@ extension ProfileScreenVC {
     private func setup() {
         runtimeLocalizedTitleKey = "Screen.User.title"
         configureNavBar()
+        rootView.tableView.dataSource = dataSource
+        bindOutput()
+        viewModel.viewDidLoad()
     }
     
     private func configureNavBar() {
@@ -54,5 +66,30 @@ extension ProfileScreenVC {
     
     @objc private func onClose() {
         dismiss(animated: true)
+    }
+    
+    private func bindOutput() {
+        viewModel.sectionsChangePublisher
+            .receiveOnMainThread()
+            .sink { [weak self] snapshot in
+                guard let self = self else { return }
+                applyChanges(changeSnapshot: snapshot)
+            }
+            .store(in: &cancelBag)
+    }
+    
+    private func applyChanges(changeSnapshot: ProfileScreenSectionChangeSnapshot) {
+        let sections = changeSnapshot.sections
+        let changeSet = changeSnapshot.changes
+        var snapshot = NSDiffableDataSourceSnapshot<ProfileScreenSection.SectionID, Int>()
+        snapshot.appendSections(sections.map{$0.id})
+        sections.forEach { section in
+            snapshot.appendItems(section.cells.map{$0.hashValue}, toSection: section.id)
+        }
+        snapshot.reloadItems(changeSet.updated)
+        dataSource.apply(snapshot, animatingDifferences: !initialRender)
+        if initialRender {
+            initialRender = false
+        }
     }
 }

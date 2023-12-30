@@ -53,7 +53,7 @@ extension ProfileScreenView {
             }
             tableView.separatorInset = .zero
             
-            //            tableView.registerCell(ExpensesCellView.self)
+            tableView.registerCell(LogoutCell.self)
         }
     }
 }
