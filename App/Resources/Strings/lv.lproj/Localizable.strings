@@ -124,3 +124,16 @@
 
 
 "Tabbar.Tabs.Services.title" = "Servisi";
+
+"Screen.Contacts.Items.contactUs.title" = "Sazinies ar mums";
+"Screen.Contacts.Items.contactUs.description" = "Saņem atbildes no virtuālā asistena";
+"Screen.Contacts.Items.write.title" = "Raksti";
+"Screen.Contacts.Items.write.description" = "Nosūti bankas ziņojumu";
+"Screen.Contacts.Items.priority.title" = "Prioritārā apkalpošana";
+"Screen.Contacts.Items.priority.description" = "+371 67 333 338";
+"Screen.Contacts.Items.consultation.title" = "Piesakies konsultācijai";
+"Screen.Contacts.Items.consultation.description" = "Telefoniski, videozvanā vai filiālē";
+"Screen.Contacts.Items.atms.title" = "Bankomāti un filiāles";
+"Screen.Contacts.Items.atms.description" = "Atrast kartē";
+"Screen.Contacts.Items.faq.title" = "Biežākie jautājumi";
+"Screen.Contacts.Items.faq.description" = "Saņem noderīgas atbildes";

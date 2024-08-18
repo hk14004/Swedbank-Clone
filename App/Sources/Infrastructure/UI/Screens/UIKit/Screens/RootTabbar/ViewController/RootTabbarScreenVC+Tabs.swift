@@ -158,8 +158,10 @@ extension RootTabbarScreenVC {
         item.runtimeLocalizedKey = "Tabbar.Tabs.Contacts.title"
         navVC.tabBarItem = item
         
-        let vc = UIViewController()
-        vc.view.backgroundColor = .gray
+        let vc: UIViewController = {
+            let factory: ContactsScreenFactory = Composition.resolve()
+            return factory.make()
+        }()
         navVC.setViewControllers([vc], animated: false)
         return navVC
     }

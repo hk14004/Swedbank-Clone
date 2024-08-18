@@ -48,10 +48,10 @@ public class DefaultSplashVM: SplashScreenVM {
 
 public extension DefaultSplashVM {
     func onViewDidLoad() {
-        guard isOnboardingCompletedUseCase.use() else {
-            router?.routeToOnboarding()
-            return
-        }
+//        guard isOnboardingCompletedUseCase.use() else {
+//            router?.routeToOnboarding()
+//            return
+//        }
         startAllUserSessionsUseCase.use()
         getCurrentCustomerUseCase.use()
             .receiveOnMainThread()

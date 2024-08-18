@@ -23,16 +23,15 @@ extension AppAppearance {
         appearance.shadowColor = UIColor.clear
         AppearanceProxy.setDefault(tabbarAppearance: appearance)
         
-    //    let navAppearance = UINavigationBarAppearance()
-    //    AppearanceProxy.setDefault(controlTintColor: Asset.Colors.color3.color)
-    //    AppearanceProxy.setDefault(navigationBarControlColor: Asset.Colors.primaryText.color)
-    //    navAppearance.configureWithOpaqueBackground()
-    //    navAppearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
-    //    navAppearance.titleTextAttributes = [.foregroundColor: Asset.Colors.color3.color]
-    //    navAppearance.shadowColor = .clear
-    //    AppearanceProxy.setDefault(navigationBarAppearance: navAppearance)
-    //
-    //    UITableViewHeaderFooterView.appearance().textLabel?.textColor = UIColor.red
+        let navAppearance = UINavigationBarAppearance()
+        AppearanceProxy.setDefault(controlTintColor: Colors.orange1.color)
+        AppearanceProxy.setDefault(navigationBarControlColor: Colors.orange1.color)
+        navAppearance.configureWithOpaqueBackground()
+        navAppearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
+        navAppearance.titleTextAttributes = [.foregroundColor: Colors.orange1.color]
+        navAppearance.largeTitleTextAttributes = [.foregroundColor: Colors.orange1.color]
+        navAppearance.shadowColor = .clear
+        AppearanceProxy.setDefault(navigationBarAppearance: navAppearance)
 
     }
 }
