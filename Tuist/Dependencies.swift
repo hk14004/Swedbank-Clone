@@ -12,7 +12,7 @@ let dependencies = Dependencies(
     carthage: CarthageDependencies([]),
     swiftPackageManager: SwiftPackageManagerDependencies(
         [
-            .remote(url: "https://github.com/hk14004/DevTools-Swift", requirement: .branch("dev")),
+            .remote(url: "git@github.com:hk14004/DevTools-Swift.git", requirement: .branch("dev")),
             .remote(url: "https://github.com/Swinject/Swinject", requirement: .upToNextMajor(from: "2.0.0")),
             .remote(url: "https://github.com/kishikawakatsumi/KeychainAccess", requirement: .upToNextMajor(from: "4.2.2")),
             .remote(url: "https://github.com/SnapKit/SnapKit", requirement: .upToNextMajor(from: "5.6.0")),

@@ -41,8 +41,7 @@ public class DefaultProfileScreenVM: ProfileScreenVM {
 public extension DefaultProfileScreenVM {
     func viewDidLoad() {
         let new: [ProfileScreenSection] = [
-            .init(id: .privatePerson, title: "222", cells: [
-                .navigation(.init(title: "1", subtitle: "2", navigateClosure: {})),
+            .init(id: .privatePerson, title: "", cells: [
                 .logout
             ])
         ]
