@@ -22,27 +22,30 @@ let project = Project(
         ]
     ),
     targets: [
-        Target(name: Project.Framework.SwedInterfaceAdapters.rawValue,
-               platform: .iOS,
-               product: .framework,
-               bundleId: Constants.bundleId,
-               deploymentTarget: .iOS(targetVersion: Project.Root.targetVersion, devices: Project.Root.devices),
-               sources: ["Sources/**"],
-               dependencies: [
+        .target(
+            name: Project.Framework.SwedInterfaceAdapters.rawValue,
+            destinations: .iOS,
+            product: .framework,
+            bundleId: Constants.bundleId,
+            deploymentTargets: .iOS(Project.Root.targetVersion),
+            sources: ["Sources/**"],
+            dependencies: [
                 .external(name: Project.Dependencies.DevToolsCore.rawValue),
                 .project(target: Project.Framework.SwedApplicationBusinessRules.rawValue, path: "../\(Project.Framework.SwedApplicationBusinessRules.rawValue)")
-               ]),
-        Target(name: Project.Framework.SwedInterfaceAdapters.getTestTargetName(),
-               platform: .iOS,
-               product: .unitTests,
-               bundleId: Constants.bundleId + ".test",
-               deploymentTarget: .iOS(targetVersion: Project.Root.targetVersion, devices: Project.Root.devices),
-               infoPlist: .default,
-               sources: ["Tests/**"],
-               dependencies: [
+            ]),
+        .target(
+            name: Project.Framework.SwedInterfaceAdapters.getTestTargetName(),
+            destinations: .iOS,
+            product: .unitTests,
+            bundleId: Constants.bundleId + ".test",
+            deploymentTargets: .iOS(Project.Root.targetVersion),
+            infoPlist: .default,
+            sources: ["Tests/**"],
+            dependencies: [
                 .target(name: Project.Framework.SwedInterfaceAdapters.rawValue),
                 .external(name: Project.Dependencies.DevToolsCore.rawValue)
-               ])
+            ]
+        )
     ],
     schemes: [
         Project.appTargetScheme(name: Project.Framework.SwedInterfaceAdapters.getTestTargetName())

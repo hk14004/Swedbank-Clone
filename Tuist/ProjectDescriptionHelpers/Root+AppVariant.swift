@@ -27,13 +27,13 @@ extension Project.Root {
 
 extension Project.Root.AppVariant {
     func toTuistTarget() -> Target {
-        Target(
+        .target(
             name: name,
-            platform: .iOS,
+            destinations: .iOS,
             product: .app,
             productName: productName,
             bundleId: bundleID,
-            deploymentTarget: .iOS(targetVersion: Project.Root.targetVersion, devices: Project.Root.devices),
+            deploymentTargets: .iOS(Project.Root.targetVersion),
             infoPlist: .extendingDefault(
                 with: Project.makeInfoPlist(
                     displayName: displayName,

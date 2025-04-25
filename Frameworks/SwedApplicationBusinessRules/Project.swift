@@ -22,26 +22,30 @@ let project = Project(
         ]
     ),
     targets: [
-        Target(name: Project.Framework.SwedApplicationBusinessRules.rawValue,
-               platform: .iOS,
-               product: .framework,
-               bundleId: Constants.bundleId,
-               deploymentTarget: .iOS(targetVersion: Project.Root.targetVersion, devices: Project.Root.devices),
-               sources: ["Sources/**"],
-               dependencies: [
+        .target(
+            name: Project.Framework.SwedApplicationBusinessRules.rawValue,
+            destinations: .iOS,
+            product: .framework,
+            bundleId: Constants.bundleId,
+            deploymentTargets: .iOS(Project.Root.targetVersion),
+            sources: ["Sources/**"],
+            dependencies: [
                 .external(name: Project.Dependencies.DevToolsCore.rawValue)
-               ]),
-        Target(name: Project.Framework.SwedApplicationBusinessRules.getTestTargetName(),
-               platform: .iOS,
-               product: .unitTests,
-               bundleId: Constants.bundleId + ".test",
-               deploymentTarget: .iOS(targetVersion: Project.Root.targetVersion, devices: Project.Root.devices),
-               infoPlist: .default,
-               sources: ["Tests/**"],
-               dependencies: [
+            ]
+        ),
+        .target(
+            name: Project.Framework.SwedApplicationBusinessRules.getTestTargetName(),
+            destinations: .iOS,
+            product: .unitTests,
+            bundleId: Constants.bundleId + ".test",
+            deploymentTargets: .iOS(Project.Root.targetVersion),
+            infoPlist: .default,
+            sources: ["Tests/**"],
+            dependencies: [
                 .target(name: Project.Framework.SwedApplicationBusinessRules.rawValue),
                 .external(name: Project.Dependencies.DevToolsCore.rawValue)
-               ])
+            ]
+        )
     ],
     schemes: [
         Project.appTargetScheme(name: Project.Framework.SwedApplicationBusinessRules.getTestTargetName())
