@@ -40,7 +40,7 @@ class DefaultStartSessionService: StartSessionService {
 class MockStartSessionService: StartSessionService {
     func use(input: StartSessionServiceInput) -> AnyPublisher<StartSessionServiceOutput, Error> {
         guard input.username == "007" else {
-            return .fail(NSError(domain: "dddd", code: 0))
+            return .fail(NSError(domain: "invalid credentials", code: 0))
         }
         return .just(
             StartSessionServiceOutput(
