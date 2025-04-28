@@ -23,6 +23,7 @@ extension OverviewScreenVC {
         ) {
             self.viewModel = viewModel
             super.init(tableView: tableView, cellProvider: cellProvider)
+            self.defaultRowAnimation = .fade
         }
     }
     

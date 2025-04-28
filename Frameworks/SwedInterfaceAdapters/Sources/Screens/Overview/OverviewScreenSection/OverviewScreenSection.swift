@@ -10,7 +10,7 @@ import Foundation
 import DevToolsUI
 import DevToolsCore
 
-public class OverviewScreenSection: DevTableSection {
+public struct OverviewScreenSection: DevTableSection {
     public enum SectionID: String, CaseIterable {
         case overview
     }
