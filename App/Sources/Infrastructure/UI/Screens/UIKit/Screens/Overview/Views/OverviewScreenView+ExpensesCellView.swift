@@ -110,6 +110,7 @@ extension OverviewScreenView.ExpensesCellView {
 // MARK: Private
 extension OverviewScreenView.ExpensesCellView {
     private func setup() {
+        selectionStyle = .none
         setupMainStack()
         setupMainStackContent()
         setupTopStackContent()

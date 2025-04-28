@@ -60,6 +60,7 @@ extension OverviewScreenView.OfferCellView {
 // MARK: Private
 extension OverviewScreenView.OfferCellView {
     private func setup() {
+        selectionStyle = .none
         setupMainStack()
     }
     

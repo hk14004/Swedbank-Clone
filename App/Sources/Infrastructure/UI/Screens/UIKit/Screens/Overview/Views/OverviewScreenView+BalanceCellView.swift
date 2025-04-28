@@ -67,6 +67,7 @@ extension OverviewScreenView.BalanceCellView {
 // MARK: Private
 extension OverviewScreenView.BalanceCellView {
     private func setup() {
+        selectionStyle = .none
         setupMainStack()
     }
     
