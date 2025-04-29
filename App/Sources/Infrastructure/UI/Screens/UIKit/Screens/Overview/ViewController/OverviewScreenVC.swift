@@ -54,6 +54,7 @@ extension OverviewScreenVC {
         rootView.tableView.dataSource = dataSource
         bindActions()
         bindOutput()
+        rootView.navigationBarView.configure(customerInitials: viewModel.customer.getInitials())
     }
     
     private func bindOutput() {

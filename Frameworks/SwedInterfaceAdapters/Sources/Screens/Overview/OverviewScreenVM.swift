@@ -20,6 +20,7 @@ public protocol OverviewScreenVMOutput {
     var sections: [OverviewScreenSection] { get }
     var sectionsChangePublisher: PassthroughSubject<OverviewScreenSectionChangeSnapshot, Never> { get }
     var router: OverviewScreenRouter! { get }
+    var customer: CustomerDTO { get }
 }
 
 public protocol OverviewScreenVM: OverviewScreenVMInput, OverviewScreenVMOutput {}
@@ -28,7 +29,7 @@ public class DefaultOverviewScreenVM: OverviewScreenVM {
     public var sections: [OverviewScreenSection]
     public var sectionsChangePublisher: PassthroughSubject<OverviewScreenSectionChangeSnapshot, Never>
     public var router: OverviewScreenRouter!
-    private var customer: CustomerDTO
+    public var customer: CustomerDTO
     
     public init(customer: CustomerDTO) {
         self.customer = customer

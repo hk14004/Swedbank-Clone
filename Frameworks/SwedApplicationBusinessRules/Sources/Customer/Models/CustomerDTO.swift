@@ -17,3 +17,10 @@ public struct CustomerDTO {
         self.displayName = displayName
     }
 }
+
+public extension CustomerDTO {
+    func getInitials() -> String {
+        let words = displayName.split(separator: " ")
+        return words.map { $0.first?.uppercased() ?? "" }.joined()
+    }
+}

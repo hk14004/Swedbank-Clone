@@ -11,7 +11,7 @@ import DevToolsLocalization
 
 class DashboardNavigationBarView: UIView {
     enum Constants {
-        static let buttonSpacing: CGFloat = 16
+        static let buttonSpacing: CGFloat = 0
     }
     private lazy var containerView: UIView = {
         let view = UIView()

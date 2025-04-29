@@ -52,3 +52,10 @@ extension OverviewScreenView.NavigationBarView {
         config = primaryNavigationBarView.configureDefault()
     }
 }
+
+// MARK: Public
+extension OverviewScreenView.NavigationBarView {
+    func configure(customerInitials: String) {
+        config?.profilebutton.configure(text: customerInitials)
+    }
+}
