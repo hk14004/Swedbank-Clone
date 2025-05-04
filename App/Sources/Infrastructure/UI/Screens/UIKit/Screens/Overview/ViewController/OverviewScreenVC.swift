@@ -11,13 +11,14 @@ import Combine
 import SwedInterfaceAdapters
 import DevToolsCore
 import DevToolsUI
+import DevToolsLocalization
 
-class OverviewScreenVC: UIViewController {
+class OverviewScreenVC: RuntimeLocalizedUIViewController {
     // MARK: Properties
-    lazy var rootView = OverviewScreenView.RootView()
     let viewModel: OverviewScreenVM
-    private var cancelBag = Set<AnyCancellable>()
+    lazy var rootView = OverviewScreenView.RootView()
     lazy var dataSource = makeDataSource()
+    private var cancelBag = Set<AnyCancellable>()
     private var initialRender = true
     
     // MARK: Lifecycle
@@ -28,11 +29,6 @@ class OverviewScreenVC: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     override func loadView() {
@@ -54,7 +50,15 @@ extension OverviewScreenVC {
         rootView.tableView.dataSource = dataSource
         bindActions()
         bindOutput()
-        rootView.navigationBarView.configure(customerInitials: viewModel.customer.getInitials())
+        setupNavigationBar()
+    }
+    
+    private func setupNavigationBar() {
+        runtimeLocalizedTitleKey = "Tabbar.Tabs.Overview.title"
+        navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(customView: rootView.profileButton),
+            UIBarButtonItem(customView: rootView.notificationsButton)
+        ]
     }
     
     private func bindOutput() {
@@ -68,11 +72,23 @@ extension OverviewScreenVC {
     }
     
     private func bindActions() {
-        rootView.navigationBarView.profileButtonTapPublisher
-            .receiveOnMainThread()
-            .sink { [weak self] _ in
+        bindNotificationsTapAction()
+        bindProfileTapAction()
+    }
+    
+    private func bindNotificationsTapAction() {
+        rootView.didTapNotificationsButton
+            .sink(receiveValue: { [weak self] _ in
+                self?.viewModel.onNotificationsTapped()
+            })
+            .store(in: &cancelBag)
+    }
+    
+    private func bindProfileTapAction() {
+        rootView.didTapProfileButton
+            .sink(receiveValue: { [weak self] _ in
                 self?.viewModel.onProfileTapped()
-            }
+            })
             .store(in: &cancelBag)
     }
     

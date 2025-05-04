@@ -31,7 +31,7 @@ extension AppAppearance {
         navAppearance.titleTextAttributes = [.foregroundColor: Colors.orange1.color]
         navAppearance.largeTitleTextAttributes = [.foregroundColor: Colors.orange1.color]
         navAppearance.shadowColor = .clear
+        UINavigationBar.appearance().prefersLargeTitles = true
         AppearanceProxy.setDefault(navigationBarAppearance: navAppearance)
-
     }
 }

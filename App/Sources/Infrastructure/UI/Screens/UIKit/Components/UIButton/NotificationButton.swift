@@ -1,17 +1,27 @@
 //
-//  ProfileIconButton.swift
-//  SWEDBANK LV
+//  NotificationButton.swift
+//  Swedbank
 //
-//  Created by Hardijs Ķirsis on 08/09/2023.
-//  Copyright © 2023 SWEDBANK AB. All rights reserved.
+//  Created by Hardijs Kirsis on 04/05/2025.
+//  Copyright © 2025 SWEDBANK AB. All rights reserved.
 //
 
 import UIKit
 
-class CustomerInitialsButton: UIButton {
+class NotificationButton: UIButton {
+    // MARK: Constants
+    enum Constant {
+        static let bellIconName = "bell.fill"
+    }
+    
     // MARK: Properties
-    private var profileIconView = CustomerInitialsView()
-
+    private var iconView = UIImageView(
+        image: UIImage(
+            systemName: Constant.bellIconName)?
+            .withTintColor(SWEDBANKAsset.Colors.text2.color)
+            .withRenderingMode(.alwaysOriginal)
+    )
+    
     // MARK: Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,7 +36,7 @@ class CustomerInitialsButton: UIButton {
     
     // MARK: Methods
     private func setup() {
-        clipsToBounds = true
+        clipsToBounds = false
         snp.makeConstraints { make in
             make.size.equalTo(UIConstant.NavigationBar.barButtonSize)
         }
@@ -41,15 +51,13 @@ class CustomerInitialsButton: UIButton {
     }
     
     private func setupProfileIconView() {
-        addSubview(profileIconView)
-        profileIconView.snp.makeConstraints { make in
+        addSubview(iconView)
+        iconView.snp.makeConstraints { make in
             make.center.equalToSuperview()
+            make.size.equalTo(UIConstant.NavigationBar.barButtonIconSize)
         }
-        profileIconView.isUserInteractionEnabled = false
+        iconView.isUserInteractionEnabled = false
     }
     
-    func configure(text: String) {
-        setTitle(text, for: .normal)
-        profileIconView.configure(text: text)
-    }
+    func configure(notificationCount: Int) {}
 }

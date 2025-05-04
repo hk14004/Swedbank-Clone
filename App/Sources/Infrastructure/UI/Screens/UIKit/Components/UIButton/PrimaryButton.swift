@@ -10,7 +10,7 @@ import UIKit
 import DevToolsLocalization
 
 class PrimaryButton: RuntimeLocalizedButton {
-    
+    // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -20,9 +20,10 @@ class PrimaryButton: RuntimeLocalizedButton {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Methods
     private func setup() {
         backgroundColor = SWEDBANKAsset.Colors.orange1.color
-        layer.cornerRadius = 16
+        layer.cornerRadius = UIConstant.Button.cornerRadius
         titleLabel?.adjustsFontForContentSizeCategory = true
         titleLabel?.font = AppTypography.body.scaledFont
     }

@@ -14,10 +14,6 @@ enum OverviewScreenView{}
 extension OverviewScreenView {
     final class RootView: UIView {
         // MARK: Properties
-        lazy var navigationBarView: NavigationBarView = {
-            let view = NavigationBarView()
-            return view
-        }()
         lazy var containerView: UIView = {
             let view = UIView()
             return view
@@ -26,6 +22,10 @@ extension OverviewScreenView {
             let view = UITableView()
             return view
         }()
+        lazy var profileButton = CustomerInitialsButton()
+        lazy var notificationsButton = NotificationButton()
+        
+        // MARK: LifeCycle
         override init(frame: CGRect) {
             super.init(frame: frame)
             setup()
@@ -35,10 +35,19 @@ extension OverviewScreenView {
             fatalError("init(coder:) has not been implemented")
         }
         
+        // MARK: Actions
+        var didTapProfileButton: AnyPublisher<Void, Never> {
+            profileButton.eventPublisher(for: .touchUpInside).eraseToAnyPublisher()
+        }
+        
+        var didTapNotificationsButton: AnyPublisher<Void, Never> {
+            notificationsButton.eventPublisher(for: .touchUpInside).eraseToAnyPublisher()
+        }
+        
+        // MARK: Methods
         private func setup() {
             backgroundColor = SWEDBANKAsset.Colors.background1.color
             setupContainerView()
-            setupNavigationBar()
             setupTableView()
         }
         
@@ -51,18 +60,11 @@ extension OverviewScreenView {
             }
         }
         
-        private func setupNavigationBar() {
-            containerView.addSubview(navigationBarView)
-            navigationBarView.snp.makeConstraints { make in
-                make.top.horizontalEdges.equalToSuperview()
-            }
-        }
-        
         private func setupTableView() {
             containerView.addSubview(tableView)
             tableView.snp.makeConstraints { make in
                 make.horizontalEdges.bottom.equalToSuperview()
-                make.top.equalTo(navigationBarView.snp.bottom)
+                make.top.equalTo(safeAreaLayoutGuide)
             }
             tableView.separatorInset = .zero
             tableView.registerCell(BalanceCellView.self)

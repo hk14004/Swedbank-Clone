@@ -14,6 +14,7 @@ import SwedApplicationBusinessRules
 public protocol OverviewScreenVMInput {
     func viewDidLoad()
     func onProfileTapped()
+    func onNotificationsTapped()
 }
 
 public protocol OverviewScreenVMOutput {
@@ -77,4 +78,6 @@ public extension DefaultOverviewScreenVM {
     func onProfileTapped() {
         router.routeToProfileScreen(customer: customer)
     }
+    
+    func onNotificationsTapped() {}
 }
