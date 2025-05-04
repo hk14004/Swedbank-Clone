@@ -15,7 +15,7 @@ class AppAppearance {}
 extension AppAppearance {
     static func configureAppearance() {
         let appearance = UITabBarAppearance()
-        appearance.backgroundColor = Colors.white2.color
+        appearance.backgroundColor = Colors.tabbar1.color
         appearance.stackedLayoutAppearance.selected.iconColor = Colors.accent1.color
         appearance.stackedLayoutAppearance.normal.iconColor = Colors.text2.color
         appearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: Colors.accent1.color]
