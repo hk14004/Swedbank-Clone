@@ -54,10 +54,10 @@
 "Screen.Login.Username.placeholder" = "Enter username";
 
 /*  */
-"Screen.Overview.Expenses.details" = "Details";
+"Screen.Overview.Expenses.details" = "Detailed view";
 
 /*  */
-"Screen.Overview.Expenses.spent" = "Spent";
+"Screen.Overview.Expenses.spent" = "Spent on";
 
 /*  */
 "Screen.Overview.Expenses.thisMonth" = "This month";
