@@ -17,6 +17,9 @@ struct LanguageDropdownView: View {
             HStack {
                 makeFlagImageView()
                 Image(systemName: "chevron.down")
+                    .foregroundStyle(
+                        Color(asset: SWEDBANKAsset.Colors.black1)
+                    )
             }
         }
     }
