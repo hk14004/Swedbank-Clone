@@ -6,9 +6,9 @@
 //  Copyright © 2023 SWEDBANK AB. All rights reserved.
 //
 
+import Combine
 import UIKit
 import SwedInterfaceAdapters
-import Combine
 import SwedApplicationBusinessRules
 
 protocol LoginScreenFactory {

@@ -12,11 +12,12 @@ import Combine
 import SwedInterfaceAdapters
 
 class LoginScreenVC: UIViewController {
-    
+    // MARK: Properties
     let viewModel: LoginScreenVM
     private lazy var rootView = LoginScreenView.RootView()
     private var bag = Set<AnyCancellable>()
     
+    // MARK: Lifecycle
     init(viewModel: LoginScreenVM) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -37,6 +38,7 @@ class LoginScreenVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Methods
     private func bindOutput() {
         bindIsLoading()
     }

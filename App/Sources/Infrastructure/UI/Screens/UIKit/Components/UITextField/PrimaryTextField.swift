@@ -19,6 +19,15 @@ class PrimaryTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override var placeholder: String? {
+        didSet {
+            attributedPlaceholder = NSAttributedString(
+                string: placeholder ?? "",
+                attributes: [NSAttributedString.Key.foregroundColor: SWEDBANKAsset.Colors.text1.color]
+            )
+        }
+    }
+    
     private func setup() {
         font = AppTypography.input.scaledFont
         adjustsFontForContentSizeCategory = true

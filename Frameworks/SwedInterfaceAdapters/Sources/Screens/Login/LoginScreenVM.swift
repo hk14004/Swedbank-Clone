@@ -22,7 +22,7 @@ public protocol LoginScreenVMOutput {
     var loadingPublisher: CurrentValueSubject<Bool, Never> { get }
 }
 
-public protocol LoginScreenVM: LoginScreenVMInput,LoginScreenVMOutput {}
+public protocol LoginScreenVM: LoginScreenVMInput, LoginScreenVMOutput {}
 
 public class DefaultLoginScreenVM: LoginScreenVM {
     public var router: LoginScreenRouter!
