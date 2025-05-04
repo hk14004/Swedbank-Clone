@@ -92,12 +92,6 @@ class LanguageSelectionScreenBottomSheetPreviewVM: LanguageSelectionScreenVM {
 }
 
 extension LanguageSelectionScreenBottomSheetPreviewVM {
-    func onClose() {
-        
-    }
-    
-    func onChangeLanguage(code: String) {
-        
-    }
-    
+    func onClose() {}
+    func onChangeLanguage(code: String) {}
 }
