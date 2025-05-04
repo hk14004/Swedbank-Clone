@@ -50,7 +50,7 @@ extension RootTabbarScreenVC {
         let navVC = UINavigationController()
         let item = RuntimeLocalizedTabBarItem()
         item.image = UIImage(systemName: "house")
-        item.selectedImage = UIImage(systemName: "house")
+        item.selectedImage = UIImage(systemName: "house.fill")
         item.runtimeLocalizedKey = "Tabbar.Tabs.Overview.title"
         navVC.tabBarItem = item
         
@@ -75,8 +75,8 @@ extension RootTabbarScreenVC {
     private func makePaymentsTab(locked: Bool) -> UINavigationController {
         let navVC = UINavigationController()
         let item = RuntimeLocalizedTabBarItem()
-        item.image = UIImage(systemName: "arrow.left.arrow.right")
-        item.selectedImage = UIImage(systemName: "arrow.left.arrow.right")
+        item.image = UIImage(systemName: "arrow.up.left.arrow.down.right.square")
+        item.selectedImage = UIImage(systemName: "arrow.up.left.arrow.down.right.square.fill")
         item.runtimeLocalizedKey = "Tabbar.Tabs.Payments.title"
         navVC.tabBarItem = item
         
@@ -102,7 +102,7 @@ extension RootTabbarScreenVC {
         let navVC = UINavigationController()
         let item = RuntimeLocalizedTabBarItem()
         item.image = UIImage(systemName: "creditcard")
-        item.selectedImage = UIImage(systemName: "creditcard")
+        item.selectedImage = UIImage(systemName: "creditcard.fill")
         item.runtimeLocalizedKey = "Tabbar.Tabs.Cards.title"
         navVC.tabBarItem = item
         
@@ -127,8 +127,8 @@ extension RootTabbarScreenVC {
     private func makeServicesTab(locked: Bool) -> UINavigationController {
         let navVC = UINavigationController()
         let item = RuntimeLocalizedTabBarItem()
-        item.image = UIImage(systemName: "list.clipboard")
-        item.selectedImage = UIImage(systemName: "list.clipboard")
+        item.image = UIImage(systemName: "shippingbox")
+        item.selectedImage = UIImage(systemName: "shippingbox.fill")
         item.runtimeLocalizedKey = "Tabbar.Tabs.Services.title"
         navVC.tabBarItem = item
         
@@ -154,7 +154,7 @@ extension RootTabbarScreenVC {
         let navVC = UINavigationController()
         let item = RuntimeLocalizedTabBarItem()
         item.image = UIImage(systemName: "bubble.left.and.bubble.right")
-        item.selectedImage = UIImage(systemName: "bubble.left.and.bubble.right")
+        item.selectedImage = UIImage(systemName: "bubble.left.and.bubble.right.fill")
         item.runtimeLocalizedKey = "Tabbar.Tabs.Contacts.title"
         navVC.tabBarItem = item
         
