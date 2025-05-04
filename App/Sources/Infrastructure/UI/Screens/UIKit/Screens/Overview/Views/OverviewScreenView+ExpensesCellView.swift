@@ -52,7 +52,7 @@ extension OverviewScreenView {
         private lazy var detailsLabel: UILabel = {
             let view = RuntimeLocalizedLabel()
             view.runtimeLocalizedKey = "Screen.Overview.Expenses.details"
-            view.textColor = SWEDBANKAsset.Colors.blue2.color
+            view.textColor = SWEDBANKAsset.Colors.accent2.color
             view.font = AppTypography.link1.scaledFont
             return view
         }()

@@ -67,7 +67,7 @@ extension ContactsScreenView.ContactCellView {
         titleLabel.text = model.contactText.localized()
         descLabel.text = model.contactDescription.localized()
         iconView.image = .init(systemName: model.contactIcon)?.withRenderingMode(.alwaysTemplate)
-        iconView.tintColor = SWEDBANKAsset.Colors.blue2.color
+        iconView.tintColor = SWEDBANKAsset.Colors.accent2.color
         configure(padding: Constants.contentPadding)
     }
     
