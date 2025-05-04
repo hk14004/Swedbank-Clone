@@ -20,7 +20,7 @@ extension AppAppearance {
         appearance.stackedLayoutAppearance.normal.iconColor = Colors.text2.color
         appearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: Colors.text2.color, .font: AppTypography.title5.scaledFont]
         appearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: Colors.text2.color, .font: AppTypography.title4.scaledFont]
-        appearance.shadowColor = UIColor.separator
+        appearance.shadowColor = UIColor.clear
         AppearanceProxy.setDefault(tabbarAppearance: appearance)
         
         let navAppearance = UINavigationBarAppearance()

@@ -6,7 +6,7 @@
 //  Copyright © 2025 SWEDBANK AB. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 enum UIConstant {}
 
@@ -22,5 +22,14 @@ extension UIConstant {
         static let highlightAlpha: CGFloat = 0.5
         static let defaultAlpha: CGFloat = 1
         static let cornerRadius: CGFloat = 16
+    }
+}
+
+extension UIConstant {
+    enum Tabbar {
+        static let shadowColor: UIColor = .gray
+        static let shadowOpacity: Float = 0.08
+        static let shadowRadius: CGFloat = 6
+        static let shadowOffset: CGSize = CGSize(width: 0, height: -2)
     }
 }
