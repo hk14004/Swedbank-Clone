@@ -30,7 +30,7 @@ extension OverviewScreenView {
         private lazy var disclosureImageView: UIImageView = {
             let image = UIImage(systemName: "chevron.right")
             let view = UIImageView(image: image)
-            view.tintColor = Colors.orange1.color
+            view.tintColor = Colors.accent1.color
             return view
         }()
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

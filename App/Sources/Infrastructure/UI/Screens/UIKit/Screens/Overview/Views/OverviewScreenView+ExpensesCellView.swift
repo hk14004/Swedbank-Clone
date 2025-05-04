@@ -45,7 +45,7 @@ extension OverviewScreenView {
         private lazy var topTitleLabel: UILabel = {
            let view = RuntimeLocalizedLabel()
             view.runtimeLocalizedKey = "Screen.Overview.Expenses.title"
-            view.textColor = SWEDBANKAsset.Colors.orange1.color
+            view.textColor = SWEDBANKAsset.Colors.accent1.color
             view.font = AppTypography.title2.scaledFont
             return view
         }()

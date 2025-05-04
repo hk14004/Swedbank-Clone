@@ -22,7 +22,7 @@ class PrimaryButton: RuntimeLocalizedButton {
     
     // MARK: Methods
     private func setup() {
-        backgroundColor = SWEDBANKAsset.Colors.orange1.color
+        backgroundColor = SWEDBANKAsset.Colors.accent1.color
         layer.cornerRadius = UIConstant.Button.cornerRadius
         titleLabel?.adjustsFontForContentSizeCategory = true
         titleLabel?.font = AppTypography.body.scaledFont
