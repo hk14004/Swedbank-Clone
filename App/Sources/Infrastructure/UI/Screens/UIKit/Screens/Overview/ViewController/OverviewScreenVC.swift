@@ -59,6 +59,7 @@ extension OverviewScreenVC {
             UIBarButtonItem(customView: rootView.profileButton),
             UIBarButtonItem(customView: rootView.notificationsButton)
         ]
+        rootView.profileButton.configure(text: viewModel.customer.getInitials())
     }
     
     private func bindOutput() {

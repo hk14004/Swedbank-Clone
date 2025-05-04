@@ -12,7 +12,7 @@ enum UIConstant {}
 
 extension UIConstant {
     enum NavigationBar {
-        static let barButtonSize: CGFloat = 36
+        static let barButtonSize: CGFloat = 32
         static let barButtonIconSize: CGFloat = 28
     }
 }

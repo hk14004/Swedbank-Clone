@@ -9,11 +9,6 @@
 import UIKit
 
 class CustomerInitialsView: UIView {
-    // MARK: Constants
-    enum Constant {
-        static let size = CGSize(width: 24, height: 24)
-    }
-    
     // MARK: Properties
     private var label: UILabel = {
         let view = UILabel()
@@ -55,7 +50,7 @@ class CustomerInitialsView: UIView {
         addSubview(circle)
         circle.snp.makeConstraints { make in
             make.edges.equalToSuperview()
-            make.size.equalTo(Constant.size)
+            make.size.equalTo(UIConstant.NavigationBar.barButtonIconSize)
         }
     }
     
