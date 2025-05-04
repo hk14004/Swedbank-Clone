@@ -16,6 +16,8 @@ enum AppTypography: DevTypography {
     case title
     case title2
     case title3
+    case title4
+    case title5
     case body
     case input
     case link1
@@ -30,6 +32,10 @@ enum AppTypography: DevTypography {
             return UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: 16, weight: .medium))
         case .title3:
             return UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: 14))
+        case .title4:
+            return UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: 11))
+        case .title5:
+            return UIFontMetrics.default.scaledFont(for: .boldSystemFont(ofSize: 12))
         case .input:
             return UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: 16))
         case .link1:

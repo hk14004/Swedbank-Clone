@@ -16,10 +16,10 @@ extension AppAppearance {
     static func configureAppearance() {
         let appearance = UITabBarAppearance()
         appearance.backgroundColor = Colors.tabbar1.color
-        appearance.stackedLayoutAppearance.selected.iconColor = Colors.accent1.color
+        appearance.stackedLayoutAppearance.selected.iconColor = Colors.text2.color
         appearance.stackedLayoutAppearance.normal.iconColor = Colors.text2.color
-        appearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: Colors.accent1.color]
-        appearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: Colors.text2.color]
+        appearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: Colors.text2.color, .font: AppTypography.title5.scaledFont]
+        appearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: Colors.text2.color, .font: AppTypography.title4.scaledFont]
         appearance.shadowColor = UIColor.clear
         AppearanceProxy.setDefault(tabbarAppearance: appearance)
         
