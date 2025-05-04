@@ -12,6 +12,7 @@ import SwedInterfaceAdapters
 struct LanguageSelectionScreenView<ViewModel: LanguageSelectionScreenVM>: View {
     
     @ObservedObject var viewModel: ViewModel
+    @ObservedObject var loc = AppLocalizationObserver()
     
     var body: some View {
         VStack(spacing: 0) {
@@ -32,7 +33,7 @@ extension LanguageSelectionScreenView {
     @ViewBuilder
     private func makeHeader() -> some View {
         VStack(spacing: 0) {
-            Text(SWEDBANKStrings.Screen.LanguageSelection.title)
+            Text("Screen.LanguageSelection.title".runtimeLocalized())
                 .frame(maxWidth: .infinity)
                 .overlay {
                     HStack {
