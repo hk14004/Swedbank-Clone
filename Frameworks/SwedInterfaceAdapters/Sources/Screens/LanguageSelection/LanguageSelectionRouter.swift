@@ -11,3 +11,7 @@ import Foundation
 public protocol LanguageSelectionRouter {
     func selectedLanguage(code: String)
 }
+
+public protocol ToLanguageSelectionScreenRouting {
+    func routeToLanguageSelectionScreen()
+}

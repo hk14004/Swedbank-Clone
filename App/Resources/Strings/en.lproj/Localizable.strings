@@ -47,6 +47,10 @@
 /*  */
 "Screen.Login.Button.title" = "Login";
 
+"Screen.Login.greeting" = "Hello, %@!";
+
+"Screen.Login.enterPin" = "Enter PIN";
+
 /*  */
 "Screen.Login.Password.placeholder" = "Enter password";
 

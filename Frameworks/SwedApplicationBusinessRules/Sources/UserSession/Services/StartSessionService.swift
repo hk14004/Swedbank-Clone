@@ -14,8 +14,8 @@ public protocol StartSessionService {
 }
 
 public struct StartSessionServiceInput {
-    public let username: String
-    public let password: String
+    public let customerID: String
+    public let pinCode: String
 }
 
 public struct StartSessionServiceOutput {

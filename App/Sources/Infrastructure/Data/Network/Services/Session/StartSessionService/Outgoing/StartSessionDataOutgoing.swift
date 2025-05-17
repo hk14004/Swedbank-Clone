@@ -1,6 +1,6 @@
 import Foundation
 
 struct StartSessionDataOutgoing: Codable {
-    let username: String
-    let password: String
+    let customerID: String
+    let pinCode: String
 }

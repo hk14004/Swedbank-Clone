@@ -10,9 +10,10 @@ import UIKit
 import SwedInterfaceAdapters
 import Combine
 import SwedApplicationBusinessRules
+import DevToolsNavigation
 
-class DefaultLoginScreenRouter: LoginScreenRouter {
-    
+class DefaultLoginScreenRouter: UIKitRouter, LoginScreenRouter, CancelBagStorable {
+    var cancelBag = Set<AnyCancellable>()
     var viewController: UIViewController
     let didLoginPublisher: PassthroughSubject<CustomerDTO, Never>
     

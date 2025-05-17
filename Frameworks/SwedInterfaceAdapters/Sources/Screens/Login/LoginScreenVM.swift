@@ -1,5 +1,5 @@
 //
-//  LoginVM.swift
+//  LoginScreenVM.swift
 //  Swedbank
 //
 //  Created by Hardijs Ķirsis on 03/09/2023.
@@ -12,24 +12,35 @@ import DevToolsCore
 import SwedApplicationBusinessRules
 
 public protocol LoginScreenVMInput {
-    func viewDidLoad()
-    func onLoginTapped(username: String, password: String)
-    func onRecoverPasswordTapped()
+    func onLoginAttempt(pinCode: String)
+    func onFaceIDTapped()
+    func onLanguageChangeTap()
 }
 
 public protocol LoginScreenVMOutput {
     var router: LoginScreenRouter! { get set}
-    var loadingPublisher: CurrentValueSubject<Bool, Never> { get }
+    var loadingPublisher: Bool { get }
+    var customerName: String { get }
+    var maxPinLength: Int { get }
 }
 
-public protocol LoginScreenVM: LoginScreenVMInput, LoginScreenVMOutput {}
+public protocol LoginScreenVM: ObservableObject, LoginScreenVMInput, LoginScreenVMOutput {}
 
 public class DefaultLoginScreenVM: LoginScreenVM {
+    // MARK: Constant
+    enum Constant {
+        static let customer = CustomerDTO(id: "007", displayName: "James Bond")
+    }
+    
+    // MARK: Properties
+    @Published public var loadingPublisher: Bool = false
+    public var maxPinLength: Int { 3 }
+    public var customerName: String { Constant.customer.displayName }
     public var router: LoginScreenRouter!
-    public var loadingPublisher: CurrentValueSubject<Bool, Never> = .init(false)
     private let loginUseCase: LoginUseCase
     private var bag = Set<AnyCancellable>()
     
+    // MARK: Lifecycle
     public init(loginUseCase: LoginUseCase) {
         self.loginUseCase = loginUseCase
     }
@@ -38,11 +49,9 @@ public class DefaultLoginScreenVM: LoginScreenVM {
 
 // MARK: - Public
 public extension DefaultLoginScreenVM {
-    func viewDidLoad() {}
-    
-    func onLoginTapped(username: String, password: String) {
-        loadingPublisher.send(true)
-        loginUseCase.use(username: username, password: password)
+    func onLoginAttempt(pinCode: String) {
+        loadingPublisher = true
+        loginUseCase.use(customerID: Constant.customer.id, pinCode: pinCode)
             .receiveOnMainThread()
             .sink { [weak self] completion in
                 self?.handleLoginCompletion(completion)
@@ -51,8 +60,10 @@ public extension DefaultLoginScreenVM {
             }
             .store(in: &bag)
     }
-    
-    func onRecoverPasswordTapped() {}
+    func onLanguageChangeTap() {
+        router.routeToLanguageSelectionScreen()
+    }
+    func onFaceIDTapped() {}
 }
 
 // MARK: Private
@@ -62,7 +73,7 @@ extension DefaultLoginScreenVM {
     }
     
     private func handleLoginCompletion(_ completion: Subscribers.Completion<Error>) {
-        loadingPublisher.send(false)
+        loadingPublisher = false
         switch completion {
         case .finished:
             return

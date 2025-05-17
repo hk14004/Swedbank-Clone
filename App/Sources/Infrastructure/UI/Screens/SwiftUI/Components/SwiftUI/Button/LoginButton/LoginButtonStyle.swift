@@ -18,13 +18,11 @@ struct LoginButtonStyle: ButtonStyle {
     }
 }
 
-struct LoginButtonStyle_Previews: PreviewProvider {
-    static var previews: some View {
-        Button {
-            
-        } label: {
-            Text("Button")
-        }
-        .buttonStyle(LoginButtonStyle())
+#Preview {
+    Button {
+        
+    } label: {
+        Text("Button")
     }
+    .buttonStyle(LoginButtonStyle())
 }

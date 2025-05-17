@@ -28,10 +28,7 @@ class DefaultStartSessionService: StartSessionService {
     private func fetchResponse(input: StartSessionServiceInput) -> AnyPublisher<StartSessionResponse, Error> {
         networkClient.execute(
             SessionRequestConfig.startSession(
-                StartSessionDataOutgoing(
-                    username: input.username,
-                    password: input.password
-                )
+                StartSessionDataOutgoing(customerID: input.customerID, pinCode: input.pinCode)
             )
         )
     }
@@ -39,7 +36,7 @@ class DefaultStartSessionService: StartSessionService {
 
 class MockStartSessionService: StartSessionService {
     func use(input: StartSessionServiceInput) -> AnyPublisher<StartSessionServiceOutput, Error> {
-        guard input.username == "007" else {
+        guard input.customerID == "007", input.pinCode == "007" else {
             return .fail(NSError(domain: "invalid credentials", code: 0))
         }
         return .just(
@@ -47,7 +44,7 @@ class MockStartSessionService: StartSessionService {
                 bearerToken: "accessToken123",
                 refreshToken: "refreshToken123",
                 expirationDuration: 3600,
-                userID: input.username
+                userID: input.customerID
             )
         )
         .delay(for: .seconds(0.5), scheduler: RunLoop.main, options: .none)

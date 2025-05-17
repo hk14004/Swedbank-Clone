@@ -20,6 +20,9 @@
 
 "Screen.LanguageSelection.title" = "Izvēlieties valodu";
 
+"Screen.Login.greeting" = "Sveiks, %@!";
+
+"Screen.Login.enterPin" = "Ievadiet PIN";
 
 "Screen.LockedTab.Cards.subtitle" = "Ērts veids kā pārvaldīt savas kartes";
 

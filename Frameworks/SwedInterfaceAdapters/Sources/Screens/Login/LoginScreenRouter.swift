@@ -9,6 +9,6 @@
 import Foundation
 import SwedApplicationBusinessRules
 
-public protocol LoginScreenRouter {
+public protocol LoginScreenRouter: ToLanguageSelectionScreenRouting {
     func routeToLoginCompleted(customer: CustomerDTO)
 }
