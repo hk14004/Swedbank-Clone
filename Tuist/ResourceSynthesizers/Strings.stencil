@@ -40,16 +40,21 @@ p{{forloop.counter}}
 {% if not param.noComments %}
 /// {{string.translation}}
 {% endif %}
+
+{% set varName %}{{string.name|swiftIdentifier:"pretty"|lowerFirstWord|escapeReservedKeywords}}{% endset %}
 {% if string.types %}
-{{accessModifier}} static func {{string.name|swiftIdentifier:"pretty"|lowerFirstWord|escapeReservedKeywords}}({% call parametersBlock string.types %}) -> String {
-return {{enumName}}.tr("{{table}}", "{{string.key}}", {% call argumentsBlock string.types %})
+{{accessModifier}} static func {{varName}}({% call parametersBlock string.types %}) -> String {
+    return {{enumName}}.tr("{{table}}", "{{string.key}}", {% call argumentsBlock string.types %})
 }
+{{accessModifier}} static var {{varName}}Key: String { "{{string.key}}" }
 {% elif param.lookupFunction %}
-{# custom localization function is mostly used for in-app lang selection, so we want the loc to be recomputed at each call for those (hence the computed var) #}
-{{accessModifier}} static var {{string.name|swiftIdentifier:"pretty"|lowerFirstWord|escapeReservedKeywords}}: String { return {{enumName}}.tr("{{table}}", "{{string.key}}") }
+{{accessModifier}} static var {{varName}}: String { return {{enumName}}.tr("{{table}}", "{{string.key}}") }
+{{accessModifier}} static var {{varName}}Key: String { "{{string.key}}" }
 {% else %}
-{{accessModifier}} static var {{string.name|swiftIdentifier:"pretty"|lowerFirstWord|escapeReservedKeywords}}: String { {{enumName}}.tr("{{table}}", "{{string.key}}") }
+{{accessModifier}} static var {{varName}}: String { {{enumName}}.tr("{{table}}", "{{string.key}}") }
+{{accessModifier}} static var {{varName}}Key: String { "{{string.key}}" }
 {% endif %}
+
 {% endfor %}
 {% for child in item.children %}
 
