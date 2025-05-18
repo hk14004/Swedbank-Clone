@@ -22,7 +22,7 @@ struct LoginScreenView<ViewModel: LoginScreenVM>: View {
             titleView
             Spacer()
             
-            Text("Screen.Login.enterPin".runtimeLocalized())
+            Text(SWEDBANKStrings.Screen.Login.enterPin)
                 .font(AppTypography.body.scaledFontSwiftUI)
                 .foregroundStyle(SWEDBANKAsset.Colors.text2.swiftUIColor)
             PinProgressView(maxPinLength: viewModel.maxPinLength, currentPin: $pin)
@@ -55,7 +55,7 @@ struct LoginScreenView<ViewModel: LoginScreenVM>: View {
     }
     
     private var titleView: some View {
-        Text(String(format: "Screen.Login.greeting".runtimeLocalized(), viewModel.customerName))
+        Text(SWEDBANKStrings.Screen.Login.greeting(viewModel.customerName))
             .font(AppTypography.title7.scaledFontSwiftUI)
             .foregroundColor(SWEDBANKAsset.Colors.accent1.swiftUIColor)
     }

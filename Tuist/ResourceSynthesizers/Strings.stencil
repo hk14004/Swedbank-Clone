@@ -79,7 +79,7 @@ return {{enumName}}.tr("{{table}}", "{{string.key}}", {% call argumentsBlock str
 
 extension {{enumName}} {
     private static func tr(_ table: String, _ key: String, _ args: CVarArg...) -> String {
-        return key.runtimeLocalized()
+        String(format: key.runtimeLocalized(), locale: Locale.current, arguments: args)
     }
 }
 {% if not param.lookupFunction %}
