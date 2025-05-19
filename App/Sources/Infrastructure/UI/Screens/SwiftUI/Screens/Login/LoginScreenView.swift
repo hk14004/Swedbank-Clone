@@ -14,7 +14,6 @@ struct LoginScreenView<ViewModel: LoginScreenVM>: View {
     @ObservedObject var viewModel: ViewModel
     @ObservedObject var loc = AppLocalizationObserver()
     
-    @State private var pin: String = ""
     var body: some View {
         VStack() {
             languageSelectorView
@@ -25,33 +24,25 @@ struct LoginScreenView<ViewModel: LoginScreenVM>: View {
             Text(AppStrings.Screen.Login.enterPin)
                 .font(AppTypography.body.scaledFontSwiftUI)
                 .foregroundStyle(SWEDBANKAsset.Colors.text2.swiftUIColor)
-            PinProgressView(maxPinLength: viewModel.maxPinLength, currentPin: $pin)
+            PinProgressView(
+                maxPinLength: viewModel.maxPinLength,
+                currentPin: .init(
+                    get: {
+                        viewModel.currentPin
+                    },
+                    set: { _ in })
+            )
             
             PinGridView(addDigit: { digit in
-                addDigit("\(digit)")
+                viewModel.onAddDigit("\(digit)")
             }, removeDigit: {
-                deleteDigit()
+                viewModel.onRemoveDigit()
             }, onFaceIDTapped: {
                 
             })
             .padding(.init(top: 12, leading: 0, bottom: 48, trailing: 0))
         }
         .background(SWEDBANKAsset.Colors.background2.swiftUIColor.ignoresSafeArea())
-    }
-    
-    func addDigit(_ digit: String) {
-        if pin.count < viewModel.maxPinLength {
-            pin += digit
-        }
-        if pin.count == viewModel.maxPinLength {
-            viewModel.onLoginAttempt(pinCode: pin)
-        }
-    }
-    
-    func deleteDigit() {
-        if !pin.isEmpty {
-            pin.removeLast()
-        }
     }
     
     private var titleView: some View {
@@ -72,14 +63,13 @@ struct LoginScreenView<ViewModel: LoginScreenVM>: View {
     }
 }
 
-struct LoginScreenView_Previews: PreviewProvider {
-    static var previews: some View {
-        AppLocalizedPreview(language: "lv")
-        LoginScreenView(viewModel: LoginScreenVMPreview())
-    }
+#Preview {
+    AppLocalizedPreview(language: "lv")
+    LoginScreenView(viewModel: LoginScreenVMPreview())
 }
 
 private class LoginScreenVMPreview: LoginScreenVM {
+    @Published var currentPin: String = ""
     var maxPinLength: Int { 3 }
     @Published var loadingPublisher: Bool = false
     var customerName: String = "James Bond"
@@ -87,4 +77,6 @@ private class LoginScreenVMPreview: LoginScreenVM {
     func onLoginAttempt(pinCode: String) {}
     func onFaceIDTapped() {}
     func onLanguageChangeTap() {}
+    func onAddDigit(_ digit: String) {}
+    func onRemoveDigit() {}
 }

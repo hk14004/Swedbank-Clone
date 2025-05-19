@@ -12,9 +12,10 @@ import DevToolsCore
 import SwedApplicationBusinessRules
 
 public protocol LoginScreenVMInput {
-    func onLoginAttempt(pinCode: String)
     func onFaceIDTapped()
     func onLanguageChangeTap()
+    func onAddDigit(_ digit: String)
+    func onRemoveDigit()
 }
 
 public protocol LoginScreenVMOutput {
@@ -22,6 +23,7 @@ public protocol LoginScreenVMOutput {
     var loadingPublisher: Bool { get }
     var customerName: String { get }
     var maxPinLength: Int { get }
+    var currentPin: String { get }
 }
 
 public protocol LoginScreenVM: ObservableObject, LoginScreenVMInput, LoginScreenVMOutput {}
@@ -34,6 +36,7 @@ public class DefaultLoginScreenVM: LoginScreenVM {
     
     // MARK: Properties
     @Published public var loadingPublisher: Bool = false
+    @Published public var currentPin: String = ""
     public var maxPinLength: Int { 3 }
     public var customerName: String { Constant.customer.displayName }
     public var router: LoginScreenRouter!
@@ -49,7 +52,29 @@ public class DefaultLoginScreenVM: LoginScreenVM {
 
 // MARK: - Public
 public extension DefaultLoginScreenVM {
-    func onLoginAttempt(pinCode: String) {
+    func onAddDigit(_ digit: String) {
+        guard currentPin.count < maxPinLength else { return }
+        currentPin.append(digit)
+        if currentPin.count == maxPinLength {
+            attemptLogin(pinCode: currentPin)
+        }
+    }
+    
+    func onRemoveDigit() {
+        guard currentPin.count > 0 else { return }
+        currentPin.removeLast()
+    }
+    
+    func onLanguageChangeTap() {
+        router.routeToLanguageSelectionScreen()
+    }
+    
+    func onFaceIDTapped() {}
+}
+
+// MARK: Private
+extension DefaultLoginScreenVM {
+    private func attemptLogin(pinCode: String) {
         loadingPublisher = true
         loginUseCase.use(customerID: Constant.customer.id, pinCode: pinCode)
             .receiveOnMainThread()
@@ -60,20 +85,14 @@ public extension DefaultLoginScreenVM {
             }
             .store(in: &bag)
     }
-    func onLanguageChangeTap() {
-        router.routeToLanguageSelectionScreen()
-    }
-    func onFaceIDTapped() {}
-}
-
-// MARK: Private
-extension DefaultLoginScreenVM {
+    
     private func onLoggedIn(customer: CustomerDTO) {
         router.routeToLoginCompleted(customer: customer)
     }
     
     private func handleLoginCompletion(_ completion: Subscribers.Completion<Error>) {
         loadingPublisher = false
+        currentPin = ""
         switch completion {
         case .finished:
             return

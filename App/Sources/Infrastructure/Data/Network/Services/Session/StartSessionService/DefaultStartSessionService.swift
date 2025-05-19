@@ -47,7 +47,6 @@ class MockStartSessionService: StartSessionService {
                 userID: input.customerID
             )
         )
-        .delay(for: .seconds(0.5), scheduler: RunLoop.main, options: .none)
         .eraseToAnyPublisher()
     }
 }
