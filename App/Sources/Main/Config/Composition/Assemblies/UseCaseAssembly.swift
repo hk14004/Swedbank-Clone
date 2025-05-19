@@ -5,6 +5,9 @@ import SwedApplicationBusinessRules
 
 class UseCaseAssembly: Assembly {
     func assemble(container: Container) {
+        container.register(GetLastCustomerUseCase.self) { resolver in
+            MockGetLastCustomerUseCase()
+        }
         container.register(LoginUseCase.self) { resolver in
             DefaultLoginUseCase(
                 startSessionService: Composition.resolve(),

@@ -72,7 +72,7 @@ private class LoginScreenVMPreview: LoginScreenVM {
     @Published var currentPin: String = ""
     var maxPinLength: Int { 3 }
     @Published var loadingPublisher: Bool = false
-    var customerName: String = "James Bond"
+    var customerName: String = JAMES_BOND.displayName
     var router: LoginScreenRouter!
     func onLoginAttempt(pinCode: String) {}
     func onFaceIDTapped() {}

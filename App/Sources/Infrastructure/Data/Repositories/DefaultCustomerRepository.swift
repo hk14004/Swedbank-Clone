@@ -15,6 +15,6 @@ class DefaultCustomerRepository: CustomerRepository {
     }
     
     func getSingle(id: String) -> AnyPublisher<CustomerDTO?, Never> {
-        .just(.init(id: "007", displayName: "James Bond"))
+        .just(JAMES_BOND)
     }
 }

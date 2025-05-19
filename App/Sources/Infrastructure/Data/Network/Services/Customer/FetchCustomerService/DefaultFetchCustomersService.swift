@@ -29,6 +29,6 @@ class DefaultFetchCustomersService: FetchRemoteCustomersService {
 
 class MockFetchCustomerService: FetchRemoteCustomersService {
     func use() -> AnyPublisher<FetchRemoteCustomersServiceOutput, Error> {
-        .just([CustomerDTO(id: "007", displayName: "James Bond")])
+        .just([JAMES_BOND])
     }
 }

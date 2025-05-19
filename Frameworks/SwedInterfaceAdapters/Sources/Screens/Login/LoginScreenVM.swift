@@ -29,23 +29,25 @@ public protocol LoginScreenVMOutput {
 public protocol LoginScreenVM: ObservableObject, LoginScreenVMInput, LoginScreenVMOutput {}
 
 public class DefaultLoginScreenVM: LoginScreenVM {
-    // MARK: Constant
-    enum Constant {
-        static let customer = CustomerDTO(id: "007", displayName: "James Bond")
-    }
-    
     // MARK: Properties
     @Published public var loadingPublisher: Bool = false
     @Published public var currentPin: String = ""
     public var maxPinLength: Int { 3 }
-    public var customerName: String { Constant.customer.displayName }
+    public var customerName: String { customer.displayName }
     public var router: LoginScreenRouter!
     private let loginUseCase: LoginUseCase
+    private let getLastCustomerUseCase: GetLastCustomerUseCase
+    private var customer: CustomerDTO
     private var bag = Set<AnyCancellable>()
     
     // MARK: Lifecycle
-    public init(loginUseCase: LoginUseCase) {
+    public init(
+        loginUseCase: LoginUseCase,
+        getLastCustomerUseCase: GetLastCustomerUseCase
+    ) {
         self.loginUseCase = loginUseCase
+        self.getLastCustomerUseCase = getLastCustomerUseCase
+        self.customer = getLastCustomerUseCase.use()
     }
     
 }
@@ -76,7 +78,7 @@ public extension DefaultLoginScreenVM {
 extension DefaultLoginScreenVM {
     private func attemptLogin(pinCode: String) {
         loadingPublisher = true
-        loginUseCase.use(customerID: Constant.customer.id, pinCode: pinCode)
+        loginUseCase.use(customerID: customer.id, pinCode: pinCode)
             .receiveOnMainThread()
             .sink { [weak self] completion in
                 self?.handleLoginCompletion(completion)

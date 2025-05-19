@@ -36,8 +36,8 @@ class DefaultStartSessionService: StartSessionService {
 
 class MockStartSessionService: StartSessionService {
     func use(input: StartSessionServiceInput) -> AnyPublisher<StartSessionServiceOutput, Error> {
-        guard input.customerID == "007", input.pinCode == "007" else {
-            return .fail(NSError(domain: "invalid credentials", code: 0))
+        guard input.customerID == JAMES_BOND.id, input.pinCode == JAMES_BOND.id else {
+            return .fail(NSError(domain: "invalid credentials, try 007", code: 0))
         }
         return .just(
             StartSessionServiceOutput(

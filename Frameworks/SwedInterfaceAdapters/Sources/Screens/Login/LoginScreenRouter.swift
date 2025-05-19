@@ -1,5 +1,5 @@
 //
-//  LoginRouter.swift
+//  LoginScreenRouter.swift
 //  Swedbank
 //
 //  Created by Hardijs Ķirsis on 03/09/2023.
