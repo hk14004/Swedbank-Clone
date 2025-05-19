@@ -11,6 +11,7 @@ import SwedInterfaceAdapters
 import Combine
 import SwedApplicationBusinessRules
 import DevToolsNavigation
+import SwedLocalization
 
 class DefaultLoginScreenRouter: UIKitRouter, LoginScreenRouter, CancelBagStorable {
     var cancelBag = Set<AnyCancellable>()
@@ -27,5 +28,13 @@ class DefaultLoginScreenRouter: UIKitRouter, LoginScreenRouter, CancelBagStorabl
     
     func routeToLoginCompleted(customer: CustomerDTO) {
         didLoginPublisher.send(customer)
+    }
+}
+
+extension ToErrorRouting where Self: UIKitRouter  {
+    func routeToErrorAlert(_ error: Error) {
+        let alertViewController = UIAlertController(title: "", message: error.localizedDescription, preferredStyle: .alert)
+        alertViewController.addAction(UIAlertAction(title: SwedLocalization.Globals.ok, style: .default))
+        viewController.present(alertViewController, animated: true)
     }
 }

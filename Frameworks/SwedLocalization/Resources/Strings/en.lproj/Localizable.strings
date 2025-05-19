@@ -1,3 +1,5 @@
+/*  */
+"Globals.ok" = "Okey";
 
 /*  */
 "Globals.InputField.mustBeAtleastSize" = "Field must be at least %@ size";

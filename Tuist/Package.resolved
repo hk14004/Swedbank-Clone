@@ -7,7 +7,7 @@
       "location" : "https://github.com/hk14004/DevTools-Swift",
       "state" : {
         "branch" : "dev",
-        "revision" : "439ea442871bef77a7f898823ab09cd3cd916fbc"
+        "revision" : "59aee53273bd0a852e9c203acc6649dfb6cf328d"
       }
     },
     {
@@ -17,15 +17,6 @@
       "state" : {
         "revision" : "84e546727d66f1adc5439debad16270d0fdd04e7",
         "version" : "4.2.2"
-      }
-    },
-    {
-      "identity" : "localize-swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/marmelroy/Localize-Swift.git",
-      "state" : {
-        "revision" : "0aa221fed0512772eaad04171d966b8d77b15212",
-        "version" : "3.2.0"
       }
     },
     {
