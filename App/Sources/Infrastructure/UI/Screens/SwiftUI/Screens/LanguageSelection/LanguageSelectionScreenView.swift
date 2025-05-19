@@ -33,7 +33,7 @@ extension LanguageSelectionScreenView {
     @ViewBuilder
     private func makeHeader() -> some View {
         VStack(spacing: 0) {
-            Text(SWEDBANKStrings.Screen.LanguageSelection.title)
+            Text(AppStrings.Screen.LanguageSelection.title)
                 .frame(maxWidth: .infinity)
                 .overlay {
                     HStack {

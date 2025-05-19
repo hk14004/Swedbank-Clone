@@ -54,7 +54,7 @@ extension OverviewScreenVC {
     }
     
     private func setupNavigationBar() {
-        runtimeLocalizedTitleKey = "Tabbar.Tabs.Overview.title"
+        runtimeLocalizedTitleKey = AppStrings.Tabbar.Tabs.Overview.titleKey
         navigationItem.rightBarButtonItems = [
             UIBarButtonItem(customView: rootView.profileButton),
             UIBarButtonItem(customView: rootView.notificationsButton)

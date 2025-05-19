@@ -60,8 +60,8 @@ extension RootTabbarScreenVC {
                 return factory.make(customer: customer)
             } else {
                 let config = LockedDashboardPresentationConfig(
-                    title: "Screen.LockedTab.Overview.title",
-                    subtitle: "Screen.LockedTab.Overview.subtitle",
+                    title: AppStrings.Screen.LockedTab.Overview.titleKey,
+                    subtitle: AppStrings.Screen.LockedTab.Overview.subtitleKey,
                     backgroundColorName: "White3",
                     tabDescriptionIconName: "ic_overview_description"
                 )
@@ -87,8 +87,8 @@ extension RootTabbarScreenVC {
                 return vc
             }
             let config = LockedDashboardPresentationConfig(
-                title: "Screen.LockedTab.Payments.title",
-                subtitle: "Screen.LockedTab.Payments.subtitle",
+                title: AppStrings.Screen.LockedTab.Payments.titleKey,
+                subtitle: AppStrings.Screen.LockedTab.Payments.subtitleKey,
                 backgroundColorName: "Pink1",
                 tabDescriptionIconName: "ic_payments_description"
             )
@@ -113,8 +113,8 @@ extension RootTabbarScreenVC {
                 return vc
             }
             let config = LockedDashboardPresentationConfig(
-                title: "Screen.LockedTab.Cards.title",
-                subtitle: "Screen.LockedTab.Cards.subtitle",
+                title: AppStrings.Screen.LockedTab.Cards.titleKey,
+                subtitle: AppStrings.Screen.LockedTab.Cards.subtitleKey,
                 backgroundColorName: "White3",
                 tabDescriptionIconName: "ic_cards_description"
             )
@@ -139,8 +139,8 @@ extension RootTabbarScreenVC {
                 return vc
             }
             let config = LockedDashboardPresentationConfig(
-                title: "Screen.LockedTab.Services.title",
-                subtitle: "Screen.LockedTab.Services.subtitle",
+                title: AppStrings.Screen.LockedTab.Services.titleKey,
+                subtitle: AppStrings.Screen.LockedTab.Services.subtitleKey,
                 backgroundColorName: "Pink1",
                 tabDescriptionIconName: "ic_services_description"
             )
@@ -155,7 +155,7 @@ extension RootTabbarScreenVC {
         let item = RuntimeLocalizedTabBarItem()
         item.image = UIImage(systemName: "bubble.left.and.bubble.right")
         item.selectedImage = UIImage(systemName: "bubble.left.and.bubble.right.fill")
-        item.runtimeLocalizedKey = "Tabbar.Tabs.Contacts.title"
+        item.runtimeLocalizedKey = AppStrings.Tabbar.Tabs.Contacts.titleKey
         navVC.tabBarItem = item
         
         let vc: UIViewController = {

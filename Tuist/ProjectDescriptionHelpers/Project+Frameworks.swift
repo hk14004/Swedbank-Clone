@@ -13,6 +13,7 @@ public extension Project {
         case SwedApplicationBusinessRules
         case SwedEnterpriseBusinessRules
         case SwedInterfaceAdapters
+        case SwedLocalization
     }
 }
 

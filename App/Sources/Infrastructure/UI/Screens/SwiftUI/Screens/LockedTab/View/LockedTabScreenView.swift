@@ -59,8 +59,8 @@ struct LockedTabView_Previews: PreviewProvider {
 private class LockedTabScreenVMPreview {
     var presentation: SwedInterfaceAdapters.LockedDashboardPresentationConfig {
         SwedInterfaceAdapters.LockedDashboardPresentationConfig(
-            title: "Screen.LockedTab.Overview.title",
-            subtitle: "Screen.LockedTab.Overview.subtitle",
+            title: AppStrings.Screen.LockedTab.Overview.titleKey,
+            subtitle: AppStrings.Screen.LockedTab.Overview.subtitleKey,
             backgroundColorName: "White3",
             tabDescriptionIconName: "ic_overview_description"
         )
