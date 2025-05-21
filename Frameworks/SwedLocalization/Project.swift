@@ -9,7 +9,7 @@ import ProjectDescriptionHelpers
 import ProjectDescription
 
 enum Constants {
-    static let bundleId = "com.hardijs.\(Project.Framework.SwedLocalization.rawValue)"
+    static let bundleId = "baltic.swed.mob..\(Project.Framework.SwedLocalization.rawValue)"
 }
 
 let project = Project(
@@ -28,26 +28,12 @@ let project = Project(
             product: .framework,
             bundleId: Constants.bundleId,
             deploymentTargets: .iOS(Project.Root.targetVersion),
-            sources: ["Sources/**"],
             resources: [
                 "Resources/**"
             ],
             dependencies: [
                 .external(name: Project.Dependencies.DevToolsLocalization.rawValue)
-            ]),
-        .target(
-            name: Project.Framework.SwedLocalization.getTestTargetName(),
-            destinations: .iOS,
-            product: .unitTests,
-            bundleId: Constants.bundleId + ".test",
-            deploymentTargets: .iOS(Project.Root.targetVersion),
-            infoPlist: .default,
-            sources: ["Tests/**"],
-            dependencies: [
-                .target(name: Project.Framework.SwedLocalization.rawValue),
-                .external(name: Project.Dependencies.DevToolsLocalization.rawValue)
-            ]
-        )
+            ])
     ],
     schemes: [
         Project.appTargetScheme(name: Project.Framework.SwedLocalization.getTestTargetName())
