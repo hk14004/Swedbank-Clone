@@ -33,3 +33,10 @@ extension UIConstant {
         static let shadowOffset: CGSize = CGSize(width: 0, height: -2)
     }
 }
+
+extension UIConstant {
+    enum TableView {
+        static let updateDebounce = 300
+    }
+}
+

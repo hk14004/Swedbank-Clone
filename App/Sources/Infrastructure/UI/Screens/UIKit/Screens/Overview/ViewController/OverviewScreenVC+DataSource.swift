@@ -9,6 +9,7 @@
 import UIKit
 import SwedInterfaceAdapters
 import DevToolsUI
+import DevToolsCore
 
 extension OverviewScreenVC {
     class DiffableDataSource: UITableViewDiffableDataSource<OverviewScreenSection.SectionID, Int> {
@@ -31,13 +32,12 @@ extension OverviewScreenVC {
         DiffableDataSource(
             viewModel: viewModel,
             tableView: rootView.tableView
-        ) { tableView, indexPath, itemIdentifier in
-            // TODO: Improve
-            guard let cell = self.viewModel.sections.flatMap({ section in
-                section.cells
-            }).first(where: { cell in
-                cell.hashValue == itemIdentifier
-            }) else {
+        ) { [weak self] tableView, indexPath, itemIdentifier in
+            guard
+                let self,
+                let section = viewModel.tableSnapshot.value.sections[safe: indexPath.section],
+                let cell = section.cells[safe: indexPath.row]
+            else {
                 return UITableViewCell()
             }
             switch cell {

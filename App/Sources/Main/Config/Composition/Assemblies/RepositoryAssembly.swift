@@ -27,5 +27,9 @@ class RepositoryAssembly: Assembly {
             DefaultCustomerRepository()
         }
         .inObjectScope(.container)
+        container.register(OfferRepository.self) { resolver in
+            DefaultOfferRepository()
+        }
+        .inObjectScope(.container)
     }
 }

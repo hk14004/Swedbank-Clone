@@ -38,7 +38,6 @@ class OverviewScreenVC: RuntimeLocalizedUIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        rootView.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         setup()
         viewModel.viewDidLoad()
     }
@@ -63,11 +62,29 @@ extension OverviewScreenVC {
     }
     
     private func bindOutput() {
-        viewModel.sectionsChangePublisher
+        bindSectionsChanged()
+        bindIsRefreshing()
+    }
+    
+    private func bindSectionsChanged() {
+        viewModel.tableSnapshot
+            .debounce(
+                for: .milliseconds(initialRender ? 0 : UIConstant.TableView.updateDebounce),
+                scheduler: RunLoop.main
+            )
             .receiveOnMainThread()
             .sink { [weak self] snapshot in
-                guard let self = self else { return }
-                applyChanges(changeSnapshot: snapshot)
+                self?.applyChanges(changeSnapshot: snapshot)
+            }
+            .store(in: &cancelBag)
+    }
+    
+    private func bindIsRefreshing() {
+        viewModel.isRefreshing
+            .receiveOnMainThread()
+            .dropFirst()
+            .sink { [weak self] isLoading in
+                self?.rootView.configureIsLoading(isLoading)
             }
             .store(in: &cancelBag)
     }
@@ -75,12 +92,13 @@ extension OverviewScreenVC {
     private func bindActions() {
         bindNotificationsTapAction()
         bindProfileTapAction()
+        bindPullToRefresh()
     }
     
     private func bindNotificationsTapAction() {
         rootView.didTapNotificationsButton
             .sink(receiveValue: { [weak self] _ in
-                self?.viewModel.onNotificationsTapped()
+                self?.viewModel.didTapNotifications()
             })
             .store(in: &cancelBag)
     }
@@ -88,7 +106,16 @@ extension OverviewScreenVC {
     private func bindProfileTapAction() {
         rootView.didTapProfileButton
             .sink(receiveValue: { [weak self] _ in
-                self?.viewModel.onProfileTapped()
+                self?.viewModel.didTapProfile()
+            })
+            .store(in: &cancelBag)
+    }
+    
+    private func bindPullToRefresh() {
+        rootView.didPullToRefresh
+            .receiveOnMainThread()
+            .sink(receiveValue: { [weak self] _ in
+                self?.viewModel.didPullToRefresh()
             })
             .store(in: &cancelBag)
     }
@@ -97,9 +124,9 @@ extension OverviewScreenVC {
         let sections = changeSnapshot.sections
         let changeSet = changeSnapshot.changes
         var snapshot = NSDiffableDataSourceSnapshot<OverviewScreenSection.SectionID, Int>()
-        snapshot.appendSections(sections.map{$0.id})
+        snapshot.appendSections(sections.map { $0.id })
         sections.forEach { section in
-            snapshot.appendItems(section.cells.map{$0.hashValue}, toSection: section.id)
+            snapshot.appendItems(section.cells.map { $0.hashValue }, toSection: section.id)
         }
         snapshot.reloadItems(changeSet.updated)
         dataSource.apply(snapshot, animatingDifferences: !initialRender)

@@ -13,6 +13,7 @@ import DevToolsCore
 public struct OverviewScreenSection: DevTableSection {
     public enum SectionID: String, CaseIterable {
         case overview
+        case offers
     }
     
     public enum Cell: DevTableSectionCell {

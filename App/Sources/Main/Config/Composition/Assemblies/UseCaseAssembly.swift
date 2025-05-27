@@ -60,8 +60,11 @@ class UseCaseAssembly: Assembly {
         container.register(LogoutUseCase.self) { resolver in
             DefaultLogoutUseCase(manager: Composition.resolve())
         }
+        container.register(LoadLatestOffersUseCase.self) { resolver in
+            DefaultLoadLatestOffersUseCase(
+                offerRepository: Composition.resolve(),
+                fetchRemoteOffersService: Composition.resolve()
+            )
+        }
     }
 }
-
-
-

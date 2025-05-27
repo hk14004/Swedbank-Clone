@@ -20,10 +20,12 @@ extension OverviewScreenView {
         }()
         lazy var tableView: UITableView = {
             let view = UITableView()
+            view.refreshControl = refreshControl
             return view
         }()
         lazy var profileButton = CustomerInitialsButton()
         lazy var notificationsButton = NotificationButton()
+        private lazy var refreshControl = UIRefreshControl()
         
         // MARK: LifeCycle
         override init(frame: CGRect) {
@@ -39,9 +41,15 @@ extension OverviewScreenView {
         var didTapProfileButton: AnyPublisher<Void, Never> {
             profileButton.eventPublisher(for: .touchUpInside).eraseToAnyPublisher()
         }
-        
         var didTapNotificationsButton: AnyPublisher<Void, Never> {
             notificationsButton.eventPublisher(for: .touchUpInside).eraseToAnyPublisher()
+        }
+        var didPullToRefresh: AnyPublisher<Bool, Never> {
+            refreshControl.eventPublisher(for: .valueChanged)
+                .map { [weak self] _ in
+                    self?.refreshControl.isRefreshing ?? false
+                }
+                .eraseToAnyPublisher()
         }
         
         // MARK: Methods
@@ -54,22 +62,28 @@ extension OverviewScreenView {
         private func setupContainerView() {
             addSubview(containerView)
             containerView.snp.makeConstraints { make in
-                make.edges.equalToSuperview { superView in
-                    superView.safeAreaLayoutGuide
-                }
+                make.edges.equalToSuperview()
             }
         }
         
         private func setupTableView() {
             containerView.addSubview(tableView)
             tableView.snp.makeConstraints { make in
-                make.horizontalEdges.bottom.equalToSuperview()
-                make.top.equalTo(safeAreaLayoutGuide)
+                make.edges.equalToSuperview()
             }
             tableView.separatorInset = .zero
             tableView.registerCell(BalanceCellView.self)
             tableView.registerCell(OfferCellView.self)
             tableView.registerCell(ExpensesCellView.self)
+        }
+        
+        // TODO: Move to refresh control extension
+        func configureIsLoading(_ isLoading: Bool) {
+            if isLoading, refreshControl.isRefreshing == false  {
+                refreshControl.beginRefreshing()
+            } else if !isLoading, refreshControl.isRefreshing == true  {
+                refreshControl.endRefreshing()
+            }
         }
     }
 }

@@ -30,6 +30,7 @@ let project = Project(
             deploymentTargets: .iOS(Project.Root.targetVersion),
             sources: ["Sources/**"],
             dependencies: [
+                .project(target: Project.Framework.SwedEnterpriseBusinessRules.rawValue, path: "../\(Project.Framework.SwedEnterpriseBusinessRules.rawValue)"),
                 .external(name: Project.Dependencies.DevToolsCore.rawValue)
             ]
         ),
