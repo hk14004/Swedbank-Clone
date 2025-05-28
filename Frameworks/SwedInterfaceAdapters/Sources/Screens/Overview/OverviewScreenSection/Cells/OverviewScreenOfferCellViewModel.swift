@@ -9,14 +9,14 @@
 import DevToolsUI
 import DevToolsCore
 import Foundation
-import SwedEnterpriseBusinessRules
+import SwedApplicationBusinessRules
 
 public struct OverviewScreenOfferCellViewModel: DevTableSectionCellModel {
     public var offerID: String
     public var offerText: String
     public var offerUrl: String
     
-    public init(offer: Offer) {
+    public init(offer: OfferDTO) {
         self.offerID = offer.id
         self.offerText = offer.title + " " + offer.description
         self.offerUrl = ""

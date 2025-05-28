@@ -21,14 +21,6 @@ class DefaultFetchCustomersService: FetchRemoteCustomersService {
     }
     
     private func fetchResponse() -> AnyPublisher<FetchCustomersResponse, Error> {
-        networkClient.execute(
-            CustomerRequestConfig.fetchCustomers
-        )
-    }
-}
-
-class MockFetchCustomerService: FetchRemoteCustomersService {
-    func use() -> AnyPublisher<FetchRemoteCustomersServiceOutput, Error> {
-        .just([JAMES_BOND])
+        networkClient.execute(CustomerRequestConfig.fetchCustomers)
     }
 }

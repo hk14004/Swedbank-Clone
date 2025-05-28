@@ -12,11 +12,11 @@ import Combine
 import Foundation
 
 class DefaultOfferRepository: OfferRepository {
-    func replace(with items: [Offer]) -> AnyPublisher<Void, Never> {
+    func replace(with items: [OfferDTO]) -> AnyPublisher<Void, Never> {
         .just(())
     }
     
-    func getList(predicate: NSPredicate) -> AnyPublisher<[Offer], Never> {
+    func getList(predicate: NSPredicate) -> AnyPublisher<[OfferDTO], Never> {
         .just([])
     }
 }

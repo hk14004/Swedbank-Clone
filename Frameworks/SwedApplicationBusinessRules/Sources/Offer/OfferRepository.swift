@@ -11,6 +11,6 @@ import SwedEnterpriseBusinessRules
 import Foundation
 
 public protocol OfferRepository {
-    func replace(with items: [Offer]) -> AnyPublisher<Void, Never>
-    func getList(predicate: NSPredicate) -> AnyPublisher<[Offer], Never>
+    func replace(with items: [OfferDTO]) -> AnyPublisher<Void, Never>
+    func getList(predicate: NSPredicate) -> AnyPublisher<[OfferDTO], Never>
 }

@@ -11,7 +11,7 @@ import Combine
 import SwedEnterpriseBusinessRules
 
 public protocol LoadLatestOffersUseCase {
-    func use() -> AnyPublisher<[Offer], Never>
+    func use() -> AnyPublisher<[OfferDTO], Never>
 }
 
 public struct DefaultLoadLatestOffersUseCase: LoadLatestOffersUseCase {
@@ -26,11 +26,11 @@ public struct DefaultLoadLatestOffersUseCase: LoadLatestOffersUseCase {
         self.fetchRemoteOffersService = fetchRemoteOffersService
     }
     
-    public func use() -> AnyPublisher<[Offer], Never> {
+    public func use() -> AnyPublisher<[OfferDTO], Never> {
         fetchRemoteOffersService.use()
             .flatMap { offers in
                 offerRepository.replace(with: offers)
-                    .flatMap { _ -> AnyPublisher<[Offer], Never> in
+                    .flatMap { _ -> AnyPublisher<[OfferDTO], Never> in
                             .just(offers)
                     }
             }

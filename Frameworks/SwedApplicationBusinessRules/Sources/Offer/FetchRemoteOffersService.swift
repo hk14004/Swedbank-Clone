@@ -14,4 +14,4 @@ public protocol FetchRemoteOffersService {
     func use() -> AnyPublisher<FetchRemoteOffersServiceOutput, Never>
 }
 
-public typealias FetchRemoteOffersServiceOutput = [Offer]
+public typealias FetchRemoteOffersServiceOutput = [OfferDTO]

@@ -82,7 +82,7 @@ public extension DefaultOverviewScreenVM {
 
 // MARK: Private methods
 public extension DefaultOverviewScreenVM {
-    private func updateUI(offers: [Offer]) {
+    private func updateUI(offers: [OfferDTO]) {
         var newSectionSnapshot = tableSnapshot.value.sections
         let offersSection = makeOffersSection(offers)
         if offersSection.cells.isEmpty {
@@ -99,7 +99,7 @@ public extension DefaultOverviewScreenVM {
         )
     }
     
-    private func makeOffersSection(_ newOffers: [Offer]) -> OverviewScreenSection {
+    private func makeOffersSection(_ newOffers: [OfferDTO]) -> OverviewScreenSection {
         OverviewScreenSection(
             id: .offers,
             title: "",

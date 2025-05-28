@@ -1,14 +1,14 @@
 //
-//  Offer.swift
-//  SwedEnterpriseBusinessRules
+//  OfferDTO.swift
+//  SwedApplicationBusinessRules
 //
-//  Created by Hardijs Kirsis on 26/05/2025.
+//  Created by Hardijs Kirsis on 28/05/2025.
 //  Copyright © 2025 SWEDBANK AB. All rights reserved.
 //
 
 import Foundation
 
-public struct Offer {
+public struct OfferDTO: Codable {
     public let id: String
     public let title: String
     public let description: String
@@ -22,4 +22,4 @@ public struct Offer {
     }
 }
 
-extension Offer: Equatable, Hashable {}
+extension OfferDTO: Equatable, Hashable {}

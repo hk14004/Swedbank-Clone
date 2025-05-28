@@ -15,9 +15,7 @@ class ServicesAssembly: Assembly {
         }
         .inObjectScope(.container)
         container.register(FetchRemoteOffersService.self) { resolver in
-            let service = MockFetchRemoteOffersService()
-            service.mockResult = .just([Offer(id: "1", title: "hELLO", description: "This is description", date: Date())])
-            return service
+            GithubFetchRemoteOffersService(networkClient: Composition.resolve())
         }
         .inObjectScope(.container)
     }
