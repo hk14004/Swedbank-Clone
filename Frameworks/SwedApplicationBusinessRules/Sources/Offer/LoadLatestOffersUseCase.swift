@@ -30,9 +30,7 @@ public struct DefaultLoadLatestOffersUseCase: LoadLatestOffersUseCase {
         fetchRemoteOffersService.use()
             .flatMap { offers in
                 offerRepository.replace(with: offers)
-                    .flatMap { _ -> AnyPublisher<[OfferDTO], Never> in
-                            .just(offers)
-                    }
+                    .map { _ in offers }
             }
             .eraseToAnyPublisher()
     }

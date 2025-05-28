@@ -1,5 +1,5 @@
 //
-//  OverviewScreenSectionChangeSnapshot.swift
+//  OverviewScreenTableSnapshot.swift
 //  SwedInterfaceAdapters
 //
 //  Created by Hardijs Ķirsis on 30/12/2023.
@@ -8,7 +8,7 @@
 
 import DevToolsCore
 
-public struct OverviewScreenSectionChangeSnapshot {
+public struct OverviewScreenTableSnapshot {
     public let sections: [OverviewScreenSection]
     public let changes: DevHashChangeSet
 }

@@ -85,7 +85,8 @@ extension Project.Root.AppVariant {
                 .release(name: .release, settings: Project.makeSettingsDictionary(
                     identity: "iPhone Developer", provisioningPorfileSpecifier: "", variant: self)
                 )
-            ])
+            ]),
+            coreDataModels: [.coreDataModel("App/Resources/Database/CoreDataDB.xcdatamodeld")]
         )
     }
 }

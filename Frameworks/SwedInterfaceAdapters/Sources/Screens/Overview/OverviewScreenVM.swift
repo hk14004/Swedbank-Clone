@@ -6,11 +6,9 @@
 //  Copyright © 2023 SWEDBANK AB. All rights reserved.
 //
 
-import Foundation
 import Combine
 import DevToolsCore
 import SwedApplicationBusinessRules
-import SwedEnterpriseBusinessRules
 
 public protocol OverviewScreenVMInput {
     func viewDidLoad()
@@ -20,7 +18,7 @@ public protocol OverviewScreenVMInput {
 }
 
 public protocol OverviewScreenVMOutput {
-    var tableSnapshot: CurrentValueSubject<OverviewScreenSectionChangeSnapshot, Never> { get }
+    var tableSnapshot: CurrentValueSubject<OverviewScreenTableSnapshot, Never> { get }
     var isRefreshing: CurrentValueSubject<Bool, Never> { get }
     var router: OverviewScreenRouter! { get }
     var customer: CustomerDTO { get }
@@ -31,19 +29,22 @@ public protocol OverviewScreenVM: OverviewScreenVMInput, OverviewScreenVMOutput 
 public class DefaultOverviewScreenVM: OverviewScreenVM {
     // MARK: Properties
     public var isRefreshing = CurrentValueSubject<Bool, Never>(false)
-    public var tableSnapshot: CurrentValueSubject<OverviewScreenSectionChangeSnapshot, Never>
+    public var tableSnapshot: CurrentValueSubject<OverviewScreenTableSnapshot, Never>
     public var router: OverviewScreenRouter!
     public var customer: CustomerDTO
     private let loadLatestOffersUseCase: LoadLatestOffersUseCase
+    private let fetchCachedOffersUseCase: FetchCachedOffersUseCase
     private var cancelBag: Set<AnyCancellable> = []
     
     // MARK: Lifecycle
     public init(
         customer: CustomerDTO,
-        loadLatestOffersUseCase: LoadLatestOffersUseCase
+        loadLatestOffersUseCase: LoadLatestOffersUseCase,
+        fetchCachedOffersUseCase: FetchCachedOffersUseCase
     ) {
         self.customer = customer
         self.loadLatestOffersUseCase = loadLatestOffersUseCase
+        self.fetchCachedOffersUseCase = fetchCachedOffersUseCase
         self.tableSnapshot = .init(.init(sections: [], changes: .init()))
     }
 }
@@ -51,14 +52,13 @@ public class DefaultOverviewScreenVM: OverviewScreenVM {
 // MARK: Public methods
 public extension DefaultOverviewScreenVM {
     func viewDidLoad() {
-        let sections = makeMockedDataToPopulateTable()
-        tableSnapshot.value = OverviewScreenSectionChangeSnapshot(
-            sections: sections,
-            changes: DevHashChangeSet.calculateCellChangeSet(
-                old: tableSnapshot.value.sections,
-                new: sections
-            )
-        )
+        populateTableWithMockedData()
+        fetchCachedOffersUseCase.use()
+            .receiveOnMainThread()
+            .sink { [weak self] cachedOffers in
+                self?.updateUI(offers: cachedOffers)
+            }
+            .store(in: &cancelBag)
     }
     
     func didTapProfile() {
@@ -70,9 +70,9 @@ public extension DefaultOverviewScreenVM {
         isRefreshing.value = true
         loadLatestOffersUseCase.use()
             .receiveOnMainThread()
-            .sink { [weak self] offers in
+            .sink { [weak self] latestOffers in
                 self?.isRefreshing.value = false
-                self?.updateUI(offers: offers)
+                self?.updateUI(offers: latestOffers)
             }
             .store(in: &cancelBag)
     }
@@ -90,7 +90,7 @@ public extension DefaultOverviewScreenVM {
         } else {
             newSectionSnapshot.addOrUpdate(section: offersSection)
         }
-        tableSnapshot.value = OverviewScreenSectionChangeSnapshot(
+        tableSnapshot.value = OverviewScreenTableSnapshot(
             sections: newSectionSnapshot,
             changes: DevHashChangeSet.calculateCellChangeSet(
                 old: tableSnapshot.value.sections,
@@ -111,7 +111,18 @@ public extension DefaultOverviewScreenVM {
         )
     }
     
-    private func makeMockedDataToPopulateTable() -> [OverviewScreenSection] {
+    private func populateTableWithMockedData() {
+        let sections = makeMockTableSections()
+        tableSnapshot.value = OverviewScreenTableSnapshot(
+            sections: sections,
+            changes: DevHashChangeSet.calculateCellChangeSet(
+                old: tableSnapshot.value.sections,
+                new: sections
+            )
+        )
+    }
+    
+    private func makeMockTableSections() -> [OverviewScreenSection] {
         [
             OverviewScreenSection(
                 id: .overview,

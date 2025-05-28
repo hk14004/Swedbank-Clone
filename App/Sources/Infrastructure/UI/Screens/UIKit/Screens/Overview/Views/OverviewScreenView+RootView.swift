@@ -78,7 +78,7 @@ extension OverviewScreenView {
         }
         
         // TODO: Move to refresh control extension
-        func configureIsLoading(_ isLoading: Bool) {
+        func configureIsRefreshing(_ isLoading: Bool) {
             if isLoading, refreshControl.isRefreshing == false  {
                 refreshControl.beginRefreshing()
             } else if !isLoading, refreshControl.isRefreshing == true  {

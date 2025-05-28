@@ -66,5 +66,10 @@ class UseCaseAssembly: Assembly {
                 fetchRemoteOffersService: Composition.resolve()
             )
         }
+        container.register(FetchCachedOffersUseCase.self) { resolver in
+            DefaultFetchCachedOffersUseCase(
+                offerRepository: Composition.resolve()
+            )
+        }
     }
 }

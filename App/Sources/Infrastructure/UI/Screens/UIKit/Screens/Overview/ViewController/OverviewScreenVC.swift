@@ -83,8 +83,8 @@ extension OverviewScreenVC {
         viewModel.isRefreshing
             .receiveOnMainThread()
             .dropFirst()
-            .sink { [weak self] isLoading in
-                self?.rootView.configureIsLoading(isLoading)
+            .sink { [weak self] isRefreshing in
+                self?.rootView.configureIsRefreshing(isRefreshing)
             }
             .store(in: &cancelBag)
     }
@@ -120,7 +120,7 @@ extension OverviewScreenVC {
             .store(in: &cancelBag)
     }
     
-    private func applyChanges(changeSnapshot: OverviewScreenSectionChangeSnapshot) {
+    private func applyChanges(changeSnapshot: OverviewScreenTableSnapshot) {
         let sections = changeSnapshot.sections
         let changeSet = changeSnapshot.changes
         var snapshot = NSDiffableDataSourceSnapshot<OverviewScreenSection.SectionID, Int>()
@@ -130,8 +130,6 @@ extension OverviewScreenVC {
         }
         snapshot.reloadItems(changeSet.updated)
         dataSource.apply(snapshot, animatingDifferences: !initialRender)
-        if initialRender {
-            initialRender = false
-        }
+        initialRender = false
     }
 }
