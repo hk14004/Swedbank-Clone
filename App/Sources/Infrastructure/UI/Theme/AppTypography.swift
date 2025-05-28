@@ -9,9 +9,6 @@
 import SwiftUI
 import DevToolsUI
 
-typealias Colors = SWEDBANKAsset.Colors
-
-// TODO: Refactor to have this only return font
 enum AppTypography: DevTypography {
     case title
     case title2

@@ -10,11 +10,6 @@ import Swinject
 import DevToolsLocalization
 import SwedLocalization
 
-typealias AppLocalization = RuntimeLocalization
-typealias AppLocalizationObserver = RuntimeLocalizationObserver
-typealias AppLocalizedPreview = RuntimeLocalizedPreview
-typealias AppStrings = SwedLocalization
-
 class LocalizationAssembly: Assembly {
     init() {
         configure()

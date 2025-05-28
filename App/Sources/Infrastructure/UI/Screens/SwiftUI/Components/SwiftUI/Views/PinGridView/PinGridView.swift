@@ -31,7 +31,7 @@ struct PinGridView: View {
                 Image(systemName: "faceid")
                     .resizable()
                     .frame(width: 44, height: 44)
-                    .foregroundColor(SWEDBANKAsset.Colors.accent3.swiftUIColor)
+                    .foregroundColor(AppColors.accent3.swiftUIColor)
                     
             }
             // Zero button
@@ -49,7 +49,7 @@ struct PinGridView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 44, height: 44)
-                    .foregroundColor(SWEDBANKAsset.Colors.accent3.swiftUIColor)
+                    .foregroundColor(AppColors.accent3.swiftUIColor)
             }
         }
     }

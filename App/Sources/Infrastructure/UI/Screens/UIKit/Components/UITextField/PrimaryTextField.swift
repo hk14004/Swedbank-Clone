@@ -23,7 +23,7 @@ class PrimaryTextField: UITextField {
         didSet {
             attributedPlaceholder = NSAttributedString(
                 string: placeholder ?? "",
-                attributes: [NSAttributedString.Key.foregroundColor: SWEDBANKAsset.Colors.text1.color]
+                attributes: [NSAttributedString.Key.foregroundColor: AppColors.text1.color]
             )
         }
     }
@@ -31,6 +31,6 @@ class PrimaryTextField: UITextField {
     private func setup() {
         font = AppTypography.input.scaledFont
         adjustsFontForContentSizeCategory = true
-        textColor = SWEDBANKAsset.Colors.text1.color
+        textColor = AppColors.text1.color
     }
 }

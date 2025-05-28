@@ -12,14 +12,14 @@ class CustomerInitialsView: UIView {
     // MARK: Properties
     private var label: UILabel = {
         let view = UILabel()
-        view.textColor = SWEDBANKAsset.Colors.text1Inverse.color
+        view.textColor = AppColors.text1Inverse.color
         view.font = AppTypography.body.scaledFont
         view.textAlignment = .center
         return view
     }()
     private var circle: UIView = {
         let view = UIView()
-        view.backgroundColor = SWEDBANKAsset.Colors.text2.color
+        view.backgroundColor = AppColors.text2.color
         return view
     }()
     

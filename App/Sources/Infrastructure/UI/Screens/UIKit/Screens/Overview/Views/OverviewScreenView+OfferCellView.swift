@@ -23,14 +23,14 @@ extension OverviewScreenView {
         private lazy var offerTextLabel: UILabel = {
            let view = UILabel()
             view.numberOfLines = 0
-            view.textColor = SWEDBANKAsset.Colors.text3.color
+            view.textColor = AppColors.text3.color
             view.font = AppTypography.body.scaledFont
             return view
         }()
         private lazy var disclosureImageView: UIImageView = {
             let image = UIImage(systemName: "chevron.right")
             let view = UIImageView(image: image)
-            view.tintColor = Colors.accent1.color
+            view.tintColor = AppColors.accent1.color
             return view
         }()
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

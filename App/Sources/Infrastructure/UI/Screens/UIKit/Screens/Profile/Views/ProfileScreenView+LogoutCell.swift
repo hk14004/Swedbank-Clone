@@ -21,8 +21,8 @@ extension ProfileScreenView {
         lazy var logoutButton: PrimaryButton = {
             let view = PrimaryButton()
             view.runtimeLocalizedKey = "Globals.logout"
-            view.backgroundColor = Colors.orange3.color
-            view.setTitleColor(Colors.red1.color, for: .normal)
+            view.backgroundColor = AppColors.orange3.color
+            view.setTitleColor(AppColors.red1.color, for: .normal)
             view.titleLabel?.font = AppTypography.title.scaledFont
             return view
         }()

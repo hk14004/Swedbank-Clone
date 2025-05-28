@@ -33,7 +33,7 @@ extension ProfileScreenView {
         }
         
         private func setup() {
-            backgroundColor = SWEDBANKAsset.Colors.background1.color
+            backgroundColor = AppColors.background1.color
             setupContainerView()
             setupTableView()
         }

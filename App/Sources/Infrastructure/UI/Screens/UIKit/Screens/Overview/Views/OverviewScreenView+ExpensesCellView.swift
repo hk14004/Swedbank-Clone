@@ -45,34 +45,34 @@ extension OverviewScreenView {
         private lazy var topTitleLabel: UILabel = {
            let view = RuntimeLocalizedLabel()
             view.runtimeLocalizedKey = AppStrings.Screen.Overview.Expenses.titleKey
-            view.textColor = SWEDBANKAsset.Colors.accent1.color
+            view.textColor = AppColors.accent1.color
             view.font = AppTypography.title2.scaledFont
             return view
         }()
         private lazy var detailsLabel: UILabel = {
             let view = RuntimeLocalizedLabel()
             view.runtimeLocalizedKey = AppStrings.Screen.Overview.Expenses.detailsKey
-            view.textColor = SWEDBANKAsset.Colors.accent2.color
+            view.textColor = AppColors.accent2.color
             view.font = AppTypography.link1.scaledFont
             return view
         }()
         private lazy var monthLabel: UILabel = {
             let view = RuntimeLocalizedLabel()
             view.runtimeLocalizedKey = AppStrings.Screen.Overview.Expenses.thisMonthKey
-            view.textColor = SWEDBANKAsset.Colors.text3.color
+            view.textColor = AppColors.text3.color
             view.font = AppTypography.title3.scaledFont
             return view
         }()
         private lazy var currencyAmountView: CurrencyAmountView = {
             let view = CurrencyAmountView()
             view.configure(font: AppTypography.body.scaledFont)
-            view.configure(textColor: SWEDBANKAsset.Colors.text2.color)
+            view.configure(textColor: AppColors.text2.color)
             return view
         }()
         private lazy var spentLabel: UILabel = {
             let view = RuntimeLocalizedLabel()
             view.runtimeLocalizedKey = AppStrings.Screen.Overview.Expenses.spentKey
-            view.textColor = SWEDBANKAsset.Colors.text3.color
+            view.textColor = AppColors.text3.color
             view.font = AppTypography.title3.scaledFont
             return view
         }()

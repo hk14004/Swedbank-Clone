@@ -22,19 +22,19 @@ extension OverviewScreenView {
         }()
         private lazy var ibanLabel: UILabel = {
            let view = UILabel()
-            view.textColor = SWEDBANKAsset.Colors.text3.color
+            view.textColor = AppColors.text3.color
             view.font = AppTypography.body.scaledFont
             return view
         }()
         private lazy var amountLabel: UILabel = {
            let view = UILabel()
-            view.textColor = SWEDBANKAsset.Colors.text2.color
+            view.textColor = AppColors.text2.color
             view.font = AppTypography.title.scaledFont
             return view
         }()
         private lazy var currencyLabel: UILabel = {
            let view = UILabel()
-            view.textColor = SWEDBANKAsset.Colors.text2.color
+            view.textColor = AppColors.text2.color
             view.font = AppTypography.title.scaledFont
             return view
         }()

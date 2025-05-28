@@ -30,10 +30,10 @@ struct LockedTabScreenView<ViewModel: LockedDashboardVM>: View {
                     .frame(width: 250, height: 200)
                 Text(viewModel.presentation.title.runtimeLocalized())
                     .font(.title)
-                    .foregroundColor(Colors.orange1.swiftUIColor)
+                    .foregroundColor(AppColors.orange1.swiftUIColor)
                     .padding(.top)
                 Text(viewModel.presentation.subtitle.runtimeLocalized())
-                    .foregroundColor(SWEDBANKAsset.Colors.black1.swiftUIColor)
+                    .foregroundColor(AppColors.black1.swiftUIColor)
                     .padding(.top)
             }
             .layoutPriority(1)

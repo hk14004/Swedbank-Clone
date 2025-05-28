@@ -18,7 +18,7 @@ class NotificationButton: UIButton {
     private var iconView = UIImageView(
         image: UIImage(
             systemName: Constant.bellIconName)?
-            .withTintColor(SWEDBANKAsset.Colors.text2.color)
+            .withTintColor(AppColors.text2.color)
             .withRenderingMode(.alwaysOriginal)
     )
     

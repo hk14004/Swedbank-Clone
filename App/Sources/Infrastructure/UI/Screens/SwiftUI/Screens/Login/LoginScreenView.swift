@@ -23,7 +23,7 @@ struct LoginScreenView<ViewModel: LoginScreenVM>: View {
             
             Text(AppStrings.Screen.Login.enterPin)
                 .font(AppTypography.body.scaledFontSwiftUI)
-                .foregroundStyle(SWEDBANKAsset.Colors.text2.swiftUIColor)
+                .foregroundStyle(AppColors.text2.swiftUIColor)
             PinProgressView(
                 maxPinLength: viewModel.maxPinLength,
                 currentPin: .init(
@@ -42,13 +42,13 @@ struct LoginScreenView<ViewModel: LoginScreenVM>: View {
             })
             .padding(.init(top: 12, leading: 0, bottom: 48, trailing: 0))
         }
-        .background(SWEDBANKAsset.Colors.background2.swiftUIColor.ignoresSafeArea())
+        .background(AppColors.background2.swiftUIColor.ignoresSafeArea())
     }
     
     private var titleView: some View {
         Text(AppStrings.Screen.Login.greeting(viewModel.customerName))
             .font(AppTypography.title7.scaledFontSwiftUI)
-            .foregroundColor(SWEDBANKAsset.Colors.accent1.swiftUIColor)
+            .foregroundColor(AppColors.accent1.swiftUIColor)
     }
     
     private var languageSelectorView: some View {

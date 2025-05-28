@@ -41,7 +41,7 @@ extension LanguageSelectionScreenView {
                             viewModel.onClose()
                         } label: {
                             Image(systemName: "xmark")
-                                .foregroundColor(SWEDBANKAsset.Colors.orange1.swiftUIColor)
+                                .foregroundColor(AppColors.orange1.swiftUIColor)
                         }
                         Spacer()
                     }
@@ -65,7 +65,7 @@ extension LanguageSelectionScreenView {
     @ViewBuilder
     private func makeLanguageRow(code: String, selected: Bool) -> some View {
         HStack(alignment: .center, spacing: 0) {
-            Image(SWEDBANKAsset.Images.makeLanguageFlagName(language: code))
+            Image(AppImages.makeLanguageFlagName(language: code))
                 .resizable()
                 .scaledToFit()
                 .frame(width: 24)
@@ -77,7 +77,7 @@ extension LanguageSelectionScreenView {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 14)
-                    .foregroundColor(SWEDBANKAsset.Colors.orange1.swiftUIColor)
+                    .foregroundColor(AppColors.orange1.swiftUIColor)
             }
         }
         .padding(.vertical, 8)

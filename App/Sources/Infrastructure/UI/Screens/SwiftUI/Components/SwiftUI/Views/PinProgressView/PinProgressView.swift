@@ -17,13 +17,13 @@ struct PinProgressView: View {
             ForEach(0..<maxPinLength, id: \.self) { index in
                 Circle()
                     .stroke(lineWidth: 1)
-                    .foregroundStyle(SWEDBANKAsset.Colors.text2.swiftUIColor)
+                    .foregroundStyle(AppColors.text2.swiftUIColor)
                     .frame(width: 10, height: 10)
                     .overlay(
                         Circle()
                             .fill(
                                 index < currentPin.count
-                                ? SWEDBANKAsset.Colors.text2.swiftUIColor
+                                ? AppColors.text2.swiftUIColor
                                 : Color.clear
                             )
                             

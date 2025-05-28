@@ -34,7 +34,7 @@ class DefaultLoginScreenRouter: UIKitRouter, LoginScreenRouter, CancelBagStorabl
 extension ToErrorRouting where Self: UIKitRouter  {
     func routeToErrorAlert(_ error: Error) {
         let alertViewController = UIAlertController(title: "", message: error.localizedDescription, preferredStyle: .alert)
-        alertViewController.addAction(UIAlertAction(title: SwedLocalization.Globals.ok, style: .default))
+        alertViewController.addAction(UIAlertAction(title: AppStrings.Globals.ok, style: .default))
         viewController.present(alertViewController, animated: true)
     }
 }

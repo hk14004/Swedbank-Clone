@@ -20,9 +20,9 @@ struct PinDigitButton: View {
         }) {
             Text("\(digit)")
                 .font(AppTypography.title6.scaledFontSwiftUI)
-                .foregroundColor(SWEDBANKAsset.Colors.text1Inverse.swiftUIColor)
+                .foregroundColor(AppColors.text1Inverse.swiftUIColor)
                 .frame(width: Self.buttonSize, height: Self.buttonSize)
-                .background(SWEDBANKAsset.Colors.accent3.swiftUIColor)
+                .background(AppColors.accent3.swiftUIColor)
                 .clipShape(Circle())
         }
     }
