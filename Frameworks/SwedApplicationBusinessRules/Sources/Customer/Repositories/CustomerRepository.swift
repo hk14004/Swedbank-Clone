@@ -11,4 +11,5 @@ import Combine
 public protocol CustomerRepository {
     func addOrUpdate(_ items: [CustomerDTO]) -> AnyPublisher<Void, Never>
     func getSingle(id: String) -> AnyPublisher<CustomerDTO?, Never>
+    func getRemoteCustomers() -> AnyPublisher<[CustomerDTO], Never>
 }

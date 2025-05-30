@@ -12,7 +12,6 @@ class UseCaseAssembly: Assembly {
             DefaultLoginUseCase(
                 startSessionService: Composition.resolve(),
                 manager: Composition.resolve(),
-                fetchRemoteCustomersService: Composition.resolve(),
                 userSessionCredentialsRepository: Composition.resolve(), 
                 customerRepository: Composition.resolve()
             )

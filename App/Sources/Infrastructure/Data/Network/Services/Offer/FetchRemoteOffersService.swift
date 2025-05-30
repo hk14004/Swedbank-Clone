@@ -8,7 +8,7 @@
 
 import Foundation
 import Combine
-import SwedEnterpriseBusinessRules
+import SwedApplicationBusinessRules
 
 public protocol FetchRemoteOffersService {
     func use() -> AnyPublisher<FetchRemoteOffersServiceOutput, Never>

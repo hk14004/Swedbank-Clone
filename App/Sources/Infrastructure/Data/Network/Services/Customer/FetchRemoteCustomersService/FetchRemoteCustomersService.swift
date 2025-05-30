@@ -2,12 +2,12 @@
 //  FetchRemoteCustomersService.swift
 //  Swedbank
 //
-//  Created by Hardijs Ķirsis on 14/09/2023.
-//  Copyright © 2023 SWEDBANK AB. All rights reserved.
+//  Created by Hardijs Kirsis on 30/05/2025.
+//  Copyright © 2025 SWEDBANK AB. All rights reserved.
 //
 
-import Foundation
 import Combine
+import SwedApplicationBusinessRules
 
 public protocol FetchRemoteCustomersService {
     func use() -> AnyPublisher<FetchRemoteCustomersServiceOutput, Error>

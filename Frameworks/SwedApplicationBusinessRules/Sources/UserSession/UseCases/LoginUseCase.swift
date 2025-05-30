@@ -1,5 +1,5 @@
 //
-//  StartAllUserSessionsUseCase.swift
+//  DefaultLoginUseCase.swift
 //  Swedbank
 //
 //  Created by Hardijs Ķirsis on 03/09/2023.
@@ -16,20 +16,17 @@ public protocol LoginUseCase {
 public struct DefaultLoginUseCase: LoginUseCase {
     private let startSessionService: StartSessionService
     private let sessionManager: UserSessionManager
-    private let fetchRemoteCustomersService: FetchRemoteCustomersService
     private let userSessionCredentialsRepository: UserSessionCredentialsRepository
     private let customerRepository: CustomerRepository
     
     public init(
         startSessionService: StartSessionService,
         manager: UserSessionManager,
-        fetchRemoteCustomersService: FetchRemoteCustomersService,
         userSessionCredentialsRepository: UserSessionCredentialsRepository,
         customerRepository: CustomerRepository
     ) {
         self.startSessionService = startSessionService
         self.sessionManager = manager
-        self.fetchRemoteCustomersService = fetchRemoteCustomersService
         self.userSessionCredentialsRepository = userSessionCredentialsRepository
         self.customerRepository = customerRepository
     }
@@ -50,7 +47,7 @@ public struct DefaultLoginUseCase: LoginUseCase {
             )
             userSessionCredentialsRepository.save(credentials: creds)
             // Fetch customers
-            return fetchRemoteCustomersService.use()
+            return customerRepository.getRemoteCustomers()
                 .flatMap { customersOutput -> AnyPublisher<(selected: CustomerDTO, all: [CustomerDTO]), Error> in
                     // Find customer
                     guard let customer = customersOutput.first(where: {$0.id == customerID}) else {
