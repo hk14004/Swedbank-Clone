@@ -29,7 +29,10 @@ class RepositoryAssembly: Assembly {
         }
         .inObjectScope(.container)
         container.register(OfferRepository.self) { resolver in
-            DefaultOfferRepository(store: resolver.resolve(PersistentCoreDataStore<OfferDTO>.self)!)
+            DefaultOfferRepository(
+                store: resolver.resolve(PersistentCoreDataStore<OfferDTO>.self)!,
+                fetchRemoteOffersService: Composition.resolve()
+            )
         }
         .inObjectScope(.container)
     }

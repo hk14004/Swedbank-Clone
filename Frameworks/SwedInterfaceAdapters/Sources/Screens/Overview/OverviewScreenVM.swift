@@ -32,19 +32,19 @@ public class DefaultOverviewScreenVM: OverviewScreenVM {
     public var tableSnapshot: CurrentValueSubject<OverviewScreenTableSnapshot, Never>
     public var router: OverviewScreenRouter!
     public var customer: CustomerDTO
-    private let loadLatestOffersUseCase: LoadLatestOffersUseCase
-    private let fetchCachedOffersUseCase: FetchCachedOffersUseCase
+    private let getRemoteOffersUseCase: GetRemoteOffersUseCase
+    private let trackCachedOffersUseCase: TrackCachedOffersUseCase
     private var cancelBag: Set<AnyCancellable> = []
     
     // MARK: Lifecycle
     public init(
         customer: CustomerDTO,
-        loadLatestOffersUseCase: LoadLatestOffersUseCase,
-        fetchCachedOffersUseCase: FetchCachedOffersUseCase
+        getRemoteOffersUseCase: GetRemoteOffersUseCase,
+        trackCachedOffersUseCase: TrackCachedOffersUseCase
     ) {
         self.customer = customer
-        self.loadLatestOffersUseCase = loadLatestOffersUseCase
-        self.fetchCachedOffersUseCase = fetchCachedOffersUseCase
+        self.getRemoteOffersUseCase = getRemoteOffersUseCase
+        self.trackCachedOffersUseCase = trackCachedOffersUseCase
         self.tableSnapshot = .init(.init(sections: [], changes: .init()))
     }
 }
@@ -53,22 +53,14 @@ public class DefaultOverviewScreenVM: OverviewScreenVM {
 public extension DefaultOverviewScreenVM {
     func viewDidLoad() {
         populateTableWithMockedData()
-        fetchCachedOffersUseCase.use()
-            .receiveOnMainThread()
-            .sink { [weak self] cachedOffers in
-                self?.updateUI(offers: cachedOffers)
-            }
-            .store(in: &cancelBag)
+        populateTableWithCachedOffers()
+        didPullToRefresh() // Temp solution for now to trigger initial data load
     }
-    
-    func didTapProfile() {
-        router.routeToProfileScreen(customer: customer)
-    }
-    
+        
     func didPullToRefresh() {
         guard !isRefreshing.value else { return }
         isRefreshing.value = true
-        loadLatestOffersUseCase.use()
+        getRemoteOffersUseCase.use()
             .receiveOnMainThread()
             .sink { [weak self] latestOffers in
                 self?.isRefreshing.value = false
@@ -77,11 +69,25 @@ public extension DefaultOverviewScreenVM {
             .store(in: &cancelBag)
     }
     
+    func didTapProfile() {
+        router.routeToProfileScreen(customer: customer)
+    }
+    
     func didTapNotifications() {}
 }
 
 // MARK: Private methods
 public extension DefaultOverviewScreenVM {
+    private func populateTableWithCachedOffers() {
+        trackCachedOffersUseCase.use()
+            .prefix(1)
+            .receiveOnMainThread()
+            .sink { [weak self] cachedOffers in
+                self?.updateUI(offers: cachedOffers)
+            }
+            .store(in: &cancelBag)
+    }
+    
     private func updateUI(offers: [OfferDTO]) {
         var newSectionSnapshot = tableSnapshot.value.sections
         let offersSection = makeOffersSection(offers)

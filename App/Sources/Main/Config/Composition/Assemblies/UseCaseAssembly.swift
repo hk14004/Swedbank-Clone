@@ -60,14 +60,13 @@ class UseCaseAssembly: Assembly {
         container.register(LogoutUseCase.self) { resolver in
             DefaultLogoutUseCase(manager: Composition.resolve())
         }
-        container.register(LoadLatestOffersUseCase.self) { resolver in
+        container.register(GetRemoteOffersUseCase.self) { resolver in
             DefaultLoadLatestOffersUseCase(
-                offerRepository: Composition.resolve(),
-                fetchRemoteOffersService: Composition.resolve()
+                offerRepository: Composition.resolve()
             )
         }
-        container.register(FetchCachedOffersUseCase.self) { resolver in
-            DefaultFetchCachedOffersUseCase(
+        container.register(TrackCachedOffersUseCase.self) { resolver in
+            DefaultTrackCachedOffersUseCase(
                 offerRepository: Composition.resolve()
             )
         }

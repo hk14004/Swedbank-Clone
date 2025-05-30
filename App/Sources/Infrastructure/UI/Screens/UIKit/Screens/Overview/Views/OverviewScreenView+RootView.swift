@@ -77,11 +77,8 @@ extension OverviewScreenView {
             tableView.registerCell(ExpensesCellView.self)
         }
         
-        // TODO: Move to refresh control extension
         func configureIsRefreshing(_ isLoading: Bool) {
-            if isLoading, refreshControl.isRefreshing == false  {
-                refreshControl.beginRefreshing()
-            } else if !isLoading, refreshControl.isRefreshing == true  {
+            if !isLoading, refreshControl.isRefreshing == true  {
                 refreshControl.endRefreshing()
             }
         }

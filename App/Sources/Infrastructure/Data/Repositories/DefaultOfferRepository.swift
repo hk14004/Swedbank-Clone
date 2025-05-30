@@ -13,29 +13,39 @@ import Foundation
 import DevToolsCore
 
 class DefaultOfferRepository: OfferRepository {
-    private let store: BasePersistedLayerInterface<OfferDTO>
+    private let localStore: BasePersistedLayerInterface<OfferDTO>
+    private let fetchRemoteOffersService: FetchRemoteOffersService
     
-    init(store: BasePersistedLayerInterface<OfferDTO>) {
-        self.store = store
+    init(
+        store: BasePersistedLayerInterface<OfferDTO>,
+        fetchRemoteOffersService: FetchRemoteOffersService
+    ) {
+        self.localStore = store
+        self.fetchRemoteOffersService = fetchRemoteOffersService
     }
     
     func replace(with items: [OfferDTO]) -> AnyPublisher<Void, Never> {
         Future<Void, Never> { [weak self] promise in
             Task {
-                await self?.store.replace(with: items)
+                await self?.localStore.replace(with: items)
                 promise(.success(()))
             }
         }
         .eraseToAnyPublisher()
     }
     
-    func getList(predicate: NSPredicate) -> AnyPublisher<[OfferDTO], Never> {
-        Future<[OfferDTO], Never> { [weak self] promise in
-            Task {
-                let result = await self?.store.getList(predicate: predicate) ?? []
-                promise(.success(result))
+    func observeCachedList(predicate: NSPredicate) -> AnyPublisher<[OfferDTO], Never> {
+        localStore.observeList(predicate: predicate)
+    }
+    
+    func getRemoteOffers() -> AnyPublisher<[OfferDTO], Never> {
+        fetchRemoteOffersService.use()
+            .flatMap { [weak self] offers -> AnyPublisher<[OfferDTO], Never> in
+                guard let self else { return .just(offers) }
+                return replace(with: offers)
+                    .map { _ in offers }
+                    .eraseToAnyPublisher()
             }
-        }
-        .eraseToAnyPublisher()
+            .eraseToAnyPublisher()
     }
 }

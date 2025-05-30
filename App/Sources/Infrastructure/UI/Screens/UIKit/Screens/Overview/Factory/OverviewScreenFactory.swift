@@ -18,8 +18,8 @@ class DefaultDashboardScreenFactory: OverviewScreenFactory {
     func make(customer: CustomerDTO) -> OverviewScreenVC {
         let vm = DefaultOverviewScreenVM(
             customer: customer,
-            loadLatestOffersUseCase: Composition.resolve(),
-            fetchCachedOffersUseCase: Composition.resolve()
+            getRemoteOffersUseCase: Composition.resolve(),
+            trackCachedOffersUseCase: Composition.resolve()
         )
         let vc = OverviewScreenVC(viewModel: vm)
         let router = DefaultOverviewScreenRouter(viewController: vc)

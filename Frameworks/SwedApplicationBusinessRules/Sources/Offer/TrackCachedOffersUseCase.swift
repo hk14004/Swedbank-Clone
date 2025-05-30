@@ -1,5 +1,5 @@
 //
-//  GetOffersUseCase.swift
+//  TrackCachedOffersUseCase.swift
 //  SwedApplicationBusinessRules
 //
 //  Created by Hardijs Kirsis on 26/05/2025.
@@ -8,13 +8,12 @@
 
 import Foundation
 import Combine
-import SwedEnterpriseBusinessRules
 
-public protocol FetchCachedOffersUseCase {
+public protocol TrackCachedOffersUseCase {
     func use() -> AnyPublisher<[OfferDTO], Never>
 }
 
-public struct DefaultFetchCachedOffersUseCase: FetchCachedOffersUseCase {
+public struct DefaultTrackCachedOffersUseCase: TrackCachedOffersUseCase {
     private let offerRepository: OfferRepository
     
     public init(offerRepository: OfferRepository) {
@@ -22,6 +21,6 @@ public struct DefaultFetchCachedOffersUseCase: FetchCachedOffersUseCase {
     }
     
     public func use() -> AnyPublisher<[OfferDTO], Never> {
-        offerRepository.getList(predicate: NSPredicate(value: true))
+        offerRepository.observeCachedList(predicate: NSPredicate(value: true))
     }
 }
