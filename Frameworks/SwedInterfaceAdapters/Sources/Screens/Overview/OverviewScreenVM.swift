@@ -11,7 +11,6 @@ import DevToolsCore
 import SwedApplicationBusinessRules
 
 public protocol OverviewScreenVMInput {
-    func viewDidLoad()
     func didTapProfile()
     func didTapNotifications()
     func didPullToRefresh()
@@ -46,17 +45,12 @@ public class DefaultOverviewScreenVM: OverviewScreenVM {
         self.getRemoteOffersUseCase = getRemoteOffersUseCase
         self.trackCachedOffersUseCase = trackCachedOffersUseCase
         self.tableSnapshot = .init(.init(sections: [], changes: .init()))
+        setup()
     }
 }
 
 // MARK: Public methods
 public extension DefaultOverviewScreenVM {
-    func viewDidLoad() {
-        populateTableWithMockedData()
-        populateTableWithCachedOffers()
-        didPullToRefresh() // Temp solution for now to trigger initial data load
-    }
-        
     func didPullToRefresh() {
         guard !isRefreshing.value else { return }
         isRefreshing.value = true
@@ -78,6 +72,12 @@ public extension DefaultOverviewScreenVM {
 
 // MARK: Private methods
 public extension DefaultOverviewScreenVM {
+    private func setup() {
+        populateTableWithMockedData()
+        populateTableWithCachedOffers()
+        didPullToRefresh() // Temp solution for now to trigger initial data load
+    }
+    
     private func populateTableWithCachedOffers() {
         trackCachedOffersUseCase.use()
             .prefix(1)
@@ -108,10 +108,15 @@ public extension DefaultOverviewScreenVM {
     private func makeOffersSection(_ newOffers: [OfferDTO]) -> OverviewScreenSection {
         OverviewScreenSection(
             id: .offers,
-            title: "",
             cells: newOffers.map { offer in
                 OverviewScreenSection.Cell.offer(
-                    OverviewScreenOfferCellViewModel(offer: offer)
+                    OverviewScreenOfferCellViewModel(
+                        offer: offer,
+                        didTap: { [weak self] in
+                            // Optionally handle input from cell model first if its needed
+                            self?.router.routeToOfferDetails(offer: offer)
+                        }
+                    )
                 )
             }
         )
@@ -132,7 +137,6 @@ public extension DefaultOverviewScreenVM {
         [
             OverviewScreenSection(
                 id: .overview,
-                title: "",
                 cells: [
                     .cardBalance(
                         OverviewScreenBalanceCellViewModel(

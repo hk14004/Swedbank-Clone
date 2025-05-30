@@ -39,7 +39,6 @@ class OverviewScreenVC: RuntimeLocalizedUIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        viewModel.viewDidLoad()
     }
 }
 
@@ -47,6 +46,7 @@ class OverviewScreenVC: RuntimeLocalizedUIViewController {
 extension OverviewScreenVC {
     private func setup() {
         rootView.tableView.dataSource = dataSource
+        rootView.tableView.delegate = self
         bindActions()
         bindOutput()
         setupNavigationBar()
@@ -74,7 +74,8 @@ extension OverviewScreenVC {
             )
             .receiveOnMainThread()
             .sink { [weak self] snapshot in
-                self?.applyChanges(changeSnapshot: snapshot)
+                self?.dataSource.apply(snapshot)
+                self?.initialRender = false
             }
             .store(in: &cancelBag)
     }
@@ -118,18 +119,5 @@ extension OverviewScreenVC {
                 self?.viewModel.didPullToRefresh()
             })
             .store(in: &cancelBag)
-    }
-    
-    private func applyChanges(changeSnapshot: OverviewScreenTableSnapshot) {
-        let sections = changeSnapshot.sections
-        let changeSet = changeSnapshot.changes
-        var snapshot = NSDiffableDataSourceSnapshot<OverviewScreenSection.SectionID, Int>()
-        snapshot.appendSections(sections.map { $0.id })
-        sections.forEach { section in
-            snapshot.appendItems(section.cells.map { $0.hashValue }, toSection: section.id)
-        }
-        snapshot.reloadItems(changeSet.updated)
-        dataSource.apply(snapshot, animatingDifferences: !initialRender)
-        initialRender = false
     }
 }

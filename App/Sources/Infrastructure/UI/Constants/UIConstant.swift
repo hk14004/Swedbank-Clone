@@ -11,6 +11,11 @@ import UIKit
 enum UIConstant {}
 
 extension UIConstant {
+    enum View {
+        static let cornerRadius: CGFloat = 16
+        static let defaultPadding: CGFloat = 16
+    }
+    
     enum NavigationBar {
         static let barButtonSize: CGFloat = 32
         static let barButtonIconSize: CGFloat = 28

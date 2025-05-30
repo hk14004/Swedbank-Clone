@@ -9,7 +9,7 @@
 import Foundation
 import SwedApplicationBusinessRules
 
-public protocol OverviewScreenRouter: ToProfileScreenRouting {}
+public protocol OverviewScreenRouter: ToProfileScreenRouting, ToOfferDetailsRouting {}
 
 public protocol ToOverviewScreenRouting {
     func routeToOverviewScreen(customer: CustomerDTO)

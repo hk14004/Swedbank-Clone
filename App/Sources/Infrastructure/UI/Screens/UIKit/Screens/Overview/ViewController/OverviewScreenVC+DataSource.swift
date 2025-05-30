@@ -15,6 +15,7 @@ extension OverviewScreenVC {
     class DiffableDataSource: UITableViewDiffableDataSource<OverviewScreenSection.SectionID, Int> {
         // MARK: Properties
         private var viewModel: OverviewScreenVM
+        private var initialRender = true
         
         // MARK: Lifecycle
         init(
@@ -25,6 +26,17 @@ extension OverviewScreenVC {
             self.viewModel = viewModel
             super.init(tableView: tableView, cellProvider: cellProvider)
             self.defaultRowAnimation = .fade
+        }
+        
+        func apply(_ snapshot: OverviewScreenTableSnapshot) {
+            var nativeSnapshot = NSDiffableDataSourceSnapshot<OverviewScreenSection.SectionID, Int>()
+            nativeSnapshot.appendSections(snapshot.sections.map { $0.id })
+            snapshot.sections.forEach { section in
+                nativeSnapshot.appendItems(section.cells.map { $0.hashValue }, toSection: section.id)
+            }
+            nativeSnapshot.reloadItems(snapshot.changes.updated)
+            apply(nativeSnapshot, animatingDifferences: !initialRender)
+            initialRender = false
         }
     }
     

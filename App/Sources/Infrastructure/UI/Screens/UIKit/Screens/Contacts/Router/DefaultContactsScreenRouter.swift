@@ -24,6 +24,7 @@ extension ToContactsScreenRouting where Self: UIKitRouter {
     func routeToContactsScreen() {
         let factory: ContactsScreenFactory = Composition.resolve()
         let vc = factory.make()
+        viewController.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
