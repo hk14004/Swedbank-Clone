@@ -5,11 +5,13 @@ import SwedApplicationBusinessRules
 
 class UseCaseAssembly: Assembly {
     func assemble(container: Container) {
+        container.register(GetLastCustomerUseCase.self) { resolver in
+            MockGetLastCustomerUseCase()
+        }
         container.register(LoginUseCase.self) { resolver in
             DefaultLoginUseCase(
                 startSessionService: Composition.resolve(),
                 manager: Composition.resolve(),
-                fetchRemoteCustomersService: Composition.resolve(),
                 userSessionCredentialsRepository: Composition.resolve(), 
                 customerRepository: Composition.resolve()
             )
@@ -57,8 +59,15 @@ class UseCaseAssembly: Assembly {
         container.register(LogoutUseCase.self) { resolver in
             DefaultLogoutUseCase(manager: Composition.resolve())
         }
+        container.register(GetRemoteOffersUseCase.self) { resolver in
+            DefaultLoadLatestOffersUseCase(
+                offerRepository: Composition.resolve()
+            )
+        }
+        container.register(TrackCachedOffersUseCase.self) { resolver in
+            DefaultTrackCachedOffersUseCase(
+                offerRepository: Composition.resolve()
+            )
+        }
     }
 }
-
-
-

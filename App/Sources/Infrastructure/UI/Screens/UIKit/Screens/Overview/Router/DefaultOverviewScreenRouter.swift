@@ -25,6 +25,7 @@ extension ToOverviewScreenRouting where Self: UIKitRouter {
     func routeToOverviewScreen(customer: CustomerDTO) {
         let factory: OverviewScreenFactory = Composition.resolve()
         let vc = factory.make(customer: customer)
+        viewController.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

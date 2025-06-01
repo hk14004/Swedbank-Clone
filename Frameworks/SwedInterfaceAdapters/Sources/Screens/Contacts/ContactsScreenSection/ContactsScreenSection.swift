@@ -23,7 +23,7 @@ public class ContactsScreenSection: DevTableSection {
     public var title: String
     public var cells: [Cell]
     
-    public init(id: SectionID, title: String, cells: [Cell]) {
+    public init(id: SectionID, title: String = "", cells: [Cell]) {
         self.id = id
         self.title = title
         self.cells = cells

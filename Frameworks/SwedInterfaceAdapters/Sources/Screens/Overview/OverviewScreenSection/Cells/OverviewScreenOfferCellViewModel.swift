@@ -9,11 +9,20 @@
 import DevToolsUI
 import DevToolsCore
 import Foundation
+import SwedApplicationBusinessRules
 
 public struct OverviewScreenOfferCellViewModel: DevTableSectionCellModel {
     public var offerID: String
     public var offerText: String
     public var offerUrl: String
+    public var didTap: (() -> Void)?
+    
+    public init(offer: OfferDTO, didTap: (() -> Void)?) {
+        self.offerID = offer.id
+        self.offerText = offer.title + " " + offer.description
+        self.offerUrl = ""
+        self.didTap = didTap
+    }
 }
 
 public extension OverviewScreenOfferCellViewModel {

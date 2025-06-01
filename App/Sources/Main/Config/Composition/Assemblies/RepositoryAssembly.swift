@@ -1,4 +1,5 @@
 import Foundation
+import DevToolsCoreData
 import Swinject
 import DevToolsCore
 import SwedApplicationBusinessRules
@@ -25,6 +26,13 @@ class RepositoryAssembly: Assembly {
         .inObjectScope(.container)
         container.register(CustomerRepository.self) { resolver in
             DefaultCustomerRepository()
+        }
+        .inObjectScope(.container)
+        container.register(OfferRepository.self) { resolver in
+            DefaultOfferRepository(
+                store: resolver.resolve(PersistentCoreDataStore<OfferDTO>.self)!,
+                fetchRemoteOffersService: Composition.resolve()
+            )
         }
         .inObjectScope(.container)
     }

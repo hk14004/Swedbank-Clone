@@ -15,3 +15,15 @@ extension AppDelegate {
         routeToSplashScreen()
     }
 }
+
+fileprivate extension AppDelegate {
+    func routeToPreview() {
+        let screenFactory = DefaultPreviewScreenFactory()
+        let vc = screenFactory.make()
+        let nav = UINavigationController(rootViewController: vc)
+        nav.navigationBar.isHidden = true
+        let rootWindow: UIWindow = Composition.resolve()
+        rootWindow.rootViewController = nav
+        rootWindow.makeKeyAndVisible()
+    }
+}

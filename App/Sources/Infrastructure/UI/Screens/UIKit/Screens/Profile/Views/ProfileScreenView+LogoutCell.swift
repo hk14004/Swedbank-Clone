@@ -12,17 +12,12 @@ import Combine
 
 extension ProfileScreenView {
     class LogoutCell: UITableViewCell {
-        // MARK: Constants
-        enum Constants {
-            static let buttonHeight: CGFloat = 50
-        }
-        
         // MARK: Properties
         lazy var logoutButton: PrimaryButton = {
             let view = PrimaryButton()
-            view.runtimeLocalizedKey = "Globals.logout"
-            view.backgroundColor = Colors.orange3.color
-            view.setTitleColor(Colors.red1.color, for: .normal)
+            view.runtimeLocalizedKey = AppStrings.Globals.logoutKey
+            view.backgroundColor = AppColors.orange3.color
+            view.setTitleColor(AppColors.red1.color, for: .normal)
             view.titleLabel?.font = AppTypography.title.scaledFont
             return view
         }()
@@ -52,7 +47,7 @@ extension ProfileScreenView {
             contentView.addSubview(logoutButton)
             logoutButton.snp.makeConstraints { make in
                 make.edges.equalTo(contentView.layoutMarginsGuide)
-                make.height.equalTo(Constants.buttonHeight)
+                make.height.greaterThanOrEqualTo(UIConstant.Button.minHeight)
             }
         }
     }

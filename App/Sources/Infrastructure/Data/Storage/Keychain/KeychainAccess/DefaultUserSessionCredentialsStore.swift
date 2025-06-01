@@ -15,7 +15,7 @@ class DefaultUserSessionCredentialsStore: BaseUserSessionCredentialsStore<UserSe
 
     // MARK: Properties
     
-    let keychain: Keychain
+    private let keychain: Keychain
     
     // MARK: init
     

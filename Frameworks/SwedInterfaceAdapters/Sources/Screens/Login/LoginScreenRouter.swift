@@ -1,5 +1,5 @@
 //
-//  LoginRouter.swift
+//  LoginScreenRouter.swift
 //  Swedbank
 //
 //  Created by Hardijs Ķirsis on 03/09/2023.
@@ -9,6 +9,6 @@
 import Foundation
 import SwedApplicationBusinessRules
 
-public protocol LoginScreenRouter {
+public protocol LoginScreenRouter: ToLanguageSelectionScreenRouting, ToErrorRouting {
     func routeToLoginCompleted(customer: CustomerDTO)
 }

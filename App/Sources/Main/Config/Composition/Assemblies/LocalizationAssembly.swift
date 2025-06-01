@@ -8,12 +8,13 @@
 
 import Swinject
 import DevToolsLocalization
-
-typealias AppLocalization = RuntimeLocalization
-typealias AppLocalizationObserver = RuntimeLocalizationObserver
-typealias AppLocalizedPreview = RuntimeLocalizedPreview
+import SwedLocalization
 
 class LocalizationAssembly: Assembly {
+    init() {
+        configure()
+    }
+    
     func assemble(container: Container) {
         container.register(AppLocalization.self) { resolver in
             RuntimeStringFileLocalization.shared
@@ -21,5 +22,11 @@ class LocalizationAssembly: Assembly {
         container.register(AppLocalizationObserver.self) { resolver in
             RuntimeLocalizationObserver()
         }.inObjectScope(.container)
+    }
+}
+
+extension LocalizationAssembly {
+    private func configure() {
+        RuntimeStringFileLocalization.shared.bundle = SwedLocalizationResources.bundle
     }
 }

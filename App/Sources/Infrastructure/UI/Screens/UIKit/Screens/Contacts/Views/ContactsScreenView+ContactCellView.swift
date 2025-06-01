@@ -39,13 +39,13 @@ extension ContactsScreenView {
         }()
         private lazy var titleLabel: UILabel = {
            let view = UILabel()
-            view.textColor = SWEDBANKAsset.Colors.text1.color
+            view.textColor = AppColors.text1.color
             view.font = AppTypography.body.scaledFont
             return view
         }()
         private lazy var descLabel: UILabel = {
            let view = UILabel()
-            view.textColor = SWEDBANKAsset.Colors.text3.color
+            view.textColor = AppColors.text3.color
             view.font = AppTypography.title3.scaledFont
             return view
         }()
@@ -64,10 +64,10 @@ extension ContactsScreenView {
 // MARK: Public
 extension ContactsScreenView.ContactCellView {
     func configure(model: ContactsScreenContactCellViewModel) {
-        titleLabel.text = model.contactText.localized()
-        descLabel.text = model.contactDescription.localized()
+        titleLabel.text = model.contactText.runtimeLocalized()
+        descLabel.text = model.contactDescription.runtimeLocalized()
         iconView.image = .init(systemName: model.contactIcon)?.withRenderingMode(.alwaysTemplate)
-        iconView.tintColor = SWEDBANKAsset.Colors.blue2.color
+        iconView.tintColor = AppColors.accent2.color
         configure(padding: Constants.contentPadding)
     }
     

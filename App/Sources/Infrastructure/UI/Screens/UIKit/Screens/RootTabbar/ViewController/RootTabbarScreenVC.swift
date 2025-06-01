@@ -38,6 +38,7 @@ class RootTabbarScreenVC: UITabBarController {
 // MARK: Private
 extension RootTabbarScreenVC {
     private func setup() {
+        dropShadow()
         bindOutput()
     }
     
@@ -51,5 +52,13 @@ extension RootTabbarScreenVC {
                 self?.viewControllers = controllers
             }
             .store(in: &bag)
+    }
+    
+    private func dropShadow() {
+        tabBar.layer.masksToBounds = false
+        tabBar.layer.shadowColor = UIConstant.Tabbar.shadowColor.cgColor
+        tabBar.layer.shadowOpacity = UIConstant.Tabbar.shadowOpacity
+        tabBar.layer.shadowRadius = UIConstant.Tabbar.shadowRadius
+        tabBar.layer.shadowOffset = UIConstant.Tabbar.shadowOffset
     }
 }

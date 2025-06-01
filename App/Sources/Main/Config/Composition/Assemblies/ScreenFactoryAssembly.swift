@@ -40,5 +40,8 @@ class ScreenFactoryAssembly: Assembly {
         container.register(ContactsScreenFactory.self) { resolver in
             DefaultContactsScreenFactory()
         }
+        container.register(OfferDetailsScreenFactory.self) { resolver in
+            DefaultOfferDetailsScreenFactory()
+        }
     }
 }

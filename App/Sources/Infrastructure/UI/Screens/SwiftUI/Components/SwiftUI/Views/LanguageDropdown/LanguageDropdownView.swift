@@ -17,6 +17,9 @@ struct LanguageDropdownView: View {
             HStack {
                 makeFlagImageView()
                 Image(systemName: "chevron.down")
+                    .foregroundStyle(
+                        Color(asset: AppColors.black1)
+                    )
             }
         }
     }
@@ -32,7 +35,7 @@ struct LanguageDropdownView_Previews: PreviewProvider {
 extension LanguageDropdownView {
     @ViewBuilder
     private func makeFlagImageView() -> some View {
-        Image(SWEDBANKAsset.Images.makeLanguageFlagName(language: loc.languageCode))
+        Image(AppImages.makeLanguageFlagName(language: loc.languageCode))
             .resizable()
             .scaledToFit()
             .frame(width: 20)

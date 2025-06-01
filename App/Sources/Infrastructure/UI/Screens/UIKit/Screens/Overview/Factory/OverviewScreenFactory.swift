@@ -16,7 +16,11 @@ protocol OverviewScreenFactory {
 
 class DefaultDashboardScreenFactory: OverviewScreenFactory {
     func make(customer: CustomerDTO) -> OverviewScreenVC {
-        let vm = DefaultOverviewScreenVM(customer: customer)
+        let vm = DefaultOverviewScreenVM(
+            customer: customer,
+            getRemoteOffersUseCase: Composition.resolve(),
+            trackCachedOffersUseCase: Composition.resolve()
+        )
         let vc = OverviewScreenVC(viewModel: vm)
         let router = DefaultOverviewScreenRouter(viewController: vc)
         vm.router = router

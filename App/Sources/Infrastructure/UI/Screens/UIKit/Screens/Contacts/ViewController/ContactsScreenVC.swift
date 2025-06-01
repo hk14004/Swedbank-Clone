@@ -15,11 +15,10 @@ import DevToolsLocalization
 
 class ContactsScreenVC: RuntimeLocalizedUIViewController {
     // MARK: Properties
-    lazy var rootView = ContactsScreenView.RootView()
     let viewModel: ContactsScreenVM
-    private var cancelBag = Set<AnyCancellable>()
+    lazy var rootView = ContactsScreenView.RootView()
     lazy var dataSource = makeDataSource()
-    private var initialRender = true
+    private var cancelBag = Set<AnyCancellable>()
     
     // MARK: Lifecycle
     init(viewModel: ContactsScreenVM) {
@@ -31,12 +30,6 @@ class ContactsScreenVC: RuntimeLocalizedUIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
-        navigationController?.navigationBar.prefersLargeTitles = true
-    }
-    
     override func loadView() {
         super.loadView()
         view = rootView
@@ -46,7 +39,7 @@ class ContactsScreenVC: RuntimeLocalizedUIViewController {
         super.viewDidLoad()
         setup()
         viewModel.viewDidLoad()
-        runtimeLocalizedTitleKey = "Tabbar.Tabs.Contacts.title"
+        runtimeLocalizedTitleKey = AppStrings.Tabbar.Tabs.Contacts.titleKey
     }
     
     override func updateRuntimeLocalizedStrings() {
@@ -64,11 +57,10 @@ extension ContactsScreenVC {
     }
     
     private func bindOutput() {
-        viewModel.sectionsChangePublisher
+        viewModel.tableSnapshot
             .receiveOnMainThread()
             .sink { [weak self] snapshot in
-                guard let self = self else { return }
-                applyChanges(changeSnapshot: snapshot)
+                self?.applyChanges(changeSnapshot: snapshot)
             }
             .store(in: &cancelBag)
     }
@@ -79,14 +71,11 @@ extension ContactsScreenVC {
         let sections = changeSnapshot.sections
         let changeSet = changeSnapshot.changes
         var snapshot = NSDiffableDataSourceSnapshot<ContactsScreenSection.SectionID, Int>()
-        snapshot.appendSections(sections.map{$0.id})
+        snapshot.appendSections(sections.map {$0.id} )
         sections.forEach { section in
-            snapshot.appendItems(section.cells.map{$0.hashValue}, toSection: section.id)
+            snapshot.appendItems(section.cells.map {$0.hashValue}, toSection: section.id)
         }
         snapshot.reloadItems(changeSet.updated)
-        dataSource.apply(snapshot, animatingDifferences: !initialRender)
-        if initialRender {
-            initialRender = false
-        }
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
 }

@@ -6,9 +6,9 @@
 //  Copyright © 2023 SWEDBANK AB. All rights reserved.
 //
 
+import Combine
 import UIKit
 import SwedInterfaceAdapters
-import Combine
 import SwedApplicationBusinessRules
 
 protocol LoginScreenFactory {
@@ -17,7 +17,10 @@ protocol LoginScreenFactory {
 
 class DefaultLoginScreenFactory: LoginScreenFactory {
     func make(didLoginPublisher: PassthroughSubject<CustomerDTO, Never>) -> LoginScreenVC {
-        let vm = DefaultLoginScreenVM(loginUseCase: Composition.resolve())
+        let vm = DefaultLoginScreenVM(
+            loginUseCase: Composition.resolve(),
+            getLastCustomerUseCase: Composition.resolve()
+        )
         let vc = LoginScreenVC(viewModel: vm)
         let router = DefaultLoginScreenRouter(
             viewController: vc,

@@ -9,11 +9,13 @@
 import UIKit
 import SwedInterfaceAdapters
 import DevToolsUI
+import DevToolsCore
 
 extension OverviewScreenVC {
     class DiffableDataSource: UITableViewDiffableDataSource<OverviewScreenSection.SectionID, Int> {
         // MARK: Properties
         private var viewModel: OverviewScreenVM
+        private var initialRender = true
         
         // MARK: Lifecycle
         init(
@@ -23,6 +25,18 @@ extension OverviewScreenVC {
         ) {
             self.viewModel = viewModel
             super.init(tableView: tableView, cellProvider: cellProvider)
+            self.defaultRowAnimation = .fade
+        }
+        
+        func apply(_ snapshot: OverviewScreenTableSnapshot) {
+            var nativeSnapshot = NSDiffableDataSourceSnapshot<OverviewScreenSection.SectionID, Int>()
+            nativeSnapshot.appendSections(snapshot.sections.map { $0.id })
+            snapshot.sections.forEach { section in
+                nativeSnapshot.appendItems(section.cells.map { $0.hashValue }, toSection: section.id)
+            }
+            nativeSnapshot.reloadItems(snapshot.changes.updated)
+            apply(nativeSnapshot, animatingDifferences: !initialRender)
+            initialRender = false
         }
     }
     
@@ -30,13 +44,12 @@ extension OverviewScreenVC {
         DiffableDataSource(
             viewModel: viewModel,
             tableView: rootView.tableView
-        ) { tableView, indexPath, itemIdentifier in
-            // TODO: Improve
-            guard let cell = self.viewModel.sections.flatMap({ section in
-                section.cells
-            }).first(where: { cell in
-                cell.hashValue == itemIdentifier
-            }) else {
+        ) { [weak self] tableView, indexPath, itemIdentifier in
+            guard
+                let self,
+                let section = viewModel.tableSnapshot.value.sections[safe: indexPath.section],
+                let cell = section.cells[safe: indexPath.row]
+            else {
                 return UITableViewCell()
             }
             switch cell {

@@ -1,0 +1,144 @@
+"Globals.ok" = "Labi";
+
+/*  */
+"Globals.InputField.mustBeAtleastSize" = "Laukam jābūt vismaz %@ simbolu garam";
+
+/*  */
+"Globals.InputField.mustNotBeEmpty" = "Lauks nedrīkst būt tukšs";
+
+
+"Globals.login" = "Ienākt";
+
+
+"Globals.logout" = "Iziet";
+
+
+"Screen.LanguageSelection.en" = "English";
+
+
+"Screen.LanguageSelection.lv" = "Latviešu";
+
+
+"Screen.LanguageSelection.title" = "Izvēlieties valodu";
+
+"Screen.Login.greeting" = "Sveiks, %@!";
+
+"Screen.Login.enterPin" = "Ievadiet PIN";
+
+"Screen.LockedTab.Cards.subtitle" = "Ērts veids kā pārvaldīt savas kartes";
+
+
+"Screen.LockedTab.Cards.title" = "Pārvaldi savas kartes";
+
+
+"Screen.LockedTab.Overview.subtitle" = "Ērts veids kā pārraudzīt savu naudu un redzēt, kur tā tiek tērēta";
+
+
+"Screen.LockedTab.Overview.title" = "Konta atlikums un pārskats";
+
+
+"Screen.LockedTab.Payments.subtitle" = "Veic maksājumus viegli lai kur vien arī būtu";
+
+
+"Screen.LockedTab.Payments.title" = "Pārskaiti naudu vai apmaksā rēķinus";
+
+/*  */
+"Screen.LockedTab.Services.subtitle" = "Izvēlies visus iespējamos pakalpojumus šeit";
+
+/*  */
+"Screen.LockedTab.Services.title" = "Mūsu pakalpojumi";
+
+
+"Screen.Login.Button.title" = "Ienākt";
+
+/*  */
+"Screen.Login.Password.placeholder" = "Ievadiet paroli";
+
+/*  */
+"Screen.Login.Username.placeholder" = "Ievadiet lietotājvārdu";
+
+/*  */
+"Screen.Overview.Expenses.details" = "Skatīt detaļas";
+
+/*  */
+"Screen.Overview.Expenses.spent" = "Iztērēts uz";
+
+/*  */
+"Screen.Overview.Expenses.thisMonth" = "Šomēnes";
+
+/*  */
+"Screen.Overview.Expenses.title" = "Izdevumi";
+
+
+"Screen.Settings.Section.AppFeatures.authMethods" = "Autentifikācijas veidi";
+
+
+"Screen.Settings.Section.AppFeatures.notifications" = "Mobilie paziņojumi";
+
+
+"Screen.Settings.Section.AppFeatures.title" = "Lietotnes funkcijas";
+
+
+"Screen.Settings.Section.AppFeatures.widget" = "Logrīks";
+
+
+"Screen.Settings.Section.Language.title" = "Izvēlies valodu";
+
+
+"Screen.Settings.Section.UserData.deleteUserData" = "Dzēst lietotāja datus";
+
+
+"Screen.Settings.Section.UserData.rememberUser" = "Atcerēties lietotāju";
+
+
+"Screen.Settings.Section.UserData.title" = "Lietotāja dati";
+
+
+"Screen.Settings.title" = "Uzstādījumi";
+
+
+"Screen.User.Section.Privacy.privacySettings" = "Privātuma iestatījumi";
+
+
+"Screen.User.Section.Privacy.title" = "Privātums";
+
+
+"Screen.User.Section.Private.title" = "Privātpersonām";
+
+
+"Screen.User.Section.Settings.settings" = "Uzstādījumi";
+
+
+"Screen.User.Section.Settings.title" = "Uzstādījumi";
+
+
+"Screen.User.title" = "Lietotājs";
+
+
+"Tabbar.Tabs.Cards.title" = "Kartes";
+
+
+"Tabbar.Tabs.Contacts.title" = "Kontakti";
+
+
+"Tabbar.Tabs.Overview.title" = "Pārskats";
+
+
+"Tabbar.Tabs.Payments.title" = "Maksājumi";
+
+
+"Tabbar.Tabs.Services.title" = "Servisi";
+
+"Screen.Contacts.Items.contactUs.title" = "Sazinies ar mums";
+"Screen.Contacts.Items.contactUs.description" = "Saņem atbildes no virtuālā asistena";
+"Screen.Contacts.Items.write.title" = "Raksti";
+"Screen.Contacts.Items.write.description" = "Nosūti bankas ziņojumu";
+"Screen.Contacts.Items.priority.title" = "Prioritārā apkalpošana";
+"Screen.Contacts.Items.priority.description" = "+371 67 333 338";
+"Screen.Contacts.Items.consultation.title" = "Piesakies konsultācijai";
+"Screen.Contacts.Items.consultation.description" = "Telefoniski, videozvanā vai filiālē";
+"Screen.Contacts.Items.atms.title" = "Bankomāti un filiāles";
+"Screen.Contacts.Items.atms.description" = "Atrast kartē";
+"Screen.Contacts.Items.faq.title" = "Biežākie jautājumi";
+"Screen.Contacts.Items.faq.description" = "Saņem noderīgas atbildes";
+"Screen.OfferDetails.title" = "Piedāvājuma detaļas";

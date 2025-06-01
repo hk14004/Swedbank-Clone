@@ -1,5 +1,5 @@
 //
-//  LoginVM.swift
+//  LoginScreenVM.swift
 //  Swedbank
 //
 //  Created by Hardijs Ķirsis on 03/09/2023.
@@ -12,37 +12,73 @@ import DevToolsCore
 import SwedApplicationBusinessRules
 
 public protocol LoginScreenVMInput {
-    func viewDidLoad()
-    func onLoginTapped(username: String, password: String)
-    func onRecoverPasswordTapped()
+    func onFaceIDTapped()
+    func onLanguageChangeTap()
+    func onAddDigit(_ digit: String)
+    func onRemoveDigit()
 }
 
 public protocol LoginScreenVMOutput {
     var router: LoginScreenRouter! { get set}
-    var loadingPublisher: CurrentValueSubject<Bool, Never> { get }
+    var loadingPublisher: Bool { get }
+    var customerName: String { get }
+    var maxPinLength: Int { get }
+    var currentPin: String { get }
 }
 
-public protocol LoginScreenVM: LoginScreenVMInput,LoginScreenVMOutput {}
+public protocol LoginScreenVM: ObservableObject, LoginScreenVMInput, LoginScreenVMOutput {}
 
 public class DefaultLoginScreenVM: LoginScreenVM {
+    // MARK: Properties
+    @Published public var loadingPublisher: Bool = false
+    @Published public var currentPin: String = ""
+    public var maxPinLength: Int { 3 }
+    public var customerName: String { customer.displayName }
     public var router: LoginScreenRouter!
-    public var loadingPublisher: CurrentValueSubject<Bool, Never> = .init(false)
     private let loginUseCase: LoginUseCase
+    private let getLastCustomerUseCase: GetLastCustomerUseCase
+    private var customer: CustomerDTO
     private var bag = Set<AnyCancellable>()
     
-    public init(loginUseCase: LoginUseCase) {
+    // MARK: Lifecycle
+    public init(
+        loginUseCase: LoginUseCase,
+        getLastCustomerUseCase: GetLastCustomerUseCase
+    ) {
         self.loginUseCase = loginUseCase
+        self.getLastCustomerUseCase = getLastCustomerUseCase
+        self.customer = getLastCustomerUseCase.use()
     }
     
 }
 
 // MARK: - Public
 public extension DefaultLoginScreenVM {
-    func viewDidLoad() {}
+    func onAddDigit(_ digit: String) {
+        guard currentPin.count < maxPinLength else { return }
+        currentPin.append(digit)
+        if currentPin.count == maxPinLength {
+            attemptLogin(pinCode: currentPin)
+        }
+    }
     
-    func onLoginTapped(username: String, password: String) {
-        loadingPublisher.send(true)
-        loginUseCase.use(username: username, password: password)
+    func onRemoveDigit() {
+        guard currentPin.count > 0 else { return }
+        currentPin.removeLast()
+    }
+    
+    func onLanguageChangeTap() {
+        router.routeToLanguageSelectionScreen()
+    }
+    
+    func onFaceIDTapped() {}
+}
+
+// MARK: Private
+extension DefaultLoginScreenVM {
+    private func attemptLogin(pinCode: String) {
+        loadingPublisher = true
+        loginUseCase.use(customerID: customer.id, pinCode: pinCode)
             .receiveOnMainThread()
             .sink { [weak self] completion in
                 self?.handleLoginCompletion(completion)
@@ -52,22 +88,19 @@ public extension DefaultLoginScreenVM {
             .store(in: &bag)
     }
     
-    func onRecoverPasswordTapped() {}
-}
-
-// MARK: Private
-extension DefaultLoginScreenVM {
     private func onLoggedIn(customer: CustomerDTO) {
         router.routeToLoginCompleted(customer: customer)
     }
     
     private func handleLoginCompletion(_ completion: Subscribers.Completion<Error>) {
-        loadingPublisher.send(false)
+        loadingPublisher = false
+        currentPin = ""
         switch completion {
         case .finished:
             return
         case .failure(let error):
             printError(error)
+            router.routeToErrorAlert(error)
         }
     }
 }

@@ -10,11 +10,15 @@ import SwedApplicationBusinessRules
 import Combine
 
 class DefaultCustomerRepository: CustomerRepository {
+    func getRemoteCustomers() -> AnyPublisher<[CustomerDTO], Never> {
+        .just([JAMES_BOND])
+    }
+    
     func addOrUpdate(_ items: [CustomerDTO]) -> AnyPublisher<Void, Never> {
         .just(())
     }
     
     func getSingle(id: String) -> AnyPublisher<CustomerDTO?, Never> {
-        .just(.init(id: "007", displayName: "James Bond"))
+        .just(JAMES_BOND)
     }
 }

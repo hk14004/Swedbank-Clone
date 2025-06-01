@@ -44,35 +44,35 @@ extension OverviewScreenView {
         }()
         private lazy var topTitleLabel: UILabel = {
            let view = RuntimeLocalizedLabel()
-            view.runtimeLocalizedKey = "Screen.Overview.Expenses.title"
-            view.textColor = SWEDBANKAsset.Colors.orange1.color
+            view.runtimeLocalizedKey = AppStrings.Screen.Overview.Expenses.titleKey
+            view.textColor = AppColors.accent1.color
             view.font = AppTypography.title2.scaledFont
             return view
         }()
         private lazy var detailsLabel: UILabel = {
             let view = RuntimeLocalizedLabel()
-            view.runtimeLocalizedKey = "Screen.Overview.Expenses.details"
-            view.textColor = SWEDBANKAsset.Colors.blue2.color
+            view.runtimeLocalizedKey = AppStrings.Screen.Overview.Expenses.detailsKey
+            view.textColor = AppColors.accent2.color
             view.font = AppTypography.link1.scaledFont
             return view
         }()
         private lazy var monthLabel: UILabel = {
             let view = RuntimeLocalizedLabel()
-            view.runtimeLocalizedKey = "Screen.Overview.Expenses.thisMonth"
-            view.textColor = SWEDBANKAsset.Colors.text3.color
+            view.runtimeLocalizedKey = AppStrings.Screen.Overview.Expenses.thisMonthKey
+            view.textColor = AppColors.text3.color
             view.font = AppTypography.title3.scaledFont
             return view
         }()
         private lazy var currencyAmountView: CurrencyAmountView = {
             let view = CurrencyAmountView()
             view.configure(font: AppTypography.body.scaledFont)
-            view.configure(textColor: SWEDBANKAsset.Colors.text2.color)
+            view.configure(textColor: AppColors.text2.color)
             return view
         }()
         private lazy var spentLabel: UILabel = {
             let view = RuntimeLocalizedLabel()
-            view.runtimeLocalizedKey = "Screen.Overview.Expenses.spent"
-            view.textColor = SWEDBANKAsset.Colors.text3.color
+            view.runtimeLocalizedKey = AppStrings.Screen.Overview.Expenses.spentKey
+            view.textColor = AppColors.text3.color
             view.font = AppTypography.title3.scaledFont
             return view
         }()
@@ -110,6 +110,7 @@ extension OverviewScreenView.ExpensesCellView {
 // MARK: Private
 extension OverviewScreenView.ExpensesCellView {
     private func setup() {
+        selectionStyle = .none
         setupMainStack()
         setupMainStackContent()
         setupTopStackContent()

@@ -9,7 +9,7 @@ import ProjectDescriptionHelpers
 import ProjectDescription
 
 enum Constants {
-    static let bundleId = "com.hardijs.\(Project.Framework.SwedInterfaceAdapters.rawValue)"
+    static let bundleId = "baltic.swed.mob.\(Project.Framework.SwedInterfaceAdapters.rawValue)"
 }
 
 let project = Project(
@@ -31,7 +31,8 @@ let project = Project(
             sources: ["Sources/**"],
             dependencies: [
                 .external(name: Project.Dependencies.DevToolsCore.rawValue),
-                .project(target: Project.Framework.SwedApplicationBusinessRules.rawValue, path: "../\(Project.Framework.SwedApplicationBusinessRules.rawValue)")
+                .project(target: Project.Framework.SwedApplicationBusinessRules.rawValue, path: "../\(Project.Framework.SwedApplicationBusinessRules.rawValue)"),
+                .project(target: Project.Framework.SwedLocalization.rawValue, path: "../\(Project.Framework.SwedLocalization.rawValue)")
             ]),
         .target(
             name: Project.Framework.SwedInterfaceAdapters.getTestTargetName(),

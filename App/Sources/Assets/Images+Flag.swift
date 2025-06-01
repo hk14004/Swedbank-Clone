@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension SWEDBANKAsset.Images {
+extension AppImages {
     static func makeLanguageFlagName(language: String) -> String {
         let prefix = "ic_"
         let suffix = "_flag"

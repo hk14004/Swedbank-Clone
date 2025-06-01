@@ -19,9 +19,7 @@ struct LockedTabScreenView<ViewModel: LockedDashboardVM>: View {
             HStack {
                 Spacer()
                 LanguageDropdownView()
-                    .onTapGesture {
-                        viewModel.onLanguageChangeTap()
-                    }
+                    .onTapGesture { viewModel.onLanguageChangeTap() }
             }
             
             Spacer()
@@ -32,9 +30,10 @@ struct LockedTabScreenView<ViewModel: LockedDashboardVM>: View {
                     .frame(width: 250, height: 200)
                 Text(viewModel.presentation.title.runtimeLocalized())
                     .font(.title)
-                    .foregroundColor(Colors.orange1.swiftUIColor)
+                    .foregroundColor(AppColors.orange1.swiftUIColor)
                     .padding(.top)
                 Text(viewModel.presentation.subtitle.runtimeLocalized())
+                    .foregroundColor(AppColors.black1.swiftUIColor)
                     .padding(.top)
             }
             .layoutPriority(1)
@@ -58,23 +57,18 @@ struct LockedTabView_Previews: PreviewProvider {
 }
 
 private class LockedTabScreenVMPreview {
-
     var presentation: SwedInterfaceAdapters.LockedDashboardPresentationConfig {
-        .init(title: "Screen.LockedTab.Overview.title", subtitle: "Screen.LockedTab.Overview.subtitle", backgroundColorName: "White3", tabDescriptionIconName: "ic_overview_description")
+        SwedInterfaceAdapters.LockedDashboardPresentationConfig(
+            title: AppStrings.Screen.LockedTab.Overview.titleKey,
+            subtitle: AppStrings.Screen.LockedTab.Overview.subtitleKey,
+            backgroundColorName: "White3",
+            tabDescriptionIconName: "ic_overview_description"
+        )
     }
     var router: LockedDashboardRouter!
-    
 }
 
 extension LockedTabScreenVMPreview: LockedDashboardVM {
-    
-    
-    func onLoginTapped() {
-        
-    }
-    
-    func onLanguageChangeTap() {
-        
-    }
-
+    func onLoginTapped() {}
+    func onLanguageChangeTap() {}
 }

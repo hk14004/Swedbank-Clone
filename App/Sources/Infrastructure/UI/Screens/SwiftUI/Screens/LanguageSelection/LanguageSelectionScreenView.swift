@@ -12,6 +12,7 @@ import SwedInterfaceAdapters
 struct LanguageSelectionScreenView<ViewModel: LanguageSelectionScreenVM>: View {
     
     @ObservedObject var viewModel: ViewModel
+    @ObservedObject var loc = AppLocalizationObserver()
     
     var body: some View {
         VStack(spacing: 0) {
@@ -32,7 +33,7 @@ extension LanguageSelectionScreenView {
     @ViewBuilder
     private func makeHeader() -> some View {
         VStack(spacing: 0) {
-            Text(SWEDBANKStrings.Screen.LanguageSelection.title)
+            Text(AppStrings.Screen.LanguageSelection.title)
                 .frame(maxWidth: .infinity)
                 .overlay {
                     HStack {
@@ -40,7 +41,7 @@ extension LanguageSelectionScreenView {
                             viewModel.onClose()
                         } label: {
                             Image(systemName: "xmark")
-                                .foregroundColor(SWEDBANKAsset.Colors.orange1.swiftUIColor)
+                                .foregroundColor(AppColors.orange1.swiftUIColor)
                         }
                         Spacer()
                     }
@@ -64,7 +65,7 @@ extension LanguageSelectionScreenView {
     @ViewBuilder
     private func makeLanguageRow(code: String, selected: Bool) -> some View {
         HStack(alignment: .center, spacing: 0) {
-            Image(SWEDBANKAsset.Images.makeLanguageFlagName(language: code))
+            Image(AppImages.makeLanguageFlagName(language: code))
                 .resizable()
                 .scaledToFit()
                 .frame(width: 24)
@@ -76,7 +77,7 @@ extension LanguageSelectionScreenView {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 14)
-                    .foregroundColor(SWEDBANKAsset.Colors.orange1.swiftUIColor)
+                    .foregroundColor(AppColors.orange1.swiftUIColor)
             }
         }
         .padding(.vertical, 8)
@@ -91,12 +92,6 @@ class LanguageSelectionScreenBottomSheetPreviewVM: LanguageSelectionScreenVM {
 }
 
 extension LanguageSelectionScreenBottomSheetPreviewVM {
-    func onClose() {
-        
-    }
-    
-    func onChangeLanguage(code: String) {
-        
-    }
-    
+    func onClose() {}
+    func onChangeLanguage(code: String) {}
 }

@@ -32,7 +32,7 @@ extension ContactsScreenView {
         }
         
         private func setup() {
-            backgroundColor = SWEDBANKAsset.Colors.background1.color
+            backgroundColor = AppColors.background1.color
             setupContainerView()
             setupTableView()
         }

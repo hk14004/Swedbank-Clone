@@ -1,5 +1,5 @@
 //
-//  StartAllUserSessionsUseCase.swift
+//  DefaultLoginUseCase.swift
 //  Swedbank
 //
 //  Created by Hardijs Ķirsis on 03/09/2023.
@@ -10,37 +10,31 @@ import Foundation
 import Combine
 
 public protocol LoginUseCase {
-    func use(username: String, password: String) -> AnyPublisher<CustomerDTO, Error>
+    func use(customerID: String, pinCode: String) -> AnyPublisher<CustomerDTO, Error>
 }
 
 public struct DefaultLoginUseCase: LoginUseCase {
     private let startSessionService: StartSessionService
-    private let manager: UserSessionManager
-    private let fetchRemoteCustomersService: FetchRemoteCustomersService
+    private let sessionManager: UserSessionManager
     private let userSessionCredentialsRepository: UserSessionCredentialsRepository
     private let customerRepository: CustomerRepository
     
     public init(
         startSessionService: StartSessionService,
         manager: UserSessionManager,
-        fetchRemoteCustomersService: FetchRemoteCustomersService,
         userSessionCredentialsRepository: UserSessionCredentialsRepository,
         customerRepository: CustomerRepository
     ) {
         self.startSessionService = startSessionService
-        self.manager = manager
-        self.fetchRemoteCustomersService = fetchRemoteCustomersService
+        self.sessionManager = manager
         self.userSessionCredentialsRepository = userSessionCredentialsRepository
         self.customerRepository = customerRepository
     }
     
-    public func use(username: String, password: String) -> AnyPublisher<CustomerDTO, Error> {
+    public func use(customerID: String, pinCode: String) -> AnyPublisher<CustomerDTO, Error> {
         // Fetch tokens
         startSessionService.use(
-            input: .init(
-                username: username,
-                password: password
-            )
+            input: .init(customerID: customerID, pinCode: pinCode)
         )
         .flatMap { response -> AnyPublisher<CustomerDTO, Error> in
             // Save creds
@@ -53,23 +47,23 @@ public struct DefaultLoginUseCase: LoginUseCase {
             )
             userSessionCredentialsRepository.save(credentials: creds)
             // Fetch customers
-            return fetchRemoteCustomersService.use()
-                .flatMap { customersResponse -> AnyPublisher<(selected: CustomerDTO, all: [CustomerDTO]), Error> in
+            return customerRepository.getRemoteCustomers()
+                .flatMap { customersOutput -> AnyPublisher<(selected: CustomerDTO, all: [CustomerDTO]), Error> in
                     // Find customer
-                    guard let customer = customersResponse.first(where: {$0.id == username}) else {
+                    guard let customer = customersOutput.first(where: {$0.id == customerID}) else {
                         return .fail(NSError(domain: "No user found", code: 0))
                     }
-                    return .just((selected: customer, all: customersResponse))
+                    return .just((selected: customer, all: customersOutput))
                         .eraseToAnyPublisher()
                 }
-                .flatMap { stream -> AnyPublisher<CustomerDTO, Error> in
+                .flatMap { customersOutput -> AnyPublisher<CustomerDTO, Error> in
                     // Store customers
-                    customerRepository.addOrUpdate(stream.all)
+                    customerRepository.addOrUpdate(customersOutput.all)
                         .flatMap { _ -> AnyPublisher<CustomerDTO, Error> in
                             // Start user session
-                            manager.startUserSession(with: creds)
-                            // Return to caller the customer
-                            return .just(stream.selected)
+                            sessionManager.startUserSession(with: creds)
+                            // Return to caller the selected customer
+                            return .just(customersOutput.selected)
                         }
                         .eraseToAnyPublisher()
                 }

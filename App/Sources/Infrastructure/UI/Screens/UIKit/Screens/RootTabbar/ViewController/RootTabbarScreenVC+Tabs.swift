@@ -50,8 +50,8 @@ extension RootTabbarScreenVC {
         let navVC = UINavigationController()
         let item = RuntimeLocalizedTabBarItem()
         item.image = UIImage(systemName: "house")
-        item.selectedImage = UIImage(systemName: "house")
-        item.runtimeLocalizedKey = "Tabbar.Tabs.Overview.title"
+        item.selectedImage = UIImage(systemName: "house.fill")
+        item.runtimeLocalizedKey = AppStrings.Tabbar.Tabs.Overview.titleKey
         navVC.tabBarItem = item
         
         let vc: UIViewController = {
@@ -60,8 +60,8 @@ extension RootTabbarScreenVC {
                 return factory.make(customer: customer)
             } else {
                 let config = LockedDashboardPresentationConfig(
-                    title: "Screen.LockedTab.Overview.title",
-                    subtitle: "Screen.LockedTab.Overview.subtitle",
+                    title: AppStrings.Screen.LockedTab.Overview.titleKey,
+                    subtitle: AppStrings.Screen.LockedTab.Overview.subtitleKey,
                     backgroundColorName: "White3",
                     tabDescriptionIconName: "ic_overview_description"
                 )
@@ -75,9 +75,9 @@ extension RootTabbarScreenVC {
     private func makePaymentsTab(locked: Bool) -> UINavigationController {
         let navVC = UINavigationController()
         let item = RuntimeLocalizedTabBarItem()
-        item.image = UIImage(systemName: "arrow.left.arrow.right")
-        item.selectedImage = UIImage(systemName: "arrow.left.arrow.right")
-        item.runtimeLocalizedKey = "Tabbar.Tabs.Payments.title"
+        item.image = UIImage(systemName: "arrow.up.left.arrow.down.right.square")
+        item.selectedImage = UIImage(systemName: "arrow.up.left.arrow.down.right.square.fill")
+        item.runtimeLocalizedKey = AppStrings.Tabbar.Tabs.Payments.titleKey
         navVC.tabBarItem = item
         
         let vc: UIViewController = {
@@ -87,8 +87,8 @@ extension RootTabbarScreenVC {
                 return vc
             }
             let config = LockedDashboardPresentationConfig(
-                title: "Screen.LockedTab.Payments.title",
-                subtitle: "Screen.LockedTab.Payments.subtitle",
+                title: AppStrings.Screen.LockedTab.Payments.titleKey,
+                subtitle: AppStrings.Screen.LockedTab.Payments.subtitleKey,
                 backgroundColorName: "Pink1",
                 tabDescriptionIconName: "ic_payments_description"
             )
@@ -102,8 +102,8 @@ extension RootTabbarScreenVC {
         let navVC = UINavigationController()
         let item = RuntimeLocalizedTabBarItem()
         item.image = UIImage(systemName: "creditcard")
-        item.selectedImage = UIImage(systemName: "creditcard")
-        item.runtimeLocalizedKey = "Tabbar.Tabs.Cards.title"
+        item.selectedImage = UIImage(systemName: "creditcard.fill")
+        item.runtimeLocalizedKey = AppStrings.Tabbar.Tabs.Cards.titleKey
         navVC.tabBarItem = item
         
         let vc: UIViewController = {
@@ -113,8 +113,8 @@ extension RootTabbarScreenVC {
                 return vc
             }
             let config = LockedDashboardPresentationConfig(
-                title: "Screen.LockedTab.Cards.title",
-                subtitle: "Screen.LockedTab.Cards.subtitle",
+                title: AppStrings.Screen.LockedTab.Cards.titleKey,
+                subtitle: AppStrings.Screen.LockedTab.Cards.subtitleKey,
                 backgroundColorName: "White3",
                 tabDescriptionIconName: "ic_cards_description"
             )
@@ -127,9 +127,9 @@ extension RootTabbarScreenVC {
     private func makeServicesTab(locked: Bool) -> UINavigationController {
         let navVC = UINavigationController()
         let item = RuntimeLocalizedTabBarItem()
-        item.image = UIImage(systemName: "list.clipboard")
-        item.selectedImage = UIImage(systemName: "list.clipboard")
-        item.runtimeLocalizedKey = "Tabbar.Tabs.Services.title"
+        item.image = UIImage(systemName: "shippingbox")
+        item.selectedImage = UIImage(systemName: "shippingbox.fill")
+        item.runtimeLocalizedKey = AppStrings.Tabbar.Tabs.Services.titleKey
         navVC.tabBarItem = item
         
         let vc: UIViewController = {
@@ -139,8 +139,8 @@ extension RootTabbarScreenVC {
                 return vc
             }
             let config = LockedDashboardPresentationConfig(
-                title: "Screen.LockedTab.Services.title",
-                subtitle: "Screen.LockedTab.Services.subtitle",
+                title: AppStrings.Screen.LockedTab.Services.titleKey,
+                subtitle: AppStrings.Screen.LockedTab.Services.subtitleKey,
                 backgroundColorName: "Pink1",
                 tabDescriptionIconName: "ic_services_description"
             )
@@ -154,8 +154,8 @@ extension RootTabbarScreenVC {
         let navVC = UINavigationController()
         let item = RuntimeLocalizedTabBarItem()
         item.image = UIImage(systemName: "bubble.left.and.bubble.right")
-        item.selectedImage = UIImage(systemName: "bubble.left.and.bubble.right")
-        item.runtimeLocalizedKey = "Tabbar.Tabs.Contacts.title"
+        item.selectedImage = UIImage(systemName: "bubble.left.and.bubble.right.fill")
+        item.runtimeLocalizedKey = AppStrings.Tabbar.Tabs.Contacts.titleKey
         navVC.tabBarItem = item
         
         let vc: UIViewController = {

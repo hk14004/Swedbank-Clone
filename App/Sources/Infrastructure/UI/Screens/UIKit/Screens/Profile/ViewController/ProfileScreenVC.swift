@@ -41,7 +41,7 @@ class ProfileScreenVC: RuntimeLocalizedUIViewController {
 
 extension ProfileScreenVC {
     private func setup() {
-        runtimeLocalizedTitleKey = "Screen.User.title"
+        runtimeLocalizedTitleKey = AppStrings.Screen.User.titleKey
         configureNavBar()
         rootView.tableView.dataSource = dataSource
         bindOutput()

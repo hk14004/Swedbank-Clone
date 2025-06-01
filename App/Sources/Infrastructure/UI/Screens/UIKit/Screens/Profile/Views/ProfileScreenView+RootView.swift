@@ -33,7 +33,7 @@ extension ProfileScreenView {
         }
         
         private func setup() {
-            backgroundColor = SWEDBANKAsset.Colors.background1.color
+            backgroundColor = AppColors.background1.color
             setupContainerView()
             setupTableView()
         }
@@ -41,9 +41,7 @@ extension ProfileScreenView {
         private func setupContainerView() {
             addSubview(containerView)
             containerView.snp.makeConstraints { make in
-                make.edges.equalToSuperview { superView in
-                    superView.safeAreaLayoutGuide
-                }
+                make.edges.equalToSuperview()
             }
         }
         

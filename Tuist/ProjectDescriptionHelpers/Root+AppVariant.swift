@@ -63,6 +63,10 @@ extension Project.Root.AppVariant {
                     target: Project.Framework.SwedApplicationBusinessRules.rawValue,
                     path: Project.Framework.SwedApplicationBusinessRules.getPath()
                 ),
+                .project(
+                    target: Project.Framework.SwedLocalization.rawValue,
+                    path: Project.Framework.SwedLocalization.getPath()
+                ),
                 .external(name: Project.Dependencies.SwiftyUserDefaults.rawValue),
                 .external(name: Project.Dependencies.SnapKit.rawValue),
                 .external(name: Project.Dependencies.Swinject.rawValue),
@@ -81,7 +85,8 @@ extension Project.Root.AppVariant {
                 .release(name: .release, settings: Project.makeSettingsDictionary(
                     identity: "iPhone Developer", provisioningPorfileSpecifier: "", variant: self)
                 )
-            ])
+            ]),
+            coreDataModels: [.coreDataModel("App/Resources/Database/CoreDataDB.xcdatamodeld")]
         )
     }
 }

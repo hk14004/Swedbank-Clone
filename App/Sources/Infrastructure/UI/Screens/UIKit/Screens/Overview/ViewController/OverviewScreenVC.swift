@@ -11,13 +11,14 @@ import Combine
 import SwedInterfaceAdapters
 import DevToolsCore
 import DevToolsUI
+import DevToolsLocalization
 
-class OverviewScreenVC: UIViewController {
+class OverviewScreenVC: RuntimeLocalizedUIViewController {
     // MARK: Properties
-    lazy var rootView = OverviewScreenView.RootView()
     let viewModel: OverviewScreenVM
-    private var cancelBag = Set<AnyCancellable>()
+    lazy var rootView = OverviewScreenView.RootView()
     lazy var dataSource = makeDataSource()
+    private var cancelBag = Set<AnyCancellable>()
     private var initialRender = true
     
     // MARK: Lifecycle
@@ -30,11 +31,6 @@ class OverviewScreenVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
-    
     override func loadView() {
         super.loadView()
         view = rootView
@@ -42,9 +38,7 @@ class OverviewScreenVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        rootView.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         setup()
-        viewModel.viewDidLoad()
     }
 }
 
@@ -52,41 +46,78 @@ class OverviewScreenVC: UIViewController {
 extension OverviewScreenVC {
     private func setup() {
         rootView.tableView.dataSource = dataSource
+        rootView.tableView.delegate = self
         bindActions()
         bindOutput()
+        setupNavigationBar()
+    }
+    
+    private func setupNavigationBar() {
+        runtimeLocalizedTitleKey = AppStrings.Tabbar.Tabs.Overview.titleKey
+        navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(customView: rootView.profileButton),
+            UIBarButtonItem(customView: rootView.notificationsButton)
+        ]
+        rootView.profileButton.configure(text: viewModel.customer.getInitials())
     }
     
     private func bindOutput() {
-        viewModel.sectionsChangePublisher
+        bindSectionsChanged()
+        bindIsRefreshing()
+    }
+    
+    private func bindSectionsChanged() {
+        viewModel.tableSnapshot
+            .debounce(
+                for: .milliseconds(initialRender ? 0 : UIConstant.TableView.updateDebounce),
+                scheduler: RunLoop.main
+            )
             .receiveOnMainThread()
             .sink { [weak self] snapshot in
-                guard let self = self else { return }
-                applyChanges(changeSnapshot: snapshot)
+                self?.dataSource.apply(snapshot)
+                self?.initialRender = false
+            }
+            .store(in: &cancelBag)
+    }
+    
+    private func bindIsRefreshing() {
+        viewModel.isRefreshing
+            .receiveOnMainThread()
+            .dropFirst()
+            .sink { [weak self] isRefreshing in
+                self?.rootView.configureIsRefreshing(isRefreshing)
             }
             .store(in: &cancelBag)
     }
     
     private func bindActions() {
-        rootView.navigationBarView.profileButtonTapPublisher
-            .receiveOnMainThread()
-            .sink { [weak self] _ in
-                self?.viewModel.onProfileTapped()
-            }
+        bindNotificationsTapAction()
+        bindProfileTapAction()
+        bindPullToRefresh()
+    }
+    
+    private func bindNotificationsTapAction() {
+        rootView.didTapNotificationsButton
+            .sink(receiveValue: { [weak self] _ in
+                self?.viewModel.didTapNotifications()
+            })
             .store(in: &cancelBag)
     }
     
-    private func applyChanges(changeSnapshot: OverviewScreenSectionChangeSnapshot) {
-        let sections = changeSnapshot.sections
-        let changeSet = changeSnapshot.changes
-        var snapshot = NSDiffableDataSourceSnapshot<OverviewScreenSection.SectionID, Int>()
-        snapshot.appendSections(sections.map{$0.id})
-        sections.forEach { section in
-            snapshot.appendItems(section.cells.map{$0.hashValue}, toSection: section.id)
-        }
-        snapshot.reloadItems(changeSet.updated)
-        dataSource.apply(snapshot, animatingDifferences: !initialRender)
-        if initialRender {
-            initialRender = false
-        }
+    private func bindProfileTapAction() {
+        rootView.didTapProfileButton
+            .sink(receiveValue: { [weak self] _ in
+                self?.viewModel.didTapProfile()
+            })
+            .store(in: &cancelBag)
+    }
+    
+    private func bindPullToRefresh() {
+        rootView.didPullToRefresh
+            .receiveOnMainThread()
+            .sink(receiveValue: { [weak self] _ in
+                self?.viewModel.didPullToRefresh()
+            })
+            .store(in: &cancelBag)
     }
 }
