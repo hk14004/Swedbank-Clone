@@ -41,9 +41,7 @@ extension ProfileScreenView {
         private func setupContainerView() {
             addSubview(containerView)
             containerView.snp.makeConstraints { make in
-                make.edges.equalToSuperview { superView in
-                    superView.safeAreaLayoutGuide
-                }
+                make.edges.equalToSuperview()
             }
         }
         

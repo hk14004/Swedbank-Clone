@@ -51,7 +51,7 @@ extension RootTabbarScreenVC {
         let item = RuntimeLocalizedTabBarItem()
         item.image = UIImage(systemName: "house")
         item.selectedImage = UIImage(systemName: "house.fill")
-        item.runtimeLocalizedKey = "Tabbar.Tabs.Overview.title"
+        item.runtimeLocalizedKey = AppStrings.Tabbar.Tabs.Overview.titleKey
         navVC.tabBarItem = item
         
         let vc: UIViewController = {
@@ -77,7 +77,7 @@ extension RootTabbarScreenVC {
         let item = RuntimeLocalizedTabBarItem()
         item.image = UIImage(systemName: "arrow.up.left.arrow.down.right.square")
         item.selectedImage = UIImage(systemName: "arrow.up.left.arrow.down.right.square.fill")
-        item.runtimeLocalizedKey = "Tabbar.Tabs.Payments.title"
+        item.runtimeLocalizedKey = AppStrings.Tabbar.Tabs.Payments.titleKey
         navVC.tabBarItem = item
         
         let vc: UIViewController = {
@@ -103,7 +103,7 @@ extension RootTabbarScreenVC {
         let item = RuntimeLocalizedTabBarItem()
         item.image = UIImage(systemName: "creditcard")
         item.selectedImage = UIImage(systemName: "creditcard.fill")
-        item.runtimeLocalizedKey = "Tabbar.Tabs.Cards.title"
+        item.runtimeLocalizedKey = AppStrings.Tabbar.Tabs.Cards.titleKey
         navVC.tabBarItem = item
         
         let vc: UIViewController = {
@@ -129,7 +129,7 @@ extension RootTabbarScreenVC {
         let item = RuntimeLocalizedTabBarItem()
         item.image = UIImage(systemName: "shippingbox")
         item.selectedImage = UIImage(systemName: "shippingbox.fill")
-        item.runtimeLocalizedKey = "Tabbar.Tabs.Services.title"
+        item.runtimeLocalizedKey = AppStrings.Tabbar.Tabs.Services.titleKey
         navVC.tabBarItem = item
         
         let vc: UIViewController = {

@@ -27,6 +27,7 @@ extension UIConstant {
         static let highlightAlpha: CGFloat = 0.5
         static let defaultAlpha: CGFloat = 1
         static let cornerRadius: CGFloat = 16
+        static let minHeight: CGFloat = 44
     }
 }
 

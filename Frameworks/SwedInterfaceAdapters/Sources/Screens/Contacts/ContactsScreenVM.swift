@@ -17,42 +17,53 @@ public protocol ConstactsScreenVMInput {
 }
 
 public protocol ConstactsScreenVMOutput {
-    var sections: [ContactsScreenSection] { get }
-    var sectionsChangePublisher: PassthroughSubject<ContactsScreenSectionChangeSnapshot, Never> { get }
+    var tableSnapshot: CurrentValueSubject<ContactsScreenSectionChangeSnapshot, Never> { get }
     var router: ContactsScreenRouter! { get }
 }
 
 public protocol ContactsScreenVM: ConstactsScreenVMInput, ConstactsScreenVMOutput {}
 
 public class DefaultContactsScreenVM: ContactsScreenVM {
-    public var sections: [ContactsScreenSection]
-    public var sectionsChangePublisher: PassthroughSubject<ContactsScreenSectionChangeSnapshot, Never>
+    // MARK: Constant
+    enum Constant {
+        enum ItemID: String {
+            case contactUs
+            case writeToUs
+            case prioritySupport
+            case consultation
+            case atms
+            case faq
+        }
+    }
+    
+    // MARK: Properties
+    public var tableSnapshot: CurrentValueSubject<ContactsScreenSectionChangeSnapshot, Never>
     public var router: ContactsScreenRouter!
     
+    // MARK: Lifecycle
     public init() {
-        sections = []
-        sectionsChangePublisher = .init()
+        tableSnapshot = .init(.init(sections: [], changes: .init()))
     }
 }
 
+// MARK: Methods
 public extension DefaultContactsScreenVM {
-     func viewDidLoad() {
-        sections = [
+    func viewDidLoad() {
+        let sections = [
             ContactsScreenSection(
                 id: .contactItems,
-                title: "",
                 cells: makeAllContactItems()
             )
         ]
-        let change = DevHashChangeSet.calculateCellChangeSet(old: [], new: sections)
-        sectionsChangePublisher.send(.init(sections: sections, changes: change))
-     }
+        let changes = DevHashChangeSet.calculateCellChangeSet(old: [], new: sections)
+        tableSnapshot.send(.init(sections: sections, changes: changes))
+    }
     
     private func makeAllContactItems() -> [ContactsScreenSection.Cell] {
         [
             .contactItem(
                 ContactsScreenContactCellViewModel(
-                    contactID: "contactUS",
+                    contactID: Constant.ItemID.contactUs.rawValue,
                     contactText: SwedLocalization.Screen.Contacts.Items.ContactUs.titleKey,
                     contactDescription: SwedLocalization.Screen.Contacts.Items.ContactUs.descriptionKey,
                     contactIcon: "bubble.left.and.bubble.right"
@@ -60,7 +71,7 @@ public extension DefaultContactsScreenVM {
             ),
             .contactItem(
                 ContactsScreenContactCellViewModel(
-                    contactID: "write",
+                    contactID: Constant.ItemID.writeToUs.rawValue,
                     contactText: SwedLocalization.Screen.Contacts.Items.Write.titleKey,
                     contactDescription: SwedLocalization.Screen.Contacts.Items.Write.descriptionKey,
                     contactIcon: "envelope"
@@ -68,7 +79,7 @@ public extension DefaultContactsScreenVM {
             ),
             .contactItem(
                 ContactsScreenContactCellViewModel(
-                    contactID: "priority",
+                    contactID: Constant.ItemID.prioritySupport.rawValue,
                     contactText: SwedLocalization.Screen.Contacts.Items.Priority.titleKey,
                     contactDescription: SwedLocalization.Screen.Contacts.Items.Priority.descriptionKey,
                     contactIcon: "candybarphone"
@@ -76,7 +87,7 @@ public extension DefaultContactsScreenVM {
             ),
             .contactItem(
                 ContactsScreenContactCellViewModel(
-                    contactID: "consultation",
+                    contactID: Constant.ItemID.consultation.rawValue,
                     contactText: SwedLocalization.Screen.Contacts.Items.Consultation.titleKey,
                     contactDescription: SwedLocalization.Screen.Contacts.Items.Consultation.descriptionKey,
                     contactIcon: "calendar"
@@ -84,7 +95,7 @@ public extension DefaultContactsScreenVM {
             ),
             .contactItem(
                 ContactsScreenContactCellViewModel(
-                    contactID: "ATMs",
+                    contactID: Constant.ItemID.atms.rawValue,
                     contactText: SwedLocalization.Screen.Contacts.Items.Atms.titleKey,
                     contactDescription: SwedLocalization.Screen.Contacts.Items.Atms.descriptionKey,
                     contactIcon: "mappin.and.ellipse"
@@ -92,7 +103,7 @@ public extension DefaultContactsScreenVM {
             ),
             .contactItem(
                 ContactsScreenContactCellViewModel(
-                    contactID: "FAQ",
+                    contactID: Constant.ItemID.faq.rawValue,
                     contactText: SwedLocalization.Screen.Contacts.Items.Faq.titleKey,
                     contactDescription: SwedLocalization.Screen.Contacts.Items.Faq.descriptionKey,
                     contactIcon: "questionmark.bubble"
