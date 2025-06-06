@@ -1,9 +1,9 @@
 [
   {
-    "id": "string",
-    "displayName": "string",
+    "id": "007",
+    "displayName": "James Bond",
     "type": "PRIVATE",
-    "hasIpRestriction": true,
+    "hasIpRestriction": false,
     "hasUsableAccounts": true,
     "sortOrder": 0,
     "roles": [
