@@ -11,7 +11,7 @@
     "accountBalance": 0,
     "reservedAmount": 0,
     "creditLimit": 0,
-    "availableFunds": 43123,
+    "availableFunds": 43123.99,
     "transactions": [],
     "reservations": [],
     "pendingPayments": []
