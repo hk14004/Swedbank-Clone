@@ -8,7 +8,17 @@
 
 import Combine
 
-let JAMES_BOND = CustomerDTO(id: "007", displayName: "James Bond")
+let JAMES_BOND = CustomerDTO(
+    id: "007",
+    displayName: "James Bond",
+    type: .private,
+    hasIpRestriction: false,
+    hasUsableAccounts: true,
+    sortOrder: 0,
+    roles: [.private],
+    authorities: [],
+    isMain: true
+)
 
 public protocol GetLastCustomerUseCase {
     func use() -> CustomerDTO

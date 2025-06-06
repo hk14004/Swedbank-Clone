@@ -11,10 +11,34 @@ import Foundation
 public struct CustomerDTO {
     public let id: String
     public let displayName: String
+    public let type: CustomerType
+    public let hasIpRestriction: Bool
+    public let hasUsableAccounts: Bool
+    public let sortOrder: Int
+    public let roles: [CustomerRole]
+    public let authorities: [CustomerAuthority]
+    public let isMain: Bool
     
-    public init(id: String, displayName: String) {
+    public init(
+        id: String,
+        displayName: String,
+        type: CustomerType,
+        hasIpRestriction: Bool,
+        hasUsableAccounts: Bool,
+        sortOrder: Int,
+        roles: [CustomerRole],
+        authorities: [CustomerAuthority],
+        isMain: Bool
+    ) {
         self.id = id
         self.displayName = displayName
+        self.type = type
+        self.hasIpRestriction = hasIpRestriction
+        self.hasUsableAccounts = hasUsableAccounts
+        self.sortOrder = sortOrder
+        self.roles = roles
+        self.authorities = authorities
+        self.isMain = isMain
     }
 }
 
@@ -23,4 +47,22 @@ public extension CustomerDTO {
         let words = displayName.split(separator: " ")
         return words.map { $0.first?.uppercased() ?? "" }.joined()
     }
+}
+
+public enum CustomerType {
+    case `private`
+    case business
+    case child
+}
+
+public enum CustomerRole {
+    case `private`
+    case business
+    case parent
+}
+
+public enum CustomerAuthority {
+    case cards
+    case payments
+    case statements
 }

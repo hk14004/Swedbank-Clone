@@ -1,0 +1,17 @@
+[
+  {
+    "id": "string",
+    "displayName": "string",
+    "type": "PRIVATE",
+    "hasIpRestriction": true,
+    "hasUsableAccounts": true,
+    "sortOrder": 0,
+    "roles": [
+      "PRIVATE"
+    ],
+    "authorities": [
+      "PAYMENTS"
+    ],
+    "isMain": true
+  }
+]

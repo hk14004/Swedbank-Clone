@@ -11,7 +11,7 @@ class ServicesAssembly: Assembly {
         }
         .inObjectScope(.container)
         container.register(FetchRemoteCustomersService.self) { resolver in
-            MockFetchCustomerService()
+            DefaultFetchCustomersService(networkClient: Composition.resolve())
         }
         .inObjectScope(.container)
         container.register(FetchRemoteOffersService.self) { resolver in

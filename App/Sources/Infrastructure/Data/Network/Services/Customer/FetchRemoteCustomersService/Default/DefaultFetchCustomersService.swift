@@ -3,9 +3,9 @@ import DevToolsNetworking
 import SwedApplicationBusinessRules
 
 class DefaultFetchCustomersService: FetchRemoteCustomersService {
-    private let networkClient: DevNetworkClient
+    private let networkClient: SwedNetworkClient
     
-    init(networkClient: DevNetworkClient) {
+    init(networkClient: SwedNetworkClient) {
         self.networkClient = networkClient
     }
     
@@ -13,7 +13,7 @@ class DefaultFetchCustomersService: FetchRemoteCustomersService {
         fetchResponse()
             .flatMap { response -> AnyPublisher<FetchRemoteCustomersServiceOutput, Error> in
                 let transformed = response.map { responseCustomer in
-                    CustomerDTO(id: responseCustomer.id, displayName: responseCustomer.displayName)
+                    try! responseCustomer.mapToDomain()
                 }
                 return .just(transformed)
             }

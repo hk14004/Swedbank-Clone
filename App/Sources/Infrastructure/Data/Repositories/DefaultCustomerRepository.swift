@@ -10,8 +10,19 @@ import SwedApplicationBusinessRules
 import Combine
 
 class DefaultCustomerRepository: CustomerRepository {
+    
+    private let fetchRemoteCustomersService: FetchRemoteCustomersService
+    
+    init(fetchRemoteCustomersService: FetchRemoteCustomersService) {
+        self.fetchRemoteCustomersService = fetchRemoteCustomersService
+    }
+    
     func getRemoteCustomers() -> AnyPublisher<[CustomerDTO], Never> {
-        .just([JAMES_BOND])
+        fetchRemoteCustomersService.use()
+            .catch { _ in
+                Just([])
+            }
+            .eraseToAnyPublisher()
     }
     
     func addOrUpdate(_ items: [CustomerDTO]) -> AnyPublisher<Void, Never> {

@@ -25,7 +25,7 @@ class RepositoryAssembly: Assembly {
         }
         .inObjectScope(.container)
         container.register(CustomerRepository.self) { resolver in
-            DefaultCustomerRepository()
+            DefaultCustomerRepository(fetchRemoteCustomersService: Composition.resolve())
         }
         .inObjectScope(.container)
         container.register(OfferRepository.self) { resolver in
