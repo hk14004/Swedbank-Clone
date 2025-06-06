@@ -1,0 +1,19 @@
+[
+  {
+    "customerId": 0,
+    "iban": "LVHABA123456",
+    "currency": "eur",
+    "ibanAlias": "string",
+    "sortOrder": 0,
+    "payable": true,
+    "accType": "",
+    "accSubType": "",
+    "accountBalance": 0,
+    "reservedAmount": 0,
+    "creditLimit": 0,
+    "availableFunds": 0,
+    "transactions": [],
+    "reservations": [],
+    "pendingPayments": []
+  }
+]
