@@ -57,5 +57,9 @@ class StorageAssembly: Assembly {
             PersistentCoreDataStore<OfferDTO>(storeContainer: Composition.resolve())
         }
         .inObjectScope(.container)
+        container.register(PersistentCoreDataStore<CustomerDTO>.self) { resolver in
+            PersistentCoreDataStore<CustomerDTO>(storeContainer: Composition.resolve())
+        }
+        .inObjectScope(.container)
     }
 }

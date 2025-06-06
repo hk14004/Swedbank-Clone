@@ -8,13 +8,19 @@
 
 import SwedApplicationBusinessRules
 import Combine
+import DevToolsCore
 
 class DefaultCustomerRepository: CustomerRepository {
     
     private let fetchRemoteCustomersService: FetchRemoteCustomersService
+    private let localStore: BasePersistedLayerInterface<CustomerDTO>
     
-    init(fetchRemoteCustomersService: FetchRemoteCustomersService) {
+    init(
+        fetchRemoteCustomersService: FetchRemoteCustomersService,
+        localStore: BasePersistedLayerInterface<CustomerDTO>
+    ) {
         self.fetchRemoteCustomersService = fetchRemoteCustomersService
+        self.localStore = localStore
     }
     
     func getRemoteCustomers() -> AnyPublisher<[CustomerDTO], Never> {
@@ -26,10 +32,22 @@ class DefaultCustomerRepository: CustomerRepository {
     }
     
     func addOrUpdate(_ items: [CustomerDTO]) -> AnyPublisher<Void, Never> {
-        .just(())
+        Future<Void, Never> { [weak self] promise in
+            Task {
+                await self?.localStore.addOrUpdate(items)
+                promise(.success(()))
+            }
+        }
+        .eraseToAnyPublisher()
     }
     
     func getSingle(id: String) -> AnyPublisher<CustomerDTO?, Never> {
-        .just(JAMES_BOND)
+        Future<CustomerDTO?, Never> { [weak self] promise in
+            Task {
+                let customer = await self?.localStore.getSingle(id: id)
+                promise(.success(customer))
+            }
+        }
+        .eraseToAnyPublisher()
     }
 }
