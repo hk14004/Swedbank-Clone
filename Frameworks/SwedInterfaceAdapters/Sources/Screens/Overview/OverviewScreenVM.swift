@@ -33,17 +33,23 @@ public class DefaultOverviewScreenVM: OverviewScreenVM {
     public var customer: CustomerDTO
     private let getRemoteOffersUseCase: GetRemoteOffersUseCase
     private let trackCachedOffersUseCase: TrackCachedOffersUseCase
+    private let getRemoteAccountsUseCase: GetRemoteAccountsUseCase
+    private let trackCachedAccountsUseCase: TrackCachedAccountsUseCase
     private var cancelBag: Set<AnyCancellable> = []
     
     // MARK: Lifecycle
     public init(
         customer: CustomerDTO,
         getRemoteOffersUseCase: GetRemoteOffersUseCase,
-        trackCachedOffersUseCase: TrackCachedOffersUseCase
+        trackCachedOffersUseCase: TrackCachedOffersUseCase,
+        getRemoteAccountsUseCase: GetRemoteAccountsUseCase,
+        trackCachedAccountsUseCase: TrackCachedAccountsUseCase
     ) {
         self.customer = customer
         self.getRemoteOffersUseCase = getRemoteOffersUseCase
         self.trackCachedOffersUseCase = trackCachedOffersUseCase
+        self.getRemoteAccountsUseCase = getRemoteAccountsUseCase
+        self.trackCachedAccountsUseCase = trackCachedAccountsUseCase
         self.tableSnapshot = .init(.init(sections: [], changes: .init()))
         setup()
     }
@@ -61,6 +67,13 @@ public extension DefaultOverviewScreenVM {
                 self?.updateUI(offers: latestOffers)
             }
             .store(in: &cancelBag)
+        
+        getRemoteAccountsUseCase.use()
+            .receiveOnMainThread()
+            .sink { [weak self] accounts in
+                self?.updateUI(accounts: accounts)
+            }
+            .store(in: &cancelBag)
     }
     
     func didTapProfile() {
@@ -75,6 +88,7 @@ public extension DefaultOverviewScreenVM {
     private func setup() {
         populateTableWithMockedData()
         populateTableWithCachedOffers()
+        populateTableWithCachedAccounts()
         didPullToRefresh() // Temp solution for now to trigger initial data load
     }
     
@@ -88,9 +102,36 @@ public extension DefaultOverviewScreenVM {
             .store(in: &cancelBag)
     }
     
+    private func populateTableWithCachedAccounts() {
+        trackCachedAccountsUseCase.use()
+            .prefix(1)
+            .receiveOnMainThread()
+            .sink { [weak self] accounts in
+                self?.updateUI(accounts: accounts)
+            }
+            .store(in: &cancelBag)
+    }
+    
     private func updateUI(offers: [OfferDTO]) {
         var newSectionSnapshot = tableSnapshot.value.sections
         let offersSection = makeOffersSection(offers)
+        if offersSection.cells.isEmpty {
+            newSectionSnapshot.remove(section: offersSection)
+        } else {
+            newSectionSnapshot.addOrUpdate(section: offersSection)
+        }
+        tableSnapshot.value = OverviewScreenTableSnapshot(
+            sections: newSectionSnapshot,
+            changes: DevHashChangeSet.calculateCellChangeSet(
+                old: tableSnapshot.value.sections,
+                new: newSectionSnapshot
+            )
+        )
+    }
+    
+    private func updateUI(accounts: [AccountDTO]) {
+        var newSectionSnapshot = tableSnapshot.value.sections
+        let offersSection = makeAccountsSection(accounts)
         if offersSection.cells.isEmpty {
             newSectionSnapshot.remove(section: offersSection)
         } else {
@@ -122,6 +163,21 @@ public extension DefaultOverviewScreenVM {
         )
     }
     
+    private func makeAccountsSection(_ accounts: [AccountDTO]) -> OverviewScreenSection {
+        OverviewScreenSection(
+            id: .accounts,
+            cells: accounts.map { account in
+                    .cardBalance(
+                        OverviewScreenBalanceCellViewModel(
+                            iban: account.iban,
+                            amount: account.availableFunds,
+                            currencyCode: "eur"
+                        )
+                    )
+            }
+        )
+    }
+    
     private func populateTableWithMockedData() {
         let sections = makeMockTableSections()
         tableSnapshot.value = OverviewScreenTableSnapshot(
@@ -136,15 +192,8 @@ public extension DefaultOverviewScreenVM {
     private func makeMockTableSections() -> [OverviewScreenSection] {
         [
             OverviewScreenSection(
-                id: .overview,
+                id: .expenses,
                 cells: [
-                    .cardBalance(
-                        OverviewScreenBalanceCellViewModel(
-                            iban: "LV16HABA123456789",
-                            amount: 19120.44,
-                            currencyCode: "eur"
-                        )
-                    ),
                     .expenses(
                         OverviewScreenExpensesCellViewModel(
                             id: "1",

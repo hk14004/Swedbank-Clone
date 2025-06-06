@@ -19,7 +19,9 @@ class DefaultDashboardScreenFactory: OverviewScreenFactory {
         let vm = DefaultOverviewScreenVM(
             customer: customer,
             getRemoteOffersUseCase: Composition.resolve(),
-            trackCachedOffersUseCase: Composition.resolve()
+            trackCachedOffersUseCase: Composition.resolve(),
+            getRemoteAccountsUseCase: Composition.resolve(),
+            trackCachedAccountsUseCase: Composition.resolve()
         )
         let vc = OverviewScreenVC(viewModel: vm)
         let router = DefaultOverviewScreenRouter(viewController: vc)

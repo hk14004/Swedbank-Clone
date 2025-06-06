@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788" systemVersion="24F74" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="AccountCD" representedClassName="AccountCD" syncable="YES" codeGenerationType="class">
+        <attribute name="accountBalance" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="availableFunds" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="creditLimit" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="currency" optional="YES" attributeType="String"/>
+        <attribute name="iban" optional="YES" attributeType="String"/>
+        <attribute name="ibanAlias" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="payable" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="reservedAmount" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="sortOrder" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <entity name="CustomerCD" representedClassName="CustomerCD" syncable="YES" codeGenerationType="class">
         <attribute name="displayName" optional="YES" attributeType="String"/>
         <attribute name="hasIpRestriction" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>

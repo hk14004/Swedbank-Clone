@@ -12,7 +12,8 @@ import DevToolsCore
 
 public struct OverviewScreenSection: DevTableSection {
     public enum SectionID: String, CaseIterable {
-        case overview
+        case accounts
+        case expenses
         case offers
     }
     

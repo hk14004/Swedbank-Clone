@@ -18,5 +18,9 @@ class ServicesAssembly: Assembly {
             GithubFetchRemoteOffersService(networkClient: Composition.resolve())
         }
         .inObjectScope(.container)
+        container.register(FetchRemoteAccountsService.self) { resolver in
+            GithubFetchRemoteAccountsService(networkClient: Composition.resolve())
+        }
+        .inObjectScope(.container)
     }
 }

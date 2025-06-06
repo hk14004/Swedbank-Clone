@@ -38,5 +38,12 @@ class RepositoryAssembly: Assembly {
             )
         }
         .inObjectScope(.container)
+        container.register(AccountRepository.self) { resolver in
+            DefaultAccountRepository(
+                store: resolver.resolve(PersistentCoreDataStore<AccountDTO>.self)!,
+                fetchRemoteAccountsService: Composition.resolve()
+            )
+        }
+        .inObjectScope(.container)
     }
 }

@@ -12,7 +12,7 @@ class UseCaseAssembly: Assembly {
             DefaultLoginUseCase(
                 startSessionService: Composition.resolve(),
                 manager: Composition.resolve(),
-                userSessionCredentialsRepository: Composition.resolve(), 
+                userSessionCredentialsRepository: Composition.resolve(),
                 customerRepository: Composition.resolve()
             )
         }
@@ -59,7 +59,8 @@ class UseCaseAssembly: Assembly {
         container.register(NukeCustomerPersistedDataUseCase.self) { resolver in
             DefaultNukeCustomerPersistedDataUseCase(
                 customerRepository: Composition.resolve(),
-                offerRepository: Composition.resolve()
+                offerRepository: Composition.resolve(),
+                accountRepository: Composition.resolve()
             )
         }
         container.register(LogoutUseCase.self) { resolver in
@@ -77,6 +78,12 @@ class UseCaseAssembly: Assembly {
             DefaultTrackCachedOffersUseCase(
                 offerRepository: Composition.resolve()
             )
+        }
+        container.register(GetRemoteAccountsUseCase.self) { resolver in
+            DefaultGetRemoteAccountsUseCase(accountRepository: Composition.resolve())
+        }
+        container.register(TrackCachedAccountsUseCase.self) { resolver in
+            DefaultTrackCachedAccountsUseCase(accountRepository: Composition.resolve())
         }
     }
 }
