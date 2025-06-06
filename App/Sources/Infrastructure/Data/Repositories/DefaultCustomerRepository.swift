@@ -50,4 +50,14 @@ class DefaultCustomerRepository: CustomerRepository {
         }
         .eraseToAnyPublisher()
     }
+    
+    func replace(with items: [CustomerDTO]) -> AnyPublisher<Void, Never> {
+        Future<Void, Never> { [weak self] promise in
+            Task {
+                await self?.localStore.replace(with: items)
+                promise(.success(()))
+            }
+        }
+        .eraseToAnyPublisher()
+    }
 }

@@ -15,10 +15,15 @@ public protocol LogoutUseCase {
 public class DefaultLogoutUseCase: LogoutUseCase {
     // MARK: Properties
     private let manager: UserSessionManager
+    private let nukeCustomerPersistedDataUseCase: NukeCustomerPersistedDataUseCase
     
     // MARK: Lifeycle
-    public init(manager: UserSessionManager) {
+    public init(
+        manager: UserSessionManager,
+        nukeCustomerPersistedDataUseCase: NukeCustomerPersistedDataUseCase
+    ) {
         self.manager = manager
+        self.nukeCustomerPersistedDataUseCase = nukeCustomerPersistedDataUseCase
     }
     
     // MARK: Methods
@@ -28,6 +33,6 @@ public class DefaultLogoutUseCase: LogoutUseCase {
         }
         
         manager.deleteUserSession(credentialsID: startedSession.credentials.id)
-        return .just(())
+        return nukeCustomerPersistedDataUseCase.use()
     }
 }

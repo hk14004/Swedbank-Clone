@@ -56,8 +56,17 @@ class UseCaseAssembly: Assembly {
                 customerRepository: Composition.resolve()
             )
         }
+        container.register(NukeCustomerPersistedDataUseCase.self) { resolver in
+            DefaultNukeCustomerPersistedDataUseCase(
+                customerRepository: Composition.resolve(),
+                offerRepository: Composition.resolve()
+            )
+        }
         container.register(LogoutUseCase.self) { resolver in
-            DefaultLogoutUseCase(manager: Composition.resolve())
+            DefaultLogoutUseCase(
+                manager: Composition.resolve(),
+                nukeCustomerPersistedDataUseCase: Composition.resolve()
+            )
         }
         container.register(GetRemoteOffersUseCase.self) { resolver in
             DefaultLoadLatestOffersUseCase(
