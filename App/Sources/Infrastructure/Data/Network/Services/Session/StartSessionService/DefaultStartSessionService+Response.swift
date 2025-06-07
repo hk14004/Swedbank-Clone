@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwedApplicationBusinessRules
 
 extension DefaultStartSessionService {
     struct StartSessionResponse: Codable {
@@ -14,6 +15,14 @@ extension DefaultStartSessionService {
         let refreshToken: String
         let accessTokenExpirationDuration: Int
         let userID: String
+        
+        func mapToDomain() -> StartSessionServiceOutput {
+            StartSessionServiceOutput(
+                bearerToken: accessToken,
+                refreshToken: refreshToken,
+                expirationDuration: accessTokenExpirationDuration,
+                userID: userID
+            )
+        }
     }
-
 }
