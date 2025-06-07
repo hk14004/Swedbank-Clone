@@ -11,7 +11,7 @@ import Combine
 import SwedApplicationBusinessRules
 
 public protocol FetchRemoteAccountsService {
-    func use() -> AnyPublisher<FetchRemoteAccountsServiceOutput, Never>
+    func use() -> AnyPublisher<FetchRemoteAccountsServiceOutput, Error>
 }
 
 public typealias FetchRemoteAccountsServiceOutput = [AccountDTO]

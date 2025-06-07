@@ -40,6 +40,9 @@ class DefaultAccountRepository: AccountRepository {
     
     func getRemoteAccounts() -> AnyPublisher<[AccountDTO], Never> {
         fetchRemoteAccountsService.use()
+            .catch { _ in
+                Just([])
+            }
             .flatMap { [weak self] accounts -> AnyPublisher<[AccountDTO], Never> in
                 self?.replace(with: accounts)
                     .map { _ in accounts }

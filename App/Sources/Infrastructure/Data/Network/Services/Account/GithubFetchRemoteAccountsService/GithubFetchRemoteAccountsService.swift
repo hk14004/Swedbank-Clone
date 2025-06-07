@@ -20,21 +20,15 @@ class GithubFetchRemoteAccountsService: FetchRemoteAccountsService {
     }
     
     // MARK: Methods
-    func use() -> AnyPublisher<FetchRemoteAccountsServiceOutput, Never> {
+    func use() -> AnyPublisher<FetchRemoteAccountsServiceOutput, Error> {
         fetchResponse()
-            .map { response in
-                response.compactMap { responseItems in
-                    try? responseItems.mapToDomain()
-                }
+            .tryMap { response in
+                try response.map { try $0.mapToDomain() }
             }
             .eraseToAnyPublisher()
     }
     
-    private func fetchResponse() -> AnyPublisher<GithubAccountsResponse, Never> {
+    private func fetchResponse() -> AnyPublisher<GithubAccountsResponse, Error> {
         networkClient.execute(AccountRequestConfig.fetchAccounts)
-            .catch { _ in
-                Just([])
-            }
-            .eraseToAnyPublisher()
     }
 }
