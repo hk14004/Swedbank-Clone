@@ -30,6 +30,6 @@ extension CustomerRequestConfig: DevRequestConfig {
     }
     
     var authType: DevRequestAuthType {
-        .bearer
+        .none
     }
 }

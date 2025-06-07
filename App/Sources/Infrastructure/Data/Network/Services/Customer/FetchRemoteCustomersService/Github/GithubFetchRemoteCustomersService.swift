@@ -2,7 +2,7 @@ import Combine
 import DevToolsNetworking
 import SwedApplicationBusinessRules
 
-class DefaultFetchCustomersService: FetchRemoteCustomersService {
+class GithubFetchRemoteCustomersService: FetchRemoteCustomersService {
     private let networkClient: SwedNetworkClient
     
     init(networkClient: SwedNetworkClient) {
@@ -11,16 +11,13 @@ class DefaultFetchCustomersService: FetchRemoteCustomersService {
     
     func use() -> AnyPublisher<FetchRemoteCustomersServiceOutput, Error> {
         fetchResponse()
-            .flatMap { response -> AnyPublisher<FetchRemoteCustomersServiceOutput, Error> in
-                let transformed = response.map { responseCustomer in
-                    try! responseCustomer.mapToDomain()
-                }
-                return .just(transformed)
+            .tryMap { response in
+                try response.map { try $0.mapToDomain() }
             }
             .eraseToAnyPublisher()
     }
     
-    private func fetchResponse() -> AnyPublisher<FetchCustomersResponse, Error> {
+    private func fetchResponse() -> AnyPublisher<Response, Error> {
         networkClient.execute(CustomerRequestConfig.fetchCustomers)
     }
 }
