@@ -22,9 +22,17 @@ extension CustomerCD: PersistedModel {
         case id
     }
     
+    // TODO: Persist transformables
     public func toDomain(fields: Set<PersistedField>) throws -> CustomerDTO {
+        func require(string: String?) throws -> String {
+            guard let string = string else {
+                throw NSError(domain: "PersistentStoreErrorDomain", code: 0)
+            }
+            return string
+        }
+        
         return CustomerDTO(
-            id: id ?? "",
+            id: try require(string: id),
             displayName: displayName ?? "",
             type: .private,
             hasIpRestriction: hasIpRestriction,

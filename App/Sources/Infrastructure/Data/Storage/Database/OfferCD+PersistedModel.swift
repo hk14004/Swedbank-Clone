@@ -12,45 +12,36 @@ import DevToolsCoreData
 import SwedApplicationBusinessRules
 
 extension OfferCD: PersistedModel {
-
+    
     public enum PersistedField: String, PersistedModelField {
         case date
         case description
         case title
         case id
     }
-
+    
     public func toDomain(fields: Set<PersistedField>) throws -> OfferDTO {
-            func require(_ field: PersistedField, _ value: String?, defaultValue: String = "") throws -> String {
-                guard fields.contains(field) else { return defaultValue }
-                guard let value = value else {
-                    throw NSError(domain: "", code: 0)
-                }
-                return value
+        func require(string: String?) throws -> String {
+            guard let string = string else {
+                throw NSError(domain: "PersistentStoreErrorDomain", code: 0)
             }
-
-            func requireDate(_ field: PersistedField, _ value: Date?, defaultValue: Date = Date()) throws -> Date {
-                guard fields.contains(field) else { return Date.distantPast }
-                guard let value = value else {
-                    throw NSError(domain: "", code: 0)
-                }
-                return value
-            }
-
-            return OfferDTO(
-                id: try require(.id, id),
-                title: try require(.title, title),
-                description: try require(.description, desc),
-                date: try requireDate(.date, date)
-            )
+            return string
         }
-
-        public func update(with model: OfferDTO, fields: Set<PersistedField>) {
-            if fields.contains(.id) { self.id = model.id }
-            if fields.contains(.title) { self.title = model.title }
-            if fields.contains(.description) { self.desc = model.description }
-            if fields.contains(.date) { self.date = model.date }
-        }
+        
+        return OfferDTO(
+            id: try require(string: id),
+            title: title ?? "Default Title",
+            description: desc ?? "Default Description",
+            date: date ?? Date()
+        )
+    }
+    
+    public func update(with model: OfferDTO, fields: Set<PersistedField>) {
+        if fields.contains(.id) { self.id = model.id }
+        if fields.contains(.title) { self.title = model.title }
+        if fields.contains(.description) { self.desc = model.description }
+        if fields.contains(.date) { self.date = model.date }
+    }
 }
 
 extension OfferDTO: @retroactive PersistableDomainModel {
