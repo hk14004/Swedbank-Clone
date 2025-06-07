@@ -19,7 +19,7 @@ extension GithubFetchRemoteOffersService {
         let date: String?
         
         // Optionaly handle missing data or provide defaults, throw error
-        func mapToOffer() throws -> OfferDTO {
+        func mapToDomain() throws -> OfferDTO {
             OfferDTO(
                 id: id ?? "Default ID",
                 title: title ?? "Default title",

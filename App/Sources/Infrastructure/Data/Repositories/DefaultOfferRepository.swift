@@ -40,6 +40,9 @@ class DefaultOfferRepository: OfferRepository {
     
     func getRemoteOffers() -> AnyPublisher<[OfferDTO], Never> {
         fetchRemoteOffersService.use()
+            .catch { _ in
+                Just([])
+            }
             .flatMap { [weak self] offers -> AnyPublisher<[OfferDTO], Never> in
                 self?.replace(with: offers)
                     .map { _ in offers }

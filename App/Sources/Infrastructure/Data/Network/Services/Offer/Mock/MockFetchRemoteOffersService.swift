@@ -10,8 +10,8 @@ import Combine
 import SwedApplicationBusinessRules
 
 class MockFetchRemoteOffersService: FetchRemoteOffersService {
-    var mockResult: AnyPublisher<FetchRemoteOffersServiceOutput, Never>!
-    func use() -> AnyPublisher<FetchRemoteOffersServiceOutput, Never> {
+    var mockResult: AnyPublisher<FetchRemoteOffersServiceOutput, Error>!
+    func use() -> AnyPublisher<FetchRemoteOffersServiceOutput, Error> {
         mockResult
     }
 }

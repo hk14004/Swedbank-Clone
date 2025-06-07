@@ -19,22 +19,15 @@ class GithubFetchRemoteOffersService: FetchRemoteOffersService {
     }
     
     // MARK: Methods
-    var mockResult: AnyPublisher<FetchRemoteOffersServiceOutput, Never>!
-    func use() -> AnyPublisher<FetchRemoteOffersServiceOutput, Never> {
+    func use() -> AnyPublisher<FetchRemoteOffersServiceOutput, Error> {
         fetchResponse()
-            .map { response in
-                response.compactMap { responseItems in
-                    try? responseItems.mapToOffer()
-                }
+            .tryMap { response in
+                try response.map { try $0.mapToDomain() }
             }
             .eraseToAnyPublisher()
     }
     
-    private func fetchResponse() -> AnyPublisher<GithubOffersResponse, Never> {
+    private func fetchResponse() -> AnyPublisher<GithubOffersResponse, Error> {
         networkClient.execute(OrderRequestConfig.fetchOrders)
-            .catch { _ in
-                Just([])
-            }
-            .eraseToAnyPublisher()
     }
 }

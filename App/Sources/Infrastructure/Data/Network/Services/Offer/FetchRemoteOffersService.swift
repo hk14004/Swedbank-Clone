@@ -11,7 +11,7 @@ import Combine
 import SwedApplicationBusinessRules
 
 public protocol FetchRemoteOffersService {
-    func use() -> AnyPublisher<FetchRemoteOffersServiceOutput, Never>
+    func use() -> AnyPublisher<FetchRemoteOffersServiceOutput, Error>
 }
 
 public typealias FetchRemoteOffersServiceOutput = [OfferDTO]
