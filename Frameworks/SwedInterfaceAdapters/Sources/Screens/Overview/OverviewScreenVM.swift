@@ -60,20 +60,19 @@ public extension DefaultOverviewScreenVM {
     func didPullToRefresh() {
         guard !isRefreshing.value else { return }
         isRefreshing.value = true
-        getRemoteOffersUseCase.use()
-            .receiveOnMainThread()
-            .sink { [weak self] latestOffers in
-                self?.isRefreshing.value = false
-                self?.updateUI(offers: latestOffers)
-            }
-            .store(in: &cancelBag)
-        
-        getRemoteAccountsUseCase.use()
-            .receiveOnMainThread()
-            .sink { [weak self] accounts in
-                self?.updateUI(accounts: accounts)
-            }
-            .store(in: &cancelBag)
+
+        Publishers.Zip(
+            getRemoteOffersUseCase.use(),
+            getRemoteAccountsUseCase.use()
+        )
+        .receiveOnMainThread()
+        .sink { [weak self] latestOffers, accounts in
+            guard let self else { return }
+            isRefreshing.value = false
+            updateUI(with: makeOffersSection(latestOffers))
+            updateUI(with: makeAccountsSection(accounts))
+        }
+        .store(in: &cancelBag)
     }
     
     func didTapProfile() {
@@ -97,7 +96,8 @@ public extension DefaultOverviewScreenVM {
             .prefix(1)
             .receiveOnMainThread()
             .sink { [weak self] cachedOffers in
-                self?.updateUI(offers: cachedOffers)
+                guard let self else { return }
+                updateUI(with: makeOffersSection(cachedOffers))
             }
             .store(in: &cancelBag)
     }
@@ -107,41 +107,25 @@ public extension DefaultOverviewScreenVM {
             .prefix(1)
             .receiveOnMainThread()
             .sink { [weak self] accounts in
-                self?.updateUI(accounts: accounts)
+                guard let self else { return }
+                updateUI(with: makeAccountsSection(accounts))
             }
             .store(in: &cancelBag)
     }
     
-    private func updateUI(offers: [OfferDTO]) {
-        var newSectionSnapshot = tableSnapshot.value.sections
-        let offersSection = makeOffersSection(offers)
-        if offersSection.cells.isEmpty {
-            newSectionSnapshot.remove(section: offersSection)
+    private func updateUI(with newSection: OverviewScreenSection) {
+        var sections = tableSnapshot.value.sections
+        if newSection.cells.isEmpty {
+            sections.remove(section: newSection)
         } else {
-            newSectionSnapshot.addOrUpdate(section: offersSection)
+            sections.addOrUpdate(section: newSection)
         }
+        sections.sort { $0.id.order < $1.id.order }
         tableSnapshot.value = OverviewScreenTableSnapshot(
-            sections: newSectionSnapshot,
+            sections: sections,
             changes: DevHashChangeSet.calculateCellChangeSet(
                 old: tableSnapshot.value.sections,
-                new: newSectionSnapshot
-            )
-        )
-    }
-    
-    private func updateUI(accounts: [AccountDTO]) {
-        var newSectionSnapshot = tableSnapshot.value.sections
-        let offersSection = makeAccountsSection(accounts)
-        if offersSection.cells.isEmpty {
-            newSectionSnapshot.remove(section: offersSection)
-        } else {
-            newSectionSnapshot.addOrUpdate(section: offersSection)
-        }
-        tableSnapshot.value = OverviewScreenTableSnapshot(
-            sections: newSectionSnapshot,
-            changes: DevHashChangeSet.calculateCellChangeSet(
-                old: tableSnapshot.value.sections,
-                new: newSectionSnapshot
+                new: sections
             )
         )
     }
@@ -179,31 +163,19 @@ public extension DefaultOverviewScreenVM {
     }
     
     private func populateTableWithMockedData() {
-        let sections = makeMockTableSections()
-        tableSnapshot.value = OverviewScreenTableSnapshot(
-            sections: sections,
-            changes: DevHashChangeSet.calculateCellChangeSet(
-                old: tableSnapshot.value.sections,
-                new: sections
-            )
-        )
-    }
-    
-    private func makeMockTableSections() -> [OverviewScreenSection] {
-        [
-            OverviewScreenSection(
-                id: .expenses,
-                cells: [
-                    .expenses(
-                        OverviewScreenExpensesCellViewModel(
-                            id: "1",
-                            detailsUrl: "",
-                            spentAmount: 999.13,
-                            spentCurrency: "eur"
-                        )
+        let section = OverviewScreenSection(
+            id: .expenses,
+            cells: [
+                .expenses(
+                    OverviewScreenExpensesCellViewModel(
+                        id: "1",
+                        detailsUrl: "",
+                        spentAmount: 999.13,
+                        spentCurrency: "eur"
                     )
-                ]
-            )
-        ]
+                )
+            ]
+        )
+        updateUI(with: section)
     }
 }
