@@ -60,19 +60,7 @@ public extension DefaultOverviewScreenVM {
     func didPullToRefresh() {
         guard !isRefreshing.value else { return }
         isRefreshing.value = true
-
-        Publishers.Zip(
-            getRemoteOffersUseCase.use(),
-            getRemoteAccountsUseCase.use()
-        )
-        .receiveOnMainThread()
-        .sink { [weak self] latestOffers, accounts in
-            guard let self else { return }
-            isRefreshing.value = false
-            updateUI(with: makeOffersSection(latestOffers))
-            updateUI(with: makeAccountsSection(accounts))
-        }
-        .store(in: &cancelBag)
+        updateWithRemoteData().sink().store(in: &cancelBag)
     }
     
     func didTapProfile() {
@@ -88,16 +76,17 @@ public extension DefaultOverviewScreenVM {
         populateTableWithMockedData()
         populateTableWithCachedOffers()
         populateTableWithCachedAccounts()
-        didPullToRefresh() // Temp solution for now to trigger initial data load
+        updateWithRemoteData().sink().store(in: &cancelBag)
     }
     
+    // MARK: UI Updates
     private func populateTableWithCachedOffers() {
         trackCachedOffersUseCase.use()
             .prefix(1)
             .receiveOnMainThread()
             .sink { [weak self] cachedOffers in
                 guard let self else { return }
-                updateUI(with: makeOffersSection(cachedOffers))
+                amendUISections(amended: [makeOffersSection(cachedOffers)])
             }
             .store(in: &cancelBag)
     }
@@ -108,28 +97,64 @@ public extension DefaultOverviewScreenVM {
             .receiveOnMainThread()
             .sink { [weak self] accounts in
                 guard let self else { return }
-                updateUI(with: makeAccountsSection(accounts))
+                amendUISections(amended: [makeAccountsSection(accounts)])
             }
             .store(in: &cancelBag)
     }
     
-    private func updateUI(with newSection: OverviewScreenSection) {
-        var sections = tableSnapshot.value.sections
-        if newSection.cells.isEmpty {
-            sections.remove(section: newSection)
-        } else {
-            sections.addOrUpdate(section: newSection)
+    private func amendUISections(amended sections: [OverviewScreenSection]) {
+        var updatedSections = tableSnapshot.value.sections
+        
+        for section in sections {
+            if section.cells.isEmpty {
+                updatedSections.remove(section: section)
+            } else {
+                updatedSections.addOrUpdate(section: section)
+            }
         }
-        sections.sort { $0.id.order < $1.id.order }
+        
+        updatedSections.sort { $0.id.order < $1.id.order }
+        
+        isRefreshing.value = false
         tableSnapshot.value = OverviewScreenTableSnapshot(
-            sections: sections,
+            sections: updatedSections,
             changes: DevHashChangeSet.calculateCellChangeSet(
                 old: tableSnapshot.value.sections,
-                new: sections
+                new: updatedSections
             )
         )
     }
     
+    // MARK: Remote data
+    private func updateWithRemoteData() -> AnyPublisher<Void, Error> {
+        Future<Void, Error> { promise in
+            Task { [weak self] in
+                guard let self else { return }
+                
+                do {
+                    async let result = (
+                        try getRemoteOffersUseCase.use().async(),
+                        try getRemoteAccountsUseCase.use().async()
+                    )
+
+                    let (latestOffers, latestAccounts) = try await result
+                    
+                    await MainActor.run {
+                        self.amendUISections(amended: [
+                            self.makeOffersSection(latestOffers),
+                            self.makeAccountsSection(latestAccounts)
+                        ])
+                        promise(.success(()))
+                    }
+                } catch {
+                    promise(.failure(error))
+                }
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    // MARK:  Section building
     private func makeOffersSection(_ newOffers: [OfferDTO]) -> OverviewScreenSection {
         OverviewScreenSection(
             id: .offers,
@@ -176,6 +201,6 @@ public extension DefaultOverviewScreenVM {
                 )
             ]
         )
-        updateUI(with: section)
+        amendUISections(amended: [section])
     }
 }
