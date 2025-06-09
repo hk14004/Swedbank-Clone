@@ -144,3 +144,5 @@
 "Screen.OfferDetails.title" = "Piedāvājuma detaļas";
 "Error.Generic.title" = "Notika kļūme";
 "Error.Generic.message" = "Mēģiniet vēlāk";
+"Error.Network.Generic.title" = "Savienojuma kļūme";
+"Error.Network.Generic.message" = "Pārbaudiet savienojumu un mēģiniet atkal";

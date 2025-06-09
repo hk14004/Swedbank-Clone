@@ -31,17 +31,17 @@ class DefaultLoginScreenRouter: UIKitRouter, LoginScreenRouter, CancelBagStorabl
     }
 }
 
+import DevToolsUI
 extension ToErrorRouting where Self: UIKitRouter  {
-    func routeToOkeyErrorAlert(_ error: Error) {
+    func routeToOkeyErrorAlert(_ error: Error, onDismiss: (() -> Void)? = nil) {
         let alertViewController = UIAlertController(
-            title: AppStrings.Error.Generic.title,
-            message: AppStrings.Error.Generic.message,
-            preferredStyle: .alert
-        )
-        alertViewController.addAction(
-            UIAlertAction(
-                title: AppStrings.Globals.ok,
-                style: .default
+            configuration: error.makeAlertConfiguration(
+                buttons: [
+                    AlertConfiguration.Button(
+                        title: AppStrings.Globals.ok,
+                        action: onDismiss ?? {}
+                    )
+                ]
             )
         )
         viewController.present(alertViewController, animated: true)

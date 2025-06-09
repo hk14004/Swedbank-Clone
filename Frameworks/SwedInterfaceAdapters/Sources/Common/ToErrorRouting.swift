@@ -9,5 +9,5 @@
 import Foundation
 
 public protocol ToErrorRouting {
-    func routeToOkeyErrorAlert(_ error: Error)
+    func routeToOkeyErrorAlert(_ error: Error, onDismiss: (() -> Void)?)
 }

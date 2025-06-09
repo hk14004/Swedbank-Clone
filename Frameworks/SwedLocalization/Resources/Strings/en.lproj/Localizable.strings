@@ -146,3 +146,5 @@
 "Screen.OfferDetails.title" = "Offer details";
 "Error.Generic.title" = "Error occured";
 "Error.Generic.message" = "Try again later";
+"Error.Network.Generic.title" = "Connectivity error";
+"Error.Network.Generic.message" = "Check your internet connection and try again";
