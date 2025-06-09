@@ -16,8 +16,8 @@ extension Error {
         buttons: [AlertConfiguration.Button] = []
     ) -> AlertConfiguration {
         AlertConfiguration(
-            title: alertTitle,
-            message: alertMessage,
+            title: alertInfo.title,
+            message: alertInfo.message,
             buttons: buttons.isEmpty ? [defaultOkeyButton] : buttons
         )
     }
@@ -25,30 +25,30 @@ extension Error {
 
 // MARK: Helpers
 extension Error {
-    private var alertTitle: String {
+    private var alertInfo: ErrorAlertInfo {
         if self is NetworkError {
-            return AppStrings.Error.Network.Generic.title
+            return ErrorAlertInfo (
+                title: AppStrings.Error.Network.Generic.title,
+                message: AppStrings.Error.Network.Generic.message
+            )
         }
         if let sessionError = self as? UserSessionError {
             switch sessionError {
             case .invalidLoginCredentials:
-                return AppStrings.Error.UserSession.InvalidLoginCredentials.title
+                return ErrorAlertInfo(
+                    title: AppStrings.Error.UserSession.InvalidLoginCredentials.title,
+                    message: AppStrings.Error.UserSession.InvalidLoginCredentials.message
+                )
             }
         }
-        return AppStrings.Error.Generic.title
+        return defaultAlertInfo
     }
     
-    private var alertMessage: String {
-        if self is NetworkError {
-            return AppStrings.Error.Network.Generic.message
-        }
-        if let sessionError = self as? UserSessionError {
-            switch sessionError {
-            case .invalidLoginCredentials:
-                return AppStrings.Error.UserSession.InvalidLoginCredentials.message
-            }
-        }
-        return AppStrings.Error.Generic.message
+    private var defaultAlertInfo: ErrorAlertInfo {
+        ErrorAlertInfo(
+            title: AppStrings.Error.Generic.title,
+            message: AppStrings.Error.Generic.message
+        )
     }
     
     private var defaultOkeyButton: AlertConfiguration.Button {
@@ -56,5 +56,15 @@ extension Error {
             title: AppStrings.Globals.ok,
             action: {}
         )
+    }
+}
+
+fileprivate struct ErrorAlertInfo {
+    let title: String
+    let message: String
+    
+    init(title: String = "", message: String = "") {
+        self.title = title
+        self.message = message
     }
 }
