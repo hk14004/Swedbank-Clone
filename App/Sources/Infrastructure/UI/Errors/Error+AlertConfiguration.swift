@@ -19,18 +19,18 @@ extension Error {
         )
     }
     
-    private var alertContent: UIPresentableErrorContent {
-        guard let presentableError = self as? UIPresentableError else {
-            return genericErrorContent
-        }
-        return presentableError.presentableContent
-    }
-    
-    private var genericErrorContent: UIPresentableErrorContent {
+    var fallbackErrorContent: UIPresentableErrorContent {
         UIPresentableErrorContent(
             title: AppStrings.Error.Generic.title,
             message: AppStrings.Error.Generic.message
         )
+    }
+    
+    private var alertContent: UIPresentableErrorContent {
+        guard let presentableError = self as? UIPresentableError else {
+            return fallbackErrorContent
+        }
+        return presentableError.presentableContent
     }
     
     private var defaultOkeyButton: AlertConfiguration.Button {
