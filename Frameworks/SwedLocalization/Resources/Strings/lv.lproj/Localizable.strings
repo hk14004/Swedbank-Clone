@@ -146,3 +146,5 @@
 "Error.Generic.message" = "Mēģiniet vēlāk";
 "Error.Network.Generic.title" = "Savienojuma kļūme";
 "Error.Network.Generic.message" = "Pārbaudiet savienojumu un mēģiniet atkal";
+"Error.UserSession.InvalidLoginCredentials.title" = "Kļūdaini ievades dati";
+"Error.UserSession.InvalidLoginCredentials.message" = "Lūdzu, ievadiet pareizus datus";

@@ -9,6 +9,7 @@
 import Foundation
 import DevToolsNetworking
 import DevToolsUI
+import SwedApplicationBusinessRules
 
 extension Error {
     func makeAlertConfiguration(
@@ -28,12 +29,24 @@ extension Error {
         if self is NetworkError {
             return AppStrings.Error.Network.Generic.title
         }
+        if let sessionError = self as? UserSessionError {
+            switch sessionError {
+            case .invalidLoginCredentials:
+                return AppStrings.Error.UserSession.InvalidLoginCredentials.title
+            }
+        }
         return AppStrings.Error.Generic.title
     }
     
     private var alertMessage: String {
         if self is NetworkError {
             return AppStrings.Error.Network.Generic.message
+        }
+        if let sessionError = self as? UserSessionError {
+            switch sessionError {
+            case .invalidLoginCredentials:
+                return AppStrings.Error.UserSession.InvalidLoginCredentials.message
+            }
         }
         return AppStrings.Error.Generic.message
     }

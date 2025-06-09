@@ -24,5 +24,17 @@ class DefaultStartSessionService: StartSessionService {
                 StartSessionDataOutgoing(customerID: input.customerID, pinCode: input.pinCode)
             )
         )
+        .mapError { error in
+            guard let networkError = error as? NetworkError else {
+                return error
+            }
+            switch networkError {
+            case .resourceNotFound:
+                return UserSessionError.invalidLoginCredentials
+            default:
+                return error
+            }
+        }
+        .eraseToAnyPublisher()
     }
 }
