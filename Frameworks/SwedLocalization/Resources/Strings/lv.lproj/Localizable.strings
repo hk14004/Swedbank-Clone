@@ -142,3 +142,5 @@
 "Screen.Contacts.Items.faq.title" = "Biežākie jautājumi";
 "Screen.Contacts.Items.faq.description" = "Saņem noderīgas atbildes";
 "Screen.OfferDetails.title" = "Piedāvājuma detaļas";
+"Error.Generic.title" = "Notika kļūme";
+"Error.Generic.message" = "Mēģiniet vēlāk";

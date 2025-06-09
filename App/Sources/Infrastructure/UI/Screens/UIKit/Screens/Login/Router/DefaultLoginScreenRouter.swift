@@ -1,5 +1,5 @@
 //
-//  DefaultLoginRouter.swift
+//  DefaultLoginScreenRouter.swift
 //  Swedbank
 //
 //  Created by Hardijs Ķirsis on 03/09/2023.
@@ -32,9 +32,18 @@ class DefaultLoginScreenRouter: UIKitRouter, LoginScreenRouter, CancelBagStorabl
 }
 
 extension ToErrorRouting where Self: UIKitRouter  {
-    func routeToErrorAlert(_ error: Error) {
-        let alertViewController = UIAlertController(title: "", message: error.localizedDescription, preferredStyle: .alert)
-        alertViewController.addAction(UIAlertAction(title: AppStrings.Globals.ok, style: .default))
+    func routeToOkeyErrorAlert(_ error: Error) {
+        let alertViewController = UIAlertController(
+            title: AppStrings.Error.Generic.title,
+            message: AppStrings.Error.Generic.message,
+            preferredStyle: .alert
+        )
+        alertViewController.addAction(
+            UIAlertAction(
+                title: AppStrings.Globals.ok,
+                style: .default
+            )
+        )
         viewController.present(alertViewController, animated: true)
     }
 }

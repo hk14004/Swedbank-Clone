@@ -99,8 +99,7 @@ extension DefaultLoginScreenVM {
         case .finished:
             return
         case .failure(let error):
-            printError(error)
-            router.routeToErrorAlert(error)
+            router.routeToOkeyErrorAlert(error)
         }
     }
 }
