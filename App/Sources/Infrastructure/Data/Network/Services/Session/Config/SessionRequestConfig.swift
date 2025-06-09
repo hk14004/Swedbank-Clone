@@ -7,11 +7,14 @@ enum SessionRequestConfig {
 
 extension SessionRequestConfig: DevRequestConfig {
     var baseURL: String {
-        "https://httpbin.org"
+        "https://github.com"
     }
     
     var path: String {
-        "/basic-auth/demo/1234"
+        switch self {
+        case .startSession(let credentials):
+            "/hk14004/Swedbank-Clone/raw/refs/heads/dev/App/Resources/Payloads/Session/Customer/\(credentials.customerID)/\(credentials.pinCode)/session-start.json"
+        }
     }
     
     var method: DevHTTPMethod {
@@ -19,6 +22,6 @@ extension SessionRequestConfig: DevRequestConfig {
     }
     
     var requiresAuthorization: Bool {
-        true
+        false
     }
 }
