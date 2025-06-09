@@ -7,25 +7,18 @@ enum SessionRequestConfig {
 
 extension SessionRequestConfig: DevRequestConfig {
     var baseURL: String {
-        ""
+        "https://httpbin.org"
     }
     
     var path: String {
-        ""
+        "/basic-auth/demo/1234"
     }
     
     var method: DevHTTPMethod {
-        .post
+        .get
     }
     
-    var authType: DevRequestAuthType {
-        .none
-    }
-    
-    var bodyParameters: Data? {
-        switch self {
-        case .startSession(let basicLoginInfoOutgoing):
-            return try? JSONEncoder().encode(basicLoginInfoOutgoing)
-        }
+    var requiresAuthorization: Bool {
+        true
     }
 }

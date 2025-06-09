@@ -4,9 +4,9 @@ import SwedApplicationBusinessRules
 import Foundation
 
 class DefaultStartSessionService: StartSessionService {
-    private let networkClient: DevNetworkClient
+    private let networkClient: SwedNetworkClient
     
-    init(networkClient: DevNetworkClient) {
+    init(networkClient: SwedNetworkClient) {
         self.networkClient = networkClient
     }
     

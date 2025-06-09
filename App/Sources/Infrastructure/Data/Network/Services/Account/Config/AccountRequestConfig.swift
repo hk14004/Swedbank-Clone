@@ -29,7 +29,7 @@ extension AccountRequestConfig: DevRequestConfig {
         .get
     }
     
-    var authType: DevRequestAuthType {
-        .none
+    var requiresAuthorization: Bool {
+        false
     }
 }
