@@ -27,7 +27,7 @@ class DefaultAccountRepository: AccountRepository {
     func replace(with items: [AccountDTO]) -> AnyPublisher<Void, Never> {
         Future<Void, Never> { [weak self] promise in
             Task {
-                await self?.localStore.replace(with: items)
+                try await self?.localStore.replace(with: items)
                 promise(.success(()))
             }
         }
@@ -36,6 +36,10 @@ class DefaultAccountRepository: AccountRepository {
     
     func observeCachedList(predicate: NSPredicate) -> AnyPublisher<[AccountDTO], Never> {
         localStore.observeList(predicate: predicate)
+            .catch { _ in
+                Just([])
+            }
+            .eraseToAnyPublisher()
     }
     
     func getRemoteAccounts() -> AnyPublisher<[AccountDTO], Never> {

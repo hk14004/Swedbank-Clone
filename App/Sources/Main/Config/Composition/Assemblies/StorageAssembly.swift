@@ -54,15 +54,18 @@ class StorageAssembly: Assembly {
         }
         .inObjectScope(.container)
         container.register(PersistentCoreDataStore<OfferDTO>.self) { resolver in
-            PersistentCoreDataStore<OfferDTO>(storeContainer: Composition.resolve())
+            let storeContainer: NSPersistentContainer = Composition.resolve()
+            return PersistentCoreDataStore<OfferDTO>(context: storeContainer.viewContext)
         }
         .inObjectScope(.container)
         container.register(PersistentCoreDataStore<CustomerDTO>.self) { resolver in
-            PersistentCoreDataStore<CustomerDTO>(storeContainer: Composition.resolve())
+            let storeContainer: NSPersistentContainer = Composition.resolve()
+            return PersistentCoreDataStore<CustomerDTO>(context: storeContainer.viewContext)
         }
         .inObjectScope(.container)
         container.register(PersistentCoreDataStore<AccountDTO>.self) { resolver in
-            PersistentCoreDataStore<AccountDTO>(storeContainer: Composition.resolve())
+            let storeContainer: NSPersistentContainer = Composition.resolve()
+            return PersistentCoreDataStore<AccountDTO>(context: storeContainer.viewContext)
         }
         .inObjectScope(.container)
     }

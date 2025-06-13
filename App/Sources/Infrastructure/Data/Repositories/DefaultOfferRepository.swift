@@ -27,7 +27,7 @@ class DefaultOfferRepository: OfferRepository {
     func replace(with items: [OfferDTO]) -> AnyPublisher<Void, Never> {
         Future<Void, Never> { [weak self] promise in
             Task {
-                await self?.localStore.replace(with: items)
+                try await self?.localStore.replace(with: items)
                 promise(.success(()))
             }
         }
@@ -36,6 +36,10 @@ class DefaultOfferRepository: OfferRepository {
     
     func observeCachedList(predicate: NSPredicate) -> AnyPublisher<[OfferDTO], Never> {
         localStore.observeList(predicate: predicate)
+            .catch { _ in
+                Just([])
+            }
+            .eraseToAnyPublisher()
     }
     
     func getRemoteOffers() -> AnyPublisher<[OfferDTO], Never> {

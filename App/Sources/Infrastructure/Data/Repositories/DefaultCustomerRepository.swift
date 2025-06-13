@@ -34,7 +34,7 @@ class DefaultCustomerRepository: CustomerRepository {
     func addOrUpdate(_ items: [CustomerDTO]) -> AnyPublisher<Void, Never> {
         Future<Void, Never> { [weak self] promise in
             Task {
-                await self?.localStore.addOrUpdate(items)
+                try await self?.localStore.addOrUpdate(items)
                 promise(.success(()))
             }
         }
@@ -44,7 +44,7 @@ class DefaultCustomerRepository: CustomerRepository {
     func getSingle(id: String) -> AnyPublisher<CustomerDTO?, Never> {
         Future<CustomerDTO?, Never> { [weak self] promise in
             Task {
-                let customer = await self?.localStore.getSingle(id: id)
+                let customer = try await self?.localStore.getSingle(id: id)
                 promise(.success(customer))
             }
         }
@@ -54,7 +54,7 @@ class DefaultCustomerRepository: CustomerRepository {
     func replace(with items: [CustomerDTO]) -> AnyPublisher<Void, Never> {
         Future<Void, Never> { [weak self] promise in
             Task {
-                await self?.localStore.replace(with: items)
+                try await self?.localStore.replace(with: items)
                 promise(.success(()))
             }
         }
