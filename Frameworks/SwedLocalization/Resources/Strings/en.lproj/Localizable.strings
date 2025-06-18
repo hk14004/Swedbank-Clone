@@ -40,12 +40,6 @@
 /*  */
 "Screen.LockedTab.Payments.title" = "Make trasnactions or do somethign else";
 
-
-"Screen.LockedTab.Services.subtitle" = "Choose avaialble services and enjoy them";
-
-
-"Screen.LockedTab.Services.title" = "Our services";
-
 /*  */
 "Screen.Login.Button.title" = "Login";
 
@@ -127,9 +121,6 @@
 
 /*  */
 "Tabbar.Tabs.Payments.title" = "Transfers";
-
-/*  */
-"Tabbar.Tabs.Services.title" = "Services";
 
 "Screen.Contacts.Items.contactUs.title" = "Contact Us";
 "Screen.Contacts.Items.contactUs.description" = "Get answers from the virtual assistant";

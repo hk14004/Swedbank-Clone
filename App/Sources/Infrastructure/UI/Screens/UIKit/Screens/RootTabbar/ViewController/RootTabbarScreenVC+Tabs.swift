@@ -24,8 +24,6 @@ extension RootTabbarScreenVC {
                 return makeCardsTab(locked: viewModel.lockedPublisher.value)
             case .contacts:
                 return makeContactsTab(locked: viewModel.lockedPublisher.value)
-            case .services:
-                return makeServicesTab(locked: viewModel.lockedPublisher.value)
             }
         }
     }
@@ -117,32 +115,6 @@ extension RootTabbarScreenVC {
                 subtitle: AppStrings.Screen.LockedTab.Cards.subtitleKey,
                 backgroundColorName: "White3",
                 tabDescriptionIconName: "ic_cards_description"
-            )
-            return makeLockedTab(config: config)
-        }()
-        navVC.setViewControllers([vc], animated: false)
-        return navVC
-    }
-    
-    private func makeServicesTab(locked: Bool) -> UINavigationController {
-        let navVC = UINavigationController()
-        let item = RuntimeLocalizedTabBarItem()
-        item.image = UIImage(systemName: "shippingbox")
-        item.selectedImage = UIImage(systemName: "shippingbox.fill")
-        item.runtimeLocalizedKey = AppStrings.Tabbar.Tabs.Services.titleKey
-        navVC.tabBarItem = item
-        
-        let vc: UIViewController = {
-            guard locked else {
-                let vc = UIViewController()
-                vc.view.backgroundColor = .gray
-                return vc
-            }
-            let config = LockedDashboardPresentationConfig(
-                title: AppStrings.Screen.LockedTab.Services.titleKey,
-                subtitle: AppStrings.Screen.LockedTab.Services.subtitleKey,
-                backgroundColorName: "Pink1",
-                tabDescriptionIconName: "ic_services_description"
             )
             return makeLockedTab(config: config)
         }()

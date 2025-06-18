@@ -66,7 +66,6 @@ extension DefaultRootTabbarScreenVM {
             .overview,
             .payments,
             .cards,
-            .services,
             .contacts
         ]
     }

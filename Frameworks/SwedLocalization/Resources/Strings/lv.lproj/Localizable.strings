@@ -42,13 +42,6 @@
 
 "Screen.LockedTab.Payments.title" = "Pārskaiti naudu vai apmaksā rēķinus";
 
-/*  */
-"Screen.LockedTab.Services.subtitle" = "Izvēlies visus iespējamos pakalpojumus šeit";
-
-/*  */
-"Screen.LockedTab.Services.title" = "Mūsu pakalpojumi";
-
-
 "Screen.Login.Button.title" = "Ienākt";
 
 /*  */
@@ -125,9 +118,6 @@
 
 
 "Tabbar.Tabs.Payments.title" = "Maksājumi";
-
-
-"Tabbar.Tabs.Services.title" = "Servisi";
 
 "Screen.Contacts.Items.contactUs.title" = "Sazinies ar mums";
 "Screen.Contacts.Items.contactUs.description" = "Saņem atbildes no virtuālā asistena";
