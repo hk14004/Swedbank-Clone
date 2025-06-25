@@ -28,13 +28,10 @@ extension RootTabbarScreenVC {
         }
     }
     
-    private func makeLockedTab(config: LockedDashboardPresentationConfig) -> UIViewController {
+    func makeLockedTab() -> UIViewController {
         let didUnlockDashboardPublisher = PassthroughSubject<CustomerDTO, Never>()
-        let factory: LockedTabScreenFactory = Composition.resolve()
-        let vc = factory.make(
-            config: config,
-            didUnlockDashboardPublisher: didUnlockDashboardPublisher
-        )
+        let factory: LoginScreenFactory = Composition.resolve()
+        let vc = factory.make(didLoginPublisher: didUnlockDashboardPublisher)
         didUnlockDashboardPublisher
             .receiveOnMainThread()
             .sink { [weak self] customer in
@@ -57,13 +54,7 @@ extension RootTabbarScreenVC {
                 let factory: OverviewScreenFactory = Composition.resolve()
                 return factory.make(customer: customer)
             } else {
-                let config = LockedDashboardPresentationConfig(
-                    title: AppStrings.Screen.LockedTab.Overview.titleKey,
-                    subtitle: AppStrings.Screen.LockedTab.Overview.subtitleKey,
-                    backgroundColorName: "White3",
-                    tabDescriptionIconName: "ic_overview_description"
-                )
-                return makeLockedTab(config: config)
+                return makeLockedTab()
             }
         }()
         navVC.setViewControllers([vc], animated: false)
@@ -84,13 +75,7 @@ extension RootTabbarScreenVC {
                 vc.view.backgroundColor = .gray
                 return vc
             }
-            let config = LockedDashboardPresentationConfig(
-                title: AppStrings.Screen.LockedTab.Payments.titleKey,
-                subtitle: AppStrings.Screen.LockedTab.Payments.subtitleKey,
-                backgroundColorName: "Pink1",
-                tabDescriptionIconName: "ic_payments_description"
-            )
-            return makeLockedTab(config: config)
+            return makeLockedTab()
         }()
         navVC.setViewControllers([vc], animated: false)
         return navVC
@@ -110,13 +95,7 @@ extension RootTabbarScreenVC {
                 vc.view.backgroundColor = .gray
                 return vc
             }
-            let config = LockedDashboardPresentationConfig(
-                title: AppStrings.Screen.LockedTab.Cards.titleKey,
-                subtitle: AppStrings.Screen.LockedTab.Cards.subtitleKey,
-                backgroundColorName: "White3",
-                tabDescriptionIconName: "ic_cards_description"
-            )
-            return makeLockedTab(config: config)
+            return makeLockedTab()
         }()
         navVC.setViewControllers([vc], animated: false)
         return navVC
