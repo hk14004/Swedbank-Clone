@@ -11,9 +11,9 @@ import DevToolsCore
 import DevToolsCoreData
 import SwedApplicationBusinessRules
 
-extension CustomerCD: PersistedModel {
+extension CustomerCD: DBStoredObject {
     
-    public enum PersistedField: String, PersistedModelField {
+    public enum PersistedField: String, DBObjectField {
         case isMain
         case displayName
         case hasIpRestriction
@@ -23,7 +23,7 @@ extension CustomerCD: PersistedModel {
     }
     
     // TODO: Persist transformables
-    public func toDomain(fields: Set<PersistedField>) throws -> CustomerDTO {
+    public func convert(fields: Set<PersistedField>) throws -> CustomerDTO {
         func require(string: String?) throws -> String {
             guard let string = string else {
                 throw NSError(domain: "PersistentStoreErrorDomain", code: 0)
@@ -54,6 +54,6 @@ extension CustomerCD: PersistedModel {
     }
 }
 
-extension CustomerDTO: @retroactive PersistableDomainModel {
+extension CustomerDTO: @retroactive DBInterfaceDTO {
     public typealias StoreType = CustomerCD
 }

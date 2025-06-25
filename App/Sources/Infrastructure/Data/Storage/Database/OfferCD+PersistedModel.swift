@@ -11,16 +11,16 @@ import DevToolsCore
 import DevToolsCoreData
 import SwedApplicationBusinessRules
 
-extension OfferCD: PersistedModel {
+extension OfferCD: DBStoredObject {
     
-    public enum PersistedField: String, PersistedModelField {
+    public enum PersistedField: String, DBObjectField {
         case date
         case description
         case title
         case id
     }
     
-    public func toDomain(fields: Set<PersistedField>) throws -> OfferDTO {
+    public func convert(fields: Set<PersistedField>) throws -> OfferDTO {
         func require(string: String?) throws -> String {
             guard let string = string else {
                 throw NSError(domain: "PersistentStoreErrorDomain", code: 0)
@@ -44,6 +44,6 @@ extension OfferCD: PersistedModel {
     }
 }
 
-extension OfferDTO: @retroactive PersistableDomainModel {
+extension OfferDTO: @retroactive DBInterfaceDTO {
     public typealias StoreType = OfferCD
 }

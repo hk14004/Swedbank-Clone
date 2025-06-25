@@ -11,13 +11,13 @@ import DevToolsCore
 import DevToolsCoreData
 import SwedApplicationBusinessRules
 
-extension AccountCD: PersistedModel {
+extension AccountCD: DBStoredObject {
     
-    public enum PersistedField: String, PersistedModelField {
+    public enum PersistedField: String, DBObjectField {
         case customerId
     }
     
-    public func toDomain(fields: Set<PersistedField>) throws -> AccountDTO {
+    public func convert(fields: Set<PersistedField>) throws -> AccountDTO {
         func require(string: String?) throws -> String {
             guard let string = string else {
                 throw NSError(domain: "PersistentStoreErrorDomain", code: 0)
@@ -54,7 +54,7 @@ extension AccountCD: PersistedModel {
     }
 }
 
-extension AccountDTO: @retroactive PersistableDomainModel {
+extension AccountDTO: @retroactive DBInterfaceDTO {
     public var id: String {
         customerId
     }
