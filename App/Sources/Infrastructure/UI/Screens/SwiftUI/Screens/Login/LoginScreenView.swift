@@ -38,7 +38,7 @@ struct LoginScreenView<ViewModel: LoginScreenVM>: View {
             }, removeDigit: {
                 viewModel.onRemoveDigit()
             }, onFaceIDTapped: {
-                
+                viewModel.onFaceIDTapped()
             })
             .padding(.init(top: 12, leading: 0, bottom: 48, trailing: 0))
         }

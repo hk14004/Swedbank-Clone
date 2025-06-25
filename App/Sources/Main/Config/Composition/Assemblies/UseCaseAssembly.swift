@@ -16,6 +16,9 @@ class UseCaseAssembly: Assembly {
                 customerRepository: Composition.resolve()
             )
         }
+        container.register(BiometryLoginUseCase.self) { resolver in
+            DefaultBiometryLoginUseCase()
+        }
         container.register(StartAllUserSessionsUseCase.self) { resolver in
             DefaultStartAllUserSessionsUseCase(
                 manager: Composition.resolve()

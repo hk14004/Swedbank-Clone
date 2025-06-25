@@ -141,3 +141,6 @@
 "Error.Network.Generic.message" = "Check your internet connection and try again";
 "Error.UserSession.InvalidLoginCredentials.title" = "Wrong credentials";
 "Error.UserSession.InvalidLoginCredentials.message" = "Please, use correct ones next time";
+"Error.Biometry.BiometryNotAvailable.message" = "Biometry not available";
+"Error.Biometry.UserFallback.message" = "Selected authentication method is not available";
+"Permissions.Biometry.authReason" = "Biometry is required for authetication";

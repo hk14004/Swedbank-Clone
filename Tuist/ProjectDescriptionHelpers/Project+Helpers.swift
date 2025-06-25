@@ -42,7 +42,8 @@ extension Project {
             "UILaunchStoryboardName": "LaunchScreen",
             "NSAppTransportSecurity": [
                 "NSAllowArbitaryLoads": ProjectDescription.Plist.Value(booleanLiteral: allowArbitaryLoads)
-            ]
+            ],
+            "NSFaceIDUsageDescription": ProjectDescription.Plist.Value(stringLiteral: "Enable Face ID for easier and secure access to your account in mobile app"),
         ]
         
         return infoPlist

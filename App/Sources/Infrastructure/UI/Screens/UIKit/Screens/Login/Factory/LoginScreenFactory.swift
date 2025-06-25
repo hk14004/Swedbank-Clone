@@ -18,8 +18,9 @@ protocol LoginScreenFactory {
 class DefaultLoginScreenFactory: LoginScreenFactory {
     func make(didLoginPublisher: PassthroughSubject<CustomerDTO, Never>) -> LoginScreenVC {
         let vm = DefaultLoginScreenVM(
-            loginUseCase: Composition.resolve(),
-            getLastCustomerUseCase: Composition.resolve()
+            pinLoginUseCase: Composition.resolve(),
+            getLastCustomerUseCase: Composition.resolve(),
+            biometryLoginUseCase: Composition.resolve()
         )
         let vc = LoginScreenVC(viewModel: vm)
         let router = DefaultLoginScreenRouter(

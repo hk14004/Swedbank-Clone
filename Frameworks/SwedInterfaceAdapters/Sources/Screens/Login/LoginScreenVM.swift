@@ -35,21 +35,23 @@ public class DefaultLoginScreenVM: LoginScreenVM {
     public var maxPinLength: Int { 3 }
     public var customerName: String { customer.displayName }
     public var router: LoginScreenRouter!
-    private let loginUseCase: PinLoginUseCase
+    private let pinLoginUseCase: PinLoginUseCase
     private let getLastCustomerUseCase: GetLastCustomerUseCase
+    private let biometryLoginUseCase: BiometryLoginUseCase
     private var customer: CustomerDTO
     private var bag = Set<AnyCancellable>()
     
     // MARK: Lifecycle
     public init(
-        loginUseCase: PinLoginUseCase,
-        getLastCustomerUseCase: GetLastCustomerUseCase
+        pinLoginUseCase: PinLoginUseCase,
+        getLastCustomerUseCase: GetLastCustomerUseCase,
+        biometryLoginUseCase: BiometryLoginUseCase
     ) {
-        self.loginUseCase = loginUseCase
+        self.pinLoginUseCase = pinLoginUseCase
         self.getLastCustomerUseCase = getLastCustomerUseCase
         self.customer = getLastCustomerUseCase.use()
+        self.biometryLoginUseCase = biometryLoginUseCase
     }
-    
 }
 
 // MARK: - Public
@@ -72,7 +74,15 @@ public extension DefaultLoginScreenVM {
     }
     
     func onFaceIDTapped() {
-        
+        loadingPublisher = true
+        biometryLoginUseCase.use(customerID: customer.id)
+            .receiveOnMainThread()
+            .sink { [weak self] completion in
+                self?.handleLoginCompletion(completion)
+            } receiveValue: { [weak self] customer in
+                self?.onLoggedIn(customer: customer)
+            }
+            .store(in: &bag)
     }
 }
 
@@ -80,7 +90,7 @@ public extension DefaultLoginScreenVM {
 extension DefaultLoginScreenVM {
     private func attemptLogin(pinCode: String) {
         loadingPublisher = true
-        loginUseCase.use(customerID: customer.id, pinCode: pinCode)
+        pinLoginUseCase.use(customerID: customer.id, pinCode: pinCode)
             .receiveOnMainThread()
             .sink { [weak self] completion in
                 self?.handleLoginCompletion(completion)
@@ -101,6 +111,19 @@ extension DefaultLoginScreenVM {
         case .finished:
             return
         case .failure(let error):
+            if let error = error as? BiometryError {
+                switch error {
+                case .biometryNotAvailable:
+                    break
+                case .underlyingError(let systemError):
+                    switch systemError.code {
+                    case .userCancel:
+                        return
+                    default:
+                        break
+                    }
+                }
+            }
             router.routeToOkeyErrorAlert(error, onDismiss: nil)
         }
     }
