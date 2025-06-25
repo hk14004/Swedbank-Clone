@@ -35,14 +35,14 @@ public class DefaultLoginScreenVM: LoginScreenVM {
     public var maxPinLength: Int { 3 }
     public var customerName: String { customer.displayName }
     public var router: LoginScreenRouter!
-    private let loginUseCase: LoginUseCase
+    private let loginUseCase: PinLoginUseCase
     private let getLastCustomerUseCase: GetLastCustomerUseCase
     private var customer: CustomerDTO
     private var bag = Set<AnyCancellable>()
     
     // MARK: Lifecycle
     public init(
-        loginUseCase: LoginUseCase,
+        loginUseCase: PinLoginUseCase,
         getLastCustomerUseCase: GetLastCustomerUseCase
     ) {
         self.loginUseCase = loginUseCase
@@ -71,7 +71,9 @@ public extension DefaultLoginScreenVM {
         router.routeToLanguageSelectionScreen()
     }
     
-    func onFaceIDTapped() {}
+    func onFaceIDTapped() {
+        
+    }
 }
 
 // MARK: Private

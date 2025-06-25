@@ -8,8 +8,8 @@ class UseCaseAssembly: Assembly {
         container.register(GetLastCustomerUseCase.self) { resolver in
             MockGetLastCustomerUseCase()
         }
-        container.register(LoginUseCase.self) { resolver in
-            DefaultLoginUseCase(
+        container.register(PinLoginUseCase.self) { resolver in
+            DefaultPinLoginUseCase(
                 startSessionService: Composition.resolve(),
                 manager: Composition.resolve(),
                 userSessionCredentialsRepository: Composition.resolve(),

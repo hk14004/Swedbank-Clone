@@ -9,11 +9,11 @@
 import Foundation
 import Combine
 
-public protocol LoginUseCase {
+public protocol PinLoginUseCase {
     func use(customerID: String, pinCode: String) -> AnyPublisher<CustomerDTO, Error>
 }
 
-public struct DefaultLoginUseCase: LoginUseCase {
+public struct DefaultPinLoginUseCase: PinLoginUseCase {
     private let startSessionService: StartSessionService
     private let sessionManager: UserSessionManager
     private let userSessionCredentialsRepository: UserSessionCredentialsRepository
