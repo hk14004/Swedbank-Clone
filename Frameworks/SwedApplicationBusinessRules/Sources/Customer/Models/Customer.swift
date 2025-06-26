@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct CustomerDTO {
+public struct Customer {
     public let id: String
     public let displayName: String
     public let type: CustomerType
@@ -42,7 +42,7 @@ public struct CustomerDTO {
     }
 }
 
-public extension CustomerDTO {
+public extension Customer {
     func getInitials() -> String {
         let words = displayName.split(separator: " ")
         return words.map { $0.first?.uppercased() ?? "" }.joined()

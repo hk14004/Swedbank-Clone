@@ -28,8 +28,8 @@ extension GithubFetchRemoteAccountsService {
         let creditLimit: Decimal?
         
         // Optionaly handle missing data or provide defaults, throw error
-        func mapToDomain() throws -> AccountDTO {
-            AccountDTO(
+        func mapToDomain() throws -> Account {
+            Account(
                 customerId: customerId ?? "",
                 accountBalance: accountBalance ?? 0,
                 availableFunds: availableFunds ?? 0,

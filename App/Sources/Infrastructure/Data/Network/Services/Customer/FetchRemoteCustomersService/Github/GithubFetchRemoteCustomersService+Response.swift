@@ -23,8 +23,8 @@ extension GithubFetchRemoteCustomersService {
         public let authorities: [String]
         public let isMain: Bool
         
-        func mapToDomain() throws -> CustomerDTO {
-            CustomerDTO(
+        func mapToDomain() throws -> Customer {
+            Customer(
                 id: id,
                 displayName: displayName,
                 type: try decodeCustomerType(stringValue: type),

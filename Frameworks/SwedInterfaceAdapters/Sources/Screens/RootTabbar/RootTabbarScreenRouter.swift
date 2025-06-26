@@ -14,5 +14,5 @@ public protocol RootTabbarScreenRouter {
 }
 
 public protocol ToRootTabbarScreenRouting {
-    func initRouteToRoot(customer: CustomerDTO?)
+    func initRouteToRoot(customer: Customer?)
 }

@@ -10,7 +10,7 @@ import Foundation
 import Combine
 
 public protocol TrackCachedAccountsUseCase {
-    func use() -> AnyPublisher<[AccountDTO], Never>
+    func use() -> AnyPublisher<[Account], Never>
 }
 
 public struct DefaultTrackCachedAccountsUseCase: TrackCachedAccountsUseCase {
@@ -20,7 +20,7 @@ public struct DefaultTrackCachedAccountsUseCase: TrackCachedAccountsUseCase {
         self.accountRepository = accountRepository
     }
     
-    public func use() -> AnyPublisher<[AccountDTO], Never> {
+    public func use() -> AnyPublisher<[Account], Never> {
         accountRepository.observeCachedList(predicate: NSPredicate(value: true))
     }
 }

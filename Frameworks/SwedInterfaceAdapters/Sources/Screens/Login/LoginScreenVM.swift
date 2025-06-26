@@ -38,7 +38,7 @@ public class DefaultLoginScreenVM: LoginScreenVM {
     private let pinLoginUseCase: PinLoginUseCase
     private let getLastCustomerUseCase: GetLastCustomerUseCase
     private let biometryLoginUseCase: BiometryLoginUseCase
-    private var customer: CustomerDTO
+    private var customer: Customer
     private var bag = Set<AnyCancellable>()
     
     // MARK: Lifecycle
@@ -100,7 +100,7 @@ extension DefaultLoginScreenVM {
             .store(in: &bag)
     }
     
-    private func onLoggedIn(customer: CustomerDTO) {
+    private func onLoggedIn(customer: Customer) {
         router.routeToLoginCompleted(customer: customer)
     }
     

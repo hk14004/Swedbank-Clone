@@ -13,4 +13,4 @@ public protocol FetchRemoteCustomersService {
     func use() -> AnyPublisher<FetchRemoteCustomersServiceOutput, Error>
 }
 
-public typealias FetchRemoteCustomersServiceOutput = [CustomerDTO]
+public typealias FetchRemoteCustomersServiceOutput = [Customer]

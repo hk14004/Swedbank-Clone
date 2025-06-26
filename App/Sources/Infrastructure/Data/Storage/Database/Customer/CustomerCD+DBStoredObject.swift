@@ -45,15 +45,12 @@ extension CustomerCD: DBStoredObject {
     }
     
     public func update(with model: CustomerDTO, fields: Set<PersistedField>) {
+        // switch fields
         if fields.contains(.id) { self.id = model.id }
-        if fields.contains(.sortOrder) { self.sortOrder = Int64(model.sortOrder) }
-        if fields.contains(.hasUsableAccounts) { self.hasUsableAccounts = model.hasUsableAccounts }
-        if fields.contains(.hasIpRestriction) { self.hasIpRestriction = model.hasIpRestriction }
+        if fields.contains(.sortOrder) { self.sortOrder = Int64(model.sortOrder ?? 0) }
+        if fields.contains(.hasUsableAccounts) { self.hasUsableAccounts = model.hasUsableAccounts ?? false }
+        if fields.contains(.hasIpRestriction) { self.hasIpRestriction = model.hasIpRestriction ?? false }
         if fields.contains(.displayName) { self.displayName = model.displayName }
-        if fields.contains(.isMain) { self.isMain = model.isMain }
+        if fields.contains(.isMain) { self.isMain = model.isMain ?? false }
     }
-}
-
-extension CustomerDTO: @retroactive DBInterfaceDTO {
-    public typealias StoreType = CustomerCD
 }

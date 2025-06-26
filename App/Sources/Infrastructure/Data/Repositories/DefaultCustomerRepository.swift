@@ -23,7 +23,7 @@ class DefaultCustomerRepository: CustomerRepository {
         self.localStore = localStore
     }
     
-    func getRemoteCustomers() -> AnyPublisher<[CustomerDTO], Never> {
+    func getRemoteCustomers() -> AnyPublisher<[Customer], Never> {
         fetchRemoteCustomersService.use()
             .catch { _ in
                 Just([])
@@ -31,30 +31,30 @@ class DefaultCustomerRepository: CustomerRepository {
             .eraseToAnyPublisher()
     }
     
-    func addOrUpdate(_ items: [CustomerDTO]) -> AnyPublisher<Void, Never> {
+    func addOrUpdate(_ items: [Customer]) -> AnyPublisher<Void, Never> {
         Future<Void, Never> { [weak self] promise in
             Task {
-                try await self?.localStore.addOrUpdate(items)
+                try await self?.localStore.addOrUpdate(items.map { try CustomerDTO(customer: $0) } )
                 promise(.success(()))
             }
         }
         .eraseToAnyPublisher()
     }
     
-    func getSingle(id: String) -> AnyPublisher<CustomerDTO?, Never> {
-        Future<CustomerDTO?, Never> { [weak self] promise in
+    func getSingle(id: String) -> AnyPublisher<Customer?, Never> {
+        Future<Customer?, Never> { [weak self] promise in
             Task {
-                let customer = try await self?.localStore.getSingle(id: id)
+                let customer = try await self?.localStore.getSingle(id: id)?.toCustomer()
                 promise(.success(customer))
             }
         }
         .eraseToAnyPublisher()
     }
     
-    func replace(with items: [CustomerDTO]) -> AnyPublisher<Void, Never> {
+    func replace(with items: [Customer]) -> AnyPublisher<Void, Never> {
         Future<Void, Never> { [weak self] promise in
             Task {
-                try await self?.localStore.replace(with: items)
+                try await self?.localStore.replace(with: items.map { try CustomerDTO(customer: $0) } )
                 promise(.success(()))
             }
         }

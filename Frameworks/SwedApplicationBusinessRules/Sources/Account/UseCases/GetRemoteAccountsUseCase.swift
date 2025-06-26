@@ -10,7 +10,7 @@ import Foundation
 import Combine
 
 public protocol GetRemoteAccountsUseCase {
-    func use() -> AnyPublisher<[AccountDTO], Never>
+    func use() -> AnyPublisher<[Account], Never>
 }
 
 public struct DefaultGetRemoteAccountsUseCase: GetRemoteAccountsUseCase {
@@ -20,7 +20,7 @@ public struct DefaultGetRemoteAccountsUseCase: GetRemoteAccountsUseCase {
         self.accountRepository = accountRepository
     }
     
-    public func use() -> AnyPublisher<[AccountDTO], Never> {
+    public func use() -> AnyPublisher<[Account], Never> {
         accountRepository.getRemoteAccounts()
     }
 }

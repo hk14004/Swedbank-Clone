@@ -12,5 +12,5 @@ import SwedApplicationBusinessRules
 public protocol ProfileScreenRouter: ToSplashScreenRouting {}
 
 public protocol ToProfileScreenRouting {
-    func routeToProfileScreen(customer: CustomerDTO)
+    func routeToProfileScreen(customer: Customer)
 }

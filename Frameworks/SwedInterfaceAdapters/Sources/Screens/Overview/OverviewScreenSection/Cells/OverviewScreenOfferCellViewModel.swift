@@ -17,7 +17,7 @@ public struct OverviewScreenOfferCellViewModel: DevTableSectionCellModel {
     public var offerUrl: String
     public var didTap: (() -> Void)?
     
-    public init(offer: OfferDTO, didTap: (() -> Void)?) {
+    public init(offer: Offer, didTap: (() -> Void)?) {
         self.offerID = offer.id
         self.offerText = offer.title + " " + offer.description
         self.offerUrl = ""

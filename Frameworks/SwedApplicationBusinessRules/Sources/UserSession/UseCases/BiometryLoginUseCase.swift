@@ -12,7 +12,7 @@ import LocalAuthentication
 import SwedLocalization
 
 public protocol BiometryLoginUseCase {
-    func use(customerID: String) -> AnyPublisher<CustomerDTO, Error>
+    func use(customerID: String) -> AnyPublisher<Customer, Error>
 }
 
 public class DefaultBiometryLoginUseCase: BiometryLoginUseCase {
@@ -23,13 +23,13 @@ public class DefaultBiometryLoginUseCase: BiometryLoginUseCase {
     public init() {}
     
     // MARK: Methods
-    public func use(customerID: String) -> AnyPublisher<CustomerDTO, Error> {
+    public func use(customerID: String) -> AnyPublisher<Customer, Error> {
         var error: NSError?
         guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
             return .fail(BiometryError.biometryNotAvailable)
         }
         
-        return Future<CustomerDTO, Error> { promise in
+        return Future<Customer, Error> { promise in
             self.context.evaluatePolicy(
                 .deviceOwnerAuthenticationWithBiometrics,
                 localizedReason: SwedLocalization.Permissions.Biometry.authReason

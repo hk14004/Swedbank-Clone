@@ -18,12 +18,12 @@ public protocol OfferDetailsScreenVM: ObservableObject, OfferDetailsScreenVMOutp
 
 public class DefaultOfferDetailsScreenVM: OfferDetailsScreenVM {
     // MARK: Properties
-    private let offer: OfferDTO
+    private let offer: Offer
     public var title: String { offer.title }
     public var description: String { offer.description }
     
     // MARK: Lifecycle
-    public init(offer: OfferDTO) {
+    public init(offer: Offer) {
         self.offer = offer
     }
 }

@@ -14,12 +14,12 @@ public protocol RootTabbarScreenVMOutput {
     var router: RootTabbarScreenRouter! { get set }
     var tabsPublisher: CurrentValueSubject<[RootTab], Never> { get }
     var lockedPublisher: CurrentValueSubject<Bool, Never> { get }
-    var customer: CustomerDTO? { get }
+    var customer: Customer? { get }
 }
 
 public protocol RootTabbarScreenVMInput {
     func viewDidLoad()
-    func didUnlock(customer: CustomerDTO)
+    func didUnlock(customer: Customer)
     func didLock()
 }
 
@@ -27,14 +27,14 @@ public protocol RootTabbarScreenVM: RootTabbarScreenVMInput, RootTabbarScreenVMO
 
 public class DefaultRootTabbarScreenVM: RootTabbarScreenVM {
     // MARK: Variables
-    public var customer: CustomerDTO?
+    public var customer: Customer?
     public var router: RootTabbarScreenRouter!
     public var tabsPublisher: CurrentValueSubject<[RootTab], Never>
     public var lockedPublisher: CurrentValueSubject<Bool, Never>
     private var cancelBag = Set<AnyCancellable>()
     
     // MARK: LifeCycle
-    public init(customer: CustomerDTO?) {
+    public init(customer: Customer?) {
         self.customer = customer
         self.tabsPublisher = .init([])
         self.lockedPublisher = .init(customer == nil)
@@ -46,7 +46,7 @@ public class DefaultRootTabbarScreenVM: RootTabbarScreenVM {
 public extension DefaultRootTabbarScreenVM {
     func viewDidLoad() {}
     
-    func didUnlock(customer: CustomerDTO) {
+    func didUnlock(customer: Customer) {
         self.customer = customer
         lockedPublisher.value = false
         tabsPublisher.value = makePresentableTabs()

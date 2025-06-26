@@ -42,22 +42,14 @@ extension AccountCD: DBStoredObject {
     // TODO: Add optional handling
     public func update(with model: AccountDTO, fields: Set<PersistedField>) {
         id = model.customerId
-        accountBalance = model.accountBalance as NSDecimalNumber
-        availableFunds = model.availableFunds as NSDecimalNumber
-        creditLimit = model.creditLimit as NSDecimalNumber
+        accountBalance = (model.accountBalance ?? 0) as NSDecimalNumber
+        availableFunds = (model.availableFunds ?? 0) as NSDecimalNumber
+        creditLimit = (model.creditLimit ?? 0) as NSDecimalNumber
         currency = model.currency
         iban = model.iban
         ibanAlias = model.ibanAlias
-        payable = model.payable
-        reservedAmount = model.reservedAmount as NSDecimalNumber
-        sortOrder = Int64(model.sortOrder)
+        payable = model.payable ?? false
+        reservedAmount = (model.reservedAmount ?? 0) as NSDecimalNumber
+        sortOrder = Int64(model.sortOrder ?? 0)
     }
-}
-
-extension AccountDTO: @retroactive DBInterfaceDTO {
-    public var id: String {
-        customerId
-    }
-    
-    public typealias StoreType = AccountCD
 }

@@ -29,7 +29,7 @@ extension RootTabbarScreenVC {
     }
     
     func makeLockedTab() -> UIViewController {
-        let didUnlockDashboardPublisher = PassthroughSubject<CustomerDTO, Never>()
+        let didUnlockDashboardPublisher = PassthroughSubject<Customer, Never>()
         let factory: LoginScreenFactory = Composition.resolve()
         let vc = factory.make(didLoginPublisher: didUnlockDashboardPublisher)
         didUnlockDashboardPublisher

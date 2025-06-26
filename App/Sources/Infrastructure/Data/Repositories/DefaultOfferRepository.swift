@@ -24,30 +24,33 @@ class DefaultOfferRepository: OfferRepository {
         self.fetchRemoteOffersService = fetchRemoteOffersService
     }
     
-    func replace(with items: [OfferDTO]) -> AnyPublisher<Void, Never> {
+    func replace(with items: [Offer]) -> AnyPublisher<Void, Never> {
         Future<Void, Never> { [weak self] promise in
             Task {
-                try await self?.localStore.replace(with: items)
+                try await self?.localStore.replace(with: items.map { OfferDTO(offer: $0) } )
                 promise(.success(()))
             }
         }
         .eraseToAnyPublisher()
     }
     
-    func observeCachedList(predicate: NSPredicate) -> AnyPublisher<[OfferDTO], Never> {
+    func observeCachedList(predicate: NSPredicate) -> AnyPublisher<[Offer], Never> {
         localStore.observeList(predicate: predicate)
+            .tryMap {
+                $0.map { $0.toOffer() }
+            }
             .catch { _ in
                 Just([])
             }
             .eraseToAnyPublisher()
     }
     
-    func getRemoteOffers() -> AnyPublisher<[OfferDTO], Never> {
+    func getRemoteOffers() -> AnyPublisher<[Offer], Never> {
         fetchRemoteOffersService.use()
             .catch { _ in
                 Just([])
             }
-            .flatMap { [weak self] offers -> AnyPublisher<[OfferDTO], Never> in
+            .flatMap { [weak self] offers -> AnyPublisher<[Offer], Never> in
                 self?.replace(with: offers)
                     .map { _ in offers }
                     .eraseToAnyPublisher() ?? .empty()

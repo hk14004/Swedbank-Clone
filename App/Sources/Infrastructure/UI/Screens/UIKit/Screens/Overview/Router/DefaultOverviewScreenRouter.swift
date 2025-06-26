@@ -22,7 +22,7 @@ class DefaultOverviewScreenRouter: OverviewScreenRouter, UIKitRouter {
 
 
 extension ToOverviewScreenRouting where Self: UIKitRouter {
-    func routeToOverviewScreen(customer: CustomerDTO) {
+    func routeToOverviewScreen(customer: Customer) {
         let factory: OverviewScreenFactory = Composition.resolve()
         let vc = factory.make(customer: customer)
         viewController.navigationController?.pushViewController(vc, animated: true)

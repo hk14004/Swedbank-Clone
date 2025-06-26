@@ -8,5 +8,5 @@
 import SwedApplicationBusinessRules
 
 public protocol ToOfferDetailsRouting {
-    func routeToOfferDetails(offer: OfferDTO)
+    func routeToOfferDetails(offer: Offer)
 }

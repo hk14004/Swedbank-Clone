@@ -1,5 +1,5 @@
 //
-//  OfferDTO.swift
+//  Offer.swift
 //  SwedApplicationBusinessRules
 //
 //  Created by Hardijs Kirsis on 28/05/2025.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct OfferDTO: Codable {
+public struct Offer: Codable {
     public let id: String
     public let title: String
     public let description: String
@@ -22,4 +22,4 @@ public struct OfferDTO: Codable {
     }
 }
 
-extension OfferDTO: Equatable, Hashable {}
+extension Offer: Equatable, Hashable {}

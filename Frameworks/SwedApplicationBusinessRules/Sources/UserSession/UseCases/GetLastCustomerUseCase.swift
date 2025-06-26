@@ -8,7 +8,7 @@
 
 import Combine
 
-let JAMES_BOND = CustomerDTO(
+let JAMES_BOND = Customer(
     id: "007",
     displayName: "James Bond",
     type: .private,
@@ -21,13 +21,13 @@ let JAMES_BOND = CustomerDTO(
 )
 
 public protocol GetLastCustomerUseCase {
-    func use() -> CustomerDTO
+    func use() -> Customer
 }
 
 // Mocked for now
 public struct MockGetLastCustomerUseCase: GetLastCustomerUseCase {
     public init() {}
-    public func use() -> CustomerDTO {
+    public func use() -> Customer {
         JAMES_BOND
     }
 }

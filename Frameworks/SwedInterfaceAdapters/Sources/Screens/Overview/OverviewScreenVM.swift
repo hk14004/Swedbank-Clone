@@ -20,7 +20,7 @@ public protocol OverviewScreenVMOutput {
     var tableSnapshot: CurrentValueSubject<OverviewScreenTableSnapshot, Never> { get }
     var isRefreshing: CurrentValueSubject<Bool, Never> { get }
     var router: OverviewScreenRouter! { get }
-    var customer: CustomerDTO { get }
+    var customer: Customer { get }
 }
 
 public protocol OverviewScreenVM: OverviewScreenVMInput, OverviewScreenVMOutput {}
@@ -30,7 +30,7 @@ public class DefaultOverviewScreenVM: OverviewScreenVM {
     public var isRefreshing = CurrentValueSubject<Bool, Never>(false)
     public var tableSnapshot: CurrentValueSubject<OverviewScreenTableSnapshot, Never>
     public var router: OverviewScreenRouter!
-    public var customer: CustomerDTO
+    public var customer: Customer
     private let getRemoteOffersUseCase: GetRemoteOffersUseCase
     private let trackCachedOffersUseCase: TrackCachedOffersUseCase
     private let getRemoteAccountsUseCase: GetRemoteAccountsUseCase
@@ -39,7 +39,7 @@ public class DefaultOverviewScreenVM: OverviewScreenVM {
     
     // MARK: Lifecycle
     public init(
-        customer: CustomerDTO,
+        customer: Customer,
         getRemoteOffersUseCase: GetRemoteOffersUseCase,
         trackCachedOffersUseCase: TrackCachedOffersUseCase,
         getRemoteAccountsUseCase: GetRemoteAccountsUseCase,
@@ -155,7 +155,7 @@ public extension DefaultOverviewScreenVM {
     }
     
     // MARK:  Section building
-    private func makeOffersSection(_ newOffers: [OfferDTO]) -> OverviewScreenSection {
+    private func makeOffersSection(_ newOffers: [Offer]) -> OverviewScreenSection {
         OverviewScreenSection(
             id: .offers,
             cells: newOffers.map { offer in
@@ -172,7 +172,7 @@ public extension DefaultOverviewScreenVM {
         )
     }
     
-    private func makeAccountsSection(_ accounts: [AccountDTO]) -> OverviewScreenSection {
+    private func makeAccountsSection(_ accounts: [Account]) -> OverviewScreenSection {
         OverviewScreenSection(
             id: .accounts,
             cells: accounts.map { account in

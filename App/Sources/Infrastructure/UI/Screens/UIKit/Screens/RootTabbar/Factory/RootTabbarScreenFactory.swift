@@ -11,11 +11,11 @@ import SwedInterfaceAdapters
 import SwedApplicationBusinessRules
 
 protocol RootTabbarScreenFactory {
-    func make(customer: CustomerDTO?) -> RootTabbarScreenVC
+    func make(customer: Customer?) -> RootTabbarScreenVC
 }
 
 class DefaultRootTabbarScreenFactory: RootTabbarScreenFactory {
-    func make(customer: CustomerDTO?) -> RootTabbarScreenVC {
+    func make(customer: Customer?) -> RootTabbarScreenVC {
         let vm = DefaultRootTabbarScreenVM(customer: customer)
         let vc = RootTabbarScreenVC(viewModel: vm)
         let router = DefaultRootTabbarScreenRouter(viewController: vc)

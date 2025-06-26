@@ -10,7 +10,7 @@ import Foundation
 import Combine
 
 public protocol TrackCachedOffersUseCase {
-    func use() -> AnyPublisher<[OfferDTO], Never>
+    func use() -> AnyPublisher<[Offer], Never>
 }
 
 public struct DefaultTrackCachedOffersUseCase: TrackCachedOffersUseCase {
@@ -20,7 +20,7 @@ public struct DefaultTrackCachedOffersUseCase: TrackCachedOffersUseCase {
         self.offerRepository = offerRepository
     }
     
-    public func use() -> AnyPublisher<[OfferDTO], Never> {
+    public func use() -> AnyPublisher<[Offer], Never> {
         offerRepository.observeCachedList(predicate: NSPredicate(value: true))
     }
 }

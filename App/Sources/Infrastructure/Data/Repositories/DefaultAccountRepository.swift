@@ -24,30 +24,33 @@ class DefaultAccountRepository: AccountRepository {
         self.fetchRemoteAccountsService = fetchRemoteAccountsService
     }
     
-    func replace(with items: [AccountDTO]) -> AnyPublisher<Void, Never> {
+    func replace(with items: [Account]) -> AnyPublisher<Void, Never> {
         Future<Void, Never> { [weak self] promise in
             Task {
-                try await self?.localStore.replace(with: items)
+                try await self?.localStore.replace(with: items.map { AccountDTO(account: $0) } )
                 promise(.success(()))
             }
         }
         .eraseToAnyPublisher()
     }
     
-    func observeCachedList(predicate: NSPredicate) -> AnyPublisher<[AccountDTO], Never> {
+    func observeCachedList(predicate: NSPredicate) -> AnyPublisher<[Account], Never> {
         localStore.observeList(predicate: predicate)
+            .tryMap {
+                try $0.map { try $0.toAccount() }
+            }
             .catch { _ in
                 Just([])
             }
             .eraseToAnyPublisher()
     }
     
-    func getRemoteAccounts() -> AnyPublisher<[AccountDTO], Never> {
+    func getRemoteAccounts() -> AnyPublisher<[Account], Never> {
         fetchRemoteAccountsService.use()
             .catch { _ in
                 Just([])
             }
-            .flatMap { [weak self] accounts -> AnyPublisher<[AccountDTO], Never> in
+            .flatMap { [weak self] accounts -> AnyPublisher<[Account], Never> in
                 self?.replace(with: accounts)
                     .map { _ in accounts }
                     .eraseToAnyPublisher() ?? .empty()

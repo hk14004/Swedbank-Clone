@@ -10,7 +10,7 @@ import Foundation
 import Combine
 
 public protocol GetCurrentCustomerUseCase {
-    func use() -> AnyPublisher<CustomerDTO?, Never>
+    func use() -> AnyPublisher<Customer?, Never>
 }
 
 public struct DefaultGetCurrentCustomerUseCase: GetCurrentCustomerUseCase {
@@ -25,7 +25,7 @@ public struct DefaultGetCurrentCustomerUseCase: GetCurrentCustomerUseCase {
         self.customerRepository = customerRepository
     }
     
-    public func use() -> AnyPublisher<CustomerDTO?, Never> {
+    public func use() -> AnyPublisher<Customer?, Never> {
         guard let currentCustomerID = userSessionManager.startedUserSessions.first?.value.credentials.id else {
             return .just(nil)
         }

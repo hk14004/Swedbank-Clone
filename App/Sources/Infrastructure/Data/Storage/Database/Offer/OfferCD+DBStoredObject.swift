@@ -43,7 +43,3 @@ extension OfferCD: DBStoredObject {
         if fields.contains(.date) { self.date = model.date }
     }
 }
-
-extension OfferDTO: @retroactive DBInterfaceDTO {
-    public typealias StoreType = OfferCD
-}

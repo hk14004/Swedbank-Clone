@@ -11,11 +11,11 @@ import SwedInterfaceAdapters
 import SwedApplicationBusinessRules
 
 protocol OverviewScreenFactory {
-    func make(customer: CustomerDTO) -> OverviewScreenVC
+    func make(customer: Customer) -> OverviewScreenVC
 }
 
 class DefaultDashboardScreenFactory: OverviewScreenFactory {
-    func make(customer: CustomerDTO) -> OverviewScreenVC {
+    func make(customer: Customer) -> OverviewScreenVC {
         let vm = DefaultOverviewScreenVM(
             customer: customer,
             getRemoteOffersUseCase: Composition.resolve(),

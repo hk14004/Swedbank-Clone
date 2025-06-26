@@ -11,7 +11,7 @@ import SwedEnterpriseBusinessRules
 import Foundation
 
 public protocol OfferRepository {
-    func replace(with items: [OfferDTO]) -> AnyPublisher<Void, Never>
-    func getRemoteOffers() -> AnyPublisher<[OfferDTO], Never>
-    func observeCachedList(predicate: NSPredicate) -> AnyPublisher<[OfferDTO], Never>
+    func replace(with items: [Offer]) -> AnyPublisher<Void, Never>
+    func getRemoteOffers() -> AnyPublisher<[Offer], Never>
+    func observeCachedList(predicate: NSPredicate) -> AnyPublisher<[Offer], Never>
 }

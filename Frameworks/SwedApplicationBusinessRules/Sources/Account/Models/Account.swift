@@ -7,7 +7,7 @@
 //
 import DevToolsCore
 
-public struct AccountDTO {
+public struct Account {
     public let customerId: String
     public let accountBalance: Money
     public let availableFunds: Money
