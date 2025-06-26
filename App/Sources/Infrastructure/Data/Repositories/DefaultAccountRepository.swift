@@ -37,7 +37,7 @@ class DefaultAccountRepository: AccountRepository {
     func observeCachedList(predicate: NSPredicate) -> AnyPublisher<[Account], Never> {
         localStore.observeList(predicate: predicate)
             .tryMap {
-                try $0.map { try $0.toAccount() }
+                try $0.map { try $0.toAccount() }.sorted { $0.sortOrder < $1.sortOrder }
             }
             .catch { _ in
                 Just([])
@@ -47,6 +47,7 @@ class DefaultAccountRepository: AccountRepository {
     
     func getRemoteAccounts() -> AnyPublisher<[Account], Never> {
         fetchRemoteAccountsService.use()
+            .map { $0.sorted { $0.sortOrder < $1.sortOrder } }
             .catch { _ in
                 Just([])
             }

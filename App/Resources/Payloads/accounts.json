@@ -20,7 +20,7 @@
     "iban": "LVHABA5345634361232",
     "currency": "eur",
     "ibanAlias": "Spending account",
-    "sortOrder": 0,
+    "sortOrder": 1,
     "payable": true,
     "accType": "REGULAR",
     "accountBalance": 0.0,
