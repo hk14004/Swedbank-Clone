@@ -39,9 +39,23 @@ extension GithubFetchRemoteAccountsService {
                 ibanAlias: ibanAlias ?? "",
                 payable: payable ?? false,
                 reservedAmount: reservedAmount ?? 0,
-                sortOrder: sortOrder ?? 0
+                sortOrder: sortOrder ?? 0,
+                accType: accType?.decodedAccType ?? .regular
             )
         }
     }
     
+}
+
+fileprivate extension String {
+    var decodedAccType: AccountType? {
+        switch self {
+        case "SAVINGS":
+                .savings
+        case "REGULAR":
+                .regular
+        default:
+            nil
+        }
+    }
 }

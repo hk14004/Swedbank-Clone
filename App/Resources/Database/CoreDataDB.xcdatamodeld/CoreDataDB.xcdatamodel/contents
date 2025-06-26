@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788" systemVersion="24F74" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
     <entity name="AccountCD" representedClassName="AccountCD" syncable="YES" codeGenerationType="class">
         <attribute name="accountBalance" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="accType" optional="YES" attributeType="String"/>
         <attribute name="availableFunds" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="creditLimit" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="currency" optional="YES" attributeType="String"/>

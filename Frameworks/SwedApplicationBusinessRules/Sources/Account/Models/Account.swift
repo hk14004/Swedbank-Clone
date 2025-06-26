@@ -1,5 +1,5 @@
 //
-//  AccountDTO.swift
+//  Account.swift
 //  SwedApplicationBusinessRules
 //
 //  Created by Hardijs Kirsis on 06/06/2025.
@@ -18,8 +18,21 @@ public struct Account {
     public let payable: Bool
     public let reservedAmount: Money
     public let sortOrder: Int
+    public let accType: AccountType
     
-    public init(customerId: String, accountBalance: Money, availableFunds: Money, creditLimit: Money, currency: String, iban: String, ibanAlias: String, payable: Bool, reservedAmount: Money, sortOrder: Int) {
+    public init(
+        customerId: String,
+        accountBalance: Money,
+        availableFunds: Money,
+        creditLimit: Money,
+        currency: String,
+        iban: String,
+        ibanAlias: String,
+        payable: Bool,
+        reservedAmount: Money,
+        sortOrder: Int,
+        accType: AccountType
+    ) {
         self.customerId = customerId
         self.accountBalance = accountBalance
         self.availableFunds = availableFunds
@@ -30,5 +43,11 @@ public struct Account {
         self.payable = payable
         self.reservedAmount = reservedAmount
         self.sortOrder = sortOrder
+        self.accType = accType
     }
+}
+
+public enum AccountType {
+    case regular
+    case savings
 }

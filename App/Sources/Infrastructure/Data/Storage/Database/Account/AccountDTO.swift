@@ -21,6 +21,7 @@ public struct AccountDTO {
     public let payable: Bool?
     public let reservedAmount: Money?
     public let sortOrder: Int?
+    public let accType: AccountType?
     
     init(
         customerId: String,
@@ -32,7 +33,8 @@ public struct AccountDTO {
         ibanAlias: String?,
         payable: Bool?,
         reservedAmount: Money?,
-        sortOrder: Int?
+        sortOrder: Int?,
+        accType: AccountType?
     ) {
         self.customerId = customerId
         self.accountBalance = accountBalance
@@ -44,6 +46,7 @@ public struct AccountDTO {
         self.payable = payable
         self.reservedAmount = reservedAmount
         self.sortOrder = sortOrder
+        self.accType = accType
     }
     
     init(account: Account) {
@@ -57,6 +60,7 @@ public struct AccountDTO {
         self.payable = account.payable
         self.reservedAmount = account.reservedAmount
         self.sortOrder = account.sortOrder
+        self.accType = account.accType
     }
     
 }
@@ -81,7 +85,8 @@ extension AccountDTO {
             ibanAlias: ibanAlias!,
             payable: payable!,
             reservedAmount: reservedAmount!,
-            sortOrder: sortOrder!
+            sortOrder: sortOrder!,
+            accType: accType ?? .regular
         )
     }
 }

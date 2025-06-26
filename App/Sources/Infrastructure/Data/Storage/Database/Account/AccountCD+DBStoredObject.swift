@@ -14,7 +14,17 @@ import SwedApplicationBusinessRules
 extension AccountCD: DBStoredObject {
     
     public enum PersistedField: String, DBObjectField {
-        case customerId
+        case accountBalance
+        case accType
+        case availableFunds
+        case creditLimit
+        case currency
+        case iban
+        case ibanAlias
+        case id
+        case payable
+        case reservedAmount
+        case sortOrder
     }
     
     public func convert(fields: Set<PersistedField>) throws -> AccountDTO {
@@ -35,21 +45,61 @@ extension AccountCD: DBStoredObject {
             ibanAlias: try require(string: ibanAlias),
             payable: payable,
             reservedAmount: (reservedAmount ?? 0) as Money,
-            sortOrder: Int(sortOrder)
+            sortOrder: Int(sortOrder),
+            accType: accType?.decodedAccType
         )
     }
     
-    // TODO: Add optional handling
     public func update(with model: AccountDTO, fields: Set<PersistedField>) {
-        id = model.customerId
-        accountBalance = (model.accountBalance ?? 0) as NSDecimalNumber
-        availableFunds = (model.availableFunds ?? 0) as NSDecimalNumber
-        creditLimit = (model.creditLimit ?? 0) as NSDecimalNumber
-        currency = model.currency
-        iban = model.iban
-        ibanAlias = model.ibanAlias
-        payable = model.payable ?? false
-        reservedAmount = (model.reservedAmount ?? 0) as NSDecimalNumber
-        sortOrder = Int64(model.sortOrder ?? 0)
+        fields.forEach { field in
+            switch field {
+            case .accountBalance:
+                accountBalance = (model.accountBalance ?? 0) as NSDecimalNumber
+            case .availableFunds:
+                availableFunds = (model.availableFunds ?? 0) as NSDecimalNumber
+            case .creditLimit:
+                creditLimit = (model.creditLimit ?? 0) as NSDecimalNumber
+            case .currency:
+                currency = model.currency
+            case .iban:
+                iban = model.iban
+            case .ibanAlias:
+                ibanAlias = model.ibanAlias
+            case .id:
+                id = model.customerId
+            case .payable:
+                payable = model.payable ?? false
+            case .reservedAmount:
+                reservedAmount = (model.reservedAmount ?? 0) as NSDecimalNumber
+            case .sortOrder:
+                sortOrder = Int64(model.sortOrder ?? 0)
+            case .accType:
+                accType = model.accType?.encoded
+            }
+        }
+    }
+}
+
+fileprivate extension AccountType {
+    var encoded: String {
+        switch self {
+        case .regular:
+            return "REGULAR"
+        case .savings:
+            return "SAVINGS"
+        }
+    }
+}
+
+fileprivate extension String {
+    var decodedAccType: AccountType? {
+        switch self {
+        case "SAVINGS":
+                .savings
+        case "REGULAR":
+                .regular
+        default:
+            nil
+        }
     }
 }
