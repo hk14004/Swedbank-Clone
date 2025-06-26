@@ -13,11 +13,11 @@ import Foundation
 import DevToolsCore
 
 class DefaultAccountRepository: AccountRepository {
-    private let localStore: BasePersistedLayerInterface<AccountDTO>
+    private let localStore: BasePersistedLayerInterface<Account>
     private let fetchRemoteAccountsService: FetchRemoteAccountsService
     
     init(
-        store: BasePersistedLayerInterface<AccountDTO>,
+        store: BasePersistedLayerInterface<Account>,
         fetchRemoteAccountsService: FetchRemoteAccountsService
     ) {
         self.localStore = store
@@ -27,7 +27,7 @@ class DefaultAccountRepository: AccountRepository {
     func replace(with items: [Account]) -> AnyPublisher<Void, Never> {
         Future<Void, Never> { [weak self] promise in
             Task {
-                try await self?.localStore.replace(with: items.map { AccountDTO(account: $0) } )
+                try await self?.localStore.replace(with: items)
                 promise(.success(()))
             }
         }
@@ -36,8 +36,8 @@ class DefaultAccountRepository: AccountRepository {
     
     func observeCachedList(predicate: NSPredicate) -> AnyPublisher<[Account], Never> {
         localStore.observeList(predicate: predicate)
-            .tryMap {
-                try $0.map { try $0.toAccount() }.sorted { $0.sortOrder < $1.sortOrder }
+            .map {
+                $0.sorted { $0.sortOrder < $1.sortOrder }
             }
             .catch { _ in
                 Just([])

@@ -40,7 +40,7 @@ class RepositoryAssembly: Assembly {
         .inObjectScope(.container)
         container.register(AccountRepository.self) { resolver in
             DefaultAccountRepository(
-                store: resolver.resolve(PersistentCoreDataStore<AccountDTO>.self)!,
+                store: resolver.resolve(PersistentCoreDataStore<Account>.self)!,
                 fetchRemoteAccountsService: Composition.resolve()
             )
         }

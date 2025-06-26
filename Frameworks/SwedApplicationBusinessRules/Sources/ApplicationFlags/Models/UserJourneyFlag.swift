@@ -8,6 +8,6 @@
 
 import Foundation
 
-enum UserJourneyFlag: String, Codable {
+enum UserJourneyFlag: String {
     case completedOnboarding
 }

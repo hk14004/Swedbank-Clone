@@ -67,11 +67,11 @@ class StorageAssembly: Assembly {
             return PersistentCoreDataStore<Customer>(context: context)
         }
         .inObjectScope(.container)
-        container.register(PersistentCoreDataStore<AccountDTO>.self) { resolver in
+        container.register(PersistentCoreDataStore<Account>.self) { resolver in
             let storeContainer: NSPersistentContainer = Composition.resolve()
             let context = storeContainer.newBackgroundContext()
             context.automaticallyMergesChangesFromParent = true
-            return PersistentCoreDataStore<AccountDTO>(context: context)
+            return PersistentCoreDataStore<Account>(context: context)
         }
         .inObjectScope(.container)
     }

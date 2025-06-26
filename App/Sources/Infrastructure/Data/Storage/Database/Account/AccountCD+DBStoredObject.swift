@@ -27,7 +27,7 @@ extension AccountCD: DBStoredObject {
         case sortOrder
     }
     
-    public func convert(fields: Set<PersistedField>) throws -> AccountDTO {
+    public func convert(fields: Set<PersistedField>) throws -> Account {
         func require(string: String?) throws -> String {
             guard let string = string else {
                 throw NSError(domain: "PersistentStoreErrorDomain", code: 0)
@@ -35,7 +35,7 @@ extension AccountCD: DBStoredObject {
             return string
         }
         
-        return AccountDTO(
+        return Account(
             customerId: try require(string: id),
             accountBalance: (accountBalance ?? 0) as Money,
             availableFunds: (availableFunds ?? 0) as Money,
@@ -46,19 +46,19 @@ extension AccountCD: DBStoredObject {
             payable: payable,
             reservedAmount: (reservedAmount ?? 0) as Money,
             sortOrder: Int(sortOrder),
-            accType: accType?.decodedAccType
+            accType: AccountType(rawValue: accType ?? "") ?? .regular
         )
     }
     
-    public func update(with model: AccountDTO, fields: Set<PersistedField>) {
+    public func update(with model: Account, fields: Set<PersistedField>) {
         fields.forEach { field in
             switch field {
             case .accountBalance:
-                accountBalance = (model.accountBalance ?? 0) as NSDecimalNumber
+                accountBalance = model.accountBalance as NSDecimalNumber
             case .availableFunds:
-                availableFunds = (model.availableFunds ?? 0) as NSDecimalNumber
+                availableFunds = model.availableFunds as NSDecimalNumber
             case .creditLimit:
-                creditLimit = (model.creditLimit ?? 0) as NSDecimalNumber
+                creditLimit = model.creditLimit as NSDecimalNumber
             case .currency:
                 currency = model.currency
             case .iban:
@@ -68,38 +68,14 @@ extension AccountCD: DBStoredObject {
             case .id:
                 id = model.customerId
             case .payable:
-                payable = model.payable ?? false
+                payable = model.payable
             case .reservedAmount:
-                reservedAmount = (model.reservedAmount ?? 0) as NSDecimalNumber
+                reservedAmount = model.reservedAmount as NSDecimalNumber
             case .sortOrder:
-                sortOrder = Int64(model.sortOrder ?? 0)
+                sortOrder = Int64(model.sortOrder)
             case .accType:
-                accType = model.accType?.encoded
+                accType = model.accType.rawValue
             }
-        }
-    }
-}
-
-fileprivate extension AccountType {
-    var encoded: String {
-        switch self {
-        case .regular:
-            return "REGULAR"
-        case .savings:
-            return "SAVINGS"
-        }
-    }
-}
-
-fileprivate extension String {
-    var decodedAccType: AccountType? {
-        switch self {
-        case "SAVINGS":
-                .savings
-        case "REGULAR":
-                .regular
-        default:
-            nil
         }
     }
 }
