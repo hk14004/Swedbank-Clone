@@ -18,7 +18,7 @@ struct LanguageDropdownView: View {
                 makeFlagImageView()
                 Image(systemName: "chevron.down")
                     .foregroundStyle(
-                        Color(asset: AppColors.black1)
+                        Color(asset: AppColors.text1)
                     )
             }
         }
