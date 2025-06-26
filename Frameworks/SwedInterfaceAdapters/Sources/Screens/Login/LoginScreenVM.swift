@@ -35,18 +35,18 @@ public class DefaultLoginScreenVM: LoginScreenVM {
     public var maxPinLength: Int { 3 }
     public var customerName: String { customer.displayName }
     public var router: LoginScreenRouter!
-    private let pinLoginUseCase: PinLoginUseCase
+    private let pinLoginUseCase: PinAuthenticateUseCase
     private let getLastCustomerUseCase: GetLastCustomerUseCase
-    private let biometryLoginUseCase: BiometryLoginUseCase
+    private let biometryLoginUseCase: BiometryAuthenticateUseCase
     private var customer: Customer
     private var bag = Set<AnyCancellable>()
     
     // MARK: Lifecycle
     public init(
         customer: Customer,
-        pinLoginUseCase: PinLoginUseCase,
+        pinLoginUseCase: PinAuthenticateUseCase,
         getLastCustomerUseCase: GetLastCustomerUseCase,
-        biometryLoginUseCase: BiometryLoginUseCase
+        biometryLoginUseCase: BiometryAuthenticateUseCase
     ) {
         self.customer = customer
         self.pinLoginUseCase = pinLoginUseCase

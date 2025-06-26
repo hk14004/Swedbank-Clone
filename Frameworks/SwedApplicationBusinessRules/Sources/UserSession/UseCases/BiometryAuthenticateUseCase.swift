@@ -11,11 +11,11 @@ import Combine
 import LocalAuthentication
 import SwedLocalization
 
-public protocol BiometryLoginUseCase {
+public protocol BiometryAuthenticateUseCase {
     func use(customerID: String) -> AnyPublisher<Void, Error>
 }
 
-public class DefaultBiometryLoginUseCase: BiometryLoginUseCase {
+public class DefaultBiometryAuthenticateUseCase: BiometryAuthenticateUseCase {
     // MARK: Properties
     private let context = LAContext()
     

@@ -11,16 +11,11 @@ class UseCaseAssembly: Assembly {
         container.register(GetLastCustomerUseCase.self) { resolver in
             MockGetLastCustomerUseCase(customerRepository: Composition.resolve())
         }
-        container.register(PinLoginUseCase.self) { resolver in
-            DefaultPinLoginUseCase(
-                startSessionService: Composition.resolve(),
-                manager: Composition.resolve(),
-                userSessionCredentialsRepository: Composition.resolve(),
-                customerRepository: Composition.resolve()
-            )
+        container.register(PinAuthenticateUseCase.self) { resolver in
+            DefaultPinAuthenticateUseCase()
         }
-        container.register(BiometryLoginUseCase.self) { resolver in
-            DefaultBiometryLoginUseCase()
+        container.register(BiometryAuthenticateUseCase.self) { resolver in
+            DefaultBiometryAuthenticateUseCase()
         }
         container.register(StartAllUserSessionsUseCase.self) { resolver in
             DefaultStartAllUserSessionsUseCase(
