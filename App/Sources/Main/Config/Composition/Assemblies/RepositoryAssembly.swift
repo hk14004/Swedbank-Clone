@@ -27,7 +27,7 @@ class RepositoryAssembly: Assembly {
         container.register(CustomerRepository.self) { resolver in
             DefaultCustomerRepository(
                 fetchRemoteCustomersService: Composition.resolve(),
-                localStore: resolver.resolve(PersistentCoreDataStore<CustomerDTO>.self)!
+                localStore: resolver.resolve(PersistentCoreDataStore<Customer>.self)!
             )
         }
         .inObjectScope(.container)

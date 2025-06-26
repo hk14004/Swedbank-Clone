@@ -13,11 +13,11 @@ import DevToolsCore
 class DefaultCustomerRepository: CustomerRepository {
     
     private let fetchRemoteCustomersService: FetchRemoteCustomersService
-    private let localStore: BasePersistedLayerInterface<CustomerDTO>
+    private let localStore: BasePersistedLayerInterface<Customer>
     
     init(
         fetchRemoteCustomersService: FetchRemoteCustomersService,
-        localStore: BasePersistedLayerInterface<CustomerDTO>
+        localStore: BasePersistedLayerInterface<Customer>
     ) {
         self.fetchRemoteCustomersService = fetchRemoteCustomersService
         self.localStore = localStore
@@ -39,7 +39,7 @@ class DefaultCustomerRepository: CustomerRepository {
     func addOrUpdate(_ items: [Customer]) -> AnyPublisher<Void, Never> {
         Future<Void, Never> { [weak self] promise in
             Task {
-                try await self?.localStore.addOrUpdate(items.map { try CustomerDTO(customer: $0) } )
+                try await self?.localStore.addOrUpdate(items)
                 promise(.success(()))
             }
         }
@@ -49,7 +49,7 @@ class DefaultCustomerRepository: CustomerRepository {
     func getSingle(id: String) -> AnyPublisher<Customer?, Never> {
         Future<Customer?, Never> { [weak self] promise in
             Task {
-                let customer = try await self?.localStore.getSingle(id: id)?.toCustomer()
+                let customer = try await self?.localStore.getSingle(id: id)
                 promise(.success(customer))
             }
         }
@@ -57,13 +57,13 @@ class DefaultCustomerRepository: CustomerRepository {
     }
     
     func getSingle(id: String) -> Customer? {
-        try? localStore.getSingle(id: id)?.toCustomer()
+        try? localStore.getSingle(id: id)
     }
     
     func replace(with items: [Customer]) -> AnyPublisher<Void, Never> {
         Future<Void, Never> { [weak self] promise in
             Task {
-                try await self?.localStore.replace(with: items.map { try CustomerDTO(customer: $0) } )
+                try await self?.localStore.replace(with: items)
                 promise(.success(()))
             }
         }

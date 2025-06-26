@@ -1,5 +1,5 @@
 //
-//  DefaultFetchCustomersService+Response.swift
+//  GithubFetchRemoteCustomersService+Response.swift
 //  Swedbank
 //
 //  Created by Hardijs Kirsis on 28/05/2025.
@@ -27,71 +27,13 @@ extension GithubFetchRemoteCustomersService {
             Customer(
                 id: id,
                 displayName: displayName,
-                type: try decodeCustomerType(stringValue: type),
+                type: CustomerType(rawValue: type.lowercased()) ?? .private,
                 hasIpRestriction: hasIpRestriction,
                 hasUsableAccounts: hasUsableAccounts,
                 sortOrder: sortOrder,
-                roles: try decodeCustomerRoles(roles: roles),
-                authorities: try decodeCustomerAuthority(authorities: authorities),
+                roles: roles.compactMap { CustomerRole(rawValue: $0.lowercased()) },
+                authorities: roles.compactMap { CustomerAuthority(rawValue: $0.lowercased()) },
                 isMain: isMain
-            )
-        }
-    }
-}
-
-fileprivate func decodeCustomerType(stringValue: String) throws -> CustomerType {
-    switch stringValue {
-    case "PRIVATE":
-        return .private
-    case "BUSINESS":
-        return .business
-    case "CHILD":
-        return .child
-    default:
-        throw DecodingError.dataCorrupted(
-            DecodingError.Context(
-                codingPath: [],
-                debugDescription: "Unsupported customer type \(stringValue)"
-            )
-        )
-    }
-}
-
-fileprivate func decodeCustomerRoles(roles: [String]) throws -> [CustomerRole] {
-    try roles.map {
-        switch $0 {
-        case "PRIVATE":
-            return .private
-        case "BUSINESS":
-            return .business
-        case "PARENT":
-            return .parent
-        default:
-            throw DecodingError.dataCorrupted(
-                DecodingError.Context(
-                    codingPath: [],
-                    debugDescription: "Unsupported customer role \($0)"
-                )
-            )
-        }
-    }
-}
-
-fileprivate func decodeCustomerAuthority(authorities: [String]) throws -> [CustomerAuthority] {
-    try authorities.map {
-        switch $0 {
-        case "CARDS":
-            return .cards
-        case "PAYMENTS":
-            return .payments
-        case "STATEMENTS":
-            return .statements
-        default:
-            throw DecodingError.dataCorrupted(
-                DecodingError.Context(
-                    codingPath: [],
-                    debugDescription: "Unsupported customer role \($0)"
-                )
             )
         }
     }

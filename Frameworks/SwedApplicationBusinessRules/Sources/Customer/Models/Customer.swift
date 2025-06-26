@@ -49,19 +49,19 @@ public extension Customer {
     }
 }
 
-public enum CustomerType {
+public enum CustomerType: String, Codable {
     case `private`
     case business
     case child
 }
 
-public enum CustomerRole: Codable {
+public enum CustomerRole: String, Codable {
     case `private`
     case business
     case parent
 }
 
-public enum CustomerAuthority: Codable {
+public enum CustomerAuthority: String, Codable {
     case cards
     case payments
     case statements
