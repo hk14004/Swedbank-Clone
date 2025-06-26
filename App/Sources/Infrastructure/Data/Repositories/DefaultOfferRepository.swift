@@ -13,11 +13,11 @@ import Foundation
 import DevToolsCore
 
 class DefaultOfferRepository: OfferRepository {
-    private let localStore: BasePersistedLayerInterface<OfferDTO>
+    private let localStore: BasePersistedLayerInterface<Offer>
     private let fetchRemoteOffersService: FetchRemoteOffersService
     
     init(
-        store: BasePersistedLayerInterface<OfferDTO>,
+        store: BasePersistedLayerInterface<Offer>,
         fetchRemoteOffersService: FetchRemoteOffersService
     ) {
         self.localStore = store
@@ -27,7 +27,7 @@ class DefaultOfferRepository: OfferRepository {
     func replace(with items: [Offer]) -> AnyPublisher<Void, Never> {
         Future<Void, Never> { [weak self] promise in
             Task {
-                try await self?.localStore.replace(with: items.map { OfferDTO(offer: $0) } )
+                try await self?.localStore.replace(with: items)
                 promise(.success(()))
             }
         }
@@ -36,9 +36,6 @@ class DefaultOfferRepository: OfferRepository {
     
     func observeCachedList(predicate: NSPredicate) -> AnyPublisher<[Offer], Never> {
         localStore.observeList(predicate: predicate)
-            .tryMap {
-                $0.map { $0.toOffer() }
-            }
             .catch { _ in
                 Just([])
             }

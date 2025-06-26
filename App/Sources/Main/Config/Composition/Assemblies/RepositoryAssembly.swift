@@ -33,7 +33,7 @@ class RepositoryAssembly: Assembly {
         .inObjectScope(.container)
         container.register(OfferRepository.self) { resolver in
             DefaultOfferRepository(
-                store: resolver.resolve(PersistentCoreDataStore<OfferDTO>.self)!,
+                store: resolver.resolve(PersistentCoreDataStore<Offer>.self)!,
                 fetchRemoteOffersService: Composition.resolve()
             )
         }

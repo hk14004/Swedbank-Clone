@@ -15,31 +15,32 @@ extension OfferCD: DBStoredObject {
     
     public enum PersistedField: String, DBObjectField {
         case date
-        case description
-        case title
+        case desc
         case id
+        case title
     }
     
-    public func convert(fields: Set<PersistedField>) throws -> OfferDTO {
-        func require(string: String?) throws -> String {
-            guard let string = string else {
-                throw NSError(domain: "PersistentStoreErrorDomain", code: 0)
-            }
-            return string
-        }
-        
-        return OfferDTO(
-            id: try require(string: id),
-            title: title ?? "Default Title",
-            description: desc ?? "Default Description",
+    public func convert(fields: Set<PersistedField>) throws -> Offer {
+        Offer(
+            id: id ?? "",
+            title: title ?? "",
+            description: desc ?? "",
             date: date ?? Date()
         )
     }
     
-    public func update(with model: OfferDTO, fields: Set<PersistedField>) {
-        if fields.contains(.id) { self.id = model.id }
-        if fields.contains(.title) { self.title = model.title }
-        if fields.contains(.description) { self.desc = model.description }
-        if fields.contains(.date) { self.date = model.date }
+    public func update(with model: Offer, fields: Set<PersistedField>) {
+        fields.forEach { field in
+            switch field {
+            case .date:
+                date = model.date
+            case .desc:
+                desc = model.description
+            case .id:
+                id = model.id
+            case .title:
+                title = model.title
+            }
+        }
     }
 }
