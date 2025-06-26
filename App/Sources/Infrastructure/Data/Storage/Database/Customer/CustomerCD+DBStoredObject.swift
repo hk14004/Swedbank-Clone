@@ -14,43 +14,105 @@ import SwedApplicationBusinessRules
 extension CustomerCD: DBStoredObject {
     
     public enum PersistedField: String, DBObjectField {
-        case isMain
+        case authorities
         case displayName
         case hasIpRestriction
         case hasUsableAccounts
-        case sortOrder
         case id
+        case isMain
+        case roles
+        case sortOrder
+        case type
     }
     
-    // TODO: Persist transformables
     public func convert(fields: Set<PersistedField>) throws -> CustomerDTO {
-        func require(string: String?) throws -> String {
-            guard let string = string else {
-                throw NSError(domain: "PersistentStoreErrorDomain", code: 0)
-            }
-            return string
-        }
-        
-        return CustomerDTO(
-            id: try require(string: id),
+        CustomerDTO(
+            id: id ?? "",
             displayName: displayName ?? "",
-            type: .private,
+            type: type?.decodedCustomerType(),
             hasIpRestriction: hasIpRestriction,
             hasUsableAccounts: hasUsableAccounts,
             sortOrder: Int(sortOrder),
-            roles: [],
-            authorities: [],
+            roles: roles?.decodedCustomerRoles,
+            authorities: authorities?.decodedCustomerAuthorities,
             isMain: isMain
         )
     }
     
     public func update(with model: CustomerDTO, fields: Set<PersistedField>) {
-        // switch fields
-        if fields.contains(.id) { self.id = model.id }
-        if fields.contains(.sortOrder) { self.sortOrder = Int64(model.sortOrder ?? 0) }
-        if fields.contains(.hasUsableAccounts) { self.hasUsableAccounts = model.hasUsableAccounts ?? false }
-        if fields.contains(.hasIpRestriction) { self.hasIpRestriction = model.hasIpRestriction ?? false }
-        if fields.contains(.displayName) { self.displayName = model.displayName }
-        if fields.contains(.isMain) { self.isMain = model.isMain ?? false }
+        fields.forEach { field in
+            switch field {
+            case .isMain:
+                self.isMain = model.isMain ?? false
+            case .displayName:
+                self.displayName = model.displayName
+            case .hasIpRestriction:
+                self.hasIpRestriction = model.hasIpRestriction ?? false
+            case .hasUsableAccounts:
+                self.hasUsableAccounts = model.hasUsableAccounts ?? false
+            case .sortOrder:
+                self.sortOrder = Int64(model.sortOrder ?? 0)
+            case .id:
+                self.id = model.id
+            case .authorities:
+                self.authorities = model.authorities?.encoded
+            case .roles:
+                self.roles = model.roles?.encoded
+            case .type:
+                self.type = model.type?.encoded
+            }
+        }
+    }
+}
+
+fileprivate extension CustomerType {
+    var encoded: String {
+        switch self {
+        case .private:
+            "private"
+        case .business:
+            "business"
+        case .child:
+            "child"
+        }
+    }
+}
+
+fileprivate extension String {
+    func decodedCustomerType() -> CustomerType? {
+        switch self {
+        case "private":
+            return .private
+        case "business":
+            return .business
+        case "child":
+            return .child
+        default:
+            return .none
+        }
+    }
+}
+
+fileprivate extension Data {
+    var decodedCustomerRoles: [CustomerRole]? {
+        try? JSONDecoder().decode([CustomerRole].self, from: self)
+    }
+}
+
+fileprivate extension Array where Element == CustomerRole {
+    var encoded: Data? {
+        try? JSONEncoder().encode(self)
+    }
+}
+
+fileprivate extension Data {
+    var decodedCustomerAuthorities: [CustomerAuthority]? {
+        try? JSONDecoder().decode([CustomerAuthority].self, from: self)
+    }
+}
+
+fileprivate extension Array where Element == CustomerAuthority {
+    var encoded: Data? {
+        try? JSONEncoder().encode(self)
     }
 }

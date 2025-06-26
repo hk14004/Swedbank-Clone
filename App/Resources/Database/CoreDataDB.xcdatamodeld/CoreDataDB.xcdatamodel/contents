@@ -13,12 +13,15 @@
         <attribute name="sortOrder" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="CustomerCD" representedClassName="CustomerCD" syncable="YES" codeGenerationType="class">
+        <attribute name="authorities" optional="YES" attributeType="Binary"/>
         <attribute name="displayName" optional="YES" attributeType="String"/>
         <attribute name="hasIpRestriction" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="hasUsableAccounts" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="isMain" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="roles" optional="YES" attributeType="Binary"/>
         <attribute name="sortOrder" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
     </entity>
     <entity name="OfferCD" representedClassName="OfferCD" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>

@@ -29,7 +29,7 @@ public class DefaultLogoutUseCase: LogoutUseCase {
     // MARK: Methods
     public func use() -> AnyPublisher<Void, Never> {
         guard let startedSession = manager.startedUserSessions.first?.value else {
-            return .just(())
+            return nukeCustomerPersistedDataUseCase.use()
         }
         
         manager.deleteUserSession(credentialsID: startedSession.credentials.id)

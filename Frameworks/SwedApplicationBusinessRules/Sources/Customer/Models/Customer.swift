@@ -55,13 +55,13 @@ public enum CustomerType {
     case child
 }
 
-public enum CustomerRole {
+public enum CustomerRole: Codable {
     case `private`
     case business
     case parent
 }
 
-public enum CustomerAuthority {
+public enum CustomerAuthority: Codable {
     case cards
     case payments
     case statements
