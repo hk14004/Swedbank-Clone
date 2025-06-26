@@ -12,5 +12,6 @@ public protocol CustomerRepository {
     func replace(with items: [Customer]) -> AnyPublisher<Void, Never>
     func addOrUpdate(_ items: [Customer]) -> AnyPublisher<Void, Never>
     func getSingle(id: String) -> AnyPublisher<Customer?, Never>
+    func getSingle(id: String) -> Customer?
     func getRemoteCustomers() -> AnyPublisher<[Customer], Never>
 }

@@ -16,18 +16,18 @@ import SwedLocalization
 class DefaultLoginScreenRouter: UIKitRouter, LoginScreenRouter, CancelBagStorable {
     var cancelBag = Set<AnyCancellable>()
     var viewController: UIViewController
-    let didLoginPublisher: PassthroughSubject<Customer, Never>
+    let didLoginPublisher: PassthroughSubject<Void, Never>
     
     init(
         viewController: UIViewController,
-        didLoginPublisher: PassthroughSubject<Customer, Never>
+        didLoginPublisher: PassthroughSubject<Void, Never>
     ) {
         self.viewController = viewController
         self.didLoginPublisher = didLoginPublisher
     }
     
     func routeToLoginCompleted(customer: Customer) {
-        didLoginPublisher.send(customer)
+        didLoginPublisher.send()
     }
 }
 

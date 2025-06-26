@@ -29,13 +29,13 @@ extension RootTabbarScreenVC {
     }
     
     func makeLockedTab() -> UIViewController {
-        let didUnlockDashboardPublisher = PassthroughSubject<Customer, Never>()
+        let didUnlockDashboardPublisher = PassthroughSubject<Void, Never>()
         let factory: LoginScreenFactory = Composition.resolve()
-        let vc = factory.make(didLoginPublisher: didUnlockDashboardPublisher)
+        let vc = factory.make(customer: viewModel.customer, didLoginPublisher: didUnlockDashboardPublisher)
         didUnlockDashboardPublisher
             .receiveOnMainThread()
             .sink { [weak self] customer in
-                self?.viewModel.didUnlock(customer: customer)
+                self?.viewModel.didUnlock()
             }
             .store(in: &bag)
         return vc
@@ -50,9 +50,9 @@ extension RootTabbarScreenVC {
         navVC.tabBarItem = item
         
         let vc: UIViewController = {
-            if let customer = viewModel.customer {
+            if !locked {
                 let factory: OverviewScreenFactory = Composition.resolve()
-                return factory.make(customer: customer)
+                return factory.make(customer: viewModel.customer)
             } else {
                 return makeLockedTab()
             }

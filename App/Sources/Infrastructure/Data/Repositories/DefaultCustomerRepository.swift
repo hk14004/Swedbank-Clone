@@ -28,6 +28,11 @@ class DefaultCustomerRepository: CustomerRepository {
             .catch { _ in
                 Just([])
             }
+            .flatMap { [weak self] customers -> AnyPublisher<[Customer], Never> in
+                self?.replace(with: customers)
+                    .map { _ in customers }
+                    .eraseToAnyPublisher() ?? .empty()
+            }
             .eraseToAnyPublisher()
     }
     
@@ -49,6 +54,10 @@ class DefaultCustomerRepository: CustomerRepository {
             }
         }
         .eraseToAnyPublisher()
+    }
+    
+    func getSingle(id: String) -> Customer? {
+        try? localStore.getSingle(id: id)?.toCustomer()
     }
     
     func replace(with items: [Customer]) -> AnyPublisher<Void, Never> {

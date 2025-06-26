@@ -43,13 +43,14 @@ public class DefaultLoginScreenVM: LoginScreenVM {
     
     // MARK: Lifecycle
     public init(
+        customer: Customer,
         pinLoginUseCase: PinLoginUseCase,
         getLastCustomerUseCase: GetLastCustomerUseCase,
         biometryLoginUseCase: BiometryLoginUseCase
     ) {
+        self.customer = customer
         self.pinLoginUseCase = pinLoginUseCase
         self.getLastCustomerUseCase = getLastCustomerUseCase
-        self.customer = getLastCustomerUseCase.use()
         self.biometryLoginUseCase = biometryLoginUseCase
     }
 }
@@ -80,7 +81,7 @@ public extension DefaultLoginScreenVM {
             .sink { [weak self] completion in
                 self?.handleLoginCompletion(completion)
             } receiveValue: { [weak self] customer in
-                self?.onLoggedIn(customer: customer)
+                self?.onLoggedIn()
             }
             .store(in: &bag)
     }
@@ -95,12 +96,12 @@ extension DefaultLoginScreenVM {
             .sink { [weak self] completion in
                 self?.handleLoginCompletion(completion)
             } receiveValue: { [weak self] customer in
-                self?.onLoggedIn(customer: customer)
+                self?.onLoggedIn()
             }
             .store(in: &bag)
     }
     
-    private func onLoggedIn(customer: Customer) {
+    private func onLoggedIn() {
         router.routeToLoginCompleted(customer: customer)
     }
     

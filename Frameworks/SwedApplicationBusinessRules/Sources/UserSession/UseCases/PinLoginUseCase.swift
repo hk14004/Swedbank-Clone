@@ -10,7 +10,7 @@ import Foundation
 import Combine
 
 public protocol PinLoginUseCase {
-    func use(customerID: String, pinCode: String) -> AnyPublisher<Customer, Error>
+    func use(customerID: String, pinCode: String) -> AnyPublisher<Void, Error>
 }
 
 public struct DefaultPinLoginUseCase: PinLoginUseCase {
@@ -31,12 +31,12 @@ public struct DefaultPinLoginUseCase: PinLoginUseCase {
         self.customerRepository = customerRepository
     }
     
-    public func use(customerID: String, pinCode: String) -> AnyPublisher<Customer, Error> {
+    public func use(customerID: String, pinCode: String) -> AnyPublisher<Void, Error> {
         // Fetch tokens
         startSessionService.use(
             input: .init(customerID: customerID, pinCode: pinCode)
         )
-        .flatMap { response -> AnyPublisher<Customer, Error> in
+        .flatMap { response -> AnyPublisher<Void, Error> in
             // Save creds
             let creds = UserSessionCredentials(
                 id: response.userID,
@@ -47,27 +47,8 @@ public struct DefaultPinLoginUseCase: PinLoginUseCase {
             )
             userSessionCredentialsRepository.save(credentials: creds)
             // Fetch customers
-            return customerRepository.getRemoteCustomers()
-                .flatMap { customersOutput -> AnyPublisher<(selected: Customer, all: [Customer]), Error> in
-                    // Find customer
-                    guard let customer = customersOutput.first(where: {$0.id == customerID}) else {
-                        return .fail(NSError(domain: "No user found", code: 0))
-                    }
-                    return .just((selected: customer, all: customersOutput))
-                        .eraseToAnyPublisher()
-                }
-                .flatMap { customersOutput -> AnyPublisher<Customer, Error> in
-                    // Store customers
-                    customerRepository.addOrUpdate(customersOutput.all)
-                        .flatMap { _ -> AnyPublisher<Customer, Error> in
-                            // Start user session
-                            sessionManager.startUserSession(with: creds)
-                            // Return to caller the selected customer
-                            return .just(customersOutput.selected)
-                        }
-                        .eraseToAnyPublisher()
-                }
-                .eraseToAnyPublisher()
+            sessionManager.startUserSession(with: creds)
+            return .just(())
         }
         .eraseToAnyPublisher()
     }

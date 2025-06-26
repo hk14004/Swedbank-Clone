@@ -25,22 +25,19 @@ public class DefaultSplashVM: SplashScreenVM {
     // MARK: Properties
     public var router: SplashScreenRouter?
     public var isLoadingPublisher: AnyPublisher<Bool, Never> { $isLoading.eraseToAnyPublisher() }
-    private let isOnboardingCompletedUseCase: isOnboardingCompletedUseCase
-    private let startAllUserSessionsUseCase: StartAllUserSessionsUseCase
-    private let getCurrentCustomerUseCase: GetCurrentCustomerUseCase
+    private let fakeAlreadyLoggedInUseCase: FakeAlreadyLoggedInUseCase
+    private let getLastCustomerUseCase: GetLastCustomerUseCase
     @Published private var isLoading: Bool = false
     private var cancelBag = Set<AnyCancellable>()
     
     // MARK: Lifecycle
     
     public init(
-        isOnboardingCompletedUseCase: isOnboardingCompletedUseCase,
-        startAllUserSessionsUseCase: StartAllUserSessionsUseCase,
-        getCurrentCustomerUseCase: GetCurrentCustomerUseCase
+        fakeAlreadyLoggedInUseCase: FakeAlreadyLoggedInUseCase,
+        getLastCustomerUseCase: GetLastCustomerUseCase,
     ) {
-        self.isOnboardingCompletedUseCase = isOnboardingCompletedUseCase
-        self.startAllUserSessionsUseCase = startAllUserSessionsUseCase
-        self.getCurrentCustomerUseCase = getCurrentCustomerUseCase
+        self.fakeAlreadyLoggedInUseCase = fakeAlreadyLoggedInUseCase
+        self.getLastCustomerUseCase = getLastCustomerUseCase
     }
 }
 
@@ -48,16 +45,16 @@ public class DefaultSplashVM: SplashScreenVM {
 
 public extension DefaultSplashVM {
     func onViewDidLoad() {
-//        guard isOnboardingCompletedUseCase.use() else {
-//            router?.routeToOnboarding()
-//            return
-//        }
-        startAllUserSessionsUseCase.use()
-        getCurrentCustomerUseCase.use()
+        fakeAlreadyLoggedInUseCase.use()
             .receiveOnMainThread()
-            .sink { [weak self] customer in
-                self?.router?.initRouteToRoot(customer: customer)
-        }
-        .store(in: &cancelBag)
+            .sink { [weak self] _ in
+                guard let self else { return }
+                guard let customer = getLastCustomerUseCase.use() else {
+                    self.router?.routeToOkeyErrorAlert(NSError(), onDismiss: nil)
+                    return
+                }
+                router?.initRouteToRoot(customer: customer)
+            }
+            .store(in: &cancelBag)
     }
 }

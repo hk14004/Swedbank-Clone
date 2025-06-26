@@ -8,26 +8,20 @@
 
 import Combine
 
-let JAMES_BOND = Customer(
-    id: "007",
-    displayName: "James Bond",
-    type: .private,
-    hasIpRestriction: false,
-    hasUsableAccounts: true,
-    sortOrder: 0,
-    roles: [.private],
-    authorities: [],
-    isMain: true
-)
-
 public protocol GetLastCustomerUseCase {
-    func use() -> Customer
+    func use() -> Customer?
 }
 
 // Mocked for now
 public struct MockGetLastCustomerUseCase: GetLastCustomerUseCase {
-    public init() {}
-    public func use() -> Customer {
-        JAMES_BOND
+    
+    private let customerRepository: CustomerRepository
+    
+    public init(customerRepository: CustomerRepository) {
+        self.customerRepository = customerRepository
+    }
+    
+    public func use() -> Customer? {
+        customerRepository.getSingle(id: JAMES_BOND.id)
     }
 }

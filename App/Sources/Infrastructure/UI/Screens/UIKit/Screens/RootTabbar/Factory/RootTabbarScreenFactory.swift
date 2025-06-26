@@ -11,12 +11,12 @@ import SwedInterfaceAdapters
 import SwedApplicationBusinessRules
 
 protocol RootTabbarScreenFactory {
-    func make(customer: Customer?) -> RootTabbarScreenVC
+    func make(customer: Customer, locked: Bool) -> RootTabbarScreenVC
 }
 
 class DefaultRootTabbarScreenFactory: RootTabbarScreenFactory {
-    func make(customer: Customer?) -> RootTabbarScreenVC {
-        let vm = DefaultRootTabbarScreenVM(customer: customer)
+    func make(customer: Customer, locked: Bool) -> RootTabbarScreenVC {
+        let vm = DefaultRootTabbarScreenVM(customer: customer, locked: true)
         let vc = RootTabbarScreenVC(viewModel: vm)
         let router = DefaultRootTabbarScreenRouter(viewController: vc)
         vm.router = router

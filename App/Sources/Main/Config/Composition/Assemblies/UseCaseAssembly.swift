@@ -5,8 +5,11 @@ import SwedApplicationBusinessRules
 
 class UseCaseAssembly: Assembly {
     func assemble(container: Container) {
+        container.register(FakeAlreadyLoggedInUseCase.self) { resolver in
+            DefaultFakeAlreadyLoggedInUseCase(customerRepository: Composition.resolve())
+        }
         container.register(GetLastCustomerUseCase.self) { resolver in
-            MockGetLastCustomerUseCase()
+            MockGetLastCustomerUseCase(customerRepository: Composition.resolve())
         }
         container.register(PinLoginUseCase.self) { resolver in
             DefaultPinLoginUseCase(

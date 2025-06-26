@@ -26,9 +26,9 @@ class DefaultRootTabbarScreenRouter: RootTabbarScreenRouter {
 }
 
 extension ToRootTabbarScreenRouting where Self: UIKitRouter {
-    func initRouteToRoot(customer: Customer?) {
+    func initRouteToRoot(customer: Customer) {
         let factory: RootTabbarScreenFactory = Composition.resolve()
-        let vc = factory.make(customer: customer)
+        let vc = factory.make(customer: customer, locked: true)
         UIApplication.shared.delegate?.window??.rootViewController = vc
     }
 }
