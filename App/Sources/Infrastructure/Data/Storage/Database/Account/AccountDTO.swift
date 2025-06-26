@@ -16,7 +16,7 @@ public struct AccountDTO {
     public let availableFunds: Money?
     public let creditLimit: Money?
     public let currency: String?
-    public let iban: String?
+    public let iban: String
     public let ibanAlias: String?
     public let payable: Bool?
     public let reservedAmount: Money?
@@ -29,7 +29,7 @@ public struct AccountDTO {
         availableFunds: Money?,
         creditLimit: Money?,
         currency: String?,
-        iban: String?,
+        iban: String,
         ibanAlias: String?,
         payable: Bool?,
         reservedAmount: Money?,
@@ -67,7 +67,7 @@ public struct AccountDTO {
 
 extension AccountDTO: DBInterfaceDTO {
     public var id: String {
-        customerId
+        iban
     }
     
     public typealias StoreType = AccountCD
@@ -81,7 +81,7 @@ extension AccountDTO {
             availableFunds: availableFunds!,
             creditLimit: creditLimit!,
             currency: currency!,
-            iban: iban!,
+            iban: iban,
             ibanAlias: ibanAlias!,
             payable: payable!,
             reservedAmount: reservedAmount!,
