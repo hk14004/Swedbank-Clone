@@ -22,6 +22,6 @@ public struct MockGetLastCustomerUseCase: GetLastCustomerUseCase {
     }
     
     public func use() -> Customer? {
-        customerRepository.getSingle(id: JAMES_BOND.id)
+        customerRepository.getSingle(id: JAMES_BOND.id) ?? JAMES_BOND
     }
 }

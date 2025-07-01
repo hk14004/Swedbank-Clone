@@ -16,8 +16,10 @@ class NetworkClientAssembly: Assembly {
         .inObjectScope(.container)
         container.register(SwedNetworkClient.self) { resolver in
             SwedNetworkClient(
-                dataProvider: resolver.resolve(DevNetworkDataProvider.self)!,
-                requestFactory: resolver.resolve(DevNetworkRequestFactory.self)!
+                dataProvider: Composition.resolve(),
+                requestFactory: Composition.resolve(),
+                credentialStore: Composition.resolve(),
+                currentCustomerStore: Composition.resolve()
             )
         }
         .inObjectScope(.container)

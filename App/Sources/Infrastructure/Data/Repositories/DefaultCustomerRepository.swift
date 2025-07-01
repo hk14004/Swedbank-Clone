@@ -13,21 +13,21 @@ import DevToolsCore
 class DefaultCustomerRepository: CustomerRepository {
     
     private let fetchRemoteCustomersService: FetchRemoteCustomersService
+    private let currentCustomerStore: CurrentCustomerStore
     private let localStore: BasePersistedLayerInterface<Customer>
-    
+
     init(
         fetchRemoteCustomersService: FetchRemoteCustomersService,
-        localStore: BasePersistedLayerInterface<Customer>
+        localStore: BasePersistedLayerInterface<Customer>,
+        currentCustomerStore: CurrentCustomerStore
     ) {
         self.fetchRemoteCustomersService = fetchRemoteCustomersService
         self.localStore = localStore
+        self.currentCustomerStore = currentCustomerStore
     }
     
-    func getRemoteCustomers() -> AnyPublisher<[Customer], Never> {
+    func getRemoteCustomers() -> AnyPublisher<[Customer], Error> {
         fetchRemoteCustomersService.use()
-            .catch { _ in
-                Just([])
-            }
             .flatMap { [weak self] customers -> AnyPublisher<[Customer], Never> in
                 self?.replace(with: customers)
                     .map { _ in customers }
@@ -68,5 +68,13 @@ class DefaultCustomerRepository: CustomerRepository {
             }
         }
         .eraseToAnyPublisher()
+    }
+    
+    func getCurrentCustomer() -> Customer? {
+        currentCustomerStore.getCurrentCustomer()
+    }
+    
+    func setCurrentCustomer(_ customer: Customer?) {
+        currentCustomerStore.setCurrentCustomer(customer)
     }
 }

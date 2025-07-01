@@ -14,20 +14,20 @@ public protocol StartSessionService {
 }
 
 public struct StartSessionServiceInput {
-    public let customerID: String
-    public let pinCode: String
+    public let username: String
+    public let password: String
 }
 
 public struct StartSessionServiceOutput {
     public let bearerToken: String
     public let refreshToken: String
-    public let expirationDuration: Int
+    public let expirationDurationInMins: Int
     public let userID: String
     
     public init(bearerToken: String, refreshToken: String, expirationDuration: Int, userID: String) {
         self.bearerToken = bearerToken
         self.refreshToken = refreshToken
-        self.expirationDuration = expirationDuration
+        self.expirationDurationInMins = expirationDuration
         self.userID = userID
     }
 }

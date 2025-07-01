@@ -37,7 +37,7 @@ public class DefaultLoginScreenVM: LoginScreenVM {
     public var router: LoginScreenRouter!
     private let pinLoginUseCase: PinAuthenticateUseCase
     private let getLastCustomerUseCase: GetLastCustomerUseCase
-    private let biometryLoginUseCase: BiometryAuthenticateUseCase
+    private let biometryAuthenticateUseCase: BiometryAuthenticateUseCase
     private var customer: Customer
     private var bag = Set<AnyCancellable>()
     
@@ -46,12 +46,12 @@ public class DefaultLoginScreenVM: LoginScreenVM {
         customer: Customer,
         pinLoginUseCase: PinAuthenticateUseCase,
         getLastCustomerUseCase: GetLastCustomerUseCase,
-        biometryLoginUseCase: BiometryAuthenticateUseCase
+        biometryAuthenticateUseCase: BiometryAuthenticateUseCase
     ) {
         self.customer = customer
         self.pinLoginUseCase = pinLoginUseCase
         self.getLastCustomerUseCase = getLastCustomerUseCase
-        self.biometryLoginUseCase = biometryLoginUseCase
+        self.biometryAuthenticateUseCase = biometryAuthenticateUseCase
     }
 }
 
@@ -76,7 +76,7 @@ public extension DefaultLoginScreenVM {
     
     func onFaceIDTapped() {
         loadingPublisher = true
-        biometryLoginUseCase.use(customerID: customer.id)
+        biometryAuthenticateUseCase.use(customerID: customer.id)
             .receiveOnMainThread()
             .sink { [weak self] completion in
                 self?.handleLoginCompletion(completion)

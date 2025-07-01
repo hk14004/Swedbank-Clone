@@ -27,6 +27,7 @@ public class DefaultSplashVM: SplashScreenVM {
     public var isLoadingPublisher: AnyPublisher<Bool, Never> { $isLoading.eraseToAnyPublisher() }
     private let fakeAlreadyLoggedInUseCase: FakeAlreadyLoggedInUseCase
     private let getLastCustomerUseCase: GetLastCustomerUseCase
+    private let startUserSessionUseCase: StartUserSessionUseCase
     @Published private var isLoading: Bool = false
     private var cancelBag = Set<AnyCancellable>()
     
@@ -35,9 +36,11 @@ public class DefaultSplashVM: SplashScreenVM {
     public init(
         fakeAlreadyLoggedInUseCase: FakeAlreadyLoggedInUseCase,
         getLastCustomerUseCase: GetLastCustomerUseCase,
+        startUserSessionUseCase: StartUserSessionUseCase
     ) {
         self.fakeAlreadyLoggedInUseCase = fakeAlreadyLoggedInUseCase
         self.getLastCustomerUseCase = getLastCustomerUseCase
+        self.startUserSessionUseCase = startUserSessionUseCase
     }
 }
 
@@ -45,15 +48,20 @@ public class DefaultSplashVM: SplashScreenVM {
 
 public extension DefaultSplashVM {
     func onViewDidLoad() {
-        fakeAlreadyLoggedInUseCase.use()
+        guard let customer = getLastCustomerUseCase.use() else {
+            fatalError("TODO: Implement login flow")
+        }
+        startUserSessionUseCase.use(customer: customer)
             .receiveOnMainThread()
-            .sink { [weak self] _ in
-                guard let self else { return }
-                guard let customer = getLastCustomerUseCase.use() else {
-                    self.router?.routeToOkeyErrorAlert(NSError(), onDismiss: nil)
-                    return
+            .sink { [weak self] completion in
+                switch completion {
+                case .failure(let error):
+                    self?.router?.routeToOkeyErrorAlert(error, onDismiss: nil)
+                case .finished:
+                    break
                 }
-                router?.initRouteToRoot(customer: customer)
+            } receiveValue: { [weak self] _ in
+                self?.router?.initRouteToRoot(customer: customer)
             }
             .store(in: &cancelBag)
     }

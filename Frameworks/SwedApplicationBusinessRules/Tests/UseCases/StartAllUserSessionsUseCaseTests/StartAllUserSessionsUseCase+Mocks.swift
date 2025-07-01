@@ -16,8 +16,8 @@ extension StartAllUserSessionsUseCaseTests {
 }
 
 extension StartAllUserSessionsUseCaseTests {
-    func makeSUT() -> DefaultStartAllUserSessionsUseCase {
-        DefaultStartAllUserSessionsUseCase(
+    func makeSUT() -> DefaultStartUserSessionUseCase {
+        DefaultStartUserSessionUseCase(
             manager: mocks.mockUserSessionManager
         )
     }

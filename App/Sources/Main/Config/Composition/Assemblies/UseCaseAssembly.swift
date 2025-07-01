@@ -6,7 +6,11 @@ import SwedApplicationBusinessRules
 class UseCaseAssembly: Assembly {
     func assemble(container: Container) {
         container.register(FakeAlreadyLoggedInUseCase.self) { resolver in
-            DefaultFakeAlreadyLoggedInUseCase(customerRepository: Composition.resolve())
+            DefaultFakeAlreadyLoggedInUseCase(
+                customerRepository: Composition.resolve(),
+                startSessionService: Composition.resolve(),
+                userSessionCredentialsRepository: Composition.resolve()
+            )
         }
         container.register(GetLastCustomerUseCase.self) { resolver in
             MockGetLastCustomerUseCase(customerRepository: Composition.resolve())
@@ -17,9 +21,9 @@ class UseCaseAssembly: Assembly {
         container.register(BiometryAuthenticateUseCase.self) { resolver in
             DefaultBiometryAuthenticateUseCase()
         }
-        container.register(StartAllUserSessionsUseCase.self) { resolver in
-            DefaultStartAllUserSessionsUseCase(
-                manager: Composition.resolve()
+        container.register(StartUserSessionUseCase.self) { resolver in
+            DefaultStartUserSessionUseCase(
+                customerRepository: Composition.resolve()
             )
         }
         container.register(isOnboardingCompletedUseCase.self) { resolver in
@@ -39,7 +43,7 @@ class UseCaseAssembly: Assembly {
         }
         container.register(IsAnyUserSessionActiveUseCase.self) { resolver in
             DefaultIsAnyUserSessionActiveUseCase(
-                userSessionManager: Composition.resolve()
+                customerRepository: Composition.resolve()
             )
         }
         container.register(GetCurrentLanguageUseCase.self) { resolver in
@@ -53,7 +57,6 @@ class UseCaseAssembly: Assembly {
         }
         container.register(GetCurrentCustomerUseCase.self) { resolver in
             DefaultGetCurrentCustomerUseCase(
-                userSessionManager: Composition.resolve(),
                 customerRepository: Composition.resolve()
             )
         }
@@ -61,12 +64,13 @@ class UseCaseAssembly: Assembly {
             DefaultNukeCustomerPersistedDataUseCase(
                 customerRepository: Composition.resolve(),
                 offerRepository: Composition.resolve(),
-                accountRepository: Composition.resolve()
+                accountRepository: Composition.resolve(),
+                userSessionCredentialsRepository: Composition.resolve()
             )
         }
         container.register(LogoutUseCase.self) { resolver in
             DefaultLogoutUseCase(
-                manager: Composition.resolve(),
+                customerRepository: Composition.resolve(),
                 nukeCustomerPersistedDataUseCase: Composition.resolve()
             )
         }

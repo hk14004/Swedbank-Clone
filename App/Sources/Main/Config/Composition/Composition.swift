@@ -22,7 +22,6 @@ class Composition {
                 StorageAssembly(),
                 NetworkClientAssembly(),
                 ServicesAssembly(),
-                UserSessionAssembly(),
                 RepositoryAssembly(),
                 UseCaseAssembly(),
                 ScreenFactoryAssembly()

@@ -18,7 +18,8 @@ class DefaultSplashScreenFactory: SplashScreenFactory {
     func make() -> SplashScreenVC {
         let vm = DefaultSplashVM(
             fakeAlreadyLoggedInUseCase: Composition.resolve(),
-            getLastCustomerUseCase: Composition.resolve()
+            getLastCustomerUseCase: Composition.resolve(),
+            startUserSessionUseCase: Composition.resolve()
         )
         let vc = SplashScreenVC(viewModel: vm)
         let router = DefaultSplashScreenRouter(viewController: vc)

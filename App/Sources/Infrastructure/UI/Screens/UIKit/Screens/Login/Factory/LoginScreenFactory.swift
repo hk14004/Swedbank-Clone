@@ -27,7 +27,7 @@ class DefaultLoginScreenFactory: LoginScreenFactory {
             customer: customer,
             pinLoginUseCase: Composition.resolve(),
             getLastCustomerUseCase: Composition.resolve(),
-            biometryLoginUseCase: Composition.resolve()
+            biometryAuthenticateUseCase: Composition.resolve()
         )
         let vc = LoginScreenVC(viewModel: vm)
         let router = DefaultLoginScreenRouter(

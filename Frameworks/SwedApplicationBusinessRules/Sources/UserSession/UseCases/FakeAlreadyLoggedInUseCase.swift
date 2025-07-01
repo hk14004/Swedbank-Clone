@@ -16,13 +16,53 @@ public protocol FakeAlreadyLoggedInUseCase {
 public struct DefaultFakeAlreadyLoggedInUseCase: FakeAlreadyLoggedInUseCase {
     
     let customerRepository: CustomerRepository
+    let startSessionService: StartSessionService
+    let userSessionCredentialsRepository: UserSessionCredentialsRepository
     
-    public init(customerRepository: CustomerRepository) {
+    public init(
+        customerRepository: CustomerRepository,
+        startSessionService: StartSessionService,
+        userSessionCredentialsRepository: UserSessionCredentialsRepository
+    ) {
         self.customerRepository = customerRepository
+        self.startSessionService = startSessionService
+        self.userSessionCredentialsRepository = userSessionCredentialsRepository
     }
     
     public func use() -> AnyPublisher<Void, Never> {
-        return customerRepository.replace(with: [JAMES_BOND])
+        .just(())
+    }
+    
+    public func use2() -> AnyPublisher<Void, Never> {
+        customerRepository.replace(with: [JAMES_BOND])
+            .flatMap { _ in
+                startSessionService.use(
+                    input: StartSessionServiceInput(username: "emilys", password: "emilyspass")
+                )
+                .map { response -> Void in
+                    userSessionCredentialsRepository.save(
+                        credentials: UserSessionCredentials(
+                            id: JAMES_BOND.id,
+                            authorizationData: UserSessionCredentials.Data(
+                                bearerToken: response.bearerToken,
+                                refreshToken: response.refreshToken,
+                                bearerTokenExpirationDate: generateExpirationDate(mins: response.expirationDurationInMins)
+                            )
+                        )
+                    )
+                    return ()
+                }
+                .catch { error in
+                    Just(())
+                }
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    private func generateExpirationDate(mins: Int) -> Date {
+        let now = Date()
+        let newDate = Calendar.current.date(byAdding: .minute, value: mins, to: now)
+        return newDate ?? now
     }
 }
 

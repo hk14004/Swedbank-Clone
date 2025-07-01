@@ -10,13 +10,16 @@ import Foundation
 
 public enum UserSessionError: Error, Equatable {
     case invalidLoginCredentials
+    case missingCredentals
 }
 
 extension UserSessionError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .invalidLoginCredentials:
-            return "Login attempt with invalid credentials was made"
+            "Login attempt with invalid credentials was made"
+        case .missingCredentals:
+            "User must be logged out"
         }
     }
 }

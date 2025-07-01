@@ -14,13 +14,13 @@ public protocol IsAnyUserSessionActiveUseCase {
 
 public struct DefaultIsAnyUserSessionActiveUseCase: IsAnyUserSessionActiveUseCase {
         
-    private let userSessionManager: UserSessionManager
+    private let customerRepository: CustomerRepository
     
-    public init(userSessionManager: UserSessionManager) {
-        self.userSessionManager = userSessionManager
+    public init(customerRepository: CustomerRepository) {
+        self.customerRepository = customerRepository
     }
     
     public func use() -> Bool {
-        userSessionManager.isSomebodyLoggedIn()
+        customerRepository.getCurrentCustomer() != nil
     }
 }

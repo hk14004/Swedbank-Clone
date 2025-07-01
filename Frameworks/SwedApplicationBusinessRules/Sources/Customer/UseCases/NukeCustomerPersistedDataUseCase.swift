@@ -10,31 +10,37 @@ import Foundation
 import Combine
 
 public protocol NukeCustomerPersistedDataUseCase {
-    func use() -> AnyPublisher<Void, Never>
+    func use(customerId: String) -> AnyPublisher<Void, Never>
 }
 
 public struct DefaultNukeCustomerPersistedDataUseCase: NukeCustomerPersistedDataUseCase {
     private let customerRepository: CustomerRepository
     private let offerRepository: OfferRepository
     private let accountRepository: AccountRepository
+    private let userSessionCredentialsRepository: UserSessionCredentialsRepository
     
     public init(
         customerRepository: CustomerRepository,
         offerRepository: OfferRepository,
-        accountRepository: AccountRepository
+        accountRepository: AccountRepository,
+        userSessionCredentialsRepository: UserSessionCredentialsRepository
     ) {
         self.customerRepository = customerRepository
         self.offerRepository = offerRepository
         self.accountRepository = accountRepository
+        self.userSessionCredentialsRepository = userSessionCredentialsRepository
     }
     
-    public func use() -> AnyPublisher<Void, Never> {
+    public func use(customerId: String) -> AnyPublisher<Void, Never> {
         customerRepository.replace(with: [])
             .flatMap { _ in
                 offerRepository.replace(with: [])
             }
             .flatMap { _ in
                 accountRepository.replace(with: [])
+            }
+            .map { _ in
+                userSessionCredentialsRepository.deleteCredentials(id: customerId)
             }
             .eraseToAnyPublisher()
     }

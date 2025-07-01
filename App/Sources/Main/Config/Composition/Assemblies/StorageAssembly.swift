@@ -16,8 +16,12 @@ class StorageAssembly: Assembly {
             Keychain(service: "com.app.key") // TODO: Move to constants
         }
         .inObjectScope(.container)
-        container.register(BaseUserSessionCredentialsStore<UserSessionCredentials>.self) { resolver in
+        container.register((any SwedUserSessionCredentialsStore).self) { resolver in
             DefaultUserSessionCredentialsStore(keychain: Composition.resolve())
+        }
+        .inObjectScope(.container)
+        container.register(CurrentCustomerStore.self) { resolver in
+            DefaultCurrentCustomerStore()
         }
         .inObjectScope(.container)
         // MARK: Core data stack

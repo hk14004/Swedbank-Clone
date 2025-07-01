@@ -1,27 +1,61 @@
 import Foundation
 import DevToolsNetworking
+import SwedApplicationBusinessRules
 
 enum SessionRequestConfig {
     case startSession(StartSessionDataOutgoing)
+    case refreshToken(RefreshSessionServiceInput)
+    case checkSession
 }
 
 extension SessionRequestConfig: DevRequestConfig {
     var baseURL: String {
-        "https://github.com"
+        "https://dummyjson.com"
     }
     
     var path: String {
         switch self {
-        case .startSession(let credentials):
-            "/hk14004/Swedbank-Clone/raw/refs/heads/dev/App/Resources/Payloads/Session/Customer/\(credentials.customerID)/\(credentials.pinCode)/session-start.json"
+        case .startSession:
+            "/auth/login"
+        case .refreshToken:
+            "/auth/refresh"
+        case .checkSession:
+            "/auth/me"
         }
     }
     
     var method: DevHTTPMethod {
-        .get
+        switch self {
+        case .startSession, .refreshToken:
+            .post
+        case .checkSession:
+            .get
+        }
+    }
+    
+    var headers: [String: String]? {
+        ["Content-Type": "application/json"]
+    }
+    
+    var bodyParameters: Data? {
+        switch self {
+        case .startSession(let credentials):
+            try? JSONEncoder().encode(credentials)
+        case .refreshToken(let credentials):
+            try? JSONEncoder().encode(credentials)
+        case .checkSession:
+            nil
+        }
     }
     
     var requiresAuthorization: Bool {
-        false
+        switch self {
+        case .startSession:
+            true
+        case .refreshToken:
+            false
+        case .checkSession:
+            true
+        }
     }
 }

@@ -21,7 +21,11 @@ class DefaultStartSessionService: StartSessionService {
     private func fetchResponse(input: StartSessionServiceInput) -> AnyPublisher<StartSessionResponse, Error> {
         networkClient.execute(
             SessionRequestConfig.startSession(
-                StartSessionDataOutgoing(customerID: input.customerID, pinCode: input.pinCode)
+                StartSessionDataOutgoing(
+                    username: input.username,
+                    password: input.password,
+                    expiresInMins: TOKEN_EXPIRE_TIME_IN_MINS
+                )
             )
         )
         .mapError { error in

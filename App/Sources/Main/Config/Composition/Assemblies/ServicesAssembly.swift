@@ -10,6 +10,13 @@ class ServicesAssembly: Assembly {
             DefaultStartSessionService(networkClient: Composition.resolve())
         }
         .inObjectScope(.container)
+        container.register(RefreshSessionService.self) { resolver in
+            DefaultRefreshSessionService(
+                dataProvider: Composition.resolve(),
+                requestFactory: Composition.resolve()
+            )
+        }
+        .inObjectScope(.container)
         container.register(FetchRemoteCustomersService.self) { resolver in
             GithubFetchRemoteCustomersService(networkClient: Composition.resolve())
         }

@@ -13,10 +13,12 @@ extension UserSessionError: @retroactive UIPresentableError {
     public var presentableContent: UIPresentableErrorContent {
         switch self {
         case .invalidLoginCredentials:
-            return UIPresentableErrorContent(
+            UIPresentableErrorContent(
                 title: AppStrings.Error.UserSession.InvalidLoginCredentials.title,
                 message: AppStrings.Error.UserSession.InvalidLoginCredentials.message
             )
+        case .missingCredentals:
+            fallbackErrorContent
         }
     }
 }
