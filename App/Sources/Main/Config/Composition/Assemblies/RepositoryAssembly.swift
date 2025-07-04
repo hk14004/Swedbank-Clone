@@ -1,5 +1,5 @@
 import Foundation
-import DevToolsCoreData
+import DevToolsPersistance
 import Swinject
 import DevToolsCore
 import SwedApplicationBusinessRules
@@ -27,24 +27,25 @@ class RepositoryAssembly: Assembly {
         container.register(CustomerRepository.self) { resolver in
             DefaultCustomerRepository(
                 fetchRemoteCustomersService: Composition.resolve(),
-                localStore: resolver.resolve(PersistentCoreDataStore<Customer>.self)!,
+                localStore: resolver.resolve((any CustomerPersistedLayerInterface).self)!,
                 currentCustomerStore: Composition.resolve()
             )
         }
         .inObjectScope(.container)
         container.register(OfferRepository.self) { resolver in
             DefaultOfferRepository(
-                store: resolver.resolve(PersistentCoreDataStore<Offer>.self)!,
+                store: resolver.resolve((any OfferPersistedLayerInterface).self)!,
                 fetchRemoteOffersService: Composition.resolve()
             )
         }
         .inObjectScope(.container)
         container.register(AccountRepository.self) { resolver in
             DefaultAccountRepository(
-                store: resolver.resolve(PersistentCoreDataStore<Account>.self)!,
+                store: resolver.resolve((any AccountPersistedLayerInterface).self)!,
                 fetchRemoteAccountsService: Composition.resolve()
             )
         }
         .inObjectScope(.container)
     }
 }
+

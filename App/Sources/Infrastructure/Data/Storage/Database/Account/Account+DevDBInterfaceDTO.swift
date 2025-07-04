@@ -8,12 +8,12 @@
 
 import Foundation
 import SwedApplicationBusinessRules
-import DevToolsCore
+import DevToolsPersistance
 
-extension Account: @retroactive DBInterfaceDTO {
+extension Account: @retroactive DevDBInterfaceDTO {
+    public typealias StoreType = AccountCD
+    
     public var id: String {
         iban
     }
-    
-    public typealias StoreType = AccountCD
 }

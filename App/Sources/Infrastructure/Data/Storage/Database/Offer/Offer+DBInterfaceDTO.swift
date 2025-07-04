@@ -6,10 +6,9 @@
 //  Copyright © 2025 SWEDBANK AB. All rights reserved.
 //
 
-import Foundation
 import SwedApplicationBusinessRules
-import DevToolsCore
+import DevToolsPersistance
 
-extension Offer: @retroactive DBInterfaceDTO {
+extension Offer: @retroactive DevDBInterfaceDTO {
     public typealias StoreType = OfferCD
 }

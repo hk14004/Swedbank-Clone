@@ -8,8 +8,8 @@
 
 import Foundation
 import SwedApplicationBusinessRules
-import DevToolsCore
+import DevToolsPersistance
 
-extension Customer: @retroactive DBInterfaceDTO {
+extension Customer: @retroactive DevDBInterfaceDTO {
     public typealias StoreType = CustomerCD
 }

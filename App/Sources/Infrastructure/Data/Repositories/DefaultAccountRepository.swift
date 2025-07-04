@@ -10,14 +10,14 @@ import SwedApplicationBusinessRules
 import SwedEnterpriseBusinessRules
 import Combine
 import Foundation
-import DevToolsCore
+import DevToolsPersistance
 
 class DefaultAccountRepository: AccountRepository {
-    private let localStore: BasePersistedLayerInterface<Account>
+    private let localStore: any AccountPersistedLayerInterface
     private let fetchRemoteAccountsService: FetchRemoteAccountsService
     
     init(
-        store: BasePersistedLayerInterface<Account>,
+        store: any AccountPersistedLayerInterface,
         fetchRemoteAccountsService: FetchRemoteAccountsService
     ) {
         self.localStore = store
@@ -35,7 +35,7 @@ class DefaultAccountRepository: AccountRepository {
     }
     
     func observeCachedList(predicate: NSPredicate) -> AnyPublisher<[Account], Never> {
-        localStore.observeList(predicate: predicate)
+        localStore.observeList(predicate: predicate, sortDescriptors: [])
             .map {
                 $0.sorted { $0.sortOrder < $1.sortOrder }
             }

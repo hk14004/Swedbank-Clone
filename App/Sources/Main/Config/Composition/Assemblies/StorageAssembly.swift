@@ -5,7 +5,7 @@ import SwedApplicationBusinessRules
 import KeychainAccess
 import SwiftyUserDefaults
 import CoreData
-import DevToolsCoreData
+import DevToolsPersistance
 
 class StorageAssembly: Assembly {
     func assemble(container: Container) {
@@ -57,26 +57,34 @@ class StorageAssembly: Assembly {
             return persistentContainer
         }
         .inObjectScope(.container)
-        container.register(PersistentCoreDataStore<Offer>.self) { resolver in
+        container.register((any OfferPersistedLayerInterface).self) { resolver in
             let storeContainer: NSPersistentContainer = Composition.resolve()
             let context = storeContainer.newBackgroundContext()
             context.automaticallyMergesChangesFromParent = true
-            return PersistentCoreDataStore<Offer>(context: context)
+            return DevCoreDataStore<Offer, OfferConverter>(context: context, converter: OfferConverter())
         }
         .inObjectScope(.container)
-        container.register(PersistentCoreDataStore<Customer>.self) { resolver in
+        container.register((any CustomerPersistedLayerInterface).self) { resolver in
             let storeContainer: NSPersistentContainer = Composition.resolve()
             let context = storeContainer.newBackgroundContext()
             context.automaticallyMergesChangesFromParent = true
-            return PersistentCoreDataStore<Customer>(context: context)
+            return DevCoreDataStore<Customer, CustomerConverter>(context: context, converter: CustomerConverter())
         }
         .inObjectScope(.container)
-        container.register(PersistentCoreDataStore<Account>.self) { resolver in
+        container.register((any AccountPersistedLayerInterface).self) { resolver in
             let storeContainer: NSPersistentContainer = Composition.resolve()
             let context = storeContainer.newBackgroundContext()
             context.automaticallyMergesChangesFromParent = true
-            return PersistentCoreDataStore<Account>(context: context)
+            return DevCoreDataStore<Account, AccountConverter>(context: context, converter: AccountConverter())
         }
         .inObjectScope(.container)
     }
 }
+
+protocol AccountPersistedLayerInterface: DevPersistedLayerInterface where T == Account {}
+protocol OfferPersistedLayerInterface: DevPersistedLayerInterface where T == Offer {}
+protocol CustomerPersistedLayerInterface: DevPersistedLayerInterface where T == Customer {}
+
+extension DevCoreDataStore: CustomerPersistedLayerInterface where T == Customer {}
+extension DevCoreDataStore: OfferPersistedLayerInterface where T == Offer {}
+extension DevCoreDataStore: AccountPersistedLayerInterface where T == Account {}

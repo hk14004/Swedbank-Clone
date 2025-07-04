@@ -10,14 +10,14 @@ import SwedApplicationBusinessRules
 import SwedEnterpriseBusinessRules
 import Combine
 import Foundation
-import DevToolsCore
+import DevToolsPersistance
 
 class DefaultOfferRepository: OfferRepository {
-    private let localStore: BasePersistedLayerInterface<Offer>
+    private let localStore: any OfferPersistedLayerInterface
     private let fetchRemoteOffersService: FetchRemoteOffersService
     
     init(
-        store: BasePersistedLayerInterface<Offer>,
+        store: any OfferPersistedLayerInterface,
         fetchRemoteOffersService: FetchRemoteOffersService
     ) {
         self.localStore = store
@@ -35,7 +35,7 @@ class DefaultOfferRepository: OfferRepository {
     }
     
     func observeCachedList(predicate: NSPredicate) -> AnyPublisher<[Offer], Never> {
-        localStore.observeList(predicate: predicate)
+        localStore.observeList(predicate: predicate, sortDescriptors: [])
             .catch { _ in
                 Just([])
             }

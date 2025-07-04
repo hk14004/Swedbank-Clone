@@ -8,17 +8,17 @@
 
 import SwedApplicationBusinessRules
 import Combine
-import DevToolsCore
+import DevToolsPersistance
 
 class DefaultCustomerRepository: CustomerRepository {
     
     private let fetchRemoteCustomersService: FetchRemoteCustomersService
     private let currentCustomerStore: CurrentCustomerStore
-    private let localStore: BasePersistedLayerInterface<Customer>
+    private let localStore: any CustomerPersistedLayerInterface
 
     init(
         fetchRemoteCustomersService: FetchRemoteCustomersService,
-        localStore: BasePersistedLayerInterface<Customer>,
+        localStore: any CustomerPersistedLayerInterface,
         currentCustomerStore: CurrentCustomerStore
     ) {
         self.fetchRemoteCustomersService = fetchRemoteCustomersService
