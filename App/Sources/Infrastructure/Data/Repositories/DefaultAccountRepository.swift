@@ -34,11 +34,8 @@ class DefaultAccountRepository: AccountRepository {
         .eraseToAnyPublisher()
     }
     
-    func observeCachedList(predicate: NSPredicate) -> AnyPublisher<[Account], Never> {
-        localStore.observeList(predicate: predicate, sortDescriptors: [])
-            .map {
-                $0.sorted { $0.sortOrder < $1.sortOrder }
-            }
+    func observeCachedList() -> AnyPublisher<[Account], Never> {
+        localStore.observeList(predicate: nil, sortDescriptors: [.init(\.sortOrder)])
             .catch { _ in
                 Just([])
             }
@@ -47,15 +44,28 @@ class DefaultAccountRepository: AccountRepository {
     
     func getRemoteAccounts() -> AnyPublisher<[Account], Never> {
         fetchRemoteAccountsService.use()
-            .map { $0.sorted { $0.sortOrder < $1.sortOrder } }
             .catch { _ in
                 Just([])
             }
-            .flatMap { [weak self] accounts -> AnyPublisher<[Account], Never> in
+            .flatMap { [weak self] accounts in
                 self?.replace(with: accounts)
-                    .map { _ in accounts }
+                    .mapToVoid()
+                    .eraseToAnyPublisher() ?? .empty()
+            }
+            .flatMap { [weak self] _ -> AnyPublisher<[Account], Never> in
+                self?.fetchStored()
                     .eraseToAnyPublisher() ?? .empty()
             }
             .eraseToAnyPublisher()
+    }
+    
+    private func fetchStored() -> AnyPublisher<[Account], Never> {
+        Future<[Account], Never> { [weak self] promise in
+            Task {
+                let value = try await self?.localStore.getList(predicate: nil, sortDescriptors: [.init(\.sortOrder)]) ?? []
+                promise(.success(value))
+            }
+        }
+        .eraseToAnyPublisher()
     }
 }

@@ -21,6 +21,6 @@ public struct DefaultTrackCachedAccountsUseCase: TrackCachedAccountsUseCase {
     }
     
     public func use() -> AnyPublisher<[Account], Never> {
-        accountRepository.observeCachedList(predicate: NSPredicate(value: true))
+        accountRepository.observeCachedList()
     }
 }

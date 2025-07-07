@@ -34,8 +34,8 @@ class DefaultOfferRepository: OfferRepository {
         .eraseToAnyPublisher()
     }
     
-    func observeCachedList(predicate: NSPredicate) -> AnyPublisher<[Offer], Never> {
-        localStore.observeList(predicate: predicate, sortDescriptors: [])
+    func observeCachedList() -> AnyPublisher<[Offer], Never> {
+        localStore.observeList(predicate: nil, sortDescriptors: [.init(\.id, order: .forward)])
             .catch { _ in
                 Just([])
             }
@@ -47,11 +47,25 @@ class DefaultOfferRepository: OfferRepository {
             .catch { _ in
                 Just([])
             }
-            .flatMap { [weak self] offers -> AnyPublisher<[Offer], Never> in
+            .flatMap { [weak self] offers in
                 self?.replace(with: offers)
-                    .map { _ in offers }
+                    .mapToVoid()
+                    .eraseToAnyPublisher() ?? .empty()
+            }
+            .flatMap { [weak self] _ -> AnyPublisher<[Offer], Never> in
+                self?.fetchStored()
                     .eraseToAnyPublisher() ?? .empty()
             }
             .eraseToAnyPublisher()
+    }
+    
+    private func fetchStored() -> AnyPublisher<[Offer], Never> {
+        Future<[Offer], Never> { [weak self] promise in
+            Task {
+                let value = try await self?.localStore.getList(predicate: nil, sortDescriptors: [.init(\.id, order: .forward)]) ?? []
+                promise(.success(value))
+            }
+        }
+        .eraseToAnyPublisher()
     }
 }

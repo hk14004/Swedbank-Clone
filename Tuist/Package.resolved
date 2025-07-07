@@ -1,5 +1,5 @@
 {
-  "originHash" : "8e5f776753f0317b868854cb24f3880b91877abe5e51c7ea0c0b6faf19029efc",
+  "originHash" : "d83f28cf1284f744011092b0deb19ba8b2d816d07b56dc20f0521d7f2989acb8",
   "pins" : [
     {
       "identity" : "devtools-swift",
@@ -7,7 +7,7 @@
       "location" : "https://github.com/hk14004/DevTools-Swift",
       "state" : {
         "branch" : "dev",
-        "revision" : "284dd3f30a5742185330048f20c6a132e52b14da"
+        "revision" : "a637ae18a2c4c27f138d0bfc76b3075e2da884dc"
       }
     },
     {

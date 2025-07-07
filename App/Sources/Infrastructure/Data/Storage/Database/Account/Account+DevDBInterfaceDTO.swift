@@ -11,7 +11,7 @@ import SwedApplicationBusinessRules
 import DevToolsPersistance
 
 extension Account: @retroactive DevDBInterfaceDTO {
-    public typealias StoreType = AccountCD
+    public typealias StoreType = AccountSD
     
     public var id: String {
         iban

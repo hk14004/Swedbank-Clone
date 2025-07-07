@@ -47,7 +47,7 @@ public struct Account {
     }
 }
 
-public enum AccountType: String {
+public enum AccountType: String, Codable {
     case regular
     case savings
 }

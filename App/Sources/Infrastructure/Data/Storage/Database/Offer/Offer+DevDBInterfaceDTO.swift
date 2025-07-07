@@ -10,5 +10,5 @@ import SwedApplicationBusinessRules
 import DevToolsPersistance
 
 extension Offer: @retroactive DevDBInterfaceDTO {
-    public typealias StoreType = OfferCD
+    public typealias StoreType = OfferSD
 }

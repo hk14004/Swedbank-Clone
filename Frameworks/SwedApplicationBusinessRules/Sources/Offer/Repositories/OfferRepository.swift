@@ -13,5 +13,5 @@ import Foundation
 public protocol OfferRepository {
     func replace(with items: [Offer]) -> AnyPublisher<Void, Never>
     func getRemoteOffers() -> AnyPublisher<[Offer], Never>
-    func observeCachedList(predicate: NSPredicate) -> AnyPublisher<[Offer], Never>
+    func observeCachedList() -> AnyPublisher<[Offer], Never>
 }

@@ -49,7 +49,7 @@ public extension Customer {
     }
 }
 
-public enum CustomerType: String {
+public enum CustomerType: String, Codable {
     case `private`
     case business
     case child

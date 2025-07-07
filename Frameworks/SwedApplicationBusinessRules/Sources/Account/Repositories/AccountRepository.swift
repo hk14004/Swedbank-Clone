@@ -13,5 +13,5 @@ import Foundation
 public protocol AccountRepository {
     func replace(with items: [Account]) -> AnyPublisher<Void, Never>
     func getRemoteAccounts() -> AnyPublisher<[Account], Never>
-    func observeCachedList(predicate: NSPredicate) -> AnyPublisher<[Account], Never>
+    func observeCachedList() -> AnyPublisher<[Account], Never>
 }

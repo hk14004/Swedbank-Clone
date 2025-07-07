@@ -21,6 +21,6 @@ public struct DefaultTrackCachedOffersUseCase: TrackCachedOffersUseCase {
     }
     
     public func use() -> AnyPublisher<[Offer], Never> {
-        offerRepository.observeCachedList(predicate: NSPredicate(value: true))
+        offerRepository.observeCachedList()
     }
 }

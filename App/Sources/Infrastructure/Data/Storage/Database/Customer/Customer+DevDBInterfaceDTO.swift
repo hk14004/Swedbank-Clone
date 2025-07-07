@@ -10,6 +10,6 @@ import Foundation
 import SwedApplicationBusinessRules
 import DevToolsPersistance
 
-extension Customer: @retroactive DevDBInterfaceDTO {
-    public typealias StoreType = CustomerCD
+extension Customer: @retroactive DevDBInterfaceDTO {    
+    public typealias StoreType = CustomerSD
 }
