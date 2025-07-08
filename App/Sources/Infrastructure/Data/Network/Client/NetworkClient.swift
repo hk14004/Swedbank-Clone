@@ -13,11 +13,16 @@ class SwedNetworkClient: BaseNetworkClient {
         dataProvider: DevNetworkDataProvider,
         requestFactory: DevNetworkRequestFactory,
         credentialStore: any SwedUserSessionCredentialsStore,
-        currentCustomerStore: CurrentCustomerStore
+        currentCustomerStore: CurrentCustomerStore,
+        reachabilityNotifier: NetworkReachability
     ) {
         self.credentialsStore = credentialStore
         self.currentCustomerStore = currentCustomerStore
-        super.init(dataProvider: dataProvider, requestFactory: requestFactory)
+        super.init(
+            dataProvider: dataProvider,
+            requestFactory: requestFactory,
+            reachabilityNotifier: reachabilityNotifier
+        )
     }
     
     // MARK: Methods

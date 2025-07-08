@@ -7,7 +7,7 @@
       "location" : "https://github.com/hk14004/DevTools-Swift",
       "state" : {
         "branch" : "dev",
-        "revision" : "a637ae18a2c4c27f138d0bfc76b3075e2da884dc"
+        "revision" : "99aa22e85174b1fa0e86409d2f0848d115b08347"
       }
     },
     {
@@ -17,6 +17,15 @@
       "state" : {
         "revision" : "84e546727d66f1adc5439debad16270d0fdd04e7",
         "version" : "4.2.2"
+      }
+    },
+    {
+      "identity" : "reachability.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ashleymills/Reachability.swift",
+      "state" : {
+        "revision" : "21d1dc412cfecbe6e34f1f4c4eb88d3f912654a6",
+        "version" : "5.2.4"
       }
     },
     {
