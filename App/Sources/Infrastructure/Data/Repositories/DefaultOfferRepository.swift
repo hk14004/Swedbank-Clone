@@ -42,11 +42,8 @@ class DefaultOfferRepository: OfferRepository {
             .eraseToAnyPublisher()
     }
     
-    func getRemoteOffers() -> AnyPublisher<[Offer], Never> {
+    func getRemoteOffers() -> AnyPublisher<[Offer], Error> {
         fetchRemoteOffersService.use()
-            .catch { _ in
-                Just([])
-            }
             .flatMap { [weak self] offers in
                 self?.replace(with: offers)
                     .mapToVoid()

@@ -59,8 +59,7 @@ public class DefaultOverviewScreenVM: OverviewScreenVM {
 public extension DefaultOverviewScreenVM {
     func didPullToRefresh() {
         guard !isRefreshing.value else { return }
-        isRefreshing.value = true
-        updateWithRemoteData().sink().store(in: &cancelBag)
+        updateWithRemoteData()
     }
     
     func didTapProfile() {
@@ -76,7 +75,7 @@ public extension DefaultOverviewScreenVM {
         populateTableWithMockedData()
         populateTableWithCachedOffers()
         populateTableWithCachedAccounts()
-        updateWithRemoteData().sink().store(in: &cancelBag)
+        updateWithRemoteData()
     }
     
     // MARK: UI Updates
@@ -126,7 +125,8 @@ public extension DefaultOverviewScreenVM {
     }
     
     // MARK: Remote data
-    private func updateWithRemoteData() -> AnyPublisher<Void, Error> {
+    private func updateWithRemoteData() {
+        isRefreshing.value = true
         Future<Void, Error> { promise in
             Task { [weak self] in
                 guard let self else { return }
@@ -136,7 +136,7 @@ public extension DefaultOverviewScreenVM {
                         try getRemoteOffersUseCase.use().async(),
                         try getRemoteAccountsUseCase.use().async()
                     )
-
+                    
                     let (latestOffers, latestAccounts) = try await result
                     
                     await MainActor.run {
@@ -151,7 +151,15 @@ public extension DefaultOverviewScreenVM {
                 }
             }
         }
-        .eraseToAnyPublisher()
+        .receiveOnMainThread()
+        .sink(
+            receiveValue: { _ in },
+            completionError: { error in
+                self.isRefreshing.value = false
+                self.router.routeToOkeyErrorAlert(error, onDismiss: nil)
+            }
+        )
+        .store(in: &cancelBag)
     }
     
     // MARK:  Section building
