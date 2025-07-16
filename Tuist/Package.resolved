@@ -1,5 +1,5 @@
 {
-  "originHash" : "8e5f776753f0317b868854cb24f3880b91877abe5e51c7ea0c0b6faf19029efc",
+  "originHash" : "d83f28cf1284f744011092b0deb19ba8b2d816d07b56dc20f0521d7f2989acb8",
   "pins" : [
     {
       "identity" : "devtools-swift",
@@ -7,7 +7,7 @@
       "location" : "https://github.com/hk14004/DevTools-Swift",
       "state" : {
         "branch" : "dev",
-        "revision" : "165d08fa5a0d9f22f0f34b537758e831b498bf14"
+        "revision" : "0f19a5ce3a90c293902790294a655df0b8f93101"
       }
     },
     {
@@ -20,21 +20,12 @@
       }
     },
     {
-      "identity" : "realm-cocoa",
+      "identity" : "reachability.swift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/realm/realm-cocoa",
+      "location" : "https://github.com/ashleymills/Reachability.swift",
       "state" : {
-        "revision" : "d94d44781167fbb8d7a46fb181e784a6446ca5c1",
-        "version" : "10.54.4"
-      }
-    },
-    {
-      "identity" : "realm-core",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/realm/realm-core.git",
-      "state" : {
-        "revision" : "cccb3ca9e26ec452a29f2f0d4050d1e38b8a3d43",
-        "version" : "14.14.0"
+        "revision" : "21d1dc412cfecbe6e34f1f4c4eb88d3f912654a6",
+        "version" : "5.2.4"
       }
     },
     {

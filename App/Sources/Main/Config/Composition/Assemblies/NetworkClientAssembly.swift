@@ -6,6 +6,10 @@ import SwedApplicationBusinessRules
 
 class NetworkClientAssembly: Assembly {
     func assemble(container: Container) {
+        container.register(NetworkReachability.self) { resolver in
+            DefaultNetworkReachability()
+        }
+        .inObjectScope(.container)
         container.register(DevNetworkRequestFactory.self) { resolver in
             DefaultNetworkRequestFactory()
         }
@@ -16,8 +20,11 @@ class NetworkClientAssembly: Assembly {
         .inObjectScope(.container)
         container.register(SwedNetworkClient.self) { resolver in
             SwedNetworkClient(
-                dataProvider: resolver.resolve(DevNetworkDataProvider.self)!,
-                requestFactory: resolver.resolve(DevNetworkRequestFactory.self)!
+                dataProvider: Composition.resolve(),
+                requestFactory: Composition.resolve(),
+                credentialStore: Composition.resolve(),
+                currentCustomerStore: Composition.resolve(),
+                reachabilityNotifier: Composition.resolve()
             )
         }
         .inObjectScope(.container)

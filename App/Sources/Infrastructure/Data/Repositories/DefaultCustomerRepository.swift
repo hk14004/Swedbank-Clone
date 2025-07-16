@@ -8,17 +8,73 @@
 
 import SwedApplicationBusinessRules
 import Combine
+import DevToolsPersistance
 
 class DefaultCustomerRepository: CustomerRepository {
-    func getRemoteCustomers() -> AnyPublisher<[CustomerDTO], Never> {
-        .just([JAMES_BOND])
+    
+    private let fetchRemoteCustomersService: FetchRemoteCustomersService
+    private let currentCustomerStore: CurrentCustomerStore
+    private let localStore: any CustomerPersistedLayerInterface
+
+    init(
+        fetchRemoteCustomersService: FetchRemoteCustomersService,
+        localStore: any CustomerPersistedLayerInterface,
+        currentCustomerStore: CurrentCustomerStore
+    ) {
+        self.fetchRemoteCustomersService = fetchRemoteCustomersService
+        self.localStore = localStore
+        self.currentCustomerStore = currentCustomerStore
     }
     
-    func addOrUpdate(_ items: [CustomerDTO]) -> AnyPublisher<Void, Never> {
-        .just(())
+    func getRemoteCustomers() -> AnyPublisher<[Customer], Error> {
+        fetchRemoteCustomersService.use()
+            .flatMap { [weak self] customers -> AnyPublisher<[Customer], Never> in
+                self?.replace(with: customers)
+                    .map { _ in customers }
+                    .eraseToAnyPublisher() ?? .empty()
+            }
+            .eraseToAnyPublisher()
     }
     
-    func getSingle(id: String) -> AnyPublisher<CustomerDTO?, Never> {
-        .just(JAMES_BOND)
+    func addOrUpdate(_ items: [Customer]) -> AnyPublisher<Void, Never> {
+        Future<Void, Never> { [weak self] promise in
+            Task {
+                try await self?.localStore.addOrUpdate(items)
+                promise(.success(()))
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    func getSingle(id: String) -> AnyPublisher<Customer?, Never> {
+        Future<Customer?, Never> { [weak self] promise in
+            Task {
+                let customer = try await self?.localStore.getSingle(id: id)
+                promise(.success(customer))
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    func getSingle(id: String) -> Customer? {
+        try? localStore.getSingle(id: id)
+    }
+    
+    func replace(with items: [Customer]) -> AnyPublisher<Void, Never> {
+        Future<Void, Never> { [weak self] promise in
+            Task {
+                try await self?.localStore.replace(with: items)
+                promise(.success(()))
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    func getCurrentCustomer() -> Customer? {
+        currentCustomerStore.getCurrentCustomer()
+    }
+    
+    func setCurrentCustomer(_ customer: Customer?) {
+        currentCustomerStore.setCurrentCustomer(customer)
     }
 }

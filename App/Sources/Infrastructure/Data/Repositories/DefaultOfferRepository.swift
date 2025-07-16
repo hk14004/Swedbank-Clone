@@ -10,41 +10,59 @@ import SwedApplicationBusinessRules
 import SwedEnterpriseBusinessRules
 import Combine
 import Foundation
-import DevToolsCore
+import DevToolsPersistance
 
 class DefaultOfferRepository: OfferRepository {
-    private let localStore: BasePersistedLayerInterface<OfferDTO>
+    private let localStore: any OfferPersistedLayerInterface
     private let fetchRemoteOffersService: FetchRemoteOffersService
     
     init(
-        store: BasePersistedLayerInterface<OfferDTO>,
+        store: any OfferPersistedLayerInterface,
         fetchRemoteOffersService: FetchRemoteOffersService
     ) {
         self.localStore = store
         self.fetchRemoteOffersService = fetchRemoteOffersService
     }
     
-    func replace(with items: [OfferDTO]) -> AnyPublisher<Void, Never> {
+    func replace(with items: [Offer]) -> AnyPublisher<Void, Never> {
         Future<Void, Never> { [weak self] promise in
             Task {
-                await self?.localStore.replace(with: items)
+                try await self?.localStore.replace(with: items)
                 promise(.success(()))
             }
         }
         .eraseToAnyPublisher()
     }
     
-    func observeCachedList(predicate: NSPredicate) -> AnyPublisher<[OfferDTO], Never> {
-        localStore.observeList(predicate: predicate)
+    func observeCachedList() -> AnyPublisher<[Offer], Never> {
+        localStore.observeList(predicate: nil, sortDescriptors: [.init(\.id, order: .forward)])
+            .catch { _ in
+                Just([])
+            }
+            .eraseToAnyPublisher()
     }
     
-    func getRemoteOffers() -> AnyPublisher<[OfferDTO], Never> {
+    func getRemoteOffers() -> AnyPublisher<[Offer], Error> {
         fetchRemoteOffersService.use()
-            .flatMap { [weak self] offers -> AnyPublisher<[OfferDTO], Never> in
+            .flatMap { [weak self] offers in
                 self?.replace(with: offers)
-                    .map { _ in offers }
+                    .mapToVoid()
+                    .eraseToAnyPublisher() ?? .empty()
+            }
+            .flatMap { [weak self] _ -> AnyPublisher<[Offer], Never> in
+                self?.fetchStored()
                     .eraseToAnyPublisher() ?? .empty()
             }
             .eraseToAnyPublisher()
+    }
+    
+    private func fetchStored() -> AnyPublisher<[Offer], Never> {
+        Future<[Offer], Never> { [weak self] promise in
+            Task {
+                let value = try await self?.localStore.getList(predicate: nil, sortDescriptors: [.init(\.id, order: .forward)]) ?? []
+                promise(.success(value))
+            }
+        }
+        .eraseToAnyPublisher()
     }
 }

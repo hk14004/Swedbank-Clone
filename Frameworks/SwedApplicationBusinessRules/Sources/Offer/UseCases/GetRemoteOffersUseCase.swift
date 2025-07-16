@@ -10,7 +10,7 @@ import Foundation
 import Combine
 
 public protocol GetRemoteOffersUseCase {
-    func use() -> AnyPublisher<[OfferDTO], Never>
+    func use() -> AnyPublisher<[Offer], Error>
 }
 
 public struct DefaultLoadLatestOffersUseCase: GetRemoteOffersUseCase {
@@ -20,7 +20,7 @@ public struct DefaultLoadLatestOffersUseCase: GetRemoteOffersUseCase {
         self.offerRepository = offerRepository
     }
     
-    public func use() -> AnyPublisher<[OfferDTO], Never> {
+    public func use() -> AnyPublisher<[Offer], Error> {
         offerRepository.getRemoteOffers()
     }
 }

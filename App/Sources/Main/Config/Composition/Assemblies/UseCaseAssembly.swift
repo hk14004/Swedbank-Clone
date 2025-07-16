@@ -5,20 +5,25 @@ import SwedApplicationBusinessRules
 
 class UseCaseAssembly: Assembly {
     func assemble(container: Container) {
-        container.register(GetLastCustomerUseCase.self) { resolver in
-            MockGetLastCustomerUseCase()
-        }
-        container.register(LoginUseCase.self) { resolver in
-            DefaultLoginUseCase(
+        container.register(FakeAlreadyLoggedInUseCase.self) { resolver in
+            DefaultFakeAlreadyLoggedInUseCase(
+                customerRepository: Composition.resolve(),
                 startSessionService: Composition.resolve(),
-                manager: Composition.resolve(),
-                userSessionCredentialsRepository: Composition.resolve(), 
-                customerRepository: Composition.resolve()
+                userSessionCredentialsRepository: Composition.resolve()
             )
         }
-        container.register(StartAllUserSessionsUseCase.self) { resolver in
-            DefaultStartAllUserSessionsUseCase(
-                manager: Composition.resolve()
+        container.register(GetLastCustomerUseCase.self) { resolver in
+            MockGetLastCustomerUseCase(customerRepository: Composition.resolve())
+        }
+        container.register(PinAuthenticateUseCase.self) { resolver in
+            DefaultPinAuthenticateUseCase()
+        }
+        container.register(BiometryAuthenticateUseCase.self) { resolver in
+            DefaultBiometryAuthenticateUseCase()
+        }
+        container.register(StartUserSessionUseCase.self) { resolver in
+            DefaultStartUserSessionUseCase(
+                customerRepository: Composition.resolve()
             )
         }
         container.register(isOnboardingCompletedUseCase.self) { resolver in
@@ -38,7 +43,7 @@ class UseCaseAssembly: Assembly {
         }
         container.register(IsAnyUserSessionActiveUseCase.self) { resolver in
             DefaultIsAnyUserSessionActiveUseCase(
-                userSessionManager: Composition.resolve()
+                customerRepository: Composition.resolve()
             )
         }
         container.register(GetCurrentLanguageUseCase.self) { resolver in
@@ -52,12 +57,22 @@ class UseCaseAssembly: Assembly {
         }
         container.register(GetCurrentCustomerUseCase.self) { resolver in
             DefaultGetCurrentCustomerUseCase(
-                userSessionManager: Composition.resolve(),
                 customerRepository: Composition.resolve()
             )
         }
+        container.register(NukeCustomerPersistedDataUseCase.self) { resolver in
+            DefaultNukeCustomerPersistedDataUseCase(
+                customerRepository: Composition.resolve(),
+                offerRepository: Composition.resolve(),
+                accountRepository: Composition.resolve(),
+                userSessionCredentialsRepository: Composition.resolve()
+            )
+        }
         container.register(LogoutUseCase.self) { resolver in
-            DefaultLogoutUseCase(manager: Composition.resolve())
+            DefaultLogoutUseCase(
+                customerRepository: Composition.resolve(),
+                nukeCustomerPersistedDataUseCase: Composition.resolve()
+            )
         }
         container.register(GetRemoteOffersUseCase.self) { resolver in
             DefaultLoadLatestOffersUseCase(
@@ -68,6 +83,12 @@ class UseCaseAssembly: Assembly {
             DefaultTrackCachedOffersUseCase(
                 offerRepository: Composition.resolve()
             )
+        }
+        container.register(GetRemoteAccountsUseCase.self) { resolver in
+            DefaultGetRemoteAccountsUseCase(accountRepository: Composition.resolve())
+        }
+        container.register(TrackCachedAccountsUseCase.self) { resolver in
+            DefaultTrackCachedAccountsUseCase(accountRepository: Composition.resolve())
         }
     }
 }

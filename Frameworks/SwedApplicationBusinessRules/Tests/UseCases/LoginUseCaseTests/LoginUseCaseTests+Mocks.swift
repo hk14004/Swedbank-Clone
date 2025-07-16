@@ -19,8 +19,8 @@ extension LoginUseCaseTests {
 }
 
 extension LoginUseCaseTests {
-    func makeSUT() -> DefaultLoginUseCase {
-        DefaultLoginUseCase(
+    func makeSUT() -> DefaultPinAuthenticateUseCase {
+        DefaultPinAuthenticateUseCase(
             startSessionService: mocks.mockLoginService,
             manager: mocks.mockUserSessionManager,
             fetchCustomerService: mocks.mockFetchCustomerService,

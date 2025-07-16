@@ -7,15 +7,26 @@ import SwedEnterpriseBusinessRules
 class ServicesAssembly: Assembly {
     func assemble(container: Container) {
         container.register(StartSessionService.self) { resolver in
-            MockStartSessionService()
+            DefaultStartSessionService(networkClient: Composition.resolve())
+        }
+        .inObjectScope(.container)
+        container.register(RefreshSessionService.self) { resolver in
+            DefaultRefreshSessionService(
+                dataProvider: Composition.resolve(),
+                requestFactory: Composition.resolve()
+            )
         }
         .inObjectScope(.container)
         container.register(FetchRemoteCustomersService.self) { resolver in
-            MockFetchCustomerService()
+            GithubFetchRemoteCustomersService(networkClient: Composition.resolve())
         }
         .inObjectScope(.container)
         container.register(FetchRemoteOffersService.self) { resolver in
             GithubFetchRemoteOffersService(networkClient: Composition.resolve())
+        }
+        .inObjectScope(.container)
+        container.register(FetchRemoteAccountsService.self) { resolver in
+            GithubFetchRemoteAccountsService(networkClient: Composition.resolve())
         }
         .inObjectScope(.container)
     }

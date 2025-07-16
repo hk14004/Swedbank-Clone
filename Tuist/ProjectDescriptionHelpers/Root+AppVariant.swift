@@ -74,7 +74,7 @@ extension Project.Root.AppVariant {
                 .external(name: Project.Dependencies.DevToolsUI.rawValue),
                 .external(name: Project.Dependencies.DevToolsNavigation.rawValue),
                 .external(name: Project.Dependencies.DevToolsNetworking.rawValue),
-                .external(name: Project.Dependencies.DevToolsCoreData.rawValue),
+                .external(name: Project.Dependencies.DevToolsPersistance.rawValue),
                 .external(name: Project.Dependencies.DevToolsLocalization.rawValue)
             ],
             settings: .settings(configurations: [
@@ -85,8 +85,7 @@ extension Project.Root.AppVariant {
                 .release(name: .release, settings: Project.makeSettingsDictionary(
                     identity: "iPhone Developer", provisioningPorfileSpecifier: "", variant: self)
                 )
-            ]),
-            coreDataModels: [.coreDataModel("App/Resources/Database/CoreDataDB.xcdatamodeld")]
+            ])
         )
     }
 }

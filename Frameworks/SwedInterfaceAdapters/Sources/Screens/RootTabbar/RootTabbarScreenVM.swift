@@ -14,12 +14,12 @@ public protocol RootTabbarScreenVMOutput {
     var router: RootTabbarScreenRouter! { get set }
     var tabsPublisher: CurrentValueSubject<[RootTab], Never> { get }
     var lockedPublisher: CurrentValueSubject<Bool, Never> { get }
-    var customer: CustomerDTO? { get }
+    var customer: Customer { get }
 }
 
 public protocol RootTabbarScreenVMInput {
     func viewDidLoad()
-    func didUnlock(customer: CustomerDTO)
+    func didUnlock()
     func didLock()
 }
 
@@ -27,17 +27,17 @@ public protocol RootTabbarScreenVM: RootTabbarScreenVMInput, RootTabbarScreenVMO
 
 public class DefaultRootTabbarScreenVM: RootTabbarScreenVM {
     // MARK: Variables
-    public var customer: CustomerDTO?
+    public var customer: Customer
     public var router: RootTabbarScreenRouter!
     public var tabsPublisher: CurrentValueSubject<[RootTab], Never>
     public var lockedPublisher: CurrentValueSubject<Bool, Never>
     private var cancelBag = Set<AnyCancellable>()
     
     // MARK: LifeCycle
-    public init(customer: CustomerDTO?) {
+    public init(customer: Customer, locked: Bool) {
         self.customer = customer
         self.tabsPublisher = .init([])
-        self.lockedPublisher = .init(customer == nil)
+        self.lockedPublisher = .init(locked)
         self.tabsPublisher.value = makePresentableTabs()
     }
 }
@@ -46,14 +46,12 @@ public class DefaultRootTabbarScreenVM: RootTabbarScreenVM {
 public extension DefaultRootTabbarScreenVM {
     func viewDidLoad() {}
     
-    func didUnlock(customer: CustomerDTO) {
-        self.customer = customer
+    func didUnlock() {
         lockedPublisher.value = false
         tabsPublisher.value = makePresentableTabs()
     }
     
     func didLock() {
-        customer = nil
         lockedPublisher.value = true
         tabsPublisher.value = makePresentableTabs()
     }
@@ -66,7 +64,6 @@ extension DefaultRootTabbarScreenVM {
             .overview,
             .payments,
             .cards,
-            .services,
             .contacts
         ]
     }

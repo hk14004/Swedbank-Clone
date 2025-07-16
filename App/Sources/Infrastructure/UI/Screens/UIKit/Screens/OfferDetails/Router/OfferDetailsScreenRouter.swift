@@ -13,7 +13,7 @@ import SwedApplicationBusinessRules
 public protocol OfferDetailsScreenRouter {}
 
 extension ToOfferDetailsRouting where Self: UIKitRouter {
-    func routeToOfferDetails(offer: OfferDTO) {
+    func routeToOfferDetails(offer: Offer) {
         let factory: OfferDetailsScreenFactory = Composition.resolve()
         let vc = factory.make(offer: offer)
         viewController.navigationController?.pushViewController(vc, animated: true)

@@ -12,14 +12,22 @@ import SwedInterfaceAdapters
 import SwedApplicationBusinessRules
 
 protocol LoginScreenFactory {
-    func make(didLoginPublisher: PassthroughSubject<CustomerDTO, Never>) -> LoginScreenVC
+    func make(
+        customer: Customer,
+        didLoginPublisher: PassthroughSubject<Void, Never>
+    ) -> LoginScreenVC
 }
 
 class DefaultLoginScreenFactory: LoginScreenFactory {
-    func make(didLoginPublisher: PassthroughSubject<CustomerDTO, Never>) -> LoginScreenVC {
+    func make(
+        customer: Customer,
+        didLoginPublisher: PassthroughSubject<Void, Never>
+    ) -> LoginScreenVC {
         let vm = DefaultLoginScreenVM(
-            loginUseCase: Composition.resolve(),
-            getLastCustomerUseCase: Composition.resolve()
+            customer: customer,
+            pinLoginUseCase: Composition.resolve(),
+            getLastCustomerUseCase: Composition.resolve(),
+            biometryAuthenticateUseCase: Composition.resolve()
         )
         let vc = LoginScreenVC(viewModel: vm)
         let router = DefaultLoginScreenRouter(

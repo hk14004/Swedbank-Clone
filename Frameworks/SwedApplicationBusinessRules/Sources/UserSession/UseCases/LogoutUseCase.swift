@@ -14,20 +14,24 @@ public protocol LogoutUseCase {
 
 public class DefaultLogoutUseCase: LogoutUseCase {
     // MARK: Properties
-    private let manager: UserSessionManager
+    private let customerRepository: CustomerRepository
+    private let nukeCustomerPersistedDataUseCase: NukeCustomerPersistedDataUseCase
     
     // MARK: Lifeycle
-    public init(manager: UserSessionManager) {
-        self.manager = manager
+    public init(
+        customerRepository: CustomerRepository,
+        nukeCustomerPersistedDataUseCase: NukeCustomerPersistedDataUseCase
+    ) {
+        self.customerRepository = customerRepository
+        self.nukeCustomerPersistedDataUseCase = nukeCustomerPersistedDataUseCase
     }
     
     // MARK: Methods
     public func use() -> AnyPublisher<Void, Never> {
-        guard let startedSession = manager.startedUserSessions.first?.value else {
+        guard let loggedInCustomer =  customerRepository.getCurrentCustomer() else {
             return .just(())
         }
-        
-        manager.deleteUserSession(credentialsID: startedSession.credentials.id)
-        return .just(())
+        customerRepository.setCurrentCustomer(nil)
+        return nukeCustomerPersistedDataUseCase.use(customerId: loggedInCustomer.id)
     }
 }

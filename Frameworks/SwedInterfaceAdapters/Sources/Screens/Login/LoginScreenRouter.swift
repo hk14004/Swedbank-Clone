@@ -10,5 +10,5 @@ import Foundation
 import SwedApplicationBusinessRules
 
 public protocol LoginScreenRouter: ToLanguageSelectionScreenRouting, ToErrorRouting {
-    func routeToLoginCompleted(customer: CustomerDTO)
+    func routeToLoginCompleted(customer: Customer)
 }

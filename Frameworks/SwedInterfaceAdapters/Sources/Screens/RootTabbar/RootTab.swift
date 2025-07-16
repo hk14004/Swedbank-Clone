@@ -12,6 +12,5 @@ public enum RootTab {
     case overview
     case payments
     case cards
-    case services
     case contacts
 }

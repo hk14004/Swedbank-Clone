@@ -15,13 +15,13 @@ enum OrderRequestConfig {
 
 extension OrderRequestConfig: DevRequestConfig {
     var baseURL: String {
-        "https://github.com"
+        "http://192.168.8.208:3000"
     }
 
     var path: String {
         switch self {
         case .fetchOrders:
-            "/hk14004/Swedbank-Clone/raw/refs/heads/dev/App/Resources/Payloads/orders.json"
+            "/orders"
         }
     }
     
@@ -29,7 +29,7 @@ extension OrderRequestConfig: DevRequestConfig {
         .get
     }
     
-    var authType: DevRequestAuthType {
-        .none
+    var requiresAuthorization: Bool {
+        false
     }
 }

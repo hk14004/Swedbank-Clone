@@ -8,16 +8,20 @@
 
 import Combine
 
-let JAMES_BOND = CustomerDTO(id: "007", displayName: "James Bond")
-
 public protocol GetLastCustomerUseCase {
-    func use() -> CustomerDTO
+    func use() -> Customer?
 }
 
 // Mocked for now
 public struct MockGetLastCustomerUseCase: GetLastCustomerUseCase {
-    public init() {}
-    public func use() -> CustomerDTO {
-        JAMES_BOND
+    
+    private let customerRepository: CustomerRepository
+    
+    public init(customerRepository: CustomerRepository) {
+        self.customerRepository = customerRepository
+    }
+    
+    public func use() -> Customer? {
+        customerRepository.getSingle(id: JAMES_BOND.id) ?? JAMES_BOND
     }
 }

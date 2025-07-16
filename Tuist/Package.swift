@@ -17,7 +17,7 @@ import PackageDescription
             "DevToolsUI": .framework,
             "DevToolsNavigation": .framework,
             "DevToolsNetworking": .framework,
-            "DevToolsCoreData": .framework,
+            "DevToolsPersistance": .framework,
             "DevToolsLocalization": .framework
         ]
     )

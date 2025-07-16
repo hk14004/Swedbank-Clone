@@ -20,7 +20,7 @@ class DefaultProfileScreenRouter: ProfileScreenRouter, UIKitRouter {
 }
 
 extension ToProfileScreenRouting where Self: UIKitRouter {
-    func routeToProfileScreen(customer: CustomerDTO) {
+    func routeToProfileScreen(customer: Customer) {
         let factory: ProfileScreenFactory = Composition.resolve()
         let vc = factory.make(customer: customer)
         let navVC = UINavigationController(rootViewController: vc)

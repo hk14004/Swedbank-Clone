@@ -1,5 +1,5 @@
 //
-//  DefaultLoginRouter.swift
+//  DefaultLoginScreenRouter.swift
 //  Swedbank
 //
 //  Created by Hardijs Ķirsis on 03/09/2023.
@@ -16,25 +16,34 @@ import SwedLocalization
 class DefaultLoginScreenRouter: UIKitRouter, LoginScreenRouter, CancelBagStorable {
     var cancelBag = Set<AnyCancellable>()
     var viewController: UIViewController
-    let didLoginPublisher: PassthroughSubject<CustomerDTO, Never>
+    let didLoginPublisher: PassthroughSubject<Void, Never>
     
     init(
         viewController: UIViewController,
-        didLoginPublisher: PassthroughSubject<CustomerDTO, Never>
+        didLoginPublisher: PassthroughSubject<Void, Never>
     ) {
         self.viewController = viewController
         self.didLoginPublisher = didLoginPublisher
     }
     
-    func routeToLoginCompleted(customer: CustomerDTO) {
-        didLoginPublisher.send(customer)
+    func routeToLoginCompleted(customer: Customer) {
+        didLoginPublisher.send()
     }
 }
 
+import DevToolsCore
 extension ToErrorRouting where Self: UIKitRouter  {
-    func routeToErrorAlert(_ error: Error) {
-        let alertViewController = UIAlertController(title: "", message: error.localizedDescription, preferredStyle: .alert)
-        alertViewController.addAction(UIAlertAction(title: AppStrings.Globals.ok, style: .default))
+    func routeToOkeyErrorAlert(_ error: Error, onDismiss: (() -> Void)? = nil) {
+        let alertViewController = UIAlertController(
+            configuration: error.makeAlertConfiguration(
+                buttons: [
+                    AlertConfiguration.Button(
+                        title: AppStrings.Globals.ok,
+                        action: onDismiss ?? {}
+                    )
+                ]
+            )
+        )
         viewController.present(alertViewController, animated: true)
     }
 }

@@ -12,11 +12,11 @@ import SwedInterfaceAdapters
 import SwedApplicationBusinessRules
 
 protocol OfferDetailsScreenFactory {
-    func make(offer: OfferDTO) -> OfferDetailsScreenVC
+    func make(offer: Offer) -> OfferDetailsScreenVC
 }
 
 class DefaultOfferDetailsScreenFactory: OfferDetailsScreenFactory {
-    func make(offer: OfferDTO) -> OfferDetailsScreenVC {
+    func make(offer: Offer) -> OfferDetailsScreenVC {
         // Optionally get cached offer by id instead of passing around
         let vm = DefaultOfferDetailsScreenVM(offer: offer)
         let vc = OfferDetailsScreenVC(viewModel: vm)

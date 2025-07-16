@@ -26,10 +26,6 @@ class ScreenFactoryAssembly: Assembly {
         container.register(OverviewScreenFactory.self) { resolver in
             DefaultDashboardScreenFactory()
         }
-        // MARK: Locked dashboard
-        container.register(LockedTabScreenFactory.self) { resolver in
-            DefaultLockedTabScreenFactory()
-        }
         // MARK: Language selection
         container.register(LanguageSelectionScreenFactory.self) { resolver in
             DefaultLanguageSelectionScreenFactory()

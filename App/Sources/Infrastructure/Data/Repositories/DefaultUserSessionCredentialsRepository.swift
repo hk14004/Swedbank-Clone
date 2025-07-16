@@ -7,14 +7,16 @@
 //
 
 import Foundation
+import Combine
 import SwedApplicationBusinessRules
 import DevToolsCore
 
 class DefaultUserSessionCredentialsRepository: UserSessionCredentialsRepository {
+    let store: any SwedUserSessionCredentialsStore
     
-    private let store: BaseUserSessionCredentialsStore<UserSessionCredentials>
-    
-    init(store: BaseUserSessionCredentialsStore<UserSessionCredentials>) {
+    init(
+        store: any SwedUserSessionCredentialsStore
+    ) {
         self.store = store
     }
     

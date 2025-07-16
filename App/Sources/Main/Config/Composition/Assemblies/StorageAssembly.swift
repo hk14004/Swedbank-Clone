@@ -4,8 +4,8 @@ import DevToolsCore
 import SwedApplicationBusinessRules
 import KeychainAccess
 import SwiftyUserDefaults
-import CoreData
-import DevToolsCoreData
+import SwiftData
+import DevToolsPersistance
 
 class StorageAssembly: Assembly {
     func assemble(container: Container) {
@@ -16,46 +16,62 @@ class StorageAssembly: Assembly {
             Keychain(service: "com.app.key") // TODO: Move to constants
         }
         .inObjectScope(.container)
-        container.register(BaseUserSessionCredentialsStore<UserSessionCredentials>.self) { resolver in
+        container.register((any SwedUserSessionCredentialsStore).self) { resolver in
             DefaultUserSessionCredentialsStore(keychain: Composition.resolve())
         }
         .inObjectScope(.container)
-        // MARK: Core data stack
-        
-        container.register(NSPersistentContainer.self) { resolver in
-            lazy var persistentContainer: NSPersistentContainer = {
-                /*
-                 The persistent container for the application. This implementation
-                 creates and returns a container, having loaded the store for the
-                 application to it. This property is optional since there are legitimate
-                 error conditions that could cause the creation of the store to fail.
-                */
-                let container = NSPersistentContainer(name: "CoreDataDB")
-                container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-                    if let error = error as NSError? {
-                        // Replace this implementation with code to handle the error appropriately.
-                        // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                         
-                        /*
-                         Typical reasons for an error here include:
-                         * The parent directory does not exist, cannot be created, or disallows writing.
-                         * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                         * The device is out of space.
-                         * The store could not be migrated to the current model version.
-                         Check the error message to determine what the actual problem was.
-                         */
-                        fatalError("Unresolved error \(error), \(error.userInfo)")
-                    }
-                })
-                return container
-            }()
-            
-            return persistentContainer
+        container.register(CurrentCustomerStore.self) { resolver in
+            DefaultCurrentCustomerStore()
         }
         .inObjectScope(.container)
-        container.register(PersistentCoreDataStore<OfferDTO>.self) { resolver in
-            PersistentCoreDataStore<OfferDTO>(storeContainer: Composition.resolve())
+        // MARK: Swift data stack
+        container.register(ModelContainer.self) { resolver in
+            lazy var container: ModelContainer = {
+                let schema = Schema([
+                  CustomerSD.self,
+                  AccountSD.self,
+                  OfferSD.self
+                ])
+
+                let config = ModelConfiguration(
+                  schema: schema,
+                  isStoredInMemoryOnly: false
+                )
+
+                do {
+                  return try ModelContainer(
+                    for: schema,
+                    configurations: [config]
+                  )
+                } catch {
+                  fatalError("Could not create ModelContainer: \(error)")
+                }
+              }()
+            return container
+        }
+
+        container.register((any OfferPersistedLayerInterface).self) { resolver in
+            let container: ModelContainer = Composition.resolve()
+            return DevSwiftDataStore<Offer, OfferConverter>(container: container, converter: OfferConverter(), queue: .main)
+        }
+        .inObjectScope(.container)
+        container.register((any CustomerPersistedLayerInterface).self) { resolver in
+            let container: ModelContainer = Composition.resolve()
+            return DevSwiftDataStore<Customer, CustomerConverter>(container: container, converter: CustomerConverter(), queue: .main)
+        }
+        .inObjectScope(.container)
+        container.register((any AccountPersistedLayerInterface).self) { resolver in
+            let container: ModelContainer = Composition.resolve()
+            return DevSwiftDataStore<Account, AccountConverter>(container: container, converter: AccountConverter(), queue: .main)
         }
         .inObjectScope(.container)
     }
 }
+
+protocol AccountPersistedLayerInterface: DevSwiftDataInterface where DTO == Account {}
+protocol OfferPersistedLayerInterface: DevSwiftDataInterface where DTO == Offer {}
+protocol CustomerPersistedLayerInterface: DevSwiftDataInterface where DTO == Customer {}
+
+extension DevSwiftDataStore: CustomerPersistedLayerInterface where DTO == Customer {}
+extension DevSwiftDataStore: OfferPersistedLayerInterface where DTO == Offer {}
+extension DevSwiftDataStore: AccountPersistedLayerInterface where DTO == Account {}

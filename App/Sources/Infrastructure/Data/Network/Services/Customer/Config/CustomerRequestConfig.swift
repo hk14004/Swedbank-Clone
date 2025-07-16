@@ -15,18 +15,21 @@ enum CustomerRequestConfig {
 
 extension CustomerRequestConfig: DevRequestConfig {
     var baseURL: String {
-        ""
+        "http://192.168.8.208:3000"
     }
-    
+
     var path: String {
-        ""
+        switch self {
+        case .fetchCustomers:
+            "/customers"
+        }
     }
     
     var method: DevHTTPMethod {
         .get
     }
     
-    var authType: DevRequestAuthType {
-        .bearer
+    var requiresAuthorization: Bool {
+        false
     }
 }

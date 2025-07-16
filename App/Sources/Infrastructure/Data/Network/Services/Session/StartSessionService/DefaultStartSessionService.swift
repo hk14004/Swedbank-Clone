@@ -4,23 +4,16 @@ import SwedApplicationBusinessRules
 import Foundation
 
 class DefaultStartSessionService: StartSessionService {
-    private let networkClient: DevNetworkClient
+    private let networkClient: SwedNetworkClient
     
-    init(networkClient: DevNetworkClient) {
+    init(networkClient: SwedNetworkClient) {
         self.networkClient = networkClient
     }
     
     func use(input: StartSessionServiceInput) -> AnyPublisher<StartSessionServiceOutput, Error> {
         fetchResponse(input: input)
             .flatMap { response -> AnyPublisher<StartSessionServiceOutput, Error> in
-                    .just(
-                        StartSessionServiceOutput(
-                            bearerToken: response.accessToken,
-                            refreshToken: response.refreshToken,
-                            expirationDuration: response.accessTokenExpirationDuration,
-                            userID: response.userID
-                        )
-                    )
+                    .just(response.mapToDomain())
             }
             .eraseToAnyPublisher()
     }
@@ -28,8 +21,24 @@ class DefaultStartSessionService: StartSessionService {
     private func fetchResponse(input: StartSessionServiceInput) -> AnyPublisher<StartSessionResponse, Error> {
         networkClient.execute(
             SessionRequestConfig.startSession(
-                StartSessionDataOutgoing(customerID: input.customerID, pinCode: input.pinCode)
+                StartSessionDataOutgoing(
+                    username: input.username,
+                    password: input.password,
+                    expiresInMins: TOKEN_EXPIRE_TIME_IN_MINS
+                )
             )
         )
+        .mapError { error in
+            guard let networkError = error as? NetworkError else {
+                return error
+            }
+            switch networkError {
+            case .resourceNotFound:
+                return UserSessionError.invalidLoginCredentials
+            default:
+                return error
+            }
+        }
+        .eraseToAnyPublisher()
     }
 }

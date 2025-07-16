@@ -11,7 +11,10 @@ import KeychainAccess
 import Foundation
 import SwedApplicationBusinessRules
 
-class DefaultUserSessionCredentialsStore: BaseUserSessionCredentialsStore<UserSessionCredentials> {
+
+public protocol SwedUserSessionCredentialsStore: UserSessionCredentialsStore where CredentialsType == UserSessionCredentials {}
+
+class DefaultUserSessionCredentialsStore: SwedUserSessionCredentialsStore {
 
     // MARK: Properties
     
@@ -25,7 +28,7 @@ class DefaultUserSessionCredentialsStore: BaseUserSessionCredentialsStore<UserSe
     
     // MARK: Overriden
     
-    override func storeCredentials(_ credentials: UserSessionCredentials) {
+    func storeCredentials(_ credentials: UserSessionCredentials) {
         guard let data = try? JSONEncoder().encode(credentials) else {
             deleteCredentials(id: credentials.id)
             return
@@ -33,7 +36,7 @@ class DefaultUserSessionCredentialsStore: BaseUserSessionCredentialsStore<UserSe
         try? keychain.set(data, key: credentials.id)
     }
     
-    override func getCredentials(id: String) -> UserSessionCredentials? {
+    func getCredentials(id: String) -> UserSessionCredentials? {
         guard let data = try? keychain.getData(id) else {
             deleteCredentials(id: id)
             return nil
@@ -42,18 +45,18 @@ class DefaultUserSessionCredentialsStore: BaseUserSessionCredentialsStore<UserSe
         return decoded
     }
     
-    override func getAllCredentials() -> [UserSessionCredentials] {
+    func getAllCredentials() -> [UserSessionCredentials] {
         let result: [UserSessionCredentials] = keychain.allKeys().compactMap { credID in
             getCredentials(id: credID)
         }
         return result
     }
     
-    override func deleteCredentials(id: String) {
+    func deleteCredentials(id: String) {
         try? keychain.remove(id)
     }
     
-    override func deleteAllCredentials() {
+    func deleteAllCredentials() {
         try? keychain.removeAll()
     }
 }

@@ -35,21 +35,24 @@ public class DefaultLoginScreenVM: LoginScreenVM {
     public var maxPinLength: Int { 3 }
     public var customerName: String { customer.displayName }
     public var router: LoginScreenRouter!
-    private let loginUseCase: LoginUseCase
+    private let pinLoginUseCase: PinAuthenticateUseCase
     private let getLastCustomerUseCase: GetLastCustomerUseCase
-    private var customer: CustomerDTO
+    private let biometryAuthenticateUseCase: BiometryAuthenticateUseCase
+    private var customer: Customer
     private var bag = Set<AnyCancellable>()
     
     // MARK: Lifecycle
     public init(
-        loginUseCase: LoginUseCase,
-        getLastCustomerUseCase: GetLastCustomerUseCase
+        customer: Customer,
+        pinLoginUseCase: PinAuthenticateUseCase,
+        getLastCustomerUseCase: GetLastCustomerUseCase,
+        biometryAuthenticateUseCase: BiometryAuthenticateUseCase
     ) {
-        self.loginUseCase = loginUseCase
+        self.customer = customer
+        self.pinLoginUseCase = pinLoginUseCase
         self.getLastCustomerUseCase = getLastCustomerUseCase
-        self.customer = getLastCustomerUseCase.use()
+        self.biometryAuthenticateUseCase = biometryAuthenticateUseCase
     }
-    
 }
 
 // MARK: - Public
@@ -71,24 +74,34 @@ public extension DefaultLoginScreenVM {
         router.routeToLanguageSelectionScreen()
     }
     
-    func onFaceIDTapped() {}
+    func onFaceIDTapped() {
+        loadingPublisher = true
+        biometryAuthenticateUseCase.use(customerID: customer.id)
+            .receiveOnMainThread()
+            .sink { [weak self] completion in
+                self?.handleLoginCompletion(completion)
+            } receiveValue: { [weak self] customer in
+                self?.onLoggedIn()
+            }
+            .store(in: &bag)
+    }
 }
 
 // MARK: Private
 extension DefaultLoginScreenVM {
     private func attemptLogin(pinCode: String) {
         loadingPublisher = true
-        loginUseCase.use(customerID: customer.id, pinCode: pinCode)
+        pinLoginUseCase.use(customerID: customer.id, pinCode: pinCode)
             .receiveOnMainThread()
             .sink { [weak self] completion in
                 self?.handleLoginCompletion(completion)
             } receiveValue: { [weak self] customer in
-                self?.onLoggedIn(customer: customer)
+                self?.onLoggedIn()
             }
             .store(in: &bag)
     }
     
-    private func onLoggedIn(customer: CustomerDTO) {
+    private func onLoggedIn() {
         router.routeToLoginCompleted(customer: customer)
     }
     
@@ -99,8 +112,20 @@ extension DefaultLoginScreenVM {
         case .finished:
             return
         case .failure(let error):
-            printError(error)
-            router.routeToErrorAlert(error)
+            if let error = error as? BiometryError {
+                switch error {
+                case .biometryNotAvailable:
+                    break
+                case .underlyingError(let systemError):
+                    switch systemError.code {
+                    case .userCancel:
+                        return
+                    default:
+                        break
+                    }
+                }
+            }
+            router.routeToOkeyErrorAlert(error, onDismiss: nil)
         }
     }
 }

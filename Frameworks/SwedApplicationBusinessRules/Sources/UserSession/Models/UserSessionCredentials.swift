@@ -16,10 +16,16 @@ public struct UserSessionCredentials: Codable, Equatable, AuthorizationCredentia
     public struct Data: Codable, Equatable {
         public var bearerToken: String
         public var refreshToken: String
+        public var bearerTokenExpirationDate: Date
         
-        public init(bearerToken: String, refreshToken: String) {
+        public init(
+            bearerToken: String,
+            refreshToken: String,
+            bearerTokenExpirationDate: Date
+        ) {
             self.bearerToken = bearerToken
             self.refreshToken = refreshToken
+            self.bearerTokenExpirationDate = bearerTokenExpirationDate
         }
     }
     
@@ -27,6 +33,11 @@ public struct UserSessionCredentials: Codable, Equatable, AuthorizationCredentia
     
     public var id: String
     public var authorizationData: Data
+    public var isValid: Bool {
+        return Date() < authorizationData.bearerTokenExpirationDate
+    }
+    
+    // MARK: LifeCycle
     
     public init(id: String, authorizationData: Data) {
         self.id = id

@@ -12,7 +12,7 @@ import SwedApplicationBusinessRules
 
 class MockStartSessionService: StartSessionService {
     func use(input: StartSessionServiceInput) -> AnyPublisher<StartSessionServiceOutput, Error> {
-        guard input.customerID == JAMES_BOND.id, input.pinCode == JAMES_BOND.id else {
+        guard input.username == JAMES_BOND.id, input.password == JAMES_BOND.id else {
             return .fail(NSError(domain: "invalid credentials, try 007", code: 0))
         }
         return .just(
@@ -20,7 +20,7 @@ class MockStartSessionService: StartSessionService {
                 bearerToken: "accessToken123",
                 refreshToken: "refreshToken123",
                 expirationDuration: 3600,
-                userID: input.customerID
+                userID: input.username
             )
         )
         .eraseToAnyPublisher()

@@ -11,11 +11,11 @@ import SwedInterfaceAdapters
 import SwedApplicationBusinessRules
 
 protocol ProfileScreenFactory {
-    func make(customer: CustomerDTO) -> ProfileScreenVC
+    func make(customer: Customer) -> ProfileScreenVC
 }
 
 class DefaultProfileScreenFactory: ProfileScreenFactory {
-    func make(customer: CustomerDTO) -> ProfileScreenVC {
+    func make(customer: Customer) -> ProfileScreenVC {
         let vm = DefaultProfileScreenVM(logoutUseCase: Composition.resolve())
         let vc = ProfileScreenVC(viewModel: vm)
         let router = DefaultProfileScreenRouter(viewController: vc)

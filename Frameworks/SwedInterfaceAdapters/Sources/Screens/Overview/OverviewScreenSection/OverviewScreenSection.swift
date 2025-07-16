@@ -12,8 +12,20 @@ import DevToolsCore
 
 public struct OverviewScreenSection: DevTableSection {
     public enum SectionID: String, CaseIterable {
-        case overview
+        case accounts
+        case expenses
         case offers
+        
+        var order: Int {
+            switch self {
+            case .accounts:
+                return 0
+            case .expenses:
+                return 1
+            case .offers:
+                return 2
+            }
+        }
     }
     
     public enum Cell: DevTableSectionCell {

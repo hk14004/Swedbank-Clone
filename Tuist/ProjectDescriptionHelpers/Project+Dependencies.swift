@@ -17,7 +17,7 @@ public extension Project {
         case DevToolsUI
         case DevToolsNavigation
         case DevToolsNetworking
-        case DevToolsCoreData
+        case DevToolsPersistance
         case DevToolsLocalization
     }
 }
