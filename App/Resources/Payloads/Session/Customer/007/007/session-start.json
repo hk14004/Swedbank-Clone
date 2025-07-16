@@ -1,6 +1,0 @@
-{
-    "userID": "007",
-    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-    "accessTokenExpirationDuration": 360,
-    "refreshToken": "abc123refresh..."
-}

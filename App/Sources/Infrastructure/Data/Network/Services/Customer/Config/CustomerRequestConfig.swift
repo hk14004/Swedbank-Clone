@@ -15,13 +15,13 @@ enum CustomerRequestConfig {
 
 extension CustomerRequestConfig: DevRequestConfig {
     var baseURL: String {
-        "https://github.com"
+        "http://192.168.8.208:3000"
     }
 
     var path: String {
         switch self {
         case .fetchCustomers:
-            "/hk14004/Swedbank-Clone/raw/refs/heads/dev/App/Resources/Payloads/customers.json"
+            "/customers"
         }
     }
     

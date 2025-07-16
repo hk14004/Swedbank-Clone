@@ -15,13 +15,13 @@ enum AccountRequestConfig {
 
 extension AccountRequestConfig: DevRequestConfig {
     var baseURL: String {
-        "https://github.com"
+        "http://192.168.8.208:3000"
     }
 
     var path: String {
         switch self {
         case .fetchAccounts:
-            "/hk14004/Swedbank-Clone/raw/refs/heads/dev/App/Resources/Payloads/accounts.json"
+            "/accounts"
         }
     }
     
