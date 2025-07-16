@@ -5,22 +5,19 @@ import SwedApplicationBusinessRules
 enum SessionRequestConfig {
     case startSession(StartSessionDataOutgoing)
     case refreshToken(RefreshSessionServiceInput)
-    case checkSession
 }
 
 extension SessionRequestConfig: DevRequestConfig {
     var baseURL: String {
-        "https://dummyjson.com"
+        "http://192.168.8.208:3000"
     }
     
     var path: String {
         switch self {
         case .startSession:
-            "/auth/login"
+            "/login"
         case .refreshToken:
-            "/auth/refresh"
-        case .checkSession:
-            "/auth/me"
+            "/refresh"
         }
     }
     
@@ -28,8 +25,6 @@ extension SessionRequestConfig: DevRequestConfig {
         switch self {
         case .startSession, .refreshToken:
             .post
-        case .checkSession:
-            .get
         }
     }
     
@@ -43,18 +38,14 @@ extension SessionRequestConfig: DevRequestConfig {
             try? JSONEncoder().encode(credentials)
         case .refreshToken(let credentials):
             try? JSONEncoder().encode(credentials)
-        case .checkSession:
-            nil
         }
     }
     
     var requiresAuthorization: Bool {
         switch self {
         case .startSession:
-            true
-        case .refreshToken:
             false
-        case .checkSession:
+        case .refreshToken:
             true
         }
     }

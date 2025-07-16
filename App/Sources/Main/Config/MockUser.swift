@@ -12,5 +12,3 @@ let JAMES_BOND = Customer(
     authorities: [],
     isMain: true
 )
-
-let TOKEN_EXPIRE_TIME_IN_MINS = 1

@@ -15,7 +15,7 @@ enum AccountRequestConfig {
 
 extension AccountRequestConfig: DevRequestConfig {
     var baseURL: String {
-        "http://192.168.8.208:3000"
+        "http://192.168.8.208:3000/api"
     }
 
     var path: String {
@@ -30,6 +30,6 @@ extension AccountRequestConfig: DevRequestConfig {
     }
     
     var requiresAuthorization: Bool {
-        false
+        true
     }
 }

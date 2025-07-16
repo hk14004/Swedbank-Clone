@@ -37,7 +37,7 @@ public struct DefaultFakeAlreadyLoggedInUseCase: FakeAlreadyLoggedInUseCase {
         customerRepository.replace(with: [JAMES_BOND])
             .flatMap { _ in
                 startSessionService.use(
-                    input: StartSessionServiceInput(username: "emilys", password: "emilyspass")
+                    input: StartSessionServiceInput(username: JAMES_BOND.id, password: "007")
                 )
                 .map { response -> Void in
                     userSessionCredentialsRepository.save(

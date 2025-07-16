@@ -15,15 +15,14 @@ public protocol RefreshSessionService {
 
 public struct RefreshSessionServiceInput: Codable {
     public let refreshToken: String
-    public let expiresInMins: Int
     
-    public init(refreshToken: String, expiresInMins: Int) {
+    public init(refreshToken: String) {
         self.refreshToken = refreshToken
-        self.expiresInMins = expiresInMins
     }
 }
 
 public struct RefreshSessionServiceOutput: Codable {
     public let accessToken: String
     public let refreshToken: String
+    public let expiresIn: Int
 }

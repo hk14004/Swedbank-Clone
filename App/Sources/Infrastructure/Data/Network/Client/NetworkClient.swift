@@ -65,7 +65,7 @@ extension SwedNetworkClient {
                     authorizationData: UserSessionCredentials.Data(
                         bearerToken: response.accessToken,
                         refreshToken: response.refreshToken,
-                        bearerTokenExpirationDate: self.generateExpirationDate(mins: TOKEN_EXPIRE_TIME_IN_MINS)
+                        bearerTokenExpirationDate: self.generateExpirationDate(sec: response.expiresIn)
                     )
                 )
                 self.credentialsStore.storeCredentials(credentials)
@@ -80,8 +80,7 @@ extension SwedNetworkClient {
         let request = requestFactory.urlRequest(
             requestConfig: SessionRequestConfig.refreshToken(
                 RefreshSessionServiceInput(
-                    refreshToken: refreshToken,
-                    expiresInMins: TOKEN_EXPIRE_TIME_IN_MINS
+                    refreshToken: refreshToken
                 )
             ),
             authorizationHeaders: nil
@@ -91,9 +90,9 @@ extension SwedNetworkClient {
             .eraseToAnyPublisher()
     }
     
-    private func generateExpirationDate(mins: Int) -> Date {
+    private func generateExpirationDate(sec: Int) -> Date {
         let now = Date()
-        let newDate = Calendar.current.date(byAdding: .minute, value: mins, to: now)
+        let newDate = Calendar.current.date(byAdding: .second, value: sec, to: now)
         return newDate ?? now
     }
 }
