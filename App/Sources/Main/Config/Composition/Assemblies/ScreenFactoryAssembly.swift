@@ -39,5 +39,8 @@ class ScreenFactoryAssembly: Assembly {
         container.register(OfferDetailsScreenFactory.self) { resolver in
             DefaultOfferDetailsScreenFactory()
         }
+        container.register(SimpleLoginScreenFactory.self) { resolver in
+            DefaultSimpleLoginScreenFactory()
+        }
     }
 }

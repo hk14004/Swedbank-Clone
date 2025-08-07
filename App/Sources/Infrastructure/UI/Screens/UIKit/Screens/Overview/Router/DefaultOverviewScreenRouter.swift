@@ -13,7 +13,7 @@ import SwedApplicationBusinessRules
 import DevToolsNavigation
 
 class DefaultOverviewScreenRouter: OverviewScreenRouter, UIKitRouter {
-    var viewController: UIViewController
+    weak var viewController: UIViewController?
 
     init(viewController: UIViewController) {
         self.viewController = viewController
@@ -25,7 +25,7 @@ extension ToOverviewScreenRouting where Self: UIKitRouter {
     func routeToOverviewScreen(customer: Customer) {
         let factory: OverviewScreenFactory = Composition.resolve()
         let vc = factory.make(customer: customer)
-        viewController.navigationController?.pushViewController(vc, animated: true)
+        viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

@@ -49,7 +49,8 @@ public class DefaultSplashVM: SplashScreenVM {
 public extension DefaultSplashVM {
     func onViewDidLoad() {
         guard let customer = getLastCustomerUseCase.use() else {
-            fatalError("TODO: Implement login flow")
+            router?.routeToSimpleLoginScreen()
+            return
         }
         fakeAlreadyLoggedInUseCase.use()
             .flatMap { _ in

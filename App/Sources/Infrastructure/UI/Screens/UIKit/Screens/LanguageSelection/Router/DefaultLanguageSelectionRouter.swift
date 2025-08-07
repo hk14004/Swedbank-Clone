@@ -39,7 +39,7 @@ extension ToLanguageSelectionScreenRouting where Self: UIKitRouter, Self: Cancel
         let didSelectLanguagePublisher = PassthroughSubject<String, Never>()
         let factory: LanguageSelectionScreenFactory = Composition.resolve()
         let vc = factory.make(didSelectLanguageCodePublisher: didSelectLanguagePublisher)
-        viewController.present(vc, animated: true)
+        viewController?.present(vc, animated: true)
         didSelectLanguagePublisher.sink { [weak vc] _ in
             vc?.dismiss(animated: true)
         }

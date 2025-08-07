@@ -12,7 +12,6 @@ public protocol GetLastCustomerUseCase {
     func use() -> Customer?
 }
 
-// Mocked for now
 public struct MockGetLastCustomerUseCase: GetLastCustomerUseCase {
     
     private let customerRepository: CustomerRepository
@@ -22,6 +21,6 @@ public struct MockGetLastCustomerUseCase: GetLastCustomerUseCase {
     }
     
     public func use() -> Customer? {
-        customerRepository.getSingle(id: JAMES_BOND.id) ?? JAMES_BOND
+        customerRepository.getSingle(id: JAMES_BOND.id)
     }
 }

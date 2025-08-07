@@ -5,7 +5,7 @@
 //  Created by Hardijs Ķirsis on 15/12/2023.
 //  Copyright © 2023 SWEDBANK AB. All rights reserved.
 //
-
+import UIKit
 import Combine
 import DevToolsCore
 import SwedApplicationBusinessRules
@@ -154,9 +154,9 @@ public extension DefaultOverviewScreenVM {
         .receiveOnMainThread()
         .sink(
             receiveValue: { _ in },
-            completionError: { error in
-                self.isRefreshing.value = false
-                self.router.routeToOkeyErrorAlert(error, onDismiss: nil)
+            completionError: { [weak self] error in
+                self?.isRefreshing.value = false
+                self?.router.routeToOkeyErrorAlert(error, onDismiss: nil)
             }
         )
         .store(in: &cancelBag)

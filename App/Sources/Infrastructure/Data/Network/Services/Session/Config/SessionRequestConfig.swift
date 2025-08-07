@@ -7,6 +7,19 @@ enum SessionRequestConfig {
     case refreshToken(RefreshSessionServiceInput)
 }
 
+struct RefreshSessionServiceInput: Codable {
+    public let refreshToken: String
+    
+    public init(refreshToken: String) {
+        self.refreshToken = refreshToken
+    }
+}
+
+struct RefreshSessionServiceOutput: Codable {
+    public let accessToken: String
+    public let expiresIn: Int
+}
+
 extension SessionRequestConfig: DevRequestConfig {
     var baseURL: String {
         "http://192.168.8.208:3000"

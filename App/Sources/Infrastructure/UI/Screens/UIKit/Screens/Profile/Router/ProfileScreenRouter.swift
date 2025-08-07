@@ -12,7 +12,7 @@ import DevToolsNavigation
 import UIKit
 
 class DefaultProfileScreenRouter: ProfileScreenRouter, UIKitRouter {
-    var viewController: UIViewController
+    weak var viewController: UIViewController?
     
     init(viewController: UIViewController) {
         self.viewController = viewController
@@ -24,6 +24,6 @@ extension ToProfileScreenRouting where Self: UIKitRouter {
         let factory: ProfileScreenFactory = Composition.resolve()
         let vc = factory.make(customer: customer)
         let navVC = UINavigationController(rootViewController: vc)
-        viewController.present(navVC, animated: true)
+        viewController?.present(navVC, animated: true)
     }
 }

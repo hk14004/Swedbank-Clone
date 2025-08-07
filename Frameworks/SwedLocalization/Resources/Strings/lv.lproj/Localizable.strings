@@ -141,3 +141,5 @@
 "Error.Biometry.BiometryNotAvailable.message" = "Nav piekļuves biometrijai";
 "Error.Biometry.UserFallback.message" = "Izvēlētais autorizācijas veids nav pieejams";
 "Permissions.Biometry.authReason" = "Biometrija nepieciešama veiksmīgai autentifikācijai";
+"Error.UserSession.ExpiredSession.title" = "Sesijas beigas";
+"Error.UserSession.ExpiredSession.message" = "Lūdzu, veiciet authentifikāciju";

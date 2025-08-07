@@ -11,7 +11,7 @@ import SwedInterfaceAdapters
 import DevToolsNavigation
 
 class DefaultSplashScreenRouter: SplashScreenRouter, UIKitRouter {
-    var viewController: UIViewController
+    weak var viewController: UIViewController?
     
     init(viewController: UIViewController) {
         self.viewController = viewController

@@ -19,6 +19,11 @@ extension UserSessionError: @retroactive UIPresentableError {
             )
         case .missingCredentals:
             fallbackErrorContent
+        case .expiredSession:
+            UIPresentableErrorContent(
+                title: AppStrings.Error.UserSession.ExpiredSession.title,
+                message: AppStrings.Error.UserSession.ExpiredSession.message
+            )
         }
     }
 }

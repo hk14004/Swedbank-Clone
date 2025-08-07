@@ -13,7 +13,7 @@ import SwedApplicationBusinessRules
 import DevToolsNavigation
 
 class DefaultContactsScreenRouter: ContactsScreenRouter, UIKitRouter {
-    var viewController: UIViewController
+    weak var viewController: UIViewController?
 
     init(viewController: UIViewController) {
         self.viewController = viewController
@@ -24,7 +24,7 @@ extension ToContactsScreenRouting where Self: UIKitRouter {
     func routeToContactsScreen() {
         let factory: ContactsScreenFactory = Composition.resolve()
         let vc = factory.make()
-        viewController.navigationController?.pushViewController(vc, animated: true)
+        viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

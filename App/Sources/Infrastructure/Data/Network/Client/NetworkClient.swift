@@ -6,18 +6,18 @@ import Combine
 class SwedNetworkClient: BaseNetworkClient {
     // MARK: Properties
     let credentialsStore: any SwedUserSessionCredentialsStore
-    let currentCustomerStore: CurrentCustomerStore
+    let sessionExpiredPluginGetter: () -> NetworkClientSessionExpiredPlugin
     
     // MARK: LifeCycle
     init(
         dataProvider: DevNetworkDataProvider,
         requestFactory: DevNetworkRequestFactory,
         credentialStore: any SwedUserSessionCredentialsStore,
-        currentCustomerStore: CurrentCustomerStore,
-        reachabilityNotifier: NetworkReachability
+        reachabilityNotifier: NetworkReachability,
+        sessionExpiredPluginGetter: @escaping () -> NetworkClientSessionExpiredPlugin
     ) {
         self.credentialsStore = credentialStore
-        self.currentCustomerStore = currentCustomerStore
+        self.sessionExpiredPluginGetter = sessionExpiredPluginGetter
         super.init(
             dataProvider: dataProvider,
             requestFactory: requestFactory,
@@ -44,10 +44,7 @@ class SwedNetworkClient: BaseNetworkClient {
 // MARK: Access token
 extension SwedNetworkClient {
     private func validAuthCredentials() -> AnyPublisher<UserSessionCredentials, Error> {
-        guard
-            let currentCustomer = currentCustomerStore.getCurrentCustomer(),
-            let credentials = credentialsStore.getCredentials(id: currentCustomer.id)
-        else {
+        guard let credentials = credentialsStore.getAllCredentials().first else {
             return .fail(UserSessionError.missingCredentals)
         }
         if credentials.isValid {
@@ -58,14 +55,14 @@ extension SwedNetworkClient {
     }
     
     private func renewCredentials(_ credentials: UserSessionCredentials) -> AnyPublisher<UserSessionCredentials, Error> {
-        fetchRemoteAccessToken(credentials.authorizationData.refreshToken)
+        refreshedAccessToken(credentials.authorizationData.refreshToken)
             .map { response in
                 let credentials = UserSessionCredentials(
                     id: credentials.id,
                     authorizationData: UserSessionCredentials.Data(
                         bearerToken: response.accessToken,
-                        refreshToken: response.refreshToken,
-                        bearerTokenExpirationDate: self.generateExpirationDate(sec: response.expiresIn)
+                        refreshToken: credentials.authorizationData.refreshToken,
+                        bearerTokenExpiresInMins: 1
                     )
                 )
                 self.credentialsStore.storeCredentials(credentials)
@@ -74,7 +71,7 @@ extension SwedNetworkClient {
             .eraseToAnyPublisher()
     }
     
-    private func fetchRemoteAccessToken(
+    private func refreshedAccessToken(
         _ refreshToken: String
     ) -> AnyPublisher<RefreshSessionServiceOutput, Error> {
         let request = requestFactory.urlRequest(
@@ -87,13 +84,25 @@ extension SwedNetworkClient {
         )
         return dataProvider.output(for: request)
             .decode(when: request)
+            .mapError { receivedError in
+                guard
+                    let networkError = receivedError as? NetworkError,
+                    networkError != .reachability
+                else {
+                    return receivedError
+                }
+                return UserSessionError.expiredSession
+            }
+            .delay(
+                whenError: { receivedError in
+                    guard let error = receivedError as? UserSessionError else {
+                        return false
+                    }
+                    return error == .expiredSession
+                },
+                until: Deferred { self.sessionExpiredPluginGetter().handleSessionExpired() }
+            )
             .eraseToAnyPublisher()
-    }
-    
-    private func generateExpirationDate(sec: Int) -> Date {
-        let now = Date()
-        let newDate = Calendar.current.date(byAdding: .second, value: sec, to: now)
-        return newDate ?? now
     }
 }
 

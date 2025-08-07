@@ -18,13 +18,19 @@ class NetworkClientAssembly: Assembly {
             DefaultNetworkDataProvider()
         }
         .inObjectScope(.container)
+        container.register(NetworkClientSessionExpiredPlugin.self) { resolver in
+            DefaultNetworkClientSessionExpiredPlugin(logoutUseCase: Composition.resolve())
+        }
+        .inObjectScope(.container)
         container.register(SwedNetworkClient.self) { resolver in
             SwedNetworkClient(
                 dataProvider: Composition.resolve(),
                 requestFactory: Composition.resolve(),
                 credentialStore: Composition.resolve(),
-                currentCustomerStore: Composition.resolve(),
-                reachabilityNotifier: Composition.resolve()
+                reachabilityNotifier: Composition.resolve(),
+                sessionExpiredPluginGetter: {
+                    Composition.resolve()
+                }
             )
         }
         .inObjectScope(.container)
