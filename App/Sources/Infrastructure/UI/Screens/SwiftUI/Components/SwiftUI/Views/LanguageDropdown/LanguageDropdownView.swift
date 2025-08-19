@@ -7,6 +7,7 @@
 
 import SwiftUI
 import DevToolsUI
+import SwedDesignSystem
 
 struct LanguageDropdownView: View {
     
@@ -35,7 +36,7 @@ struct LanguageDropdownView_Previews: PreviewProvider {
 extension LanguageDropdownView {
     @ViewBuilder
     private func makeFlagImageView() -> some View {
-        Image(AppImages.makeLanguageFlagName(language: loc.languageCode))
+        Image(AppImages.makeLanguageFlagName(language: loc.languageCode), bundle: SwedDesignSystemResources.bundle)
             .resizable()
             .scaledToFit()
             .frame(width: 20)

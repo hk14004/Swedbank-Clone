@@ -1,8 +1,9 @@
 import DevToolsLocalization
 import SwedLocalization
+import SwedDesignSystem
 
-typealias AppColors = SWEDBANKAsset.Colors
-typealias AppImages = SWEDBANKAsset.Images
+typealias AppColors = SwedDesignSystemAsset.Colors
+typealias AppImages = SwedDesignSystemAsset.Images
 typealias AppStrings = SwedLocalization
 typealias AppLocalization = RuntimeLocalization
 typealias AppLocalizationObserver = RuntimeLocalizationObserver
