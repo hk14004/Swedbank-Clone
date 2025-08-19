@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import SwedApplicationBusinessRules
+@testable import Application
 
 final class LoginUseCaseTests: XCTestCase {
     

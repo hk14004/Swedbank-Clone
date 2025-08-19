@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SwedApplicationBusinessRules
+import Application
 
 extension AppDelegate {
     func registerApplicationLaunch() {

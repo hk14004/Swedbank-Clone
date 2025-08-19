@@ -1,6 +1,6 @@
 import Combine
 import DevToolsNetworking
-import SwedApplicationBusinessRules
+import Application
 
 class GithubFetchRemoteCustomersService: FetchRemoteCustomersService {
     private let networkClient: SwedNetworkClient

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SwedApplicationBusinessRules
+import Application
 
 public protocol LanguageSelectionScreenVMInput {
     func onClose()

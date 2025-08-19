@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SwedApplicationBusinessRules
+import Application
 
 public protocol ProfileScreenRouter: ToSplashScreenRouting {}
 

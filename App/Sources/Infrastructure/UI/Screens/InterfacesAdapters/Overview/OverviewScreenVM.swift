@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 import DevToolsCore
-import SwedApplicationBusinessRules
+import Application
 
 public protocol OverviewScreenVMInput {
     func didTapProfile()

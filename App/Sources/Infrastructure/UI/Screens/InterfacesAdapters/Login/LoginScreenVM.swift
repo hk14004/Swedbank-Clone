@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 import DevToolsCore
-import SwedApplicationBusinessRules
+import Application
 
 public protocol LoginScreenVMInput {
     func onFaceIDTapped()

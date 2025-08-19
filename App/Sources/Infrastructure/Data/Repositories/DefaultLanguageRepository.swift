@@ -7,7 +7,7 @@
 //
 
 import Combine
-import SwedApplicationBusinessRules
+import Application
 
 class DefaultLanguageRepository: LanguageRepository {
     private let appLocalization: AppLocalization

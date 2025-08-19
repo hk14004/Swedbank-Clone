@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SwedApplicationBusinessRules
+import Application
 
 public protocol LoginScreenRouter: ToLanguageSelectionScreenRouting, ToErrorRouting {
     func routeToLoginCompleted(customer: Customer)

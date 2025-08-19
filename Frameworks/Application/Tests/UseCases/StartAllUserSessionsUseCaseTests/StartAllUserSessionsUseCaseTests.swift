@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import SwedApplicationBusinessRules
+@testable import Application
 
 final class StartAllUserSessionsUseCaseTests: XCTestCase {
     let mocks = Mocks()

@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import SwedApplicationBusinessRules
+@testable import Application
 
 final class IsAnyUserSessionActiveUseCaseTests: XCTestCase {
     let mocks = Mocks()

@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import SwedApplicationBusinessRules
+@testable import Application
 
 extension SaveAppLaunchDateUseCaseTests {
     final class Mocks {

@@ -8,7 +8,7 @@
 
 import Foundation
 import DevToolsPersistance
-import SwedApplicationBusinessRules
+import Application
 
 struct CustomerConverter: DevModelConverter {
     func persistableObject(from domainModel: Customer) throws -> CustomerSD {

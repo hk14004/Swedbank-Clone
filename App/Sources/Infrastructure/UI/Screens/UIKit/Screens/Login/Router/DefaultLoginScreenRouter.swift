@@ -8,7 +8,7 @@
 
 import UIKit
 import Combine
-import SwedApplicationBusinessRules
+import Application
 import DevToolsNavigation
 import Localization
 

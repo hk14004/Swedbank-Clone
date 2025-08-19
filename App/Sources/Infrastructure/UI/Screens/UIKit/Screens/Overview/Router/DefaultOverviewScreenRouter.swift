@@ -8,7 +8,7 @@
 
 import SwiftUI
 import UIKit
-import SwedApplicationBusinessRules
+import Application
 import DevToolsNavigation
 
 class DefaultOverviewScreenRouter: OverviewScreenRouter, UIKitRouter {

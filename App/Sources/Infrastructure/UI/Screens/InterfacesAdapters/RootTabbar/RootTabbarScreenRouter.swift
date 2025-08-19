@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SwedApplicationBusinessRules
+import Application
 import DevToolsNavigation
 
 public protocol RootTabbarScreenRouter: UIKitRouter {

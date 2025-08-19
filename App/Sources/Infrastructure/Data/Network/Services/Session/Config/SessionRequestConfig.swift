@@ -1,6 +1,6 @@
 import Foundation
 import DevToolsNetworking
-import SwedApplicationBusinessRules
+import Application
 
 enum SessionRequestConfig {
     case startSession(StartSessionDataOutgoing)

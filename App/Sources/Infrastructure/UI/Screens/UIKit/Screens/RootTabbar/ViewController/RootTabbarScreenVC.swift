@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 import DevToolsLocalization
 import DevToolsNavigation
-import SwedApplicationBusinessRules
+import Application
 
 class RootTabbarScreenVC: UITabBarController {
     // MARK: Properties

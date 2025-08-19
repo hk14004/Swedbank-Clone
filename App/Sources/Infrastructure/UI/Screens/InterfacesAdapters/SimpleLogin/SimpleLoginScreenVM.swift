@@ -7,7 +7,7 @@
 //
 
 import Combine
-import SwedApplicationBusinessRules
+import Application
 
 public protocol SimpleLoginScreenVM: ObservableObject {
     var username: String { get set }

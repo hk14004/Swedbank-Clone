@@ -2,7 +2,7 @@ import Foundation
 import Swinject
 import DevToolsCore
 import DevToolsNetworking
-import SwedApplicationBusinessRules
+import Application
 
 class NetworkClientAssembly: Assembly {
     func assemble(container: Container) {

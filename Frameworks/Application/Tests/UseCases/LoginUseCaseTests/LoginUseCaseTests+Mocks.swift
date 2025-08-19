@@ -7,7 +7,7 @@
 //
 
 import Foundation
-@testable import SwedApplicationBusinessRules
+@testable import Application
 
 extension LoginUseCaseTests {
     final class Mocks {

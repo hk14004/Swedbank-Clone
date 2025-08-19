@@ -8,7 +8,7 @@
 
 import Combine
 import UIKit
-import SwedApplicationBusinessRules
+import Application
 
 protocol LoginScreenFactory {
     func make(

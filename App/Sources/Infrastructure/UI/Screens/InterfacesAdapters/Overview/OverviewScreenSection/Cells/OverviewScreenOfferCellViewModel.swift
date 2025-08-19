@@ -9,7 +9,7 @@
 import DevToolsUI
 import DevToolsCore
 import Foundation
-import SwedApplicationBusinessRules
+import Application
 
 public struct OverviewScreenOfferCellViewModel: DevTableSectionCellModel {
     public var offerID: String

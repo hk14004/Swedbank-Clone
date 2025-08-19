@@ -15,10 +15,6 @@ protocol TransactionBalanceCalculator {
 }
 
 class DefaultTransactionBalanceCalculator {
-    
-}
-
-extension DefaultTransactionBalanceCalculator: TransactionBalanceCalculator {
     func calculateTotalCredits(transactions: [Transaction]) -> Money {
         return transactions.filter { $0.type == .credit }.reduce(0) { $0 + $1.amount }
     }

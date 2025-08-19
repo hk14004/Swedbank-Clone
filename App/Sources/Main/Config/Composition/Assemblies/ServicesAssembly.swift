@@ -1,7 +1,7 @@
 import Foundation
 import Swinject
 import DevToolsCore
-import SwedApplicationBusinessRules
+import Application
 import Enterprise
 
 class ServicesAssembly: Assembly {
