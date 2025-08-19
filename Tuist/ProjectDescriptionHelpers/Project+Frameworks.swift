@@ -15,6 +15,8 @@ public extension Project {
         case SwedLocalization
         case SwedNetwork
         case SwedDesignSystem
+        case SwedData
+        case SwedPersistance
     }
 }
 
