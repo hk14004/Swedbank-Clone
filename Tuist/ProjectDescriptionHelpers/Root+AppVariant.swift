@@ -64,6 +64,10 @@ extension Project.Root.AppVariant {
                     path: Project.Framework.SwedNetwork.getPath()
                 ),
                 .project(
+                    target: Project.Framework.SwedDesignSystem.rawValue,
+                    path: Project.Framework.SwedDesignSystem.getPath()
+                ),
+                .project(
                     target: Project.Framework.SwedLocalization.rawValue,
                     path: Project.Framework.SwedLocalization.getPath()
                 ),
