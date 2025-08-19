@@ -9,7 +9,7 @@ import ProjectDescriptionHelpers
 import ProjectDescription
 
 enum Constants {
-    static let bundleId = "baltic.swed.mob..\(Project.Framework.Localization.rawValue)"
+    static let bundleId = Project.Root.bundleIdPrefix + Project.Framework.Localization.rawValue
 }
 
 let project = Project(

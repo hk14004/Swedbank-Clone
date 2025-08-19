@@ -60,6 +60,10 @@ extension Project.Root.AppVariant {
                     path: Project.Framework.Application.getPath()
                 ),
                 .project(
+                    target: Project.Framework.SwedNetwork.rawValue,
+                    path: Project.Framework.SwedNetwork.getPath()
+                ),
+                .project(
                     target: Project.Framework.Localization.rawValue,
                     path: Project.Framework.Localization.getPath()
                 ),

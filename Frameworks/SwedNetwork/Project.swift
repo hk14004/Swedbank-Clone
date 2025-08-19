@@ -8,12 +8,12 @@
 import ProjectDescriptionHelpers
 import ProjectDescription
 
-enum Constants {
-    static let bundleId = Project.Root.bundleIdPrefix + Project.Framework.Enterprise.rawValue
+private func currentFramework() -> Project.Framework {
+    .SwedNetwork
 }
 
 let project = Project(
-    name: Project.Framework.Enterprise.rawValue,
+    name: currentFramework().rawValue,
     organizationName: Project.Root.orgName,
     settings: Settings.settings(
         configurations: [
@@ -23,31 +23,31 @@ let project = Project(
     ),
     targets: [
         .target(
-            name: Project.Framework.Enterprise.rawValue,
+            name: currentFramework().rawValue,
             destinations: .iOS,
             product: .framework,
-            bundleId: Constants.bundleId,
+            bundleId: currentFramework().getBundleID(),
             deploymentTargets: .iOS(Project.Root.targetVersion),
             sources: ["Sources/**"],
             dependencies: [
-                .external(name: Project.Dependencies.DevToolsCore.rawValue)
+                .external(name: Project.Dependencies.DevToolsNetworking.rawValue),
             ]
         ),
         .target(
-            name: Project.Framework.Enterprise.getTestTargetName(),
+            name: currentFramework().getTestTargetName(),
             destinations: .iOS,
             product: .unitTests,
-            bundleId: Constants.bundleId + ".test",
+            bundleId: currentFramework().getTestBundleID(),
             deploymentTargets: .iOS(Project.Root.targetVersion),
             infoPlist: .default,
             sources: ["Tests/**"],
             dependencies: [
-                .target(name: Project.Framework.Enterprise.rawValue),
+                .target(name: currentFramework().rawValue),
                 .external(name: Project.Dependencies.DevToolsCore.rawValue)
             ]
         )
     ],
     schemes: [
-        Project.appTargetScheme(name: Project.Framework.Enterprise.getTestTargetName())
+        Project.appTargetScheme(name: currentFramework().getTestTargetName())
     ]
 )
