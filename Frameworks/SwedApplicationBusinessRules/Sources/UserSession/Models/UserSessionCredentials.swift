@@ -27,6 +27,17 @@ public struct UserSessionCredentials: Codable, Equatable, AuthorizationCredentia
             self.refreshToken = refreshToken
             self.bearerTokenExpirationDate = bearerTokenExpirationDate
         }
+        
+        public init(
+            bearerToken: String,
+            refreshToken: String,
+            bearerTokenExpiresInMins: Int
+        ) {
+            self.bearerToken = bearerToken
+            self.refreshToken = refreshToken
+            let expDate = Calendar.current.date(byAdding: .minute, value: bearerTokenExpiresInMins, to: Date())
+            self.bearerTokenExpirationDate = expDate ?? Date()
+        }
     }
     
     // MARK: Properties

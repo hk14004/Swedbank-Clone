@@ -16,6 +16,6 @@ extension ToOfferDetailsRouting where Self: UIKitRouter {
     func routeToOfferDetails(offer: Offer) {
         let factory: OfferDetailsScreenFactory = Composition.resolve()
         let vc = factory.make(offer: offer)
-        viewController.navigationController?.pushViewController(vc, animated: true)
+        viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }

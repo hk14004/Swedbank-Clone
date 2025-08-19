@@ -13,7 +13,7 @@ import SwedApplicationBusinessRules
 
 class DefaultRootTabbarScreenRouter: RootTabbarScreenRouter {
     
-    var viewController: UIViewController
+    weak var viewController: UIViewController?
 
     init(viewController: UIViewController) {
         self.viewController = viewController
@@ -22,13 +22,14 @@ class DefaultRootTabbarScreenRouter: RootTabbarScreenRouter {
     func routeTo(tab: RootTab) {
         print("")
     }
-    
+
 }
 
 extension ToRootTabbarScreenRouting where Self: UIKitRouter {
     func initRouteToRoot(customer: Customer) {
         let factory: RootTabbarScreenFactory = Composition.resolve()
         let vc = factory.make(customer: customer, locked: true)
-        UIApplication.shared.delegate?.window??.rootViewController = vc
+        let window: UIWindow? = Composition.resolve()
+        window?.rootViewController = vc
     }
 }

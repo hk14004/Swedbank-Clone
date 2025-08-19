@@ -9,7 +9,7 @@
 import Foundation
 import SwedApplicationBusinessRules
 
-public protocol SplashScreenRouter: ToRootTabbarScreenRouting, ToErrorRouting {
+public protocol SplashScreenRouter: ToRootTabbarScreenRouting, ToErrorRouting, ToSimpleLoginScreenRouting {
     func routeToOnboarding()
 }
 

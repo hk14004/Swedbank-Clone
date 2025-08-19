@@ -6,18 +6,20 @@ import Combine
 class SwedNetworkClient: BaseNetworkClient {
     // MARK: Properties
     let credentialsStore: any SwedUserSessionCredentialsStore
-    let currentCustomerStore: CurrentCustomerStore
+    let sessionExpiredPluginGetter: () -> NetworkClientSessionExpiredPlugin
+    private let refreshQueue = DispatchQueue(label: "SwedNetworkClient.refresh.credentials.queue")
+    private var inProgressCredentialsRenew: AnyPublisher<UserSessionCredentials, Error>?
     
     // MARK: LifeCycle
     init(
         dataProvider: DevNetworkDataProvider,
         requestFactory: DevNetworkRequestFactory,
         credentialStore: any SwedUserSessionCredentialsStore,
-        currentCustomerStore: CurrentCustomerStore,
-        reachabilityNotifier: NetworkReachability
+        reachabilityNotifier: NetworkReachability,
+        sessionExpiredPluginGetter: @escaping () -> NetworkClientSessionExpiredPlugin
     ) {
         self.credentialsStore = credentialStore
-        self.currentCustomerStore = currentCustomerStore
+        self.sessionExpiredPluginGetter = sessionExpiredPluginGetter
         super.init(
             dataProvider: dataProvider,
             requestFactory: requestFactory,
@@ -44,10 +46,7 @@ class SwedNetworkClient: BaseNetworkClient {
 // MARK: Access token
 extension SwedNetworkClient {
     private func validAuthCredentials() -> AnyPublisher<UserSessionCredentials, Error> {
-        guard
-            let currentCustomer = currentCustomerStore.getCurrentCustomer(),
-            let credentials = credentialsStore.getCredentials(id: currentCustomer.id)
-        else {
+        guard let credentials = credentialsStore.getAllCredentials().first else {
             return .fail(UserSessionError.missingCredentals)
         }
         if credentials.isValid {
@@ -58,43 +57,75 @@ extension SwedNetworkClient {
     }
     
     private func renewCredentials(_ credentials: UserSessionCredentials) -> AnyPublisher<UserSessionCredentials, Error> {
-        fetchRemoteAccessToken(credentials.authorizationData.refreshToken)
+        let newPublisher: AnyPublisher<UserSessionCredentials, Error> = refreshedAccessToken(credentials.authorizationData.refreshToken)
             .map { response in
-                let credentials = UserSessionCredentials(
+                UserSessionCredentials(
                     id: credentials.id,
-                    authorizationData: UserSessionCredentials.Data(
+                    authorizationData: .init(
                         bearerToken: response.accessToken,
-                        refreshToken: response.refreshToken,
-                        bearerTokenExpirationDate: self.generateExpirationDate(mins: TOKEN_EXPIRE_TIME_IN_MINS)
+                        refreshToken: credentials.authorizationData.refreshToken,
+                        bearerTokenExpiresInMins: response.expiresIn
                     )
                 )
-                self.credentialsStore.storeCredentials(credentials)
-                return credentials
             }
+            .handleEvents(
+                receiveOutput: { [weak self] newCreds in
+                    guard let self = self else { return }
+                    self.refreshQueue.async {
+                        self.credentialsStore.storeCredentials(newCreds)
+                    }
+                },
+                receiveCompletion: { [weak self] _ in
+                    self?.refreshQueue.async { self?.inProgressCredentialsRenew = nil }
+                },
+                receiveCancel: { [weak self] in
+                    self?.refreshQueue.async { self?.inProgressCredentialsRenew = nil }
+                }
+            )
+            .share()
             .eraseToAnyPublisher()
+        
+        return refreshQueue.sync {
+            if let running = inProgressCredentialsRenew {
+                return running
+            }
+            inProgressCredentialsRenew = newPublisher
+            return newPublisher
+        }
     }
     
-    private func fetchRemoteAccessToken(
+    private func refreshedAccessToken(
         _ refreshToken: String
     ) -> AnyPublisher<RefreshSessionServiceOutput, Error> {
         let request = requestFactory.urlRequest(
             requestConfig: SessionRequestConfig.refreshToken(
                 RefreshSessionServiceInput(
-                    refreshToken: refreshToken,
-                    expiresInMins: TOKEN_EXPIRE_TIME_IN_MINS
+                    refreshToken: refreshToken
                 )
             ),
             authorizationHeaders: nil
         )
         return dataProvider.output(for: request)
             .decode(when: request)
+            .mapError { receivedError in
+                guard
+                    let networkError = receivedError as? NetworkError,
+                    networkError != .reachability
+                else {
+                    return receivedError
+                }
+                return UserSessionError.expiredSession
+            }
+            .delay(
+                whenError: { receivedError in
+                    guard let error = receivedError as? UserSessionError else {
+                        return false
+                    }
+                    return error == .expiredSession
+                },
+                until: Deferred { self.sessionExpiredPluginGetter().handleSessionExpired() }
+            )
             .eraseToAnyPublisher()
-    }
-    
-    private func generateExpirationDate(mins: Int) -> Date {
-        let now = Date()
-        let newDate = Calendar.current.date(byAdding: .minute, value: mins, to: now)
-        return newDate ?? now
     }
 }
 

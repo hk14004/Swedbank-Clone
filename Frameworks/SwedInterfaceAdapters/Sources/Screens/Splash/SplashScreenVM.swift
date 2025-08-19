@@ -49,9 +49,13 @@ public class DefaultSplashVM: SplashScreenVM {
 public extension DefaultSplashVM {
     func onViewDidLoad() {
         guard let customer = getLastCustomerUseCase.use() else {
-            fatalError("TODO: Implement login flow")
+            router?.routeToSimpleLoginScreen()
+            return
         }
-        startUserSessionUseCase.use(customer: customer)
+        fakeAlreadyLoggedInUseCase.use()
+            .flatMap { _ in
+                self.startUserSessionUseCase.use(customer: customer)
+            }
             .receiveOnMainThread()
             .sink { [weak self] completion in
                 switch completion {

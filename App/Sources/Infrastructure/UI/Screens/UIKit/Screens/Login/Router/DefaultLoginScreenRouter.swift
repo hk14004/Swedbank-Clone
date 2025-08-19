@@ -15,7 +15,7 @@ import SwedLocalization
 
 class DefaultLoginScreenRouter: UIKitRouter, LoginScreenRouter, CancelBagStorable {
     var cancelBag = Set<AnyCancellable>()
-    var viewController: UIViewController
+    weak var viewController: UIViewController?
     let didLoginPublisher: PassthroughSubject<Void, Never>
     
     init(
@@ -44,6 +44,6 @@ extension ToErrorRouting where Self: UIKitRouter  {
                 ]
             )
         )
-        viewController.present(alertViewController, animated: true)
+        viewController?.present(alertViewController, animated: true)
     }
 }

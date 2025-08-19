@@ -144,3 +144,5 @@
 "Error.Biometry.BiometryNotAvailable.message" = "Biometry not available";
 "Error.Biometry.UserFallback.message" = "Selected authentication method is not available";
 "Permissions.Biometry.authReason" = "Biometry is required for authetication";
+"Error.UserSession.ExpiredSession.title" = "Login expired";
+"Error.UserSession.ExpiredSession.message" = "Please, login once more to use the app";

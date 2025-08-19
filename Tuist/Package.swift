@@ -26,7 +26,7 @@ import PackageDescription
 let package = Package(
     name: "Dependencies",
     dependencies: [
-        .package(url: "https://github.com/hk14004/DevTools-Swift", branch: "dev"),
+        .package(url: "https://github.com/hk14004/DevTools-Swift", branch: "main"),
         .package(url: "https://github.com/Swinject/Swinject", .upToNextMajor(from: "2.0.0")),
         .package(url: "https://github.com/kishikawakatsumi/KeychainAccess", .upToNextMajor(from: "4.2.2")),
         .package(url: "https://github.com/SnapKit/SnapKit", .upToNextMajor(from: "5.6.0")),

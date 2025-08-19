@@ -90,5 +90,12 @@ class UseCaseAssembly: Assembly {
         container.register(TrackCachedAccountsUseCase.self) { resolver in
             DefaultTrackCachedAccountsUseCase(accountRepository: Composition.resolve())
         }
+        container.register(SimpleLoginUseCase.self) { resolver in
+            DefaultSimpleLoginUseCase(
+                customerRepository: Composition.resolve(),
+                startSessionService: Composition.resolve(),
+                userSessionCredentialsRepository: Composition.resolve()
+            )
+        }
     }
 }

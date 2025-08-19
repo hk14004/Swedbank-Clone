@@ -37,7 +37,7 @@ public struct DefaultFakeAlreadyLoggedInUseCase: FakeAlreadyLoggedInUseCase {
         customerRepository.replace(with: [JAMES_BOND])
             .flatMap { _ in
                 startSessionService.use(
-                    input: StartSessionServiceInput(username: "emilys", password: "emilyspass")
+                    input: StartSessionServiceInput(username: JAMES_BOND.id, password: "007")
                 )
                 .map { response -> Void in
                     userSessionCredentialsRepository.save(
@@ -46,7 +46,7 @@ public struct DefaultFakeAlreadyLoggedInUseCase: FakeAlreadyLoggedInUseCase {
                             authorizationData: UserSessionCredentials.Data(
                                 bearerToken: response.bearerToken,
                                 refreshToken: response.refreshToken,
-                                bearerTokenExpirationDate: generateExpirationDate(mins: response.expirationDurationInMins)
+                                bearerTokenExpirationDate: generateExpirationDate(sec: response.expirationDurationInMins)
                             )
                         )
                     )
@@ -59,9 +59,9 @@ public struct DefaultFakeAlreadyLoggedInUseCase: FakeAlreadyLoggedInUseCase {
             .eraseToAnyPublisher()
     }
     
-    private func generateExpirationDate(mins: Int) -> Date {
+    private func generateExpirationDate(sec: Int) -> Date {
         let now = Date()
-        let newDate = Calendar.current.date(byAdding: .minute, value: mins, to: now)
+        let newDate = Calendar.current.date(byAdding: .minute, value: sec, to: now)
         return newDate ?? now
     }
 }

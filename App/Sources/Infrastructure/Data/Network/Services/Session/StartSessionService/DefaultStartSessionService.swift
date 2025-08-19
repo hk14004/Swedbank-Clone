@@ -13,7 +13,7 @@ class DefaultStartSessionService: StartSessionService {
     func use(input: StartSessionServiceInput) -> AnyPublisher<StartSessionServiceOutput, Error> {
         fetchResponse(input: input)
             .flatMap { response -> AnyPublisher<StartSessionServiceOutput, Error> in
-                    .just(response.mapToDomain())
+                    .just(response.mapToDomain(id: input.username))
             }
             .eraseToAnyPublisher()
     }
@@ -23,8 +23,7 @@ class DefaultStartSessionService: StartSessionService {
             SessionRequestConfig.startSession(
                 StartSessionDataOutgoing(
                     username: input.username,
-                    password: input.password,
-                    expiresInMins: TOKEN_EXPIRE_TIME_IN_MINS
+                    password: input.password
                 )
             )
         )

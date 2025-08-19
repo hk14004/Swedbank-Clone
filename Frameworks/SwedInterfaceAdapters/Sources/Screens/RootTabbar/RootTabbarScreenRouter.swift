@@ -8,8 +8,9 @@
 
 import Foundation
 import SwedApplicationBusinessRules
+import DevToolsNavigation
 
-public protocol RootTabbarScreenRouter {
+public protocol RootTabbarScreenRouter: UIKitRouter {
     func routeTo(tab: RootTab)
 }
 
