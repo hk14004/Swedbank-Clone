@@ -39,7 +39,7 @@ public struct DefaultSimpleLoginUseCase: SimpleLoginUseCase {
                     authorizationData: UserSessionCredentials.Data(
                         bearerToken: response.bearerToken,
                         refreshToken: response.refreshToken,
-                        bearerTokenExpiresInMins: 1
+                        bearerTokenExpiresInMins: response.expirationDurationInMins
                     )
                 )
             )

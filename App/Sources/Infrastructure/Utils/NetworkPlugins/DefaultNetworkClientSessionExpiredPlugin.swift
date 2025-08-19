@@ -22,10 +22,10 @@ class DefaultNetworkClientSessionExpiredPlugin: NetworkClientSessionExpiredPlugi
     func handleSessionExpired() -> AnyPublisher<Void, Never> {
         logoutUseCase.use()
             .receiveOnMainThread()
-            .flatMap { _ in
+            .flatMap { [weak self]_ in
                 return Future<Void, Never> { promise in
-                    self.routeToSplashScreen()
-                    DispatchQueue.main.async {
+                    self?.routeToSplashScreen()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                         promise(.success(()))
                     }
                 }
