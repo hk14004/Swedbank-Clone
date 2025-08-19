@@ -7,6 +7,8 @@ class SwedNetworkClient: BaseNetworkClient {
     // MARK: Properties
     let credentialsStore: any SwedUserSessionCredentialsStore
     let sessionExpiredPluginGetter: () -> NetworkClientSessionExpiredPlugin
+    private let refreshQueue = DispatchQueue(label: "SwedNetworkClient.refresh.credentials.queue")
+    private var inProgressCredentialsRenew: AnyPublisher<UserSessionCredentials, Error>?
     
     // MARK: LifeCycle
     init(
@@ -55,20 +57,41 @@ extension SwedNetworkClient {
     }
     
     private func renewCredentials(_ credentials: UserSessionCredentials) -> AnyPublisher<UserSessionCredentials, Error> {
-        refreshedAccessToken(credentials.authorizationData.refreshToken)
+        let newPublisher: AnyPublisher<UserSessionCredentials, Error> = refreshedAccessToken(credentials.authorizationData.refreshToken)
             .map { response in
-                let credentials = UserSessionCredentials(
+                UserSessionCredentials(
                     id: credentials.id,
-                    authorizationData: UserSessionCredentials.Data(
+                    authorizationData: .init(
                         bearerToken: response.accessToken,
                         refreshToken: credentials.authorizationData.refreshToken,
                         bearerTokenExpiresInMins: 1
                     )
                 )
-                self.credentialsStore.storeCredentials(credentials)
-                return credentials
             }
+            .handleEvents(
+                receiveOutput: { [weak self] newCreds in
+                    guard let self = self else { return }
+                    self.refreshQueue.async {
+                        self.credentialsStore.storeCredentials(newCreds)
+                    }
+                },
+                receiveCompletion: { [weak self] _ in
+                    self?.refreshQueue.async { self?.inProgressCredentialsRenew = nil }
+                },
+                receiveCancel: { [weak self] in
+                    self?.refreshQueue.async { self?.inProgressCredentialsRenew = nil }
+                }
+            )
+            .share()
             .eraseToAnyPublisher()
+        
+        return refreshQueue.sync {
+            if let running = inProgressCredentialsRenew {
+                return running
+            }
+            inProgressCredentialsRenew = newPublisher
+            return newPublisher
+        }
     }
     
     private func refreshedAccessToken(
