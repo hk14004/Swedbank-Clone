@@ -8,7 +8,7 @@
 
 import Swinject
 import DevToolsLocalization
-import SwedLocalization
+import Localization
 
 class LocalizationAssembly: Assembly {
     init() {
@@ -27,6 +27,6 @@ class LocalizationAssembly: Assembly {
 
 extension LocalizationAssembly {
     private func configure() {
-        RuntimeStringFileLocalization.shared.bundle = SwedLocalizationResources.bundle
+        RuntimeStringFileLocalization.shared.bundle = LocalizationResources.bundle
     }
 }

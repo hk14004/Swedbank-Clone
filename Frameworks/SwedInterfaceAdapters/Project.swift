@@ -32,7 +32,7 @@ let project = Project(
             dependencies: [
                 .external(name: Project.Dependencies.DevToolsCore.rawValue),
                 .project(target: Project.Framework.SwedApplicationBusinessRules.rawValue, path: "../\(Project.Framework.SwedApplicationBusinessRules.rawValue)"),
-                .project(target: Project.Framework.SwedLocalization.rawValue, path: "../\(Project.Framework.SwedLocalization.rawValue)")
+                .project(target: Project.Framework.Localization.rawValue, path: "../\(Project.Framework.Localization.rawValue)")
             ]),
         .target(
             name: Project.Framework.SwedInterfaceAdapters.getTestTargetName(),

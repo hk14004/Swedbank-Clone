@@ -9,11 +9,11 @@ import ProjectDescriptionHelpers
 import ProjectDescription
 
 enum Constants {
-    static let bundleId = "baltic.swed.mob..\(Project.Framework.SwedLocalization.rawValue)"
+    static let bundleId = "baltic.swed.mob..\(Project.Framework.Localization.rawValue)"
 }
 
 let project = Project(
-    name: Project.Framework.SwedLocalization.rawValue,
+    name: Project.Framework.Localization.rawValue,
     organizationName: Project.Root.orgName,
     settings: Settings.settings(
         configurations: [
@@ -23,7 +23,7 @@ let project = Project(
     ),
     targets: [
         .target(
-            name: Project.Framework.SwedLocalization.rawValue,
+            name: Project.Framework.Localization.rawValue,
             destinations: .iOS,
             product: .framework,
             bundleId: Constants.bundleId,
@@ -36,12 +36,6 @@ let project = Project(
             ])
     ],
     schemes: [
-        Project.appTargetScheme(name: Project.Framework.SwedLocalization.getTestTargetName())
+        Project.appTargetScheme(name: Project.Framework.Localization.getTestTargetName())
     ]
 )
-
-
-//dependencies: [
-//  .external(name: "DevToolsCore"),
-//  .project(target: "SwedApplicationBusinessRules", path: "../SwedApplicationBusinessRules")
-//])

@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 import LocalAuthentication
-import SwedLocalization
+import Localization
 
 public protocol BiometryAuthenticateUseCase {
     func use(customerID: String) -> AnyPublisher<Void, Error>
@@ -32,7 +32,7 @@ public class DefaultBiometryAuthenticateUseCase: BiometryAuthenticateUseCase {
         return Future<Void, Error> { promise in
             self.context.evaluatePolicy(
                 .deviceOwnerAuthenticationWithBiometrics,
-                localizedReason: SwedLocalization.Permissions.Biometry.authReason
+                localizedReason: Localization.Permissions.Biometry.authReason
             ) { success, authenticationError in
                 guard success else {
                     if let laError = authenticationError as? LAError {
