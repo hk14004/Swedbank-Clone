@@ -9,11 +9,11 @@ import ProjectDescriptionHelpers
 import ProjectDescription
 
 enum Constants {
-    static let bundleId = "baltic.swed.mob.\(Project.Framework.SwedEnterpriseBusinessRules.rawValue)"
+    static let bundleId = "baltic.swed.mob.\(Project.Framework.Enterprise.rawValue)"
 }
 
 let project = Project(
-    name: Project.Framework.SwedEnterpriseBusinessRules.rawValue,
+    name: Project.Framework.Enterprise.rawValue,
     organizationName: Project.Root.orgName,
     settings: Settings.settings(
         configurations: [
@@ -23,7 +23,7 @@ let project = Project(
     ),
     targets: [
         .target(
-            name: Project.Framework.SwedEnterpriseBusinessRules.rawValue,
+            name: Project.Framework.Enterprise.rawValue,
             destinations: .iOS,
             product: .framework,
             bundleId: Constants.bundleId,
@@ -34,7 +34,7 @@ let project = Project(
             ]
         ),
         .target(
-            name: Project.Framework.SwedEnterpriseBusinessRules.getTestTargetName(),
+            name: Project.Framework.Enterprise.getTestTargetName(),
             destinations: .iOS,
             product: .unitTests,
             bundleId: Constants.bundleId + ".test",
@@ -42,12 +42,12 @@ let project = Project(
             infoPlist: .default,
             sources: ["Tests/**"],
             dependencies: [
-                .target(name: Project.Framework.SwedEnterpriseBusinessRules.rawValue),
+                .target(name: Project.Framework.Enterprise.rawValue),
                 .external(name: Project.Dependencies.DevToolsCore.rawValue)
             ]
         )
     ],
     schemes: [
-        Project.appTargetScheme(name: Project.Framework.SwedEnterpriseBusinessRules.getTestTargetName())
+        Project.appTargetScheme(name: Project.Framework.Enterprise.getTestTargetName())
     ]
 )

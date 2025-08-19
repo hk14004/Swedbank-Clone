@@ -11,7 +11,7 @@ public extension Project {
     static let frameworkDir = "Frameworks"
     enum Framework: String {
         case SwedApplicationBusinessRules
-        case SwedEnterpriseBusinessRules
+        case Enterprise
         case SwedInterfaceAdapters
         case Localization
     }

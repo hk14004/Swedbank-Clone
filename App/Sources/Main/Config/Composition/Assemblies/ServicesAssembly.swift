@@ -2,7 +2,7 @@ import Foundation
 import Swinject
 import DevToolsCore
 import SwedApplicationBusinessRules
-import SwedEnterpriseBusinessRules
+import Enterprise
 
 class ServicesAssembly: Assembly {
     func assemble(container: Container) {

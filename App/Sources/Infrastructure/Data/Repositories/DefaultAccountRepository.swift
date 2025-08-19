@@ -7,7 +7,7 @@
 //
 
 import SwedApplicationBusinessRules
-import SwedEnterpriseBusinessRules
+import Enterprise
 import Combine
 import Foundation
 import DevToolsPersistance

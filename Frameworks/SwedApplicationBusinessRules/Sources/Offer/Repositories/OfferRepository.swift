@@ -7,7 +7,7 @@
 //
 
 import Combine
-import SwedEnterpriseBusinessRules
+import Enterprise
 import Foundation
 
 public protocol OfferRepository {

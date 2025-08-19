@@ -56,8 +56,8 @@ extension Project.Root.AppVariant {
                     path: Project.Framework.SwedInterfaceAdapters.getPath()
                 ),
                 .project(
-                    target: Project.Framework.SwedEnterpriseBusinessRules.rawValue,
-                    path: Project.Framework.SwedEnterpriseBusinessRules.getPath()
+                    target: Project.Framework.Enterprise.rawValue,
+                    path: Project.Framework.Enterprise.getPath()
                 ),
                 .project(
                     target: Project.Framework.SwedApplicationBusinessRules.rawValue,
