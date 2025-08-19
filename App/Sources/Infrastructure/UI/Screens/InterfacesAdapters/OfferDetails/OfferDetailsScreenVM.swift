@@ -7,7 +7,7 @@
 //
 
 import Combine
-import Application
+import SwedApplication
 
 public protocol OfferDetailsScreenVMOutput {
     var title: String { get }

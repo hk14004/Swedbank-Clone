@@ -9,7 +9,7 @@
 import Foundation
 import SwiftData
 import DevToolsPersistance
-import Application
+import SwedApplication
 import DevToolsCore
 
 @Model

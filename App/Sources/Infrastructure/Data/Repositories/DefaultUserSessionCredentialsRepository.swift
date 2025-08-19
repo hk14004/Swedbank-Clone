@@ -8,7 +8,7 @@
 
 import Foundation
 import Combine
-import Application
+import SwedApplication
 import DevToolsCore
 
 class DefaultUserSessionCredentialsRepository: UserSessionCredentialsRepository {

@@ -8,7 +8,7 @@
 
 import Foundation
 import DevToolsPersistance
-import Application
+import SwedApplication
 import DevToolsCore
 
 struct AccountConverter: DevModelConverter {

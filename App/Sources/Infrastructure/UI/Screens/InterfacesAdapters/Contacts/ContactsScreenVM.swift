@@ -9,8 +9,8 @@
 import Foundation
 import Combine
 import DevToolsCore
-import Application
-import Localization
+import SwedApplication
+import SwedLocalization
 
 public protocol ConstactsScreenVMInput {
     func viewDidLoad()
@@ -64,48 +64,48 @@ public extension DefaultContactsScreenVM {
             .contactItem(
                 ContactsScreenContactCellViewModel(
                     contactID: Constant.ItemID.contactUs.rawValue,
-                    contactText: Localization.Screen.Contacts.Items.ContactUs.titleKey,
-                    contactDescription: Localization.Screen.Contacts.Items.ContactUs.descriptionKey,
+                    contactText: SwedLocalization.Screen.Contacts.Items.ContactUs.titleKey,
+                    contactDescription: SwedLocalization.Screen.Contacts.Items.ContactUs.descriptionKey,
                     contactIcon: "bubble.left.and.bubble.right"
                 )
             ),
             .contactItem(
                 ContactsScreenContactCellViewModel(
                     contactID: Constant.ItemID.writeToUs.rawValue,
-                    contactText: Localization.Screen.Contacts.Items.Write.titleKey,
-                    contactDescription: Localization.Screen.Contacts.Items.Write.descriptionKey,
+                    contactText: SwedLocalization.Screen.Contacts.Items.Write.titleKey,
+                    contactDescription: SwedLocalization.Screen.Contacts.Items.Write.descriptionKey,
                     contactIcon: "envelope"
                 )
             ),
             .contactItem(
                 ContactsScreenContactCellViewModel(
                     contactID: Constant.ItemID.prioritySupport.rawValue,
-                    contactText: Localization.Screen.Contacts.Items.Priority.titleKey,
-                    contactDescription: Localization.Screen.Contacts.Items.Priority.descriptionKey,
+                    contactText: SwedLocalization.Screen.Contacts.Items.Priority.titleKey,
+                    contactDescription: SwedLocalization.Screen.Contacts.Items.Priority.descriptionKey,
                     contactIcon: "candybarphone"
                 )
             ),
             .contactItem(
                 ContactsScreenContactCellViewModel(
                     contactID: Constant.ItemID.consultation.rawValue,
-                    contactText: Localization.Screen.Contacts.Items.Consultation.titleKey,
-                    contactDescription: Localization.Screen.Contacts.Items.Consultation.descriptionKey,
+                    contactText: SwedLocalization.Screen.Contacts.Items.Consultation.titleKey,
+                    contactDescription: SwedLocalization.Screen.Contacts.Items.Consultation.descriptionKey,
                     contactIcon: "calendar"
                 )
             ),
             .contactItem(
                 ContactsScreenContactCellViewModel(
                     contactID: Constant.ItemID.atms.rawValue,
-                    contactText: Localization.Screen.Contacts.Items.Atms.titleKey,
-                    contactDescription: Localization.Screen.Contacts.Items.Atms.descriptionKey,
+                    contactText: SwedLocalization.Screen.Contacts.Items.Atms.titleKey,
+                    contactDescription: SwedLocalization.Screen.Contacts.Items.Atms.descriptionKey,
                     contactIcon: "mappin.and.ellipse"
                 )
             ),
             .contactItem(
                 ContactsScreenContactCellViewModel(
                     contactID: Constant.ItemID.faq.rawValue,
-                    contactText: Localization.Screen.Contacts.Items.Faq.titleKey,
-                    contactDescription: Localization.Screen.Contacts.Items.Faq.descriptionKey,
+                    contactText: SwedLocalization.Screen.Contacts.Items.Faq.titleKey,
+                    contactDescription: SwedLocalization.Screen.Contacts.Items.Faq.descriptionKey,
                     contactIcon: "questionmark.bubble"
                 )
             )

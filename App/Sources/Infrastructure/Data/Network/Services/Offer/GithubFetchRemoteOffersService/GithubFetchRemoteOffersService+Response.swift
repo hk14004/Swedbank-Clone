@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Application
+import SwedApplication
 
 extension GithubFetchRemoteOffersService {
     typealias GithubOffersResponse = [GithubOffer]

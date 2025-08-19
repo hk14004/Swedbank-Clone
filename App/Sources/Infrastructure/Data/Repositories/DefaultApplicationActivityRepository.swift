@@ -8,7 +8,7 @@
 
 import Foundation
 import SwiftyUserDefaults
-import Application
+import SwedApplication
 
 class DefaultApplicationActivityRepository: ApplicationActivityRepository {
     private let defaultsStore: DefaultsAdapter<DefaultsKeys>

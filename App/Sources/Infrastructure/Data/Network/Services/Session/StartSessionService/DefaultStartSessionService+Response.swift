@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Application
+import SwedApplication
 
 extension DefaultStartSessionService {
     struct StartSessionResponse: Codable {

@@ -52,20 +52,20 @@ extension Project.Root.AppVariant {
             scripts: [],
             dependencies: [
                 .project(
-                    target: Project.Framework.Enterprise.rawValue,
-                    path: Project.Framework.Enterprise.getPath()
+                    target: Project.Framework.SwedEnterprise.rawValue,
+                    path: Project.Framework.SwedEnterprise.getPath()
                 ),
                 .project(
-                    target: Project.Framework.Application.rawValue,
-                    path: Project.Framework.Application.getPath()
+                    target: Project.Framework.SwedApplication.rawValue,
+                    path: Project.Framework.SwedApplication.getPath()
                 ),
                 .project(
                     target: Project.Framework.SwedNetwork.rawValue,
                     path: Project.Framework.SwedNetwork.getPath()
                 ),
                 .project(
-                    target: Project.Framework.Localization.rawValue,
-                    path: Project.Framework.Localization.getPath()
+                    target: Project.Framework.SwedLocalization.rawValue,
+                    path: Project.Framework.SwedLocalization.getPath()
                 ),
                 .external(name: Project.Dependencies.SwiftyUserDefaults.rawValue),
                 .external(name: Project.Dependencies.SnapKit.rawValue),

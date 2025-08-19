@@ -8,7 +8,7 @@
 
 import UIKit
 import Combine
-import Application
+import SwedApplication
 import DevToolsLocalization
 
 extension RootTabbarScreenVC {

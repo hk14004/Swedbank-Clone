@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Application
+import SwedApplication
 
 public protocol SimpleLoginScreenRouter: ToErrorRouting {
     func routeToDashboard()

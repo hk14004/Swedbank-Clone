@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Application
+import SwedApplication
 
 protocol SimpleLoginScreenFactory {
     func make() -> SimpleLoginScreenVC

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Application
+import SwedApplication
 import SwiftyUserDefaults
 
 class DefaultUserJourneyRepository: UserJourneyRepository {

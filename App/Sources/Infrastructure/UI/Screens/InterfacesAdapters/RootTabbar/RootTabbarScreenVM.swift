@@ -8,7 +8,7 @@
 
 import Combine
 import UIKit
-import Application
+import SwedApplication
 
 public protocol RootTabbarScreenVMOutput {
     var router: RootTabbarScreenRouter! { get set }

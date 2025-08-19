@@ -8,7 +8,7 @@
 
 import SwiftUI
 import UIKit
-import Application
+import SwedApplication
 import DevToolsNavigation
 
 class DefaultContactsScreenRouter: ContactsScreenRouter, UIKitRouter {

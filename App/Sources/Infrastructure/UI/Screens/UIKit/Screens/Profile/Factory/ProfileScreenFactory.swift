@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Application
+import SwedApplication
 
 protocol ProfileScreenFactory {
     func make(customer: Customer) -> ProfileScreenVC

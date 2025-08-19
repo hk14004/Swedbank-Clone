@@ -8,7 +8,7 @@
 
 import Foundation
 import Combine
-import Application
+import SwedApplication
 
 public protocol FetchRemoteOffersService {
     func use() -> AnyPublisher<FetchRemoteOffersServiceOutput, Error>

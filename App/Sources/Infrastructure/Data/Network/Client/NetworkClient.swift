@@ -1,5 +1,5 @@
 import Foundation
-import Application
+import SwedApplication
 import DevToolsNetworking
 import Combine
 

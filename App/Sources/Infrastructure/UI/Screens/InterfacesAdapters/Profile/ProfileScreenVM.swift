@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 import DevToolsCore
-import Application
+import SwedApplication
 
 public protocol ProfileScreenVMInput {
     func viewDidLoad()

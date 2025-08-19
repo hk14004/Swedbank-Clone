@@ -8,7 +8,7 @@
 
 import UIKit
 import DevToolsNavigation
-import Application
+import SwedApplication
 
 class DefaultRootTabbarScreenRouter: RootTabbarScreenRouter {
     

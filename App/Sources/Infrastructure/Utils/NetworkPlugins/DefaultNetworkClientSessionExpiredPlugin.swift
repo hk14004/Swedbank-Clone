@@ -8,7 +8,7 @@
 
 import UIKit
 import Combine
-import Application
+import SwedApplication
 
 class DefaultNetworkClientSessionExpiredPlugin: NetworkClientSessionExpiredPlugin {
     

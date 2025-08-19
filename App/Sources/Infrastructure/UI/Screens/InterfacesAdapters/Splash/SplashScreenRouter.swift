@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Application
+import SwedApplication
 
 public protocol SplashScreenRouter: ToRootTabbarScreenRouting, ToErrorRouting, ToSimpleLoginScreenRouting {
     func routeToOnboarding()

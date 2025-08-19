@@ -8,7 +8,7 @@
 
 import Foundation
 import DevToolsCore
-import Application
+import SwedApplication
 
 extension BiometryError: @retroactive UIPresentableError {
     public var presentableContent: UIPresentableErrorContent {

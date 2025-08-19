@@ -7,7 +7,7 @@
 //
 
 import Combine
-import Application
+import SwedApplication
 
 class MockFetchRemoteOffersService: FetchRemoteOffersService {
     var mockResult: AnyPublisher<FetchRemoteOffersServiceOutput, Error>!

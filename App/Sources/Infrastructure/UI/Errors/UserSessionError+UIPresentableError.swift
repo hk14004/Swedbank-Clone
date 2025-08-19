@@ -7,7 +7,7 @@
 //
 
 import DevToolsCore
-import Application
+import SwedApplication
 
 extension UserSessionError: @retroactive UIPresentableError {
     public var presentableContent: UIPresentableErrorContent {

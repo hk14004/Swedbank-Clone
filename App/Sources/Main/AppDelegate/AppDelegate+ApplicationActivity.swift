@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Application
+import SwedApplication
 
 extension AppDelegate {
     func registerApplicationLaunch() {

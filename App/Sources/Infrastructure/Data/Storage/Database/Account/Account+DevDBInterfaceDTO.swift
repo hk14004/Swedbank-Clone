@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Application
+import SwedApplication
 import DevToolsPersistance
 
 extension Account: @retroactive DevDBInterfaceDTO {

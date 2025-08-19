@@ -8,7 +8,7 @@
 
 import Foundation
 import Combine
-import Application
+import SwedApplication
 
 class MockStartSessionService: StartSessionService {
     func use(input: StartSessionServiceInput) -> AnyPublisher<StartSessionServiceOutput, Error> {

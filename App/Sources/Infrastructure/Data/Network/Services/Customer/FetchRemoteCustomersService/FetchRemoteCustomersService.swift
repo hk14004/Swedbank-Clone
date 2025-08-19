@@ -7,7 +7,7 @@
 //
 
 import Combine
-import Application
+import SwedApplication
 
 public protocol FetchRemoteCustomersService {
     func use() -> AnyPublisher<FetchRemoteCustomersServiceOutput, Error>

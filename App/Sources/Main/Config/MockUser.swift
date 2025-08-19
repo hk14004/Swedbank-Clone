@@ -1,5 +1,5 @@
 import Foundation
-import Application
+import SwedApplication
 
 let JAMES_BOND = Customer(
     id: "007",

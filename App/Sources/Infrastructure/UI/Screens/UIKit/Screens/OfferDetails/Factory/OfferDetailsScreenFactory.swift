@@ -8,7 +8,7 @@
 
 import Combine
 import UIKit
-import Application
+import SwedApplication
 
 protocol OfferDetailsScreenFactory {
     func make(offer: Offer) -> OfferDetailsScreenVC

@@ -6,7 +6,7 @@
 //  Copyright © 2025 SWEDBANK AB. All rights reserved.
 //
 
-import Application
+import SwedApplication
 import DevToolsPersistance
 
 extension Offer: @retroactive DevDBInterfaceDTO {

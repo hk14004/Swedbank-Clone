@@ -9,7 +9,7 @@
 import DevToolsCore
 import KeychainAccess
 import Foundation
-import Application
+import SwedApplication
 
 
 public protocol SwedUserSessionCredentialsStore: UserSessionCredentialsStore where CredentialsType == UserSessionCredentials {}

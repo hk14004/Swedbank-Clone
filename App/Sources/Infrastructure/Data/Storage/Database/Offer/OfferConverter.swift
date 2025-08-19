@@ -8,7 +8,7 @@
 
 import Foundation
 import DevToolsPersistance
-import Application
+import SwedApplication
 
 struct OfferConverter: DevModelConverter {
     func domainObject(from persistedModel: OfferSD) throws -> Offer {

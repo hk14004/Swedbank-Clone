@@ -7,7 +7,7 @@
 //
 
 import Combine
-import Application
+import SwedApplication
 
 class GithubFetchRemoteAccountsService: FetchRemoteAccountsService {
     

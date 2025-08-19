@@ -7,7 +7,7 @@
 //
 
 import DevToolsNavigation
-import Application
+import SwedApplication
 
 extension ToOfferDetailsRouting where Self: UIKitRouter {
     func routeToOfferDetails(offer: Offer) {

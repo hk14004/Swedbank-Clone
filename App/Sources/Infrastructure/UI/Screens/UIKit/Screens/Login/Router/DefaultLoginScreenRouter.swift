@@ -8,9 +8,9 @@
 
 import UIKit
 import Combine
-import Application
+import SwedApplication
 import DevToolsNavigation
-import Localization
+import SwedLocalization
 
 class DefaultLoginScreenRouter: UIKitRouter, LoginScreenRouter, CancelBagStorable {
     var cancelBag = Set<AnyCancellable>()
