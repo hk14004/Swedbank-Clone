@@ -31,6 +31,7 @@ let project = Project(
             sources: ["Sources/**"],
             dependencies: [
                 .external(name: Project.Dependencies.DevToolsNetworking.rawValue),
+                .project(target: Project.Framework.SwedApplication.rawValue, path: "../\(Project.Framework.SwedApplication.rawValue)")
             ]
         ),
         .target(
