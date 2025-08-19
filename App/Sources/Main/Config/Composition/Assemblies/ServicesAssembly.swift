@@ -1,8 +1,8 @@
 import Foundation
 import Swinject
 import DevToolsCore
-import SwedApplicationBusinessRules
-import SwedEnterpriseBusinessRules
+import Application
+import Enterprise
 
 class ServicesAssembly: Assembly {
     func assemble(container: Container) {

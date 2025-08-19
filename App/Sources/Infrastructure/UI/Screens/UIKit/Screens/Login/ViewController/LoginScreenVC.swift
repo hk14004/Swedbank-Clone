@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import SwedInterfaceAdapters
 
 class LoginScreenVC: UIHostingController<AnyView> {
     init(viewModel: some LoginScreenVM) {

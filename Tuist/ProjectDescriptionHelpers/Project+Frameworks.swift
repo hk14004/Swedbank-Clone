@@ -10,10 +10,9 @@ import ProjectDescription
 public extension Project {
     static let frameworkDir = "Frameworks"
     enum Framework: String {
-        case SwedApplicationBusinessRules
-        case SwedEnterpriseBusinessRules
-        case SwedInterfaceAdapters
-        case SwedLocalization
+        case Application
+        case Enterprise
+        case Localization
     }
 }
 

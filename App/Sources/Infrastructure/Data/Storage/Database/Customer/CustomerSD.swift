@@ -9,7 +9,7 @@
 import Foundation
 import SwiftData
 import DevToolsPersistance
-import SwedApplicationBusinessRules
+import Application
 
 @Model
 public class CustomerSD {

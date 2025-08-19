@@ -1,6 +1,5 @@
 import Swinject
-import SwedApplicationBusinessRules
-import SwedInterfaceAdapters
+import Application
 import DevToolsNavigation
 import UIKit
 import SwiftUI

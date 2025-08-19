@@ -7,8 +7,7 @@
 //
 
 import Foundation
-import SwedInterfaceAdapters
-import SwedApplicationBusinessRules
+import Application
 
 protocol OverviewScreenFactory {
     func make(customer: Customer) -> OverviewScreenVC

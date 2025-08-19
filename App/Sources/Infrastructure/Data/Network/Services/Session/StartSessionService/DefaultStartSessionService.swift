@@ -1,6 +1,6 @@
 import Combine
 import DevToolsNetworking
-import SwedApplicationBusinessRules
+import Application
 import Foundation
 
 class DefaultStartSessionService: StartSessionService {

@@ -6,6 +6,4 @@
 //  Copyright © 2023 SWEDBANK AB. All rights reserved.
 //
 
-import SwedInterfaceAdapters
-
 extension AppDelegate: ToSplashScreenRouting {}

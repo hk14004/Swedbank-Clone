@@ -2,7 +2,7 @@ import Foundation
 import DevToolsPersistance
 import Swinject
 import DevToolsCore
-import SwedApplicationBusinessRules
+import Application
 
 class RepositoryAssembly: Assembly {
     func assemble(container: Container) {

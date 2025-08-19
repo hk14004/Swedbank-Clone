@@ -7,11 +7,10 @@
 //
 
 import UIKit
-import SwedInterfaceAdapters
 import Combine
-import SwedApplicationBusinessRules
+import Application
 import DevToolsNavigation
-import SwedLocalization
+import Localization
 
 class DefaultLoginScreenRouter: UIKitRouter, LoginScreenRouter, CancelBagStorable {
     var cancelBag = Set<AnyCancellable>()

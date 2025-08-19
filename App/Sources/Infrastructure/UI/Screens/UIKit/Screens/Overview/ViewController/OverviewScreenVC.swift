@@ -8,7 +8,6 @@
 
 import UIKit
 import Combine
-import SwedInterfaceAdapters
 import DevToolsCore
 import DevToolsUI
 import DevToolsLocalization

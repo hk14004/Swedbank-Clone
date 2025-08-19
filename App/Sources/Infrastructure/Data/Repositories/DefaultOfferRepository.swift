@@ -6,8 +6,8 @@
 //  Copyright © 2025 SWEDBANK AB. All rights reserved.
 //
 
-import SwedApplicationBusinessRules
-import SwedEnterpriseBusinessRules
+import Application
+import Enterprise
 import Combine
 import Foundation
 import DevToolsPersistance

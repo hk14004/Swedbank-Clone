@@ -7,8 +7,7 @@
 //
 
 import Foundation
-import SwedInterfaceAdapters
-import SwedApplicationBusinessRules
+import Application
 
 protocol RootTabbarScreenFactory {
     func make(customer: Customer, locked: Bool) -> RootTabbarScreenVC

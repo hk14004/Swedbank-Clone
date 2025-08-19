@@ -7,7 +7,7 @@
 //
 
 import Combine
-import SwedApplicationBusinessRules
+import Application
 
 class GithubFetchRemoteOffersService: FetchRemoteOffersService {
     // MARK: Properties

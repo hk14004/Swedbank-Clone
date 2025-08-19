@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SwedApplicationBusinessRules
+import Application
 import DevToolsPersistance
 
 extension Customer: @retroactive DevDBInterfaceDTO {    

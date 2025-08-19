@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import SwedInterfaceAdapters
 
 class OfferDetailsScreenVC: UIHostingController<AnyView> {
     init(viewModel: some OfferDetailsScreenVM) {

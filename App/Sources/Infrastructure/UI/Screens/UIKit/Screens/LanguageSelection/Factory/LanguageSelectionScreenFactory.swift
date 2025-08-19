@@ -7,7 +7,6 @@
 //
 
 import Combine
-import SwedInterfaceAdapters
 
 protocol LanguageSelectionScreenFactory {
     func make(didSelectLanguageCodePublisher: PassthroughSubject<String, Never>) -> LanguageSelectionVC

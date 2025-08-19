@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwedInterfaceAdapters
 import DevToolsLocalization
 
 extension OverviewScreenView {

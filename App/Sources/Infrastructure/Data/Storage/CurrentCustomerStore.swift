@@ -1,5 +1,5 @@
 import Foundation
-import SwedApplicationBusinessRules
+import Application
 
 protocol CurrentCustomerStore {
     func getCurrentCustomer() -> Customer?

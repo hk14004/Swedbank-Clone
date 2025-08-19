@@ -1,6 +1,5 @@
 import SwiftUI
 import Combine
-import SwedInterfaceAdapters
 
 public struct SimpleLoginScreenView<ViewModel: SimpleLoginScreenVM>: View {
     @ObservedObject public var viewModel: ViewModel

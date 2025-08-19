@@ -7,7 +7,7 @@
 //
 
 import Combine
-import SwedApplicationBusinessRules
+import Application
 
 class MockFetchCustomerService: FetchRemoteCustomersService {
     func use() -> AnyPublisher<FetchRemoteCustomersServiceOutput, Error> {
