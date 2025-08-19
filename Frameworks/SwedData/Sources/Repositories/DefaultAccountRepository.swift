@@ -15,12 +15,11 @@ import SwedNetwork
 import SwedApplication
 import SwedPersistance
 
-
-class DefaultAccountRepository: AccountRepository {
+public class DefaultAccountRepository: AccountRepository {
     private let localStore: any AccountPersistedLayerInterface
     private let fetchRemoteAccountsService: FetchRemoteAccountsService
     
-    init(
+    public init(
         store: any AccountPersistedLayerInterface,
         fetchRemoteAccountsService: FetchRemoteAccountsService
     ) {
@@ -28,7 +27,7 @@ class DefaultAccountRepository: AccountRepository {
         self.fetchRemoteAccountsService = fetchRemoteAccountsService
     }
     
-    func replace(with items: [Account]) -> AnyPublisher<Void, Never> {
+    public func replace(with items: [Account]) -> AnyPublisher<Void, Never> {
         Future<Void, Never> { [weak self] promise in
             Task {
                 try await self?.localStore.replace(with: items)
@@ -38,7 +37,7 @@ class DefaultAccountRepository: AccountRepository {
         .eraseToAnyPublisher()
     }
     
-    func observeCachedList() -> AnyPublisher<[Account], Never> {
+    public func observeCachedList() -> AnyPublisher<[Account], Never> {
         localStore.observeList(predicate: nil, sortDescriptors: [.init(\.sortOrder)])
             .catch { _ in
                 Just([])
@@ -46,7 +45,7 @@ class DefaultAccountRepository: AccountRepository {
             .eraseToAnyPublisher()
     }
     
-    func getRemoteAccounts() -> AnyPublisher<[Account], Never> {
+    public func getRemoteAccounts() -> AnyPublisher<[Account], Never> {
         fetchRemoteAccountsService.use()
             .catch { _ in
                 Just([])

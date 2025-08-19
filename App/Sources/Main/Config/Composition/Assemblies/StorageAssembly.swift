@@ -6,6 +6,7 @@ import KeychainAccess
 import SwiftyUserDefaults
 import SwiftData
 import DevToolsPersistance
+import SwedPersistance
 
 class StorageAssembly: Assembly {
     func assemble(container: Container) {
@@ -68,10 +69,6 @@ class StorageAssembly: Assembly {
     }
 }
 
-protocol AccountPersistedLayerInterface: DevSwiftDataInterface where DTO == Account {}
-protocol OfferPersistedLayerInterface: DevSwiftDataInterface where DTO == Offer {}
-protocol CustomerPersistedLayerInterface: DevSwiftDataInterface where DTO == Customer {}
-
-extension DevSwiftDataStore: CustomerPersistedLayerInterface where DTO == Customer {}
-extension DevSwiftDataStore: OfferPersistedLayerInterface where DTO == Offer {}
-extension DevSwiftDataStore: AccountPersistedLayerInterface where DTO == Account {}
+extension DevSwiftDataStore: @retroactive CustomerPersistedLayerInterface where DTO == Customer {}
+extension DevSwiftDataStore: @retroactive OfferPersistedLayerInterface where DTO == Offer {}
+extension DevSwiftDataStore: @retroactive AccountPersistedLayerInterface where DTO == Account {}

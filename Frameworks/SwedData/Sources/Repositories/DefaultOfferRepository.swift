@@ -14,11 +14,11 @@ import DevToolsPersistance
 import SwedNetwork
 import SwedPersistance
 
-class DefaultOfferRepository: OfferRepository {
+public class DefaultOfferRepository: OfferRepository {
     private let localStore: any OfferPersistedLayerInterface
     private let fetchRemoteOffersService: FetchRemoteOffersService
     
-    init(
+    public init(
         store: any OfferPersistedLayerInterface,
         fetchRemoteOffersService: FetchRemoteOffersService
     ) {
@@ -26,7 +26,7 @@ class DefaultOfferRepository: OfferRepository {
         self.fetchRemoteOffersService = fetchRemoteOffersService
     }
     
-    func replace(with items: [Offer]) -> AnyPublisher<Void, Never> {
+    public func replace(with items: [Offer]) -> AnyPublisher<Void, Never> {
         Future<Void, Never> { [weak self] promise in
             Task {
                 try await self?.localStore.replace(with: items)
@@ -36,7 +36,7 @@ class DefaultOfferRepository: OfferRepository {
         .eraseToAnyPublisher()
     }
     
-    func observeCachedList() -> AnyPublisher<[Offer], Never> {
+    public func observeCachedList() -> AnyPublisher<[Offer], Never> {
         localStore.observeList(predicate: nil, sortDescriptors: [.init(\.id, order: .forward)])
             .catch { _ in
                 Just([])
@@ -44,7 +44,7 @@ class DefaultOfferRepository: OfferRepository {
             .eraseToAnyPublisher()
     }
     
-    func getRemoteOffers() -> AnyPublisher<[Offer], Error> {
+    public func getRemoteOffers() -> AnyPublisher<[Offer], Error> {
         fetchRemoteOffersService.use()
             .flatMap { [weak self] offers in
                 self?.replace(with: offers)

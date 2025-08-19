@@ -10,22 +10,22 @@ import Foundation
 import SwedApplication
 import SwiftyUserDefaults
 
-class DefaultUserJourneyRepository: UserJourneyRepository {
+public class DefaultUserJourneyRepository: UserJourneyRepository {
     
     private let defaultsStore: DefaultsAdapter<DefaultsKeys>
     
-    init(defaultsStore: UserDefaults = UserDefaults.standard) {
+    public init(defaultsStore: UserDefaults = UserDefaults.standard) {
         self.defaultsStore = DefaultsAdapter<DefaultsKeys>(
             defaults: defaultsStore,
             keyStore: .init()
         )
     }
     
-    func update(completedOnboarding: Bool) {
+    public func update(completedOnboarding: Bool) {
         defaultsStore[\.isOnboardingCompleted] = completedOnboarding
     }
     
-    func getIsOnboardingCompleted() -> Bool {
+    public func getIsOnboardingCompleted() -> Bool {
         defaultsStore[\.isOnboardingCompleted]
     }
 }

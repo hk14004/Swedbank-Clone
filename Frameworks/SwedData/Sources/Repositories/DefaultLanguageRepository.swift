@@ -11,26 +11,26 @@ import SwedApplication
 import SwedLocalization
 import DevToolsLocalization
 
-class DefaultLanguageRepository: LanguageRepository {
+public class DefaultLanguageRepository: LanguageRepository {
     private let appLocalization: RuntimeLocalization
     
-    init(appLocalization: RuntimeLocalization) {
+    public init(appLocalization: RuntimeLocalization) {
         self.appLocalization = appLocalization
     }
     
-    func getCurrentLanguage() -> LanguageKey {
+    public func getCurrentLanguage() -> LanguageKey {
         appLocalization.getCurrentLanguage()
     }
     
-    func getAvailableLanguages() -> [LanguageKey] {
+    public func getAvailableLanguages() -> [LanguageKey] {
         appLocalization.getAvailableLanguages()
     }
     
-    func updateCurrentLanguage(code: LanguageKey) {
+    public func updateCurrentLanguage(code: LanguageKey) {
         appLocalization.change(languageCode: code)
     }
     
-    func observeCurrentLanguage() -> AnyPublisher<LanguageKey, Never> {
+    public func observeCurrentLanguage() -> AnyPublisher<LanguageKey, Never> {
         appLocalization.observeCurrentLanguage()
     }
 }

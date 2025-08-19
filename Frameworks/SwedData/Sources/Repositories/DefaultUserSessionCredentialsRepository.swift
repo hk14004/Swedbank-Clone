@@ -12,24 +12,22 @@ import SwedApplication
 import DevToolsCore
 import SwedPersistance
 
-class DefaultUserSessionCredentialsRepository: UserSessionCredentialsRepository {
+public class DefaultUserSessionCredentialsRepository: UserSessionCredentialsRepository {
     let store: any SwedUserSessionCredentialsStore
     
-    init(
-        store: any SwedUserSessionCredentialsStore
-    ) {
+    public init(store: any SwedUserSessionCredentialsStore) {
         self.store = store
     }
     
-    func save(credentials: UserSessionCredentials) {
+    public func save(credentials: UserSessionCredentials) {
         store.storeCredentials(credentials)
     }
     
-    func getCredentials(id: String) -> UserSessionCredentials? {
+    public func getCredentials(id: String) -> UserSessionCredentials? {
         store.getCredentials(id: id)
     }
     
-    func deleteCredentials(id: String) {
+    public func deleteCredentials(id: String) {
         store.deleteCredentials(id: id)
     }
 }

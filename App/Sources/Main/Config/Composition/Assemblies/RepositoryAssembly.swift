@@ -3,6 +3,8 @@ import DevToolsPersistance
 import Swinject
 import DevToolsCore
 import SwedApplication
+import SwedData
+import SwedPersistance
 
 class RepositoryAssembly: Assembly {
     func assemble(container: Container) {

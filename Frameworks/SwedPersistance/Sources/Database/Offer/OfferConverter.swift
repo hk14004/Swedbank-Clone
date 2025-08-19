@@ -10,8 +10,11 @@ import Foundation
 import DevToolsPersistance
 import SwedApplication
 
-struct OfferConverter: DevModelConverter {
-    func domainObject(from persistedModel: OfferSD) throws -> Offer {
+public struct OfferConverter: DevModelConverter {
+    
+    public init() {}
+    
+    public func domainObject(from persistedModel: OfferSD) throws -> Offer {
         Offer(
             id: persistedModel.id,
             title: persistedModel.title,
@@ -20,11 +23,11 @@ struct OfferConverter: DevModelConverter {
         )
     }
     
-    func persistableObject(from domainModel: Offer) throws -> OfferSD {
+    public func persistableObject(from domainModel: Offer) throws -> OfferSD {
         OfferSD(id: domainModel.id, title: domainModel.title, desc: domainModel.description, date: domainModel.date)
     }
     
-    func updatePersistedObject(with domainModel: Offer, object: OfferSD) throws {
+    public func updatePersistedObject(with domainModel: Offer, object: OfferSD) throws {
         object.id = domainModel.id
         object.title = domainModel.title
         object.desc = domainModel.description

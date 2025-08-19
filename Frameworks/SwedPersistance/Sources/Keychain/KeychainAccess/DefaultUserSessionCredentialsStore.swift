@@ -14,7 +14,7 @@ import SwedApplication
 
 public protocol SwedUserSessionCredentialsStore: UserSessionCredentialsStore where CredentialsType == UserSessionCredentials {}
 
-class DefaultUserSessionCredentialsStore: SwedUserSessionCredentialsStore {
+public class DefaultUserSessionCredentialsStore: SwedUserSessionCredentialsStore {
 
     // MARK: Properties
     
@@ -22,13 +22,13 @@ class DefaultUserSessionCredentialsStore: SwedUserSessionCredentialsStore {
     
     // MARK: init
     
-    init(keychain: Keychain) {
+    public init(keychain: Keychain) {
         self.keychain = keychain
     }
     
     // MARK: Overriden
     
-    func storeCredentials(_ credentials: UserSessionCredentials) {
+    public func storeCredentials(_ credentials: UserSessionCredentials) {
         guard let data = try? JSONEncoder().encode(credentials) else {
             deleteCredentials(id: credentials.id)
             return
@@ -36,7 +36,7 @@ class DefaultUserSessionCredentialsStore: SwedUserSessionCredentialsStore {
         try? keychain.set(data, key: credentials.id)
     }
     
-    func getCredentials(id: String) -> UserSessionCredentials? {
+    public func getCredentials(id: String) -> UserSessionCredentials? {
         guard let data = try? keychain.getData(id) else {
             deleteCredentials(id: id)
             return nil
@@ -45,18 +45,18 @@ class DefaultUserSessionCredentialsStore: SwedUserSessionCredentialsStore {
         return decoded
     }
     
-    func getAllCredentials() -> [UserSessionCredentials] {
+    public func getAllCredentials() -> [UserSessionCredentials] {
         let result: [UserSessionCredentials] = keychain.allKeys().compactMap { credID in
             getCredentials(id: credID)
         }
         return result
     }
     
-    func deleteCredentials(id: String) {
+    public func deleteCredentials(id: String) {
         try? keychain.remove(id)
     }
     
-    func deleteAllCredentials() {
+    public func deleteAllCredentials() {
         try? keychain.removeAll()
     }
 }

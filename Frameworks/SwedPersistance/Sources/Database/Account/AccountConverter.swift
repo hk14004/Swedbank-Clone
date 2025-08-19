@@ -11,8 +11,9 @@ import DevToolsPersistance
 import SwedApplication
 import DevToolsCore
 
-struct AccountConverter: DevModelConverter {
-    func persistableObject(from domainModel: Account) throws -> AccountSD {
+public struct AccountConverter: DevModelConverter {
+    public init() {}
+    public func persistableObject(from domainModel: Account) throws -> AccountSD {
         AccountSD(
             id: domainModel.id,
             customerId: domainModel.customerId,
@@ -29,7 +30,7 @@ struct AccountConverter: DevModelConverter {
         )
     }
     
-    func domainObject(from persistedModel: AccountSD) throws -> Account {
+    public func domainObject(from persistedModel: AccountSD) throws -> Account {
         Account(
             customerId: persistedModel.id,
             accountBalance: persistedModel.accountBalance,
@@ -45,7 +46,7 @@ struct AccountConverter: DevModelConverter {
         )
     }
     
-    func updatePersistedObject(with domainModel: Account, object: AccountSD) throws {
+    public func updatePersistedObject(with domainModel: Account, object: AccountSD) throws {
         object.id = domainModel.id
         object.customerId = domainModel.customerId
         object.accountBalance = domainModel.accountBalance

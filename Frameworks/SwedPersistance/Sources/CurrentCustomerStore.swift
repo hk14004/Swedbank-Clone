@@ -6,14 +6,18 @@ public protocol CurrentCustomerStore {
     func setCurrentCustomer(_ customer: Customer?)
 }
 
-class DefaultCurrentCustomerStore: CurrentCustomerStore {
+public class DefaultCurrentCustomerStore: CurrentCustomerStore {
     var customer: Customer?
     
-    func getCurrentCustomer() -> Customer? {
+    public init(customer: Customer? = nil) {
+        self.customer = customer
+    }
+    
+    public func getCurrentCustomer() -> Customer? {
         customer
     }
     
-    func setCurrentCustomer(_ customer: Customer?) {
+    public func setCurrentCustomer(_ customer: Customer?) {
         self.customer = customer
     }
 }

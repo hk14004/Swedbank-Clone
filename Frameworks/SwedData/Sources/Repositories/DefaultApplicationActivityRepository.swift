@@ -11,29 +11,29 @@ import SwiftyUserDefaults
 import SwedApplication
 import SwedPersistance
 
-class DefaultApplicationActivityRepository: ApplicationActivityRepository {
+public class DefaultApplicationActivityRepository: ApplicationActivityRepository {
     private let defaultsStore: DefaultsAdapter<DefaultsKeys>
     
-    init(defaultsStore: UserDefaults = UserDefaults.standard) {
+    public init(defaultsStore: UserDefaults = UserDefaults.standard) {
         self.defaultsStore = DefaultsAdapter<DefaultsKeys>(
             defaults: defaultsStore,
             keyStore: .init()
         )
     }
     
-    func getLaunchDate() -> Date? {
+    public func getLaunchDate() -> Date? {
         defaultsStore[\.appLaunchDate]
     }
     
-    func saveLaunchDate(date: Date?) {
+    public func saveLaunchDate(date: Date?) {
         defaultsStore[\.appLaunchDate] = date
     }
     
-    func getTerminationDate() -> Date? {
+    public func getTerminationDate() -> Date? {
         defaultsStore[\.appTerminationDate]
     }
     
-    func saveTerminationDate(date: Date?) {
+    public func saveTerminationDate(date: Date?) {
         defaultsStore[\.appTerminationDate] = date
     }
 }

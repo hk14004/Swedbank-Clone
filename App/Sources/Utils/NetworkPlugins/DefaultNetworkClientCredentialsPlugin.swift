@@ -9,6 +9,7 @@
 import Foundation
 import SwedNetwork
 import SwedApplication
+import SwedPersistance
 
 class DefaultNetworkClientCredentialsPlugin: NetworkClientCredentialsPlugin {
     
