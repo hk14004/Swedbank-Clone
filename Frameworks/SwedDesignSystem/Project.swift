@@ -29,6 +29,9 @@ let project = Project(
             bundleId: currentFramework().getBundleID(),
             deploymentTargets: .iOS(Project.Root.targetVersion),
             sources: ["Sources/**"],
+            resources: [
+                "Resources/**"
+            ],
             dependencies: [
                 .external(name: Project.Dependencies.DevToolsNetworking.rawValue),
                 .project(target: Project.Framework.SwedApplication.rawValue, path: "../\(Project.Framework.SwedApplication.rawValue)")
