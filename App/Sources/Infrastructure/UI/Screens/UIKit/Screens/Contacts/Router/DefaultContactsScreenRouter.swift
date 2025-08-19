@@ -8,7 +8,6 @@
 
 import SwiftUI
 import UIKit
-import SwedInterfaceAdapters
 import SwedApplicationBusinessRules
 import DevToolsNavigation
 

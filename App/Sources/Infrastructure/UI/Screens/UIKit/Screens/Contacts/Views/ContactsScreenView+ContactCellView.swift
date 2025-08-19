@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwedInterfaceAdapters
 
 extension ContactsScreenView {
     final class ContactCellView: UITableViewCell {

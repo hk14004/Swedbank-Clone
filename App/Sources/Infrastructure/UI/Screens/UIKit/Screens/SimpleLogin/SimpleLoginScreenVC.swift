@@ -8,7 +8,6 @@
 
 import Foundation
 import SwiftUI
-import SwedInterfaceAdapters
 
 class SimpleLoginScreenVC: UIHostingController<AnyView> {
     init(viewModel: some SimpleLoginScreenVM) {

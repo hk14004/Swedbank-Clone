@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwedInterfaceAdapters
 
 protocol ContactsScreenFactory {
     func make() -> ContactsScreenVC

@@ -7,7 +7,6 @@
 
 import SwiftUI
 import DevToolsUI
-import SwedInterfaceAdapters
 
 struct OfferDetailsScreenView<ViewModel: OfferDetailsScreenVM>: View {
     

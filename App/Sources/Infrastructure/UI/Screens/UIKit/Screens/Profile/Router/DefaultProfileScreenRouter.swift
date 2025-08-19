@@ -6,7 +6,6 @@
 //  Copyright © 2023 SWEDBANK AB. All rights reserved.
 //
 
-import SwedInterfaceAdapters
 import SwedApplicationBusinessRules
 import DevToolsNavigation
 import UIKit

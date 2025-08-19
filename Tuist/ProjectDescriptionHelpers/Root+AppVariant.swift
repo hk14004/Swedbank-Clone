@@ -52,10 +52,6 @@ extension Project.Root.AppVariant {
             scripts: [],
             dependencies: [
                 .project(
-                    target: Project.Framework.SwedInterfaceAdapters.rawValue,
-                    path: Project.Framework.SwedInterfaceAdapters.getPath()
-                ),
-                .project(
                     target: Project.Framework.Enterprise.rawValue,
                     path: Project.Framework.Enterprise.getPath()
                 ),

@@ -7,7 +7,6 @@
 
 import SwiftUI
 import DevToolsUI
-import SwedInterfaceAdapters
 
 struct LoginScreenView<ViewModel: LoginScreenVM>: View {
     

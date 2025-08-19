@@ -8,7 +8,6 @@
 
 import Combine
 import UIKit
-import SwedInterfaceAdapters
 import SwedApplicationBusinessRules
 
 protocol LoginScreenFactory {

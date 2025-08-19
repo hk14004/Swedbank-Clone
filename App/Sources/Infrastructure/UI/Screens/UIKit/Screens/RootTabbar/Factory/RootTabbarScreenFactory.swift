@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwedInterfaceAdapters
 import SwedApplicationBusinessRules
 
 protocol RootTabbarScreenFactory {

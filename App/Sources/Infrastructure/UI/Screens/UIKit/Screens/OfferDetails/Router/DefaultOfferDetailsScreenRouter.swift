@@ -1,5 +1,5 @@
 //
-//  OfferDetailsScreenRouter.swift
+//  DefaultOfferDetailsScreenRouter.swift
 //  Swedbank
 //
 //  Created by Hardijs Kirsis on 30/05/2025.
@@ -7,10 +7,7 @@
 //
 
 import DevToolsNavigation
-import SwedInterfaceAdapters
 import SwedApplicationBusinessRules
-
-public protocol OfferDetailsScreenRouter {}
 
 extension ToOfferDetailsRouting where Self: UIKitRouter {
     func routeToOfferDetails(offer: Offer) {

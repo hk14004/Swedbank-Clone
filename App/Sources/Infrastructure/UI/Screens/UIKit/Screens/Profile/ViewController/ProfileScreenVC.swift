@@ -8,7 +8,6 @@
 
 import UIKit
 import DevToolsLocalization
-import SwedInterfaceAdapters
 import Combine
 
 class ProfileScreenVC: RuntimeLocalizedUIViewController {

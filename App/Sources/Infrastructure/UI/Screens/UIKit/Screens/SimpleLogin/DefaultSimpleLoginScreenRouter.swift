@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwedInterfaceAdapters
 import DevToolsNavigation
 
 class DefaultSimpleLoginScreenRouter: SimpleLoginScreenRouter, UIKitRouter, ToRootTabbarScreenRouting {

@@ -12,7 +12,6 @@ public extension Project {
     enum Framework: String {
         case SwedApplicationBusinessRules
         case Enterprise
-        case SwedInterfaceAdapters
         case Localization
     }
 }

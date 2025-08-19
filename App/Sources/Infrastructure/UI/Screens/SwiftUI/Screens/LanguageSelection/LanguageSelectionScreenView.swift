@@ -7,7 +7,6 @@
 
 import SwiftUI
 import DevToolsUI
-import SwedInterfaceAdapters
 
 struct LanguageSelectionScreenView<ViewModel: LanguageSelectionScreenVM>: View {
     
