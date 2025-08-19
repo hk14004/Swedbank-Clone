@@ -9,4 +9,4 @@
 import Foundation
 import DevToolsNetworking
 
-class DefaultNetworkRequestFactory: BaseNetworkRequestFactory {}
+public class DefaultNetworkRequestFactory: BaseNetworkRequestFactory {}

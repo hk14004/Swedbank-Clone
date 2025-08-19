@@ -3,6 +3,7 @@ import Swinject
 import DevToolsCore
 import SwedApplication
 import SwedEnterprise
+import SwedNetwork
 
 class ServicesAssembly: Assembly {
     func assemble(container: Container) {

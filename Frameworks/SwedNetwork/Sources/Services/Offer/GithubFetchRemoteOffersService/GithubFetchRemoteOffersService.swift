@@ -9,17 +9,17 @@
 import Combine
 import SwedApplication
 
-class GithubFetchRemoteOffersService: FetchRemoteOffersService {
+public class GithubFetchRemoteOffersService: FetchRemoteOffersService {
     // MARK: Properties
     private let networkClient: SwedNetworkClient
     
     // MARK: Lifecycle
-    init(networkClient: SwedNetworkClient) {
+    public init(networkClient: SwedNetworkClient) {
         self.networkClient = networkClient
     }
     
     // MARK: Methods
-    func use() -> AnyPublisher<FetchRemoteOffersServiceOutput, Error> {
+    public func use() -> AnyPublisher<FetchRemoteOffersServiceOutput, Error> {
         fetchResponse()
             .tryMap { response in
                 try response.map { try $0.mapToDomain() }

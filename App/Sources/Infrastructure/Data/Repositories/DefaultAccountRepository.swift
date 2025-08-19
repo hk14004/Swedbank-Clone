@@ -11,6 +11,7 @@ import SwedEnterprise
 import Combine
 import Foundation
 import DevToolsPersistance
+import SwedNetwork
 
 class DefaultAccountRepository: AccountRepository {
     private let localStore: any AccountPersistedLayerInterface

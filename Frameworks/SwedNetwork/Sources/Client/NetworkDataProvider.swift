@@ -10,7 +10,7 @@ import Foundation
 import Combine
 import DevToolsNetworking
 
-class DefaultNetworkDataProvider: NSObject, DevNetworkDataProvider {
+public class DefaultNetworkDataProvider: NSObject, DevNetworkDataProvider {
     lazy var session = URLSession(
         configuration: URLSessionConfiguration.default,
         delegate: self,

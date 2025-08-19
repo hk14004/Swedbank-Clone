@@ -3,14 +3,14 @@ import DevToolsNetworking
 import SwedApplication
 import Foundation
 
-class DefaultStartSessionService: StartSessionService {
+public class DefaultStartSessionService: StartSessionService {
     private let networkClient: SwedNetworkClient
     
-    init(networkClient: SwedNetworkClient) {
+    public init(networkClient: SwedNetworkClient) {
         self.networkClient = networkClient
     }
     
-    func use(input: StartSessionServiceInput) -> AnyPublisher<StartSessionServiceOutput, Error> {
+    public func use(input: StartSessionServiceInput) -> AnyPublisher<StartSessionServiceOutput, Error> {
         fetchResponse(input: input)
             .flatMap { response -> AnyPublisher<StartSessionServiceOutput, Error> in
                     .just(response.mapToDomain(id: input.username))

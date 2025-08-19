@@ -11,6 +11,7 @@ import SwedEnterprise
 import Combine
 import Foundation
 import DevToolsPersistance
+import SwedNetwork
 
 class DefaultOfferRepository: OfferRepository {
     private let localStore: any OfferPersistedLayerInterface

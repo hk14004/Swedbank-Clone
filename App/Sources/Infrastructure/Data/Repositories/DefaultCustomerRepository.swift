@@ -9,6 +9,7 @@
 import SwedApplication
 import Combine
 import DevToolsPersistance
+import SwedNetwork
 
 class DefaultCustomerRepository: CustomerRepository {
     
