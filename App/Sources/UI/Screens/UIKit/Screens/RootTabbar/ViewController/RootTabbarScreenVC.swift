@@ -11,6 +11,7 @@ import Combine
 import DevToolsLocalization
 import DevToolsNavigation
 import SwedApplication
+import SwedDesignSystem
 
 class RootTabbarScreenVC: UITabBarController {
     // MARK: Properties

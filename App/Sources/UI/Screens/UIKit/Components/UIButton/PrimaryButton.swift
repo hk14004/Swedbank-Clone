@@ -8,6 +8,7 @@
 
 import UIKit
 import DevToolsLocalization
+import SwedDesignSystem
 
 class PrimaryButton: RuntimeLocalizedButton {
     // MARK: LifeCycle

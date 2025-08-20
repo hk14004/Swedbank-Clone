@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwedDesignSystem
 
 class CustomerInitialsView: UIView {
     // MARK: Properties

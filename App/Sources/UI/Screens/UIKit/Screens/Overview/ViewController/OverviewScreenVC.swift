@@ -11,6 +11,7 @@ import Combine
 import DevToolsCore
 import DevToolsUI
 import DevToolsLocalization
+import SwedDesignSystem
 
 class OverviewScreenVC: RuntimeLocalizedUIViewController {
     // MARK: Properties

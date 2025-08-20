@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwedDesignSystem
 
 class NotificationButton: UIButton {
     // MARK: Constants

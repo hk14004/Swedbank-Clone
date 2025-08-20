@@ -9,6 +9,7 @@
 import UIKit
 import DevToolsLocalization
 import Combine
+import SwedDesignSystem
 
 extension ProfileScreenView {
     class LogoutCell: UITableViewCell {
