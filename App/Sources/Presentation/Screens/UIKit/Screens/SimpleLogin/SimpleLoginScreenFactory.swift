@@ -19,7 +19,10 @@ class DefaultSimpleLoginScreenFactory: SimpleLoginScreenFactory {
             simpleLoginUseCase: Composition.resolve()
         )
         let vc = SimpleLoginScreenVC(viewModel: vm)
-        let router = DefaultSimpleLoginScreenRouter(viewController: vc)
+        let router = DefaultSimpleLoginScreenRouter(
+            viewController: vc,
+            getCurrentCustomerUseCase: Composition.resolve()
+        )
         vm.router = router
         return vc
     }

@@ -8,17 +8,26 @@
 
 import UIKit
 import DevToolsNavigation
+import SwedApplication
 
 class DefaultSimpleLoginScreenRouter: SimpleLoginScreenRouter, UIKitRouter, ToRootTabbarScreenRouting {
     
     weak var viewController: UIViewController?
+    private let getCurrentCustomerUseCase: GetCurrentCustomerUseCase
 
-    init(viewController: UIViewController) {
+    init(
+        viewController: UIViewController,
+        getCurrentCustomerUseCase: GetCurrentCustomerUseCase
+    ) {
         self.viewController = viewController
+        self.getCurrentCustomerUseCase = getCurrentCustomerUseCase
     }
     
     func routeToDashboard() {
-        initRouteToRoot(customer: JAMES_BOND)
+        guard let cCustomer = getCurrentCustomerUseCase.use() else {
+            fatalError("No customer found")
+        }
+        initRouteToRoot(customer: cCustomer)
     }
 
 }
