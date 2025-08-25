@@ -30,7 +30,8 @@ class ScreenFactoryAssembly: Assembly {
                     trackCachedOffersUseCase: Composition.resolve(),
                     getRemoteAccountsUseCase: Composition.resolve(),
                     trackCachedAccountsUseCase: Composition.resolve(),
-                    offerDetailsScreenFactory: Composition.resolve()
+                    offerDetailsScreenFactory: Composition.resolve(),
+                    logoutUseCase: Composition.resolve()
                 )
             )
         }
@@ -39,7 +40,14 @@ class ScreenFactoryAssembly: Assembly {
             DefaultLanguageSelectionScreenFactory()
         }
         container.register(ProfileScreenFactory.self) { resolver in
-            DefaultProfileScreenFactory()
+            DefaultProfileScreenFactory(di: Dependencies(
+                getRemoteOffersUseCase: Composition.resolve(),
+                trackCachedOffersUseCase: Composition.resolve(),
+                getRemoteAccountsUseCase: Composition.resolve(),
+                trackCachedAccountsUseCase: Composition.resolve(),
+                offerDetailsScreenFactory: Composition.resolve(),
+                logoutUseCase: Composition.resolve()
+            ))
         }
         container.register(ContactsScreenFactory.self) { resolver in
             DefaultContactsScreenFactory()

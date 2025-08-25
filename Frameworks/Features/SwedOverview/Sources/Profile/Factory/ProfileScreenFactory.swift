@@ -9,13 +9,20 @@
 import Foundation
 import SwedApplication
 
-protocol ProfileScreenFactory {
+public protocol ProfileScreenFactory {
     func make(customer: Customer) -> ProfileScreenVC
 }
 
-class DefaultProfileScreenFactory: ProfileScreenFactory {
-    func make(customer: Customer) -> ProfileScreenVC {
-        let vm = DefaultProfileScreenVM(logoutUseCase: Composition.resolve())
+public class DefaultProfileScreenFactory: ProfileScreenFactory {
+    
+    let di: Dependencies
+    
+    public init(di: Dependencies) {
+        self.di = di
+    }
+    
+    public func make(customer: Customer) -> ProfileScreenVC {
+        let vm = DefaultProfileScreenVM(logoutUseCase: di.logoutUseCase)
         let vc = ProfileScreenVC(viewModel: vm)
         let router = DefaultProfileScreenRouter(viewController: vc)
         vm.router = router

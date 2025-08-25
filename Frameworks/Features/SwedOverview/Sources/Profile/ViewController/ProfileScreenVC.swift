@@ -10,7 +10,7 @@ import UIKit
 import DevToolsLocalization
 import Combine
 
-class ProfileScreenVC: RuntimeLocalizedUIViewController {
+public class ProfileScreenVC: RuntimeLocalizedUIViewController {
     
     lazy var rootView = ProfileScreenView.RootView()
     let viewModel: ProfileScreenVM
@@ -27,12 +27,12 @@ class ProfileScreenVC: RuntimeLocalizedUIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
     
-    override func loadView() {
+    public override func loadView() {
         super.loadView()
         view = rootView
     }

@@ -9,8 +9,11 @@
 import Foundation
 import SwedApplication
 
-public protocol ProfileScreenRouter: ToSplashScreenRouting {}
+public protocol ProfileScreenRouter {
+    func routeToSplashScreen()
+}
 
 public protocol ToProfileScreenRouting {
     func routeToProfileScreen(customer: Customer)
+    func routeToSplashScreen()
 }

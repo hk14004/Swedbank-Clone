@@ -11,6 +11,11 @@ import DevToolsNavigation
 import UIKit
 
 class DefaultProfileScreenRouter: ProfileScreenRouter, UIKitRouter {
+    func routeToSplashScreen() {
+        print("upsie")
+    }
+    
+    
     weak var viewController: UIViewController?
     
     init(viewController: UIViewController) {
@@ -18,10 +23,12 @@ class DefaultProfileScreenRouter: ProfileScreenRouter, UIKitRouter {
     }
 }
 
-extension ToProfileScreenRouting where Self: UIKitRouter {
+protocol HasProfileScreenFactory {
+    var profileScreenFactory: ProfileScreenFactory { get }
+}
+extension ToProfileScreenRouting where Self: UIKitRouter & HasProfileScreenFactory {
     func routeToProfileScreen(customer: Customer) {
-        let factory: ProfileScreenFactory = Composition.resolve()
-        let vc = factory.make(customer: customer)
+        let vc = profileScreenFactory.make(customer: customer)
         let navVC = UINavigationController(rootViewController: vc)
         viewController?.present(navVC, animated: true)
     }
