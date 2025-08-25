@@ -18,14 +18,14 @@ public extension Project {
         case SwedData
         case SwedPersistance
         // Features
-        case SwedDashboard
+        case SwedOverview
     }
 }
 
 public extension Project.Framework {
     func getPath() -> Path {
         switch self {
-        case .SwedDashboard:
+        case .SwedOverview:
             "\(Project.frameworkDir + "/" + "Features" + "/" + rawValue)"
         default:
             "\(Project.frameworkDir + "/" + rawValue)"

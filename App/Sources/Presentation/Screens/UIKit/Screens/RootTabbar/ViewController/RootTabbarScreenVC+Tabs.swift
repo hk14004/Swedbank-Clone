@@ -10,7 +10,7 @@ import UIKit
 import Combine
 import SwedApplication
 import DevToolsLocalization
-import SwedDashboard
+import SwedOverview
 
 extension RootTabbarScreenVC {
     func makeTabs(tabs: [RootTab]) -> [UINavigationController] {

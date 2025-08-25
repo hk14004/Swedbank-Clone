@@ -80,8 +80,8 @@ extension Project.Root.AppVariant {
                     path: Project.Framework.SwedLocalization.getPath()
                 ),
                 .project(
-                    target: Project.Framework.SwedDashboard.rawValue,
-                    path: Project.Framework.SwedDashboard.getPath()
+                    target: Project.Framework.SwedOverview.rawValue,
+                    path: Project.Framework.SwedOverview.getPath()
                 ),
                 .external(name: Project.Dependencies.SwiftyUserDefaults.rawValue),
                 .external(name: Project.Dependencies.SnapKit.rawValue),

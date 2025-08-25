@@ -3,7 +3,7 @@ import SwedApplication
 import DevToolsNavigation
 import UIKit
 import SwiftUI
-import SwedDashboard
+import SwedOverview
 
 class ScreenFactoryAssembly: Assembly {
     func assemble(container: Container) {

@@ -9,7 +9,7 @@ import ProjectDescriptionHelpers
 import ProjectDescription
 
 private func currentFramework() -> Project.Framework {
-    .SwedDashboard
+    .SwedOverview
 }
 
 let project = Project(
