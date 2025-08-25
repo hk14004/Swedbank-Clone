@@ -1,13 +1,13 @@
 {
-  "originHash" : "3fb52f6561fce75ad6f47823353c3fa2d9c907685e58a0f2174a47270d14924e",
+  "originHash" : "d83f28cf1284f744011092b0deb19ba8b2d816d07b56dc20f0521d7f2989acb8",
   "pins" : [
     {
       "identity" : "devtools-swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/hk14004/DevTools-Swift",
       "state" : {
-        "branch" : "main",
-        "revision" : "d7dd02afe3c83306995a0e84d68034d6451f629b"
+        "branch" : "dev",
+        "revision" : "a8ca5b30cf5598127ab6828dedbfd28586ebba30"
       }
     },
     {

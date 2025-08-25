@@ -8,6 +8,7 @@
 
 import Foundation
 import SwedApplication
+import DevToolsNavigation
 
 public protocol LoginScreenRouter: ToLanguageSelectionScreenRouting, ToErrorRouting {
     func routeToLoginCompleted(customer: Customer)

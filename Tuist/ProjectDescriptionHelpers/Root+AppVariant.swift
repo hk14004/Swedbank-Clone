@@ -79,6 +79,10 @@ extension Project.Root.AppVariant {
                     target: Project.Framework.SwedLocalization.rawValue,
                     path: Project.Framework.SwedLocalization.getPath()
                 ),
+                .project(
+                    target: Project.Framework.SwedDashboard.rawValue,
+                    path: Project.Framework.SwedDashboard.getPath()
+                ),
                 .external(name: Project.Dependencies.SwiftyUserDefaults.rawValue),
                 .external(name: Project.Dependencies.SnapKit.rawValue),
                 .external(name: Project.Dependencies.Swinject.rawValue),

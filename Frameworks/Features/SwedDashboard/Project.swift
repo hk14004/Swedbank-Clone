@@ -9,7 +9,7 @@ import ProjectDescriptionHelpers
 import ProjectDescription
 
 private func currentFramework() -> Project.Framework {
-    .SwedPersistance
+    .SwedDashboard
 }
 
 let project = Project(
@@ -30,9 +30,13 @@ let project = Project(
             deploymentTargets: .iOS(Project.Root.targetVersion),
             sources: ["Sources/**"],
             dependencies: [
+                .external(name: Project.Dependencies.SnapKit.rawValue),
                 .external(name: Project.Dependencies.DevToolsLocalization.rawValue),
-                .project(target: Project.Framework.SwedLocalization.rawValue, path: "../\(Project.Framework.SwedLocalization.rawValue)"),
-                .project(target: Project.Framework.SwedApplication.rawValue, path: "../\(Project.Framework.SwedApplication.rawValue)")
+                .external(name: Project.Dependencies.DevToolsUI.rawValue),
+                .external(name: Project.Dependencies.DevToolsNavigation.rawValue),
+                .project(target: Project.Framework.SwedLocalization.rawValue, path: "../../\(Project.Framework.SwedLocalization.rawValue)"),
+                .project(target: Project.Framework.SwedApplication.rawValue, path: "../../\(Project.Framework.SwedApplication.rawValue)"),
+                .project(target: Project.Framework.SwedDesignSystem.rawValue, path: "../../\(Project.Framework.SwedDesignSystem.rawValue)"),
             ]
         ),
         .target(

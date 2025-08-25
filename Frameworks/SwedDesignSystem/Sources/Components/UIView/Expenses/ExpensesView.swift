@@ -8,9 +8,9 @@
 
 import UIKit
 
-class ExpensesView: UIView {
+public class ExpensesView: UIView {
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .gray
     }

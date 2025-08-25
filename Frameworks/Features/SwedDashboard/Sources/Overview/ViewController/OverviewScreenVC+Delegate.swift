@@ -9,7 +9,7 @@
 import UIKit
 
 extension OverviewScreenVC: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = viewModel.tableSnapshot.value.sections[safe: indexPath.section]?.cells[safe:indexPath.row] else {
             return
         }

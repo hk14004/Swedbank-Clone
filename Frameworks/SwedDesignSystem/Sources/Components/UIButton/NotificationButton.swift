@@ -9,7 +9,7 @@
 import UIKit
 import SwedDesignSystem
 
-class NotificationButton: UIButton {
+public class NotificationButton: UIButton {
     // MARK: Constants
     enum Constant {
         static let bellIconName = "bell.fill"

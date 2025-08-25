@@ -10,6 +10,7 @@ import UIKit
 import Combine
 import SwedApplication
 import DevToolsLocalization
+import SwedDashboard
 
 extension RootTabbarScreenVC {
     func makeTabs(tabs: [RootTab]) -> [UINavigationController] {
@@ -51,7 +52,7 @@ extension RootTabbarScreenVC {
         let vc: UIViewController = {
             if !locked {
                 let factory: OverviewScreenFactory = Composition.resolve()
-                return factory.make(customer: viewModel.customer)
+                return factory.make(customer: viewModel.customer, onLaunchProfileIntent: { print("GO") })
             } else {
                 return makeLockedTab()
             }

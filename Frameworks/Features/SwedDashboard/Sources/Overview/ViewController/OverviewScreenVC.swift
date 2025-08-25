@@ -13,7 +13,7 @@ import DevToolsUI
 import DevToolsLocalization
 import SwedDesignSystem
 
-class OverviewScreenVC: RuntimeLocalizedUIViewController {
+public class OverviewScreenVC: RuntimeLocalizedUIViewController {
     // MARK: Properties
     let viewModel: OverviewScreenVM
     lazy var rootView = OverviewScreenView.RootView()
@@ -31,12 +31,12 @@ class OverviewScreenVC: RuntimeLocalizedUIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func loadView() {
+    public override func loadView() {
         super.loadView()
         view = rootView
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }

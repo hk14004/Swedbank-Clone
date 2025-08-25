@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import SwedDesignSystem
+import SnapKit
 
-class CurrencyAmountView: UIView {
+public class CurrencyAmountView: UIView {
     private var labels: [UILabel]  {
         [amountLabel, currencyLabel]
     }
@@ -44,7 +44,7 @@ class CurrencyAmountView: UIView {
 }
 
 // MARK: Public
-extension CurrencyAmountView {
+public extension CurrencyAmountView {
     func configure(amount: String, currency: String) {
         amountLabel.text = amount
         currencyLabel.text = currency.uppercased()

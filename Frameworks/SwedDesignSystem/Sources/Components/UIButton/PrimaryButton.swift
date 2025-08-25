@@ -8,11 +8,10 @@
 
 import UIKit
 import DevToolsLocalization
-import SwedDesignSystem
 
-class PrimaryButton: RuntimeLocalizedButton {
+public class PrimaryButton: RuntimeLocalizedButton {
     // MARK: LifeCycle
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }

@@ -3,6 +3,7 @@ import SwedApplication
 import DevToolsNavigation
 import UIKit
 import SwiftUI
+import SwedDashboard
 
 class ScreenFactoryAssembly: Assembly {
     func assemble(container: Container) {
@@ -23,7 +24,14 @@ class ScreenFactoryAssembly: Assembly {
         }
         // MARK: Dashboard
         container.register(OverviewScreenFactory.self) { resolver in
-            DefaultDashboardScreenFactory()
+            DefaultDashboardScreenFactory(
+                di: Dependencies(
+                    getRemoteOffersUseCase: Composition.resolve(),
+                    trackCachedOffersUseCase: Composition.resolve(),
+                    getRemoteAccountsUseCase: Composition.resolve(),
+                    trackCachedAccountsUseCase: Composition.resolve()
+                )
+            )
         }
         // MARK: Language selection
         container.register(LanguageSelectionScreenFactory.self) { resolver in

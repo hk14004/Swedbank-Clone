@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 import SwedDesignSystem
 
 extension OverviewScreenView {
@@ -22,7 +23,7 @@ extension OverviewScreenView {
         }()
         private lazy var ibanLabel: UILabel = {
            let view = UILabel()
-            view.textColor = AppColors.text3.color
+            view.textColor = SwedDesignSystem.SwedDesignSystemAsset.Colors.text3.color
             view.font = AppTypography.body.scaledFont
             return view
         }()

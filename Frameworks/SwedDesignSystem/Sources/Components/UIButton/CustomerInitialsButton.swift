@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import SwedDesignSystem
 
-class CustomerInitialsButton: UIButton {
+public class CustomerInitialsButton: UIButton {
     // MARK: Properties
     private var profileIconView = CustomerInitialsView()
 
@@ -49,7 +48,7 @@ class CustomerInitialsButton: UIButton {
         profileIconView.isUserInteractionEnabled = false
     }
     
-    func configure(text: String) {
+    public func configure(text: String) {
         setTitle(text, for: .normal)
         profileIconView.configure(text: text)
     }

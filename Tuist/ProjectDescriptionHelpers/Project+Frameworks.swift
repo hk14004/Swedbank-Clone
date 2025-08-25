@@ -17,12 +17,19 @@ public extension Project {
         case SwedDesignSystem
         case SwedData
         case SwedPersistance
+        // Features
+        case SwedDashboard
     }
 }
 
 public extension Project.Framework {
     func getPath() -> Path {
-        "\(Project.frameworkDir + "/" + rawValue)"
+        switch self {
+        case .SwedDashboard:
+            "\(Project.frameworkDir + "/" + "Features" + "/" + rawValue)"
+        default:
+            "\(Project.frameworkDir + "/" + rawValue)"
+        }
     }
     
     func getTestTargetName() -> String {
