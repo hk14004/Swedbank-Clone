@@ -10,12 +10,15 @@ import Combine
 import UIKit
 import SwedApplication
 
-protocol OfferDetailsScreenFactory {
+public protocol OfferDetailsScreenFactory {
     func make(offer: Offer) -> OfferDetailsScreenVC
 }
 
-class DefaultOfferDetailsScreenFactory: OfferDetailsScreenFactory {
-    func make(offer: Offer) -> OfferDetailsScreenVC {
+public class DefaultOfferDetailsScreenFactory: OfferDetailsScreenFactory {
+    
+    public init() {}
+    
+    public func make(offer: Offer) -> OfferDetailsScreenVC {
         // Optionally get cached offer by id instead of passing around
         let vm = DefaultOfferDetailsScreenVM(offer: offer)
         let vc = OfferDetailsScreenVC(viewModel: vm)

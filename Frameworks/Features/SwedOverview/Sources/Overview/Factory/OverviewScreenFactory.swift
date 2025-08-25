@@ -37,6 +37,7 @@ public class DefaultDashboardScreenFactory: OverviewScreenFactory {
         let vc = OverviewScreenVC(viewModel: vm)
         let router = DefaultOverviewScreenRouter(
             viewController: vc,
+            offerDetailsScreenFactory: di.offerDetailsScreenFactory,
             onLaunchProfileIntent: onLaunchProfileIntent
         )
         vm.router = router

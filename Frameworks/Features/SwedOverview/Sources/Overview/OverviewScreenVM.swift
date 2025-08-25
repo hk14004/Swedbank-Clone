@@ -172,7 +172,7 @@ public extension DefaultOverviewScreenVM {
                         offer: offer,
                         didTap: { [weak self] in
                             // Optionally handle input from cell model first if its needed
-//                            self?.router.routeToOfferDetails(offer: offer)
+                            self?.router.routeToOfferDetails(offer: offer)
                         }
                     )
                 )

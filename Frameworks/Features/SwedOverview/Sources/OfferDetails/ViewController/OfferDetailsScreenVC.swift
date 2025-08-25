@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-class OfferDetailsScreenVC: UIHostingController<AnyView> {
+public class OfferDetailsScreenVC: UIHostingController<AnyView> {
     init(viewModel: some OfferDetailsScreenVM) {
         super.init(rootView: AnyView(OfferDetailsScreenView(viewModel: viewModel)))
         title = AppStrings.Screen.OfferDetails.title

@@ -12,7 +12,7 @@ import SwedApplication
 import DevToolsNavigation
 
 //public protocol OverviewScreenRouter: ToProfileScreenRouting, ToOfferDetailsRouting, ToErrorRouting, ToSimpleLoginScreenRouting {}
-public protocol OverviewScreenRouter: ToErrorRouting {
+public protocol OverviewScreenRouter: ToErrorRouting, ToOfferDetailsRouting {
     func launchProfileIntent()
 }
 
@@ -37,24 +37,24 @@ public extension ToOverviewScreenRouting where Self: UIKitRouter & HasOverviewFa
     }
 }
 
-class DefaultOverviewScreenRouter: OverviewScreenRouter, UIKitRouter {
+class DefaultOverviewScreenRouter: OverviewScreenRouter, UIKitRouter, HasOfferDetailsScreenFactory {
+    var offerDetailsScreenFactory: any OfferDetailsScreenFactory
+    
     func routeToOkeyErrorAlert(_ error: any Error, onDismiss: (() -> Void)?) {
         
     }
-    
-    func routeToOfferDetails(offer: Offer) {
-        
-    }
-    
+
     weak var viewController: UIViewController?
     private let onLaunchProfileIntent: () -> Void
     
     init(
         viewController: UIViewController,
+        offerDetailsScreenFactory: OfferDetailsScreenFactory,
         onLaunchProfileIntent: @escaping () -> Void
     ) {
         self.viewController = viewController
         self.onLaunchProfileIntent = onLaunchProfileIntent
+        self.offerDetailsScreenFactory = offerDetailsScreenFactory
     }
     
     func launchProfileIntent() {

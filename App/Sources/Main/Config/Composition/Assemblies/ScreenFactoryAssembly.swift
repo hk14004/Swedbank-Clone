@@ -29,7 +29,8 @@ class ScreenFactoryAssembly: Assembly {
                     getRemoteOffersUseCase: Composition.resolve(),
                     trackCachedOffersUseCase: Composition.resolve(),
                     getRemoteAccountsUseCase: Composition.resolve(),
-                    trackCachedAccountsUseCase: Composition.resolve()
+                    trackCachedAccountsUseCase: Composition.resolve(),
+                    offerDetailsScreenFactory: Composition.resolve()
                 )
             )
         }

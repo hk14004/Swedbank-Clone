@@ -9,10 +9,14 @@
 import DevToolsNavigation
 import SwedApplication
 
-extension ToOfferDetailsRouting where Self: UIKitRouter {
+
+public protocol HasOfferDetailsScreenFactory {
+    var offerDetailsScreenFactory: OfferDetailsScreenFactory { get }
+}
+
+extension ToOfferDetailsRouting where Self: UIKitRouter & HasOfferDetailsScreenFactory {
     func routeToOfferDetails(offer: Offer) {
-        let factory: OfferDetailsScreenFactory = Composition.resolve()
-        let vc = factory.make(offer: offer)
+        let vc = offerDetailsScreenFactory.make(offer: offer)
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }
