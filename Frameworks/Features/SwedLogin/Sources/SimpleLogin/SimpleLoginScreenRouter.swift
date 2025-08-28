@@ -14,6 +14,6 @@ protocol SimpleLoginScreenRouter: ToErrorRouting {
     func onLoginCompleted()
 }
 
-protocol ToSimpleLoginScreenRouting {
+public protocol ToSimpleLoginScreenRouting {
     func routeToSimpleLoginScreen(params: SimpleLoginScreenFactoryParams)
 }

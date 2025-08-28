@@ -8,8 +8,17 @@
 
 import UIKit
 import DevToolsNavigation
+import SwedLogin
 
 class DefaultSplashScreenRouter: SplashScreenRouter, UIKitRouter {
+    func routeToOkeyErrorAlert(_ error: any Error, onDismiss: (() -> Void)?) {
+        
+    }
+    
+    func routeToSimpleLoginScreen(params: SimpleLoginScreenFactoryParams) {
+        
+    }
+    
     weak var viewController: UIViewController?
     
     init(viewController: UIViewController) {

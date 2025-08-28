@@ -16,6 +16,10 @@ public protocol SimpleLoginScreenFactory: UIKitScreenFactory {}
 
 public struct SimpleLoginScreenFactoryParams {
     var onLoginCompletedEvent: PassthroughSubject<Void, Never>
+    
+    public init(onLoginCompletedEvent: PassthroughSubject<Void, Never>) {
+        self.onLoginCompletedEvent = onLoginCompletedEvent
+    }
 }
 
 public class DefaultSimpleLoginScreenFactory: SimpleLoginScreenFactory {

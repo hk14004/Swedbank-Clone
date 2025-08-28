@@ -49,7 +49,7 @@ public class DefaultSplashVM: SplashScreenVM {
 public extension DefaultSplashVM {
     func onViewDidLoad() {
         guard let customer = getLastCustomerUseCase.use() else {
-            router?.routeToSimpleLoginScreen()
+            router?.routeToSimpleLoginScreen(params: .init(onLoginCompletedEvent: .init()))
             return
         }
         fakeAlreadyLoggedInUseCase.use()

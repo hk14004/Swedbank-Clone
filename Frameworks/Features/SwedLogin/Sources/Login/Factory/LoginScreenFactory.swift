@@ -12,14 +12,19 @@ import SwedApplication
 import DevToolsNavigation
 import Combine
 
-protocol LoginScreenFactory: UIKitScreenFactory where Params == LoginScreenFactoryParams {}
+public protocol LoginScreenFactory: UIKitScreenFactory where Params == LoginScreenFactoryParams {}
 
 public struct LoginScreenFactoryParams {
     let customer: Customer
     let didLoginPublisher: PassthroughSubject<Void, Never>
+    
+    public init(customer: Customer, didLoginPublisher: PassthroughSubject<Void, Never>) {
+        self.customer = customer
+        self.didLoginPublisher = didLoginPublisher
+    }
 }
 
-class DefaultLoginScreenFactory: LoginScreenFactory {
+public class DefaultLoginScreenFactory: LoginScreenFactory {
     
     let di: Dependencies
     
@@ -27,7 +32,7 @@ class DefaultLoginScreenFactory: LoginScreenFactory {
         self.di = di
     }
     
-    func make(params: LoginScreenFactoryParams) -> UIViewController {
+    public func make(params: LoginScreenFactoryParams) -> UIViewController {
         let vm = DefaultLoginScreenVM(
             customer: params.customer,
             pinAuthenticateUseCase: di.pinAuthenticateUseCase,

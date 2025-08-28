@@ -9,6 +9,7 @@
 import Foundation
 import SwedApplication
 import DevToolsNavigation
+import SwedLogin
 
 public protocol SplashScreenRouter: ToRootTabbarScreenRouting, ToErrorRouting, ToSimpleLoginScreenRouting {
     func routeToOnboarding()

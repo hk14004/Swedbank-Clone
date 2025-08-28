@@ -11,6 +11,7 @@ import Combine
 import SwedApplication
 import DevToolsLocalization
 import SwedOverview
+import SwedLogin
 
 extension RootTabbarScreenVC {
     func makeTabs(tabs: [RootTab]) -> [UINavigationController] {
@@ -30,8 +31,8 @@ extension RootTabbarScreenVC {
     
     func makeLockedTab() -> UIViewController {
         let didUnlockDashboardPublisher = PassthroughSubject<Void, Never>()
-        let factory: LoginScreenFactory = Composition.resolve()
-        let vc = factory.make(customer: viewModel.customer, didLoginPublisher: didUnlockDashboardPublisher)
+        let factory: any LoginScreenFactory = Composition.resolve()
+        let vc = factory.make(params: .init(customer: viewModel.customer, didLoginPublisher: didUnlockDashboardPublisher))
         didUnlockDashboardPublisher
             .receiveOnMainThread()
             .sink { [weak self] customer in
