@@ -10,14 +10,15 @@ import UIKit
 import DevToolsLocalization
 import Combine
 
-public class ProfileScreenVC: RuntimeLocalizedUIViewController {
-    
+class ProfileScreenVC: RuntimeLocalizedUIViewController {
+    // MARK: Properties
     lazy var rootView = ProfileScreenView.RootView()
     let viewModel: ProfileScreenVM
     lazy var dataSource = makeDataSource()
     private var cancelBag = Set<AnyCancellable>()
     private var initialRender = true
     
+    // MARK: LifeCycle
     init(viewModel: ProfileScreenVM) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -38,6 +39,7 @@ public class ProfileScreenVC: RuntimeLocalizedUIViewController {
     }
 }
 
+// MARK: Methods
 extension ProfileScreenVC {
     private func setup() {
         runtimeLocalizedTitleKey = AppStrings.Screen.User.titleKey

@@ -8,20 +8,20 @@
 
 import Foundation
 import SwedApplication
+import DevToolsNavigation
+import UIKit
 
-public protocol ProfileScreenFactory {
-    func make(customer: Customer) -> ProfileScreenVC
-}
+public protocol ProfileScreenFactory: UIKitScreenFactory where Params == Customer {}
+
 
 public class DefaultProfileScreenFactory: ProfileScreenFactory {
-    
     let di: Dependencies
     
     public init(di: Dependencies) {
         self.di = di
     }
     
-    public func make(customer: Customer) -> ProfileScreenVC {
+    public func make(params: Customer) -> UIViewController {
         let vm = DefaultProfileScreenVM(logoutUseCase: di.logoutUseCase)
         let vc = ProfileScreenVC(viewModel: vm)
         let router = DefaultProfileScreenRouter(viewController: vc)

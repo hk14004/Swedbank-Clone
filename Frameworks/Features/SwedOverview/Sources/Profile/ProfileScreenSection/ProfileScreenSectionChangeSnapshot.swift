@@ -8,7 +8,7 @@
 
 import DevToolsCore
 
-public struct ProfileScreenSectionChangeSnapshot {
-    public let sections: [ProfileScreenSection]
-    public let changes: DevHashChangeSet
+struct ProfileScreenSectionChangeSnapshot {
+    let sections: [ProfileScreenSection]
+    let changes: DevHashChangeSet
 }

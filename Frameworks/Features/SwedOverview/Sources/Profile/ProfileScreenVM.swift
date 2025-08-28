@@ -11,20 +11,20 @@ import Combine
 import DevToolsCore
 import SwedApplication
 
-public protocol ProfileScreenVMInput {
+protocol ProfileScreenVMInput {
     func viewDidLoad()
     func onLogoutTapped()
 }
 
-public protocol ProfileScreenVMOutput {
+protocol ProfileScreenVMOutput {
     var router: ProfileScreenRouter! { get set }
     var sections: [ProfileScreenSection] { get }
     var sectionsChangePublisher: PassthroughSubject<ProfileScreenSectionChangeSnapshot, Never> { get }
 }
 
-public protocol ProfileScreenVM: ProfileScreenVMInput, ProfileScreenVMOutput {}
+protocol ProfileScreenVM: ProfileScreenVMInput, ProfileScreenVMOutput {}
 
-public class DefaultProfileScreenVM: ProfileScreenVM {
+class DefaultProfileScreenVM: ProfileScreenVM {
     public var router: ProfileScreenRouter!
     public var sections: [ProfileScreenSection]
     public let sectionsChangePublisher: PassthroughSubject<ProfileScreenSectionChangeSnapshot, Never>
@@ -38,7 +38,7 @@ public class DefaultProfileScreenVM: ProfileScreenVM {
     }
 }
 
-public extension DefaultProfileScreenVM {
+extension DefaultProfileScreenVM {
     func viewDidLoad() {
         let new: [ProfileScreenSection] = [
             .init(id: .privatePerson, title: "", cells: [

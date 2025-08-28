@@ -11,12 +11,12 @@ import SwedApplication
 
 
 public protocol HasOfferDetailsScreenFactory {
-    var offerDetailsScreenFactory: OfferDetailsScreenFactory { get }
+    var offerDetailsScreenFactory: any OfferDetailsScreenFactory { get }
 }
 
 extension ToOfferDetailsRouting where Self: UIKitRouter & HasOfferDetailsScreenFactory {
-    func routeToOfferDetails(offer: Offer) {
-        let vc = offerDetailsScreenFactory.make(offer: offer)
+    func routeToOfferDetails(params: Offer) {
+        let vc = offerDetailsScreenFactory.make(params: params)
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }

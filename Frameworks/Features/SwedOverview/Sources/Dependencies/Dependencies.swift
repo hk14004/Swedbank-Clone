@@ -16,7 +16,7 @@ public struct Dependencies {
     public let trackCachedOffersUseCase: TrackCachedOffersUseCase
     public let getRemoteAccountsUseCase: GetRemoteAccountsUseCase
     public let trackCachedAccountsUseCase: TrackCachedAccountsUseCase
-    public let offerDetailsScreenFactory: OfferDetailsScreenFactory
+    public let offerDetailsScreenFactory: any OfferDetailsScreenFactory
     public let logoutUseCase: LogoutUseCase
     
     public init(
@@ -24,7 +24,7 @@ public struct Dependencies {
         trackCachedOffersUseCase: TrackCachedOffersUseCase,
         getRemoteAccountsUseCase: GetRemoteAccountsUseCase,
         trackCachedAccountsUseCase: TrackCachedAccountsUseCase,
-        offerDetailsScreenFactory: OfferDetailsScreenFactory,
+        offerDetailsScreenFactory: any OfferDetailsScreenFactory,
         logoutUseCase: LogoutUseCase
     ) {
         self.getRemoteOffersUseCase = getRemoteOffersUseCase

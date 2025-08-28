@@ -15,7 +15,6 @@ class DefaultProfileScreenRouter: ProfileScreenRouter, UIKitRouter {
         print("upsie")
     }
     
-    
     weak var viewController: UIViewController?
     
     init(viewController: UIViewController) {
@@ -24,11 +23,11 @@ class DefaultProfileScreenRouter: ProfileScreenRouter, UIKitRouter {
 }
 
 protocol HasProfileScreenFactory {
-    var profileScreenFactory: ProfileScreenFactory { get }
+    var profileScreenFactory: any ProfileScreenFactory { get }
 }
 extension ToProfileScreenRouting where Self: UIKitRouter & HasProfileScreenFactory {
-    func routeToProfileScreen(customer: Customer) {
-        let vc = profileScreenFactory.make(customer: customer)
+    func routeToProfileScreen(params: Customer) {
+        let vc = profileScreenFactory.make(params: params)
         let navVC = UINavigationController(rootViewController: vc)
         viewController?.present(navVC, animated: true)
     }

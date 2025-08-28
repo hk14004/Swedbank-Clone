@@ -9,18 +9,16 @@
 import Combine
 import UIKit
 import SwedApplication
+import DevToolsNavigation
 
-public protocol OfferDetailsScreenFactory {
-    func make(offer: Offer) -> OfferDetailsScreenVC
-}
+public protocol OfferDetailsScreenFactory: UIKitScreenFactory where Params == Offer {}
 
 public class DefaultOfferDetailsScreenFactory: OfferDetailsScreenFactory {
     
     public init() {}
     
-    public func make(offer: Offer) -> OfferDetailsScreenVC {
-        // Optionally get cached offer by id instead of passing around
-        let vm = DefaultOfferDetailsScreenVM(offer: offer)
+    public func make(params: Offer) -> UIViewController {
+        let vm = DefaultOfferDetailsScreenVM(offer: params)
         let vc = OfferDetailsScreenVC(viewModel: vm)
         return vc
     }
