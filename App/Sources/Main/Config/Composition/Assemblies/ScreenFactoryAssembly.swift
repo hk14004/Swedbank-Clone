@@ -23,7 +23,7 @@ class ScreenFactoryAssembly: Assembly {
             DefaultRootTabbarScreenFactory()
         }
         // MARK: Dashboard
-        container.register(OverviewScreenFactory.self) { resolver in
+        container.register((any OverviewScreenFactory).self) { resolver in
             DefaultDashboardScreenFactory(
                 di: Dependencies(
                     getRemoteOffersUseCase: Composition.resolve(),

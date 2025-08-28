@@ -10,7 +10,7 @@ import DevToolsUI
 import DevToolsCore
 import Foundation
 
-public struct OverviewScreenExpensesCellViewModel: DevTableSectionCellModel {
+struct OverviewScreenExpensesCellViewModel: DevTableSectionCellModel {
     public var id: String
     public var detailsUrl: String
     public var spentAmount: Money
@@ -18,7 +18,7 @@ public struct OverviewScreenExpensesCellViewModel: DevTableSectionCellModel {
     // TOOD: Add chart data
 }
 
-public extension OverviewScreenExpensesCellViewModel {
+extension OverviewScreenExpensesCellViewModel {
     var contentHash: Int {
         var hasher = Hasher()
         hasher.combine(id)
@@ -29,7 +29,7 @@ public extension OverviewScreenExpensesCellViewModel {
     }
 }
 
-public extension OverviewScreenExpensesCellViewModel {
+extension OverviewScreenExpensesCellViewModel {
     static func == (lhs: OverviewScreenExpensesCellViewModel, rhs: OverviewScreenExpensesCellViewModel) -> Bool {
         lhs.id == rhs.id
     }

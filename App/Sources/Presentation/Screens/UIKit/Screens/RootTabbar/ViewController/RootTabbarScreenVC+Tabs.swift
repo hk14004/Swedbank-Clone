@@ -51,8 +51,8 @@ extension RootTabbarScreenVC {
         
         let vc: UIViewController = {
             if !locked {
-                let factory: OverviewScreenFactory = Composition.resolve()
-                return factory.make(customer: viewModel.customer, onLaunchProfileIntent: { print("GO") })
+                let factory: any OverviewScreenFactory = Composition.resolve()
+                return factory.make(params: .init(customer: viewModel.customer, onLaunchProfileIntent: { print("GO") }))
             } else {
                 return makeLockedTab()
             }

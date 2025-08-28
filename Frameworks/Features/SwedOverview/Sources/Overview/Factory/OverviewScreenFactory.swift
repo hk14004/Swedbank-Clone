@@ -8,12 +8,19 @@
 
 import Foundation
 import SwedApplication
+import UIKit
+import DevToolsNavigation
 
-public protocol OverviewScreenFactory {
-    func make(
-        customer: Customer,
-        onLaunchProfileIntent: @escaping () -> Void
-    ) -> OverviewScreenVC
+public protocol OverviewScreenFactory: UIKitScreenFactory where Params == OverviewScreenFactoryParams {}
+
+public struct OverviewScreenFactoryParams {
+    public let customer: Customer
+    public let onLaunchProfileIntent: () -> Void
+    
+    public init(customer: Customer, onLaunchProfileIntent: @escaping () -> Void) {
+        self.customer = customer
+        self.onLaunchProfileIntent = onLaunchProfileIntent
+    }
 }
 
 public class DefaultDashboardScreenFactory: OverviewScreenFactory {
@@ -23,12 +30,9 @@ public class DefaultDashboardScreenFactory: OverviewScreenFactory {
         self.di = di
     }
     
-    public func make(
-        customer: Customer,
-        onLaunchProfileIntent: @escaping () -> Void
-    ) -> OverviewScreenVC {
+    public func make(params: OverviewScreenFactoryParams) -> UIViewController {
         let vm = DefaultOverviewScreenVM(
-            customer: customer,
+            customer: params.customer,
             getRemoteOffersUseCase: di.getRemoteOffersUseCase,
             trackCachedOffersUseCase: di.trackCachedOffersUseCase,
             getRemoteAccountsUseCase: di.getRemoteAccountsUseCase,
@@ -38,7 +42,7 @@ public class DefaultDashboardScreenFactory: OverviewScreenFactory {
         let router = DefaultOverviewScreenRouter(
             viewController: vc,
             offerDetailsScreenFactory: di.offerDetailsScreenFactory,
-            onLaunchProfileIntent: onLaunchProfileIntent
+            onLaunchProfileIntent: params.onLaunchProfileIntent
         )
         vm.router = router
         return vc

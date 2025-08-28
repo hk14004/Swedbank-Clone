@@ -11,7 +11,7 @@ import DevToolsCore
 import Foundation
 import SwedApplication
 
-public struct OverviewScreenOfferCellViewModel: DevTableSectionCellModel {
+struct OverviewScreenOfferCellViewModel: DevTableSectionCellModel {
     public var offerID: String
     public var offerText: String
     public var offerUrl: String
@@ -25,7 +25,7 @@ public struct OverviewScreenOfferCellViewModel: DevTableSectionCellModel {
     }
 }
 
-public extension OverviewScreenOfferCellViewModel {
+extension OverviewScreenOfferCellViewModel {
     var contentHash: Int {
         var hasher = Hasher()
         hasher.combine(offerID)
@@ -35,7 +35,7 @@ public extension OverviewScreenOfferCellViewModel {
     }
 }
 
-public extension OverviewScreenOfferCellViewModel {
+extension OverviewScreenOfferCellViewModel {
     static func == (lhs: OverviewScreenOfferCellViewModel, rhs: OverviewScreenOfferCellViewModel) -> Bool {
         lhs.offerID == rhs.offerID
     }

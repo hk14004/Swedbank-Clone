@@ -10,22 +10,22 @@ import Combine
 import DevToolsCore
 import SwedApplication
 
-public protocol OverviewScreenVMInput {
+protocol OverviewScreenVMInput {
     func didTapProfile()
     func didTapNotifications()
     func didPullToRefresh()
 }
 
-public protocol OverviewScreenVMOutput {
+protocol OverviewScreenVMOutput {
     var tableSnapshot: CurrentValueSubject<OverviewScreenTableSnapshot, Never> { get }
     var isRefreshing: CurrentValueSubject<Bool, Never> { get }
     var router: OverviewScreenRouter! { get }
     var customer: Customer { get }
 }
 
-public protocol OverviewScreenVM: OverviewScreenVMInput, OverviewScreenVMOutput {}
+protocol OverviewScreenVM: OverviewScreenVMInput, OverviewScreenVMOutput {}
 
-public class DefaultOverviewScreenVM: OverviewScreenVM {
+class DefaultOverviewScreenVM: OverviewScreenVM {
     // MARK: Properties
     public var isRefreshing = CurrentValueSubject<Bool, Never>(false)
     public var tableSnapshot: CurrentValueSubject<OverviewScreenTableSnapshot, Never>
@@ -56,7 +56,7 @@ public class DefaultOverviewScreenVM: OverviewScreenVM {
 }
 
 // MARK: Public methods
-public extension DefaultOverviewScreenVM {
+extension DefaultOverviewScreenVM {
     func didPullToRefresh() {
         guard !isRefreshing.value else { return }
         updateWithRemoteData()
@@ -70,7 +70,7 @@ public extension DefaultOverviewScreenVM {
 }
 
 // MARK: Private methods
-public extension DefaultOverviewScreenVM {
+extension DefaultOverviewScreenVM {
     private func setup() {
         populateTableWithMockedData()
         populateTableWithCachedOffers()

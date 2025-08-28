@@ -13,7 +13,7 @@ import DevToolsUI
 import DevToolsLocalization
 import SwedDesignSystem
 
-public class OverviewScreenVC: RuntimeLocalizedUIViewController {
+class OverviewScreenVC: RuntimeLocalizedUIViewController {
     // MARK: Properties
     let viewModel: OverviewScreenVM
     lazy var rootView = OverviewScreenView.RootView()

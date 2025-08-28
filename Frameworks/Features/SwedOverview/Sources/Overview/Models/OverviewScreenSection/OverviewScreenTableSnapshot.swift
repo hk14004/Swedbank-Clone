@@ -8,7 +8,7 @@
 
 import DevToolsCore
 
-public struct OverviewScreenTableSnapshot {
-    public let sections: [OverviewScreenSection]
-    public let changes: DevHashChangeSet
+struct OverviewScreenTableSnapshot {
+    let sections: [OverviewScreenSection]
+    let changes: DevHashChangeSet
 }

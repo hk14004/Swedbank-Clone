@@ -9,13 +9,13 @@
 import DevToolsUI
 import DevToolsCore
 
-public struct OverviewScreenBalanceCellViewModel: DevTableSectionCellModel {
+struct OverviewScreenBalanceCellViewModel: DevTableSectionCellModel {
     public var iban: String
     public var amount: Money
     public var currencyCode: String
 }
 
-public extension OverviewScreenBalanceCellViewModel {
+extension OverviewScreenBalanceCellViewModel {
     var contentHash: Int {
         var hasher = Hasher()
         hasher.combine(iban)
@@ -25,7 +25,7 @@ public extension OverviewScreenBalanceCellViewModel {
     }
 }
 
-public extension OverviewScreenBalanceCellViewModel {
+extension OverviewScreenBalanceCellViewModel {
     static func == (lhs: OverviewScreenBalanceCellViewModel, rhs: OverviewScreenBalanceCellViewModel) -> Bool {
         lhs.iban == rhs.iban
     }

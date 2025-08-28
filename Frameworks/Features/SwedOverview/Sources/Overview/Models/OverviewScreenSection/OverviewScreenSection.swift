@@ -10,8 +10,8 @@ import Foundation
 import DevToolsUI
 import DevToolsCore
 
-public struct OverviewScreenSection: DevTableSection {
-    public enum SectionID: String, CaseIterable {
+struct OverviewScreenSection: DevTableSection {
+    enum SectionID: String, CaseIterable {
         case accounts
         case expenses
         case offers
@@ -28,17 +28,17 @@ public struct OverviewScreenSection: DevTableSection {
         }
     }
     
-    public enum Cell: DevTableSectionCell {
+    enum Cell: DevTableSectionCell {
         case cardBalance(OverviewScreenBalanceCellViewModel)
         case offer(OverviewScreenOfferCellViewModel)
         case expenses(OverviewScreenExpensesCellViewModel)
     }
     
-    public let id: SectionID
-    public var title: String
-    public var cells: [Cell]
+    let id: SectionID
+    var title: String
+    var cells: [Cell]
     
-    public init(id: SectionID, title: String = "", cells: [Cell]) {
+    init(id: SectionID, title: String = "", cells: [Cell]) {
         self.id = id
         self.title = title
         self.cells = cells

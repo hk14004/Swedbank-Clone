@@ -12,27 +12,21 @@ import SwedApplication
 import DevToolsNavigation
 
 //public protocol OverviewScreenRouter: ToProfileScreenRouting, ToOfferDetailsRouting, ToErrorRouting, ToSimpleLoginScreenRouting {}
-public protocol OverviewScreenRouter: ToErrorRouting, ToOfferDetailsRouting {
+protocol OverviewScreenRouter: ToErrorRouting, ToOfferDetailsRouting {
     func launchProfileIntent()
 }
 
-public protocol ToOverviewScreenRouting {
-    func routeToOverviewScreen(customer: Customer)
+protocol ToOverviewScreenRouting {
+    func routeToOverviewScreen(params: OverviewScreenFactoryParams)
 }
 
-public protocol HasOverviewFactory {
-    var overviewScreenFactory: OverviewScreenFactory { get }
+protocol HasOverviewFactory {
+    var overviewScreenFactory: any OverviewScreenFactory { get }
 }
 
-public extension ToOverviewScreenRouting where Self: UIKitRouter & HasOverviewFactory {
-    func routeToOverviewScreen(
-        customer: Customer,
-        onLaunchProfileIntent: @escaping () -> Void
-    ) {
-        let vc = overviewScreenFactory.make(
-            customer: customer,
-            onLaunchProfileIntent: onLaunchProfileIntent
-        )
+extension ToOverviewScreenRouting where Self: UIKitRouter & HasOverviewFactory {
+    func routeToOverviewScreen(params: OverviewScreenFactoryParams) {
+        let vc = overviewScreenFactory.make(params: params)
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }
