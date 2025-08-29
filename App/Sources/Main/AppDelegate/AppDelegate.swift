@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Application
+import SwedApplication
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Properties

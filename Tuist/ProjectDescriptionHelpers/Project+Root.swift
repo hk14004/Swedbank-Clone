@@ -13,5 +13,6 @@ extension Project {
         public static let name = "SwedbankApp"
         public static let orgName = "Swedbank"
         public static let targetVersion = "17.0"
+        public static let bundleIdPrefix = "baltic.swed.mob"
     }
 }

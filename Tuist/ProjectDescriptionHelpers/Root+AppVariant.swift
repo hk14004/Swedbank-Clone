@@ -52,16 +52,48 @@ extension Project.Root.AppVariant {
             scripts: [],
             dependencies: [
                 .project(
-                    target: Project.Framework.Enterprise.rawValue,
-                    path: Project.Framework.Enterprise.getPath()
+                    target: Project.Framework.SwedEnterprise.rawValue,
+                    path: Project.Framework.SwedEnterprise.getPath()
                 ),
                 .project(
-                    target: Project.Framework.Application.rawValue,
-                    path: Project.Framework.Application.getPath()
+                    target: Project.Framework.SwedApplication.rawValue,
+                    path: Project.Framework.SwedApplication.getPath()
                 ),
                 .project(
-                    target: Project.Framework.Localization.rawValue,
-                    path: Project.Framework.Localization.getPath()
+                    target: Project.Framework.SwedPersistance.rawValue,
+                    path: Project.Framework.SwedPersistance.getPath()
+                ),
+                .project(
+                    target: Project.Framework.SwedData.rawValue,
+                    path: Project.Framework.SwedData.getPath()
+                ),
+                .project(
+                    target: Project.Framework.SwedNetwork.rawValue,
+                    path: Project.Framework.SwedNetwork.getPath()
+                ),
+                .project(
+                    target: Project.Framework.SwedDesignSystem.rawValue,
+                    path: Project.Framework.SwedDesignSystem.getPath()
+                ),
+                .project(
+                    target: Project.Framework.SwedLocalization.rawValue,
+                    path: Project.Framework.SwedLocalization.getPath()
+                ),
+                .project(
+                    target: Project.Framework.SwedOverview.rawValue,
+                    path: Project.Framework.SwedOverview.getPath()
+                ),
+                .project(
+                    target: Project.Framework.SwedLogin.rawValue,
+                    path: Project.Framework.SwedLogin.getPath()
+                ),
+                .project(
+                    target: Project.Framework.SwedContacts.rawValue,
+                    path: Project.Framework.SwedContacts.getPath()
+                ),
+                .project(
+                    target: Project.Framework.SwedUtils.rawValue,
+                    path: Project.Framework.SwedUtils.getPath()
                 ),
                 .external(name: Project.Dependencies.SwiftyUserDefaults.rawValue),
                 .external(name: Project.Dependencies.SnapKit.rawValue),

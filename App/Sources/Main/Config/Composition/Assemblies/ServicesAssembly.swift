@@ -1,8 +1,9 @@
 import Foundation
 import Swinject
 import DevToolsCore
-import Application
-import Enterprise
+import SwedApplication
+import SwedEnterprise
+import SwedNetwork
 
 class ServicesAssembly: Assembly {
     func assemble(container: Container) {

@@ -1,7 +1,7 @@
 import Foundation
 import Swinject
 import DevToolsCore
-import Application
+import SwedApplication
 
 class UseCaseAssembly: Assembly {
     func assemble(container: Container) {

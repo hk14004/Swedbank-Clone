@@ -2,7 +2,8 @@ import Foundation
 import Swinject
 import DevToolsCore
 import DevToolsNetworking
-import Application
+import SwedApplication
+import SwedNetwork
 
 class NetworkClientAssembly: Assembly {
     func assemble(container: Container) {
@@ -22,15 +23,17 @@ class NetworkClientAssembly: Assembly {
             DefaultNetworkClientSessionExpiredPlugin(logoutUseCase: Composition.resolve())
         }
         .inObjectScope(.container)
+        container.register((any NetworkClientCredentialsPlugin).self) { resolver in
+            DefaultNetworkClientCredentialsPlugin(credentialsStore: Composition.resolve())
+        }
+        .inObjectScope(.container)
         container.register(SwedNetworkClient.self) { resolver in
             SwedNetworkClient(
                 dataProvider: Composition.resolve(),
                 requestFactory: Composition.resolve(),
-                credentialStore: Composition.resolve(),
                 reachabilityNotifier: Composition.resolve(),
-                sessionExpiredPluginGetter: {
-                    Composition.resolve()
-                }
+                credentialsPlugin: { Composition.resolve() },
+                sessionExpiredPlugin: { Composition.resolve() }
             )
         }
         .inObjectScope(.container)

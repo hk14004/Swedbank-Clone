@@ -1,8 +1,11 @@
 import Swinject
-import Application
+import SwedApplication
 import DevToolsNavigation
 import UIKit
 import SwiftUI
+import SwedOverview
+import SwedLogin
+import SwedContacts
 
 class ScreenFactoryAssembly: Assembly {
     func assemble(container: Container) {
@@ -14,32 +17,61 @@ class ScreenFactoryAssembly: Assembly {
             DefaultSplashScreenFactory()
         }
         // MARK: Login
-        container.register(LoginScreenFactory.self) { resolver in
-            DefaultLoginScreenFactory()
+        container.register((any LoginScreenFactory).self) { resolver in
+            DefaultLoginScreenFactory(di: Dependencies(
+                simpleLoginUseCase: Composition.resolve(),
+                getCurrentCustomerUseCase: Composition.resolve(),
+                pinAuthenticateUseCase: Composition.resolve(),
+                getLastCustomerUseCase: Composition.resolve(),
+                biometryAuthenticateUseCase: Composition.resolve())
+            )
         }
         // MARK: Root tabbar
         container.register(RootTabbarScreenFactory.self) { resolver in
             DefaultRootTabbarScreenFactory()
         }
         // MARK: Dashboard
-        container.register(OverviewScreenFactory.self) { resolver in
-            DefaultDashboardScreenFactory()
+        container.register((any OverviewScreenFactory).self) { resolver in
+            DefaultDashboardScreenFactory(
+                di: Dependencies(
+                    getRemoteOffersUseCase: Composition.resolve(),
+                    trackCachedOffersUseCase: Composition.resolve(),
+                    getRemoteAccountsUseCase: Composition.resolve(),
+                    trackCachedAccountsUseCase: Composition.resolve(),
+                    offerDetailsScreenFactory: Composition.resolve(),
+                    logoutUseCase: Composition.resolve()
+                )
+            )
         }
         // MARK: Language selection
         container.register(LanguageSelectionScreenFactory.self) { resolver in
             DefaultLanguageSelectionScreenFactory()
         }
-        container.register(ProfileScreenFactory.self) { resolver in
-            DefaultProfileScreenFactory()
+        container.register((any ProfileScreenFactory).self) { resolver in
+            DefaultProfileScreenFactory(di: Dependencies(
+                getRemoteOffersUseCase: Composition.resolve(),
+                trackCachedOffersUseCase: Composition.resolve(),
+                getRemoteAccountsUseCase: Composition.resolve(),
+                trackCachedAccountsUseCase: Composition.resolve(),
+                offerDetailsScreenFactory: Composition.resolve(),
+                logoutUseCase: Composition.resolve()
+            ))
         }
         container.register(ContactsScreenFactory.self) { resolver in
             DefaultContactsScreenFactory()
         }
-        container.register(OfferDetailsScreenFactory.self) { resolver in
+        container.register((any OfferDetailsScreenFactory).self) { resolver in
             DefaultOfferDetailsScreenFactory()
         }
-        container.register(SimpleLoginScreenFactory.self) { resolver in
-            DefaultSimpleLoginScreenFactory()
+        container.register((any SimpleLoginScreenFactory).self) { resolver in
+            DefaultSimpleLoginScreenFactory(di: Dependencies(
+                simpleLoginUseCase: Composition.resolve(),
+                getCurrentCustomerUseCase: Composition.resolve(),
+                pinAuthenticateUseCase: Composition.resolve(),
+                getLastCustomerUseCase: Composition.resolve(),
+                biometryAuthenticateUseCase: Composition.resolve()
+            )
+            )
         }
     }
 }
