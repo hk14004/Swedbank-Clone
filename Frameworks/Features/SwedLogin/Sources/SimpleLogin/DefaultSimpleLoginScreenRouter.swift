@@ -12,24 +12,20 @@ import SwedApplication
 import Combine
 
 class DefaultSimpleLoginScreenRouter: SimpleLoginScreenRouter, UIKitRouter {
-    func routeToOkeyErrorAlert(_ error: any Error, onDismiss: (() -> Void)?) {
-        
-    }
-    
-    
+
     weak var viewController: UIViewController?
-    private var onLoginCompletedEvent: PassthroughSubject<Void, Never>
+    private var loginCompleted: PassthroughSubject<Void, Never>
 
     init(
         viewController: UIViewController,
-        onLoginCompletedEvent: PassthroughSubject<Void, Never>
+        loginCompleted: PassthroughSubject<Void, Never>
     ) {
         self.viewController = viewController
-        self.onLoginCompletedEvent = onLoginCompletedEvent
+        self.loginCompleted = loginCompleted
     }
     
-    func onLoginCompleted() {
-        onLoginCompletedEvent.send(())
-        onLoginCompletedEvent.send(completion: .finished)
+    func routeToLoginCompleted() {
+        loginCompleted.send(())
+        loginCompleted.send(completion: .finished)
     }
 }

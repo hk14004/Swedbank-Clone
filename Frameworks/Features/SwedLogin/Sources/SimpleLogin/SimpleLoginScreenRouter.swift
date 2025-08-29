@@ -12,7 +12,7 @@ import DevToolsNavigation
 import UIKit
 
 protocol SimpleLoginScreenRouter: ToErrorRouting {
-    func onLoginCompleted()
+    func routeToLoginCompleted()
 }
 
 public protocol ToSimpleLoginScreenRouting {

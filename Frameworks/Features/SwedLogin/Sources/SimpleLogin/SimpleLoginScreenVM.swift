@@ -32,18 +32,15 @@ class DefaultSimpleLoginScreenVM: SimpleLoginScreenVM {
     
     func login() {
         isLoading = true
-        
         simpleLoginUseCase.use(username: username, password: password)
             .receiveOnMainThread()
             .sink { [weak self] _ in
-                self?.isLoading = true
-                self?.router.onLoginCompleted()
+                self?.isLoading = false
+                self?.router.routeToLoginCompleted()
             } completionError: { [weak self] error in
                 self?.isLoading = false
                 self?.router.routeToOkeyErrorAlert(error, onDismiss: nil)
             }
             .store(in: &cancelBag)
-        
-
     }
 }

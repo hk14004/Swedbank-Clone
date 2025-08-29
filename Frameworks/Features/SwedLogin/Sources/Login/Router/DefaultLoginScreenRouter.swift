@@ -11,12 +11,9 @@ import Combine
 import SwedApplication
 import DevToolsNavigation
 import SwedLocalization
+import SwedUtils
 
 class DefaultLoginScreenRouter: UIKitRouter, LoginScreenRouter {
-    func routeToOkeyErrorAlert(_ error: any Error, onDismiss: (() -> Void)?) {
-        
-    }
-    
     weak var viewController: UIViewController?
     let didLoginPublisher: PassthroughSubject<Void, Never>
     
@@ -32,20 +29,3 @@ class DefaultLoginScreenRouter: UIKitRouter, LoginScreenRouter {
         didLoginPublisher.send()
     }
 }
-
-//import DevToolsCore
-//extension ToErrorRouting where Self: UIKitRouter  {
-//    func routeToOkeyErrorAlert(_ error: Error, onDismiss: (() -> Void)? = nil) {
-//        let alertViewController = UIAlertController(
-//            configuration: error.makeAlertConfiguration(
-//                buttons: [
-//                    AlertConfiguration.Button(
-//                        title: AppStrings.Globals.ok,
-//                        action: onDismiss ?? {}
-//                    )
-//                ]
-//            )
-//        )
-//        viewController?.present(alertViewController, animated: true)
-//    }
-//}

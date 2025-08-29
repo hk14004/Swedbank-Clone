@@ -15,10 +15,10 @@ import Combine
 public protocol SimpleLoginScreenFactory: UIKitScreenFactory where Params == SimpleLoginScreenFactoryParams {}
 
 public struct SimpleLoginScreenFactoryParams {
-    var onLoginCompletedEvent: PassthroughSubject<Void, Never>
+    var loginCompleted: PassthroughSubject<Void, Never>
     
     public init(loginCompleted: PassthroughSubject<Void, Never>) {
-        self.onLoginCompletedEvent = loginCompleted
+        self.loginCompleted = loginCompleted
     }
 }
 
@@ -36,7 +36,7 @@ public class DefaultSimpleLoginScreenFactory: SimpleLoginScreenFactory {
         let vc = SimpleLoginScreenVC(viewModel: vm)
         let router = DefaultSimpleLoginScreenRouter(
             viewController: vc,
-            onLoginCompletedEvent: params.onLoginCompletedEvent
+            loginCompleted: params.loginCompleted
         )
         vm.router = router
         return vc

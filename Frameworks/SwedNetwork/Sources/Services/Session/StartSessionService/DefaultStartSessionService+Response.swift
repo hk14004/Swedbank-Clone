@@ -13,13 +13,13 @@ extension DefaultStartSessionService {
     struct StartSessionResponse: Codable {
         let accessToken: String
         let refreshToken: String
-        let expiresIn: Int
+        let expiresInSec: Int
         
         func mapToDomain(id: String) -> StartSessionServiceOutput {
             StartSessionServiceOutput(
                 bearerToken: accessToken,
                 refreshToken: refreshToken,
-                expirationDuration: expiresIn,
+                expirationDuration: expiresInSec,
                 userID: id
             )
         }

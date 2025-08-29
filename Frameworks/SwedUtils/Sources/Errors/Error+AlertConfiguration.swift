@@ -7,8 +7,12 @@
 //
 
 import DevToolsCore
+import DevToolsNavigation
+import UIKit
+import SwedLocalization
+import DevToolsUI
 
-extension Error {
+public extension Error {
     func makeAlertConfiguration(
         buttons: [AlertConfiguration.Button] = []
     ) -> AlertConfiguration {
@@ -21,8 +25,8 @@ extension Error {
     
     var fallbackErrorContent: UIPresentableErrorContent {
         UIPresentableErrorContent(
-            title: AppStrings.Error.Generic.title,
-            message: AppStrings.Error.Generic.message
+            title: SwedLocalization.Error.Generic.title,
+            message: SwedLocalization.Error.Generic.message
         )
     }
     
@@ -35,7 +39,7 @@ extension Error {
     
     private var defaultOkeyButton: AlertConfiguration.Button {
         AlertConfiguration.Button(
-            title: AppStrings.Globals.ok,
+            title: SwedLocalization.Globals.ok,
             action: {}
         )
     }

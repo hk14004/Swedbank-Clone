@@ -37,6 +37,7 @@ let project = Project(
                 .project(target: Project.Framework.SwedLocalization.rawValue, path: "../../\(Project.Framework.SwedLocalization.rawValue)"),
                 .project(target: Project.Framework.SwedApplication.rawValue, path: "../../\(Project.Framework.SwedApplication.rawValue)"),
                 .project(target: Project.Framework.SwedDesignSystem.rawValue, path: "../../\(Project.Framework.SwedDesignSystem.rawValue)"),
+                .project(target: Project.Framework.SwedUtils.rawValue, path: "../../\(Project.Framework.SwedUtils.rawValue)"),
             ]
         ),
         .target(

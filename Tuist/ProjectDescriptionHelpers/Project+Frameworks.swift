@@ -17,6 +17,7 @@ public extension Project {
         case SwedDesignSystem
         case SwedData
         case SwedPersistance
+        case SwedUtils
         // Features
         case SwedOverview
         case SwedLogin
