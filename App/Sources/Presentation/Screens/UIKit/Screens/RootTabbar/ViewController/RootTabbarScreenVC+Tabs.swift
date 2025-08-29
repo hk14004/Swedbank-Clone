@@ -43,6 +43,28 @@ extension RootTabbarScreenVC {
         return vc
     }
     
+    private func makeLogoutFinishedPublisher() -> PassthroughSubject<Void, Never> {
+        let publisher = PassthroughSubject<Void, Never>()
+        publisher
+            .receiveOnMainThread()
+            .sink { [weak self] in
+                self?.viewModel.router.routeToSplashScreen()
+            }
+            .store(in: &bag)
+        return publisher
+    }
+    
+    private func onLaunchProfileFlow(customer: Customer) {
+        let factory: any ProfileScreenFactory = Composition.resolve()
+        let vc = factory.make(
+            params: .init(
+                customer: customer,
+                logoutFinished: makeLogoutFinishedPublisher()
+            )
+        )
+        viewControllers?.first?.present(vc, animated: true)
+    }
+    
     private func makeOverviewTab(locked: Bool) -> UINavigationController {
         let navVC = UINavigationController()
         let item = RuntimeLocalizedTabBarItem()
@@ -54,7 +76,17 @@ extension RootTabbarScreenVC {
         let vc: UIViewController = {
             if !locked {
                 let factory: any OverviewScreenFactory = Composition.resolve()
-                return factory.make(params: .init(customer: viewModel.customer, onLaunchProfileIntent: { print("GO") }))
+                return factory.make(
+                    params: .init(
+                        customer: viewModel.customer,
+                        onLaunchProfileIntent: { [weak self] in
+                            DispatchQueue.main.async {
+                                guard let self else { return }
+                                self.onLaunchProfileFlow(customer: self.viewModel.customer)
+                            }
+                        }
+                    )
+                )
             } else {
                 return makeLockedTab()
             }

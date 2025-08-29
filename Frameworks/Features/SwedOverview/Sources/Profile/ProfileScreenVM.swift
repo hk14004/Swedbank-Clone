@@ -54,7 +54,7 @@ extension DefaultProfileScreenVM {
         logoutUseCase.use()
             .receiveOnMainThread()
             .sink { [weak self] _ in
-                self?.router.routeToSplashScreen()
+                self?.router.routeToLogoutPressed()
             }
             .store(in: &cancelBag)
     }

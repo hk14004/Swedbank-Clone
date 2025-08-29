@@ -28,6 +28,7 @@ public class DefaultSplashVM: SplashScreenVM {
     private let fakeAlreadyLoggedInUseCase: FakeAlreadyLoggedInUseCase
     private let getLastCustomerUseCase: GetLastCustomerUseCase
     private let startUserSessionUseCase: StartUserSessionUseCase
+    private let getCurrentCustomerUseCase: GetCurrentCustomerUseCase
     @Published private var isLoading: Bool = false
     private var cancelBag = Set<AnyCancellable>()
     
@@ -36,20 +37,23 @@ public class DefaultSplashVM: SplashScreenVM {
     public init(
         fakeAlreadyLoggedInUseCase: FakeAlreadyLoggedInUseCase,
         getLastCustomerUseCase: GetLastCustomerUseCase,
-        startUserSessionUseCase: StartUserSessionUseCase
+        startUserSessionUseCase: StartUserSessionUseCase,
+        getCurrentCustomerUseCase: GetCurrentCustomerUseCase
     ) {
         self.fakeAlreadyLoggedInUseCase = fakeAlreadyLoggedInUseCase
         self.getLastCustomerUseCase = getLastCustomerUseCase
         self.startUserSessionUseCase = startUserSessionUseCase
+        self.getCurrentCustomerUseCase = getCurrentCustomerUseCase
     }
 }
 
 // MARK: Input
-
 public extension DefaultSplashVM {
     func onViewDidLoad() {
         guard let customer = getLastCustomerUseCase.use() else {
-            router?.routeToSimpleLoginScreen(params: .init(onLoginCompletedEvent: .init()))
+            router?.routeToSimpleLoginScreen(
+                params: .init(loginCompleted: makeLoginCompletedPublisher())
+            )
             return
         }
         fakeAlreadyLoggedInUseCase.use()
@@ -68,5 +72,25 @@ public extension DefaultSplashVM {
                 self?.router?.initRouteToRoot(customer: customer)
             }
             .store(in: &cancelBag)
+    }
+}
+
+// MARK: Private
+public extension DefaultSplashVM {
+    private func makeLoginCompletedPublisher() -> PassthroughSubject<Void, Never> {
+        let publisher = PassthroughSubject<Void, Never>()
+        publisher
+            .receiveOnMainThread()
+            .sink { [weak self] _ in
+                guard
+                    let self = self,
+                    let customer = getCurrentCustomerUseCase.use()
+                else {
+                    return
+                }
+                router?.initRouteToRoot(customer: customer)
+            }
+            .store(in: &cancelBag)
+        return publisher
     }
 }

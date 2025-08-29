@@ -9,11 +9,20 @@
 import Foundation
 import SwedApplication
 import DevToolsNavigation
+import UIKit
 
 protocol SimpleLoginScreenRouter: ToErrorRouting {
     func onLoginCompleted()
 }
 
 public protocol ToSimpleLoginScreenRouting {
+    var simpleLoginScreenFactory: any SimpleLoginScreenFactory { get }
     func routeToSimpleLoginScreen(params: SimpleLoginScreenFactoryParams)
+}
+
+public extension ToSimpleLoginScreenRouting where Self: UIKitRouter {
+    func routeToSimpleLoginScreen(params: SimpleLoginScreenFactoryParams) {
+        let vc = simpleLoginScreenFactory.make(params: params)
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }

@@ -12,13 +12,13 @@ import DevToolsNavigation
 import UIKit
 import Combine
 
-public protocol SimpleLoginScreenFactory: UIKitScreenFactory {}
+public protocol SimpleLoginScreenFactory: UIKitScreenFactory where Params == SimpleLoginScreenFactoryParams {}
 
 public struct SimpleLoginScreenFactoryParams {
     var onLoginCompletedEvent: PassthroughSubject<Void, Never>
     
-    public init(onLoginCompletedEvent: PassthroughSubject<Void, Never>) {
-        self.onLoginCompletedEvent = onLoginCompletedEvent
+    public init(loginCompleted: PassthroughSubject<Void, Never>) {
+        self.onLoginCompletedEvent = loginCompleted
     }
 }
 

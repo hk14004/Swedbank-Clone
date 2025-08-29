@@ -10,10 +10,10 @@ import Foundation
 import SwedApplication
 
 protocol ProfileScreenRouter {
-    func routeToSplashScreen()
+    func routeToLogoutPressed()
 }
 
 protocol ToProfileScreenRouting {
+    var profileScreenFactory: any ProfileScreenFactory { get }
     func routeToProfileScreen(params: Customer)
-    func routeToSplashScreen()
 }

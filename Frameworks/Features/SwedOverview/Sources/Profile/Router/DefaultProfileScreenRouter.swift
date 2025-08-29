@@ -9,24 +9,28 @@
 import SwedApplication
 import DevToolsNavigation
 import UIKit
+import Combine
 
 class DefaultProfileScreenRouter: ProfileScreenRouter, UIKitRouter {
-    func routeToSplashScreen() {
-        print("upsie")
+    func routeToLogoutPressed() {
+        logoutFinished.send(())
+        logoutFinished.send(completion: .finished)
     }
     
     weak var viewController: UIViewController?
+    private let logoutFinished: PassthroughSubject<Void, Never>
     
-    init(viewController: UIViewController) {
+    init(
+        viewController: UIViewController,
+        logoutFinished: PassthroughSubject<Void, Never>
+    ) {
         self.viewController = viewController
+        self.logoutFinished = logoutFinished
     }
 }
 
-protocol HasProfileScreenFactory {
-    var profileScreenFactory: any ProfileScreenFactory { get }
-}
-extension ToProfileScreenRouting where Self: UIKitRouter & HasProfileScreenFactory {
-    func routeToProfileScreen(params: Customer) {
+extension ToProfileScreenRouting where Self: UIKitRouter {
+    func routeToProfileScreen(params: ProfileScreenFactoryParams) {
         let vc = profileScreenFactory.make(params: params)
         let navVC = UINavigationController(rootViewController: vc)
         viewController?.present(navVC, animated: true)
