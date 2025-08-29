@@ -5,6 +5,7 @@ import UIKit
 import SwiftUI
 import SwedOverview
 import SwedLogin
+import SwedContacts
 
 class ScreenFactoryAssembly: Assembly {
     func assemble(container: Container) {

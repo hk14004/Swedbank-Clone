@@ -8,7 +8,7 @@
 
 import DevToolsCore
 
-public struct ContactsScreenSectionChangeSnapshot {
-    public let sections: [ContactsScreenSection]
-    public let changes: DevHashChangeSet
+struct ContactsScreenSectionChangeSnapshot {
+    let sections: [ContactsScreenSection]
+    let changes: DevHashChangeSet
 }

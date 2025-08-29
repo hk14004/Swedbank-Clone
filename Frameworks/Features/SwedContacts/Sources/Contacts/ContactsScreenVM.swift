@@ -12,18 +12,18 @@ import DevToolsCore
 import SwedApplication
 import SwedLocalization
 
-public protocol ConstactsScreenVMInput {
+protocol ConstactsScreenVMInput {
     func viewDidLoad()
 }
 
-public protocol ConstactsScreenVMOutput {
+protocol ConstactsScreenVMOutput {
     var tableSnapshot: CurrentValueSubject<ContactsScreenSectionChangeSnapshot, Never> { get }
     var router: ContactsScreenRouter! { get }
 }
 
-public protocol ContactsScreenVM: ConstactsScreenVMInput, ConstactsScreenVMOutput {}
+protocol ContactsScreenVM: ConstactsScreenVMInput, ConstactsScreenVMOutput {}
 
-public class DefaultContactsScreenVM: ContactsScreenVM {
+class DefaultContactsScreenVM: ContactsScreenVM {
     // MARK: Constant
     enum Constant {
         enum ItemID: String {
@@ -47,7 +47,7 @@ public class DefaultContactsScreenVM: ContactsScreenVM {
 }
 
 // MARK: Methods
-public extension DefaultContactsScreenVM {
+extension DefaultContactsScreenVM {
     func viewDidLoad() {
         let sections = [
             ContactsScreenSection(

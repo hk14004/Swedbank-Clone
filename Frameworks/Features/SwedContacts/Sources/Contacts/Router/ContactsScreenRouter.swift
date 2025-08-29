@@ -9,8 +9,8 @@
 import Foundation
 import SwedApplication
 
-public protocol ContactsScreenRouter {}
+protocol ContactsScreenRouter {}
 
-public protocol ToContactsScreenRouting {
+protocol ToContactsScreenRouting {
     func routeToContactsScreen()
 }

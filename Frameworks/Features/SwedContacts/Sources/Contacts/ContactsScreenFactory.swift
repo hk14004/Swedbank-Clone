@@ -10,12 +10,17 @@ import Foundation
 import DevToolsNavigation
 import UIKit
 
-protocol ContactsScreenFactory: UIKitScreenFactory {}
+public protocol ContactsScreenFactory: UIKitScreenFactory where Params == ContactsScreenFactoryParams  {}
 
-struct ContactsScreenFactoryParams {}
+public struct ContactsScreenFactoryParams {
+    public init() {}
+}
 
-class DefaultContactsScreenFactory: ContactsScreenFactory {
-    func make(params: ContactsScreenFactoryParams) -> UIViewController {
+public class DefaultContactsScreenFactory: ContactsScreenFactory {
+    
+    public init() {}
+    
+    public func make(params: ContactsScreenFactoryParams) -> UIViewController {
         let vm = DefaultContactsScreenVM()
         let vc = ContactsScreenVC(viewModel: vm)
         let router = DefaultContactsScreenRouter(viewController: vc)

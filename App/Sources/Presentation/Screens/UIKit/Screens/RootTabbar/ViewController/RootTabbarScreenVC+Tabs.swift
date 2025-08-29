@@ -12,6 +12,7 @@ import SwedApplication
 import DevToolsLocalization
 import SwedOverview
 import SwedLogin
+import SwedContacts
 
 extension RootTabbarScreenVC {
     func makeTabs(tabs: [RootTab]) -> [UINavigationController] {
@@ -112,7 +113,7 @@ extension RootTabbarScreenVC {
         
         let vc: UIViewController = {
             let factory: ContactsScreenFactory = Composition.resolve()
-            return factory.make()
+            return factory.make(params: .init())
         }()
         navVC.setViewControllers([vc], animated: false)
         return navVC

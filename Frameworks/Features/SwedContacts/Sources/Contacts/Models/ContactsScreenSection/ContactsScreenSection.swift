@@ -10,20 +10,20 @@ import Foundation
 import DevToolsUI
 import DevToolsCore
 
-public class ContactsScreenSection: DevTableSection {
-    public enum SectionID: String, CaseIterable {
+class ContactsScreenSection: DevTableSection {
+    enum SectionID: String, CaseIterable {
         case contactItems
     }
     
-    public enum Cell: DevTableSectionCell {
+    enum Cell: DevTableSectionCell {
         case contactItem(ContactsScreenContactCellViewModel)
     }
     
-    public let id: SectionID
-    public var title: String
-    public var cells: [Cell]
+    let id: SectionID
+    var title: String
+    var cells: [Cell]
     
-    public init(id: SectionID, title: String = "", cells: [Cell]) {
+    init(id: SectionID, title: String = "", cells: [Cell]) {
         self.id = id
         self.title = title
         self.cells = cells
