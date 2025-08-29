@@ -87,6 +87,10 @@ extension Project.Root.AppVariant {
                     target: Project.Framework.SwedLogin.rawValue,
                     path: Project.Framework.SwedLogin.getPath()
                 ),
+                .project(
+                    target: Project.Framework.SwedContacts.rawValue,
+                    path: Project.Framework.SwedContacts.getPath()
+                ),
                 .external(name: Project.Dependencies.SwiftyUserDefaults.rawValue),
                 .external(name: Project.Dependencies.SnapKit.rawValue),
                 .external(name: Project.Dependencies.Swinject.rawValue),
