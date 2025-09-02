@@ -12,4 +12,5 @@ import DevToolsNavigation
 
 public protocol LoginScreenRouter: ToErrorRouting {
     func routeToLoginCompleted(customer: Customer)
+    func routeToLanguageSelectionScreen()
 }

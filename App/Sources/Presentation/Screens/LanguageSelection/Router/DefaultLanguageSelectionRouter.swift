@@ -29,7 +29,7 @@ class DefaultLanguageSelectionRouter: LanguageSelectionRouter {
     }
 }
 
-protocol CancelBagStorable: AnyObject {
+public protocol CancelBagStorable: AnyObject {
     var cancelBag: Set<AnyCancellable> { get set }
 }
 

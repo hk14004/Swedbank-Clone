@@ -10,8 +10,13 @@ import Foundation
 import SwedApplication
 import DevToolsNavigation
 
-public protocol RootTabbarScreenRouter: UIKitRouter, ToSplashScreenRouting {
-    func routeTo(tab: RootTab)
+public protocol RootTabbarScreenRouter:
+    UIKitRouter,
+    CancelBagStorable,
+    ToSplashScreenRouting,
+    ToLanguageSelectionScreenRouting
+{
+
 }
 
 public protocol ToRootTabbarScreenRouting {

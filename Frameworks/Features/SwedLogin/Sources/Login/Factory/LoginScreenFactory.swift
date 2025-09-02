@@ -17,10 +17,16 @@ public protocol LoginScreenFactory: UIKitScreenFactory where Params == LoginScre
 public struct LoginScreenFactoryParams {
     let customer: Customer
     let didLoginPublisher: PassthroughSubject<Void, Never>
+    let didTapLangSelection: PassthroughSubject<Void, Never>
     
-    public init(customer: Customer, didLoginPublisher: PassthroughSubject<Void, Never>) {
+    public init(
+        customer: Customer,
+        didLoginPublisher: PassthroughSubject<Void, Never>,
+        didTapLangSelection: PassthroughSubject<Void, Never>
+    ) {
         self.customer = customer
         self.didLoginPublisher = didLoginPublisher
+        self.didTapLangSelection = didTapLangSelection
     }
 }
 
@@ -42,7 +48,8 @@ public class DefaultLoginScreenFactory: LoginScreenFactory {
         let vc = LoginScreenVC(viewModel: vm)
         let router = DefaultLoginScreenRouter(
             viewController: vc,
-            didLoginPublisher: params.didLoginPublisher
+            didLoginPublisher: params.didLoginPublisher,
+            didTapLangSelection: params.didTapLangSelection
         )
         vm.router = router
         return vc

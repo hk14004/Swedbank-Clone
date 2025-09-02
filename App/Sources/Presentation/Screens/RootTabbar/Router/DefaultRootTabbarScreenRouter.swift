@@ -9,19 +9,15 @@
 import UIKit
 import DevToolsNavigation
 import SwedApplication
+import Combine
 
 class DefaultRootTabbarScreenRouter: RootTabbarScreenRouter {
-    
+    var cancelBag: Set<AnyCancellable> = []
     weak var viewController: UIViewController?
 
     init(viewController: UIViewController) {
         self.viewController = viewController
     }
-    
-    func routeTo(tab: RootTab) {
-        print("")
-    }
-
 }
 
 extension ToRootTabbarScreenRouting where Self: UIKitRouter {

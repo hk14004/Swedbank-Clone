@@ -7,6 +7,7 @@
 
 import SwiftUI
 import DevToolsUI
+import SwedDesignSystem
 
 struct LanguageSelectionScreenView<ViewModel: LanguageSelectionScreenVM>: View {
     
@@ -64,7 +65,7 @@ extension LanguageSelectionScreenView {
     @ViewBuilder
     private func makeLanguageRow(code: String, selected: Bool) -> some View {
         HStack(alignment: .center, spacing: 0) {
-            Image(AppImages.makeLanguageFlagName(language: code))
+            Image(AppImages.makeLanguageFlagName(language: code), bundle: SwedDesignSystemResources.bundle)
                 .resizable()
                 .scaledToFit()
                 .frame(width: 24)

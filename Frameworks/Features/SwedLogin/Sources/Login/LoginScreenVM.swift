@@ -71,7 +71,7 @@ public extension DefaultLoginScreenVM {
     }
     
     func onLanguageChangeTap() {
-//        router.routeToLanguageSelectionScreen()
+        router.routeToLanguageSelectionScreen()
     }
     
     func onFaceIDTapped() {

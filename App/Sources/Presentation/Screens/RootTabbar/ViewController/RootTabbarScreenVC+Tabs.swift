@@ -32,8 +32,15 @@ extension RootTabbarScreenVC {
     
     func makeLockedTab() -> UIViewController {
         let didUnlockDashboardPublisher = PassthroughSubject<Void, Never>()
+        let didTapLangSelectionPublisher = PassthroughSubject<Void, Never>()
         let factory: any LoginScreenFactory = Composition.resolve()
-        let vc = factory.make(params: .init(customer: viewModel.customer, didLoginPublisher: didUnlockDashboardPublisher))
+        let vc = factory.make(
+            params: .init(
+                customer: viewModel.customer,
+                didLoginPublisher: didUnlockDashboardPublisher,
+                didTapLangSelection: makedidTapLangSelectionPublisher()
+            )
+        )
         didUnlockDashboardPublisher
             .receiveOnMainThread()
             .sink { [weak self] customer in
@@ -41,6 +48,17 @@ extension RootTabbarScreenVC {
             }
             .store(in: &bag)
         return vc
+    }
+    
+    private func makedidTapLangSelectionPublisher() -> PassthroughSubject<Void, Never> {
+        let publisher = PassthroughSubject<Void, Never>()
+        publisher
+            .receiveOnMainThread()
+            .sink { [weak self] in
+                self?.viewModel.router.routeToLanguageSelectionScreen()
+            }
+            .store(in: &bag)
+        return publisher
     }
     
     private func makeLogoutFinishedPublisher() -> PassthroughSubject<Void, Never> {

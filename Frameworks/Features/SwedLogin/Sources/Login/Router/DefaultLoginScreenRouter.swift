@@ -16,16 +16,23 @@ import SwedUtils
 class DefaultLoginScreenRouter: UIKitRouter, LoginScreenRouter {
     weak var viewController: UIViewController?
     let didLoginPublisher: PassthroughSubject<Void, Never>
+    let didTapLangSelection: PassthroughSubject<Void, Never>
     
     init(
         viewController: UIViewController,
-        didLoginPublisher: PassthroughSubject<Void, Never>
+        didLoginPublisher: PassthroughSubject<Void, Never>,
+        didTapLangSelection: PassthroughSubject<Void, Never>
     ) {
         self.viewController = viewController
         self.didLoginPublisher = didLoginPublisher
+        self.didTapLangSelection = didTapLangSelection
     }
     
     func routeToLoginCompleted(customer: Customer) {
         didLoginPublisher.send()
+    }
+    
+    func routeToLanguageSelectionScreen() {
+        didTapLangSelection.send()
     }
 }
