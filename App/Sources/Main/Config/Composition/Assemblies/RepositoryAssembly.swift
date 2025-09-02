@@ -30,7 +30,8 @@ class RepositoryAssembly: Assembly {
             DefaultCustomerRepository(
                 fetchRemoteCustomersService: Composition.resolve(),
                 localStore: resolver.resolve((any CustomerPersistedLayerInterface).self)!,
-                currentCustomerStore: Composition.resolve()
+                currentCustomerStore: Composition.resolve(),
+                lastUsedCustomerStore: Composition.resolve()
             )
         }
         .inObjectScope(.container)

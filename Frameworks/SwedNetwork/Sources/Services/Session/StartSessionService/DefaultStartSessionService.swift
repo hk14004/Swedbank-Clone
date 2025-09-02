@@ -32,7 +32,7 @@ public class DefaultStartSessionService: StartSessionService {
                 return error
             }
             switch networkError {
-            case .resourceNotFound:
+            case .unauthorized:
                 return UserSessionError.invalidLoginCredentials
             default:
                 return error

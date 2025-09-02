@@ -16,9 +16,7 @@ protocol SplashScreenFactory {
 class DefaultSplashScreenFactory: SplashScreenFactory {
     func make() -> SplashScreenVC {
         let vm = DefaultSplashVM(
-            fakeAlreadyLoggedInUseCase: Composition.resolve(),
             getLastCustomerUseCase: Composition.resolve(),
-            startUserSessionUseCase: Composition.resolve(),
             getCurrentCustomerUseCase: Composition.resolve()
         )
         let vc = SplashScreenVC(viewModel: vm)

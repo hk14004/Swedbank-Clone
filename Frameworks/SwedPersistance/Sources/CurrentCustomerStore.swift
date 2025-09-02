@@ -7,7 +7,7 @@ public protocol CurrentCustomerStore {
 }
 
 public class DefaultCurrentCustomerStore: CurrentCustomerStore {
-    var customer: Customer?
+    private var customer: Customer?
     
     public init(customer: Customer? = nil) {
         self.customer = customer

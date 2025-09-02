@@ -21,13 +21,13 @@ public struct StartSessionServiceInput {
 public struct StartSessionServiceOutput {
     public let bearerToken: String
     public let refreshToken: String
-    public let expirationDurationInMins: Int
+    public let expirationDurationInSecs: Int
     public let userID: String
     
-    public init(bearerToken: String, refreshToken: String, expirationDuration: Int, userID: String) {
+    public init(bearerToken: String, refreshToken: String, expirationDurationInSecs: Int, userID: String) {
         self.bearerToken = bearerToken
         self.refreshToken = refreshToken
-        self.expirationDurationInMins = expirationDuration
+        self.expirationDurationInSecs = expirationDurationInSecs
         self.userID = userID
     }
 }

@@ -25,6 +25,10 @@ class StorageAssembly: Assembly {
             DefaultCurrentCustomerStore()
         }
         .inObjectScope(.container)
+        container.register(LastUsedCustomerStore.self) { resolver in
+            DefaultLastUsedCustomerStore(keychain: Composition.resolve())
+        }
+        .inObjectScope(.container)
         // MARK: Swift data stack
         container.register(ModelContainer.self) { resolver in
             lazy var container: ModelContainer = {

@@ -5,26 +5,14 @@ import SwedApplication
 
 class UseCaseAssembly: Assembly {
     func assemble(container: Container) {
-        container.register(FakeAlreadyLoggedInUseCase.self) { resolver in
-            DefaultFakeAlreadyLoggedInUseCase(
-                customerRepository: Composition.resolve(),
-                startSessionService: Composition.resolve(),
-                userSessionCredentialsRepository: Composition.resolve()
-            )
-        }
         container.register(GetLastCustomerUseCase.self) { resolver in
-            MockGetLastCustomerUseCase(customerRepository: Composition.resolve())
+            DefaultGetLastCustomerUseCase(customerRepository: Composition.resolve())
         }
         container.register(PinAuthenticateUseCase.self) { resolver in
             DefaultPinAuthenticateUseCase()
         }
         container.register(BiometryAuthenticateUseCase.self) { resolver in
             DefaultBiometryAuthenticateUseCase()
-        }
-        container.register(StartUserSessionUseCase.self) { resolver in
-            DefaultStartUserSessionUseCase(
-                customerRepository: Composition.resolve()
-            )
         }
         container.register(isOnboardingCompletedUseCase.self) { resolver in
             DefaultIsOnboardingCompletedUseCase(

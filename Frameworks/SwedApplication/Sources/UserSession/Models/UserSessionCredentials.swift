@@ -31,11 +31,11 @@ public struct UserSessionCredentials: Codable, Equatable, AuthorizationCredentia
         public init(
             bearerToken: String,
             refreshToken: String,
-            bearerTokenExpiresInMins: Int
+            bearerTokenExpiresInSecs: Int
         ) {
             self.bearerToken = bearerToken
             self.refreshToken = refreshToken
-            let expDate = Calendar.current.date(byAdding: .minute, value: bearerTokenExpiresInMins, to: Date())
+            let expDate = Calendar.current.date(byAdding: .second, value: bearerTokenExpiresInSecs, to: Date())
             self.bearerTokenExpirationDate = expDate ?? Date()
         }
     }

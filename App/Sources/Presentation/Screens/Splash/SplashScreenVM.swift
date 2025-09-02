@@ -25,24 +25,17 @@ public class DefaultSplashVM: SplashScreenVM {
     // MARK: Properties
     public var router: SplashScreenRouter?
     public var isLoadingPublisher: AnyPublisher<Bool, Never> { $isLoading.eraseToAnyPublisher() }
-    private let fakeAlreadyLoggedInUseCase: FakeAlreadyLoggedInUseCase
     private let getLastCustomerUseCase: GetLastCustomerUseCase
-    private let startUserSessionUseCase: StartUserSessionUseCase
     private let getCurrentCustomerUseCase: GetCurrentCustomerUseCase
     @Published private var isLoading: Bool = false
     private var cancelBag = Set<AnyCancellable>()
     
     // MARK: Lifecycle
-    
     public init(
-        fakeAlreadyLoggedInUseCase: FakeAlreadyLoggedInUseCase,
         getLastCustomerUseCase: GetLastCustomerUseCase,
-        startUserSessionUseCase: StartUserSessionUseCase,
         getCurrentCustomerUseCase: GetCurrentCustomerUseCase
     ) {
-        self.fakeAlreadyLoggedInUseCase = fakeAlreadyLoggedInUseCase
         self.getLastCustomerUseCase = getLastCustomerUseCase
-        self.startUserSessionUseCase = startUserSessionUseCase
         self.getCurrentCustomerUseCase = getCurrentCustomerUseCase
     }
 }
@@ -56,22 +49,7 @@ public extension DefaultSplashVM {
             )
             return
         }
-        fakeAlreadyLoggedInUseCase.use()
-            .flatMap { _ in
-                self.startUserSessionUseCase.use(customer: customer)
-            }
-            .receiveOnMainThread()
-            .sink { [weak self] completion in
-                switch completion {
-                case .failure(let error):
-                    self?.router?.routeToOkeyErrorAlert(error, onDismiss: nil)
-                case .finished:
-                    break
-                }
-            } receiveValue: { [weak self] _ in
-                self?.router?.initRouteToRoot(customer: customer)
-            }
-            .store(in: &cancelBag)
+        router?.initRouteToRoot(customer: customer)
     }
 }
 

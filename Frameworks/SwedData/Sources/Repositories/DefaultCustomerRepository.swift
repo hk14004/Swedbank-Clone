@@ -17,15 +17,18 @@ public class DefaultCustomerRepository: CustomerRepository {
     private let fetchRemoteCustomersService: FetchRemoteCustomersService
     private let currentCustomerStore: CurrentCustomerStore
     private let localStore: any CustomerPersistedLayerInterface
+    private let lastUsedCustomerStore: LastUsedCustomerStore
 
     public init(
         fetchRemoteCustomersService: FetchRemoteCustomersService,
         localStore: any CustomerPersistedLayerInterface,
-        currentCustomerStore: CurrentCustomerStore
+        currentCustomerStore: CurrentCustomerStore,
+        lastUsedCustomerStore: LastUsedCustomerStore
     ) {
         self.fetchRemoteCustomersService = fetchRemoteCustomersService
         self.localStore = localStore
         self.currentCustomerStore = currentCustomerStore
+        self.lastUsedCustomerStore = lastUsedCustomerStore
     }
     
     public func getRemoteCustomers() -> AnyPublisher<[Customer], Error> {
@@ -78,5 +81,11 @@ public class DefaultCustomerRepository: CustomerRepository {
     
     public func setCurrentCustomer(_ customer: Customer?) {
         currentCustomerStore.setCurrentCustomer(customer)
+        lastUsedCustomerStore.setLastUsedCustomerID(customer?.id)
+    }
+    
+    public func getLastUsedCustomer() -> Customer? {
+        guard let id = lastUsedCustomerStore.getLastUsedCustomerID() else { return nil }
+        return getSingle(id: id)
     }
 }

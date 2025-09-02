@@ -19,7 +19,7 @@ class MockStartSessionService: StartSessionService {
             StartSessionServiceOutput(
                 bearerToken: "accessToken123",
                 refreshToken: "refreshToken123",
-                expirationDuration: 3600,
+                expirationDurationInSecs: 3600,
                 userID: input.username
             )
         )

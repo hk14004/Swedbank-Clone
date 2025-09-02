@@ -16,4 +16,5 @@ public protocol CustomerRepository {
     func getRemoteCustomers() -> AnyPublisher<[Customer], Error>
     func getCurrentCustomer() -> Customer?
     func setCurrentCustomer(_ customer: Customer?)
+    func getLastUsedCustomer() -> Customer?
 }

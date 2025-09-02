@@ -64,7 +64,7 @@ extension SwedNetworkClient {
                     authorizationData: .init(
                         bearerToken: response.accessToken,
                         refreshToken: credentials.authorizationData.refreshToken,
-                        bearerTokenExpiresInMins: response.expiresIn
+                        bearerTokenExpiresInSecs: response.expiresIn
                     )
                 )
             }

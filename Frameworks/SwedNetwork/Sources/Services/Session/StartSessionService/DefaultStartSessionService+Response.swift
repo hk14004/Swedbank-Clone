@@ -19,7 +19,7 @@ extension DefaultStartSessionService {
             StartSessionServiceOutput(
                 bearerToken: accessToken,
                 refreshToken: refreshToken,
-                expirationDuration: expiresInSec,
+                expirationDurationInSecs: expiresInSec,
                 userID: id
             )
         }
