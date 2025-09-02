@@ -8,14 +8,19 @@
 
 import Foundation
 import SwedApplication
+import UIKit
+import DevToolsNavigation
 
-protocol RootTabbarScreenFactory {
-    func make(customer: Customer, locked: Bool) -> RootTabbarScreenVC
+protocol RootTabbarScreenFactory: UIKitScreenFactory where Params == RootTabbarScreenFactoryParams {}
+
+struct RootTabbarScreenFactoryParams {
+    let customer: Customer
+    let locked: Bool
 }
 
 class DefaultRootTabbarScreenFactory: RootTabbarScreenFactory {
-    func make(customer: Customer, locked: Bool) -> RootTabbarScreenVC {
-        let vm = DefaultRootTabbarScreenVM(customer: customer, locked: true)
+    func make(params: RootTabbarScreenFactoryParams) -> UIViewController {
+        let vm = DefaultRootTabbarScreenVM(customer: params.customer, locked: true)
         let vc = RootTabbarScreenVC(viewModel: vm)
         let router = DefaultRootTabbarScreenRouter(viewController: vc)
         vm.router = router
