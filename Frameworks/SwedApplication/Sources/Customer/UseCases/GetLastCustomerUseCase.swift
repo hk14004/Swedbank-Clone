@@ -21,6 +21,8 @@ public struct DefaultGetLastCustomerUseCase: GetLastCustomerUseCase {
     }
     
     public func use() -> Customer? {
-        customerRepository.getLastUsedCustomer()
+        let customer = customerRepository.getLastUsedCustomer()
+        customerRepository.setCurrentCustomer(customer)
+        return customer
     }
 }
